@@ -47,7 +47,7 @@ class DisplayQRController{
     }
     
     //calls a pick conact view controller so the user can pick a contact (notiication is sent that calls respondToContactChoice if user chooses a contact
-    private func chooseContact(vc: UIViewController){
+    func chooseContact(vc: UIViewController){
         let pickContactVC=PickContactVC()
         vc.present(pickContactVC, animated: true)
     }
