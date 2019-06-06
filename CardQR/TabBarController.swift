@@ -11,8 +11,6 @@ import Photos
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate{
     
-    private var authorized=false
-
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate=self
@@ -20,30 +18,48 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate{
     }
     
     func tabBarController(_ tabBarController: UITabBarController,shouldSelect viewController: UIViewController) -> Bool{
-        print("Trying to show a VC")
+        
+        //if user is trying to go to ScanQR_VC
         if (viewController is ScanQR_VC){
+            
             switch AVCaptureDevice.authorizationStatus(for: .video){
+                
+            //if authorization is not determined, request it
             case .notDetermined:
+                
+                var authorized=false
                 AVCaptureDevice.requestAccess(for: .video) { (granted) in
-                    self.authorized=granted
+                    authorized=granted
                 }
+                return authorized
+                
+            //if authorization is restricted, request that the user goes to privacy settings
             case .restricted:
+                
                 showUpdatePrivacyAlert()
                 return false
+                
+            //if authorization is denied, request that the user goes to privacy settings
             case .denied:
+                
                 showUpdatePrivacyAlert()
                 return false
+                
+            //if authorization is authorized and camera is available, return true so that the tab can be shwon
             case .authorized:
+                
+                //if no camera is available, return false
                 if (!UIImagePickerController.isSourceTypeAvailable( .camera)){
                     showCameraUnavailableAlert()
                     return false;
                 }
-                let vc=ScanQR_VC()
-                self.present(vc, animated: true)
+                //so qr code scanner can be shown
                 return true
+                
             }
-            return authorized
         }
+        
+        //if it's any othe view controller that the UITabBarController is trying to present, just return true so that it will do it
         return true
     }
     
@@ -70,5 +86,5 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate{
             self.present(alertController, animated: true, completion: nil)
         }
     }
-
+    
 }
