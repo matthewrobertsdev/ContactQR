@@ -14,7 +14,9 @@ class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     //the view for scanning qr codes
     @IBOutlet weak var scanView: UIView!
     
-    @IBOutlet weak var saveContactBanner: SaveContactBannerView!
+    @IBOutlet weak var saveContactBanner: SaveContactBanner!
+    
+    
     //for AV input
     private let session = AVCaptureSession()
     //so code can be run not on the main thread
@@ -150,7 +152,7 @@ class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             qrCodeFocusView.frame = transformedMetaDataObj!.bounds
             let qrCode=transformedMetaDataObj as! AVMetadataMachineReadableCodeObject
             if (qrCode.stringValue != nil){
-                if (qrString==qrCode.stringValue){
+                if (qrString != qrCode.stringValue){
                     qrString=qrCode.stringValue!
                     
                 }
