@@ -9,17 +9,30 @@
 import UIKit
 import AVFoundation
 
-class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureMetadataOutputObjectsDelegate {
     
     //the view for scanning qr codes
     @IBOutlet weak var scanView: UIView!
     
+    @IBOutlet weak var saveContactBanner: SaveContactBannerView!
     //for AV input
     private let session = AVCaptureSession()
     //so code can be run not on the main thread
     private let sessionQueue = DispatchQueue(label: "session queue")
     //for AV output
     private var avPreviewLayer: AVCaptureVideoPreviewLayer!
+    
+    private let metaDataTypes=[AVMetadataObject.ObjectType.qr]
+    
+    private let qrCodeFocusView=UIView()
+    
+    private let globalDispatchQueue = DispatchQueue.global()
+    
+    private var hideFocusRectTask: DispatchWorkItem!
+    
+    private var qrString=""
+    
+    /*AVMetadataObject.ObjectType.aztec, AVMetadataObject.ObjectType.code128, AVMetadataObject.ObjectType.code39, AVMetadataObject.ObjectType.code39Mod43, AVMetadataObject.ObjectType.code93, AVMetadataObject.ObjectType.dataMatrix, AVMetadataObject.ObjectType.ean13,AVMetadataObject.ObjectType.ean8,*/
     
     
     override func viewDidLoad() {
@@ -29,6 +42,8 @@ class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         do{
             //try to get video camera and start AV session
             try initializeAVSession(videoCamera: try getVideoCamera())
+            //start AV session--success
+            session.startRunning()
         } catch {
             //tell error
             print("Couldn't get video input: \(error)")
@@ -38,7 +53,16 @@ class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
         //add layer that shows camera output to scanView
         addAVPreviewToScanView()
-        
+        do{
+            //try to add metadata output
+            try addMetaDataOuput()
+        } catch {
+            //tell error
+            print("Couldn't add metadata output: \(error)")
+            return
+        }
+        setUpFocusRectangle()
+        saveContactBanner.isHidden=true
     }
     
     func initializeAVPreviewLayer(){
@@ -53,6 +77,19 @@ class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         viewLayer.addSublayer(self.avPreviewLayer)
     }
     
+    func addMetaDataOuput() throws{
+        let metaDataOutput = AVCaptureMetadataOutput()
+        
+        if (session.canAddOutput(metaDataOutput)) {
+            session.addOutput(metaDataOutput)
+            
+            metaDataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+            metaDataOutput.metadataObjectTypes = metaDataTypes
+        } else {
+            throw VideoOutputError.outputAdditionFailure("Could not add metadata pouput to AV session")
+        }
+    }
+    
     func getVideoCamera() throws->AVCaptureDevice{
         
         //get a video camera or throw an error
@@ -65,7 +102,7 @@ class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
         else{
             //if there is no video camera, throw an error
-            throw VideoError.noCamera("No Camera Error")
+            throw VideoInputError.noCamera("No Camera Error")
         }
         
     }
@@ -88,29 +125,62 @@ class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 session.addInput(videoCameraInput)
                 //end configuring
                 session.commitConfiguration()
-                //start AV session--success
-                session.startRunning()
             }
             else{
                 //if the AV input couldn't be added to the AV session
-                throw VideoError.inputAdditionFailure("Couldn't add AV input to AV session")
+                throw VideoInputError.inputAdditionFailure("Couldn't add AV input to AV session")
             }
             
         }
         else{
             //if somehow the program got here but the camera was not authorized for video
-            throw VideoError.noAuthorization("Camera video usage was not authorized")
+            throw VideoInputError.noAuthorization("Camera video usage was not authorized")
         }
         
+    }
+    
+    func metadataOutput(_ output: AVCaptureMetadataOutput,
+                        didOutput metadataObjects: [AVMetadataObject],
+                        from connection: AVCaptureConnection){
+        //Swift.print(metadataObjects.first?.description)
+        if (metadataObjects.first != nil){
+            qrCodeFocusView.isHidden=false
+            saveContactBanner.isHidden=false
+            let transformedMetaDataObj=avPreviewLayer.transformedMetadataObject(for: metadataObjects.first!)
+            qrCodeFocusView.frame = transformedMetaDataObj!.bounds
+            let qrCode=transformedMetaDataObj as! AVMetadataMachineReadableCodeObject
+            if (qrCode.stringValue != nil){
+                if (qrString==qrCode.stringValue){
+                    qrString=qrCode.stringValue!
+                    
+                }
+            }
+        }
+        else{
+            qrCodeFocusView.isHidden=true
+            saveContactBanner.isHidden=true
+            qrString=""
+        }
+    }
+    
+    func setUpFocusRectangle(){
+        qrCodeFocusView.layer.borderColor = UIColor.yellow.cgColor
+        qrCodeFocusView.layer.borderWidth = 2
+        qrCodeFocusView.backgroundColor=UIColor.clear
+        scanView.addSubview(qrCodeFocusView)
+        scanView.bringSubviewToFront(qrCodeFocusView)
+        qrCodeFocusView.isHidden=true
     }
     
 }
 
 //some errors that can occur when working with the camera and AV sessions
-enum VideoError: Error{
+enum VideoInputError: Error{
     case noCamera(String)
     case inputAdditionFailure(String)
     case noAuthorization(String)
 }
 
-
+enum VideoOutputError: Error{
+    case outputAdditionFailure(String)
+}

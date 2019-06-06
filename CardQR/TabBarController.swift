@@ -66,7 +66,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate{
     func showUpdatePrivacyAlert(){
         DispatchQueue.main.async {
             print("Requesting permission")
-            let changePrivacySetting = "CardQR doesn't have permission to use the camera.  Please change privacy settings."
+            let changePrivacySetting = AppStringConstants.APP_NAME+" doesn't have permission to use the camera.  Please change privacy settings."
             let alertMessage = NSLocalizedString(changePrivacySetting, comment: "Alert message when the user has denied access to the camera.")
             let alertController = UIAlertController(title: "CardQR", message: alertMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"),style: .cancel,handler: nil))
@@ -79,9 +79,9 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate{
     func showCameraUnavailableAlert(){
         DispatchQueue.main.async {
             print("Camera unavailable")
-            let changePrivacySetting = "You have allowed acccess to the camera, but your device doesn not have a camera available."
+            let changePrivacySetting = "You have allowed acccess to the camera, but your device does not have a camera available."
             let alertMessage = NSLocalizedString(changePrivacySetting, comment: "Alert message when the user has given access to the camera, but the device doesn''t have one available.")
-            let alertController = UIAlertController(title: "CardQR", message: alertMessage, preferredStyle: .alert)
+            let alertController = UIAlertController(title: AppStringConstants.APP_NAME, message: alertMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"),style: .cancel,handler: nil))
             self.present(alertController, animated: true, completion: nil)
         }

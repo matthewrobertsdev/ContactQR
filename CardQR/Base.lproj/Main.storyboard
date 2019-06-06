@@ -159,6 +159,14 @@
                                 <rect key="frame" x="0.0" y="56" width="320" height="375"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0oZ-Ru-P5e" customClass="SaveContactBannerView" customModule="CardQR" customModuleProvider="target">
+                                <rect key="frame" x="40" y="72" width="240" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="3yF-xq-MFS"/>
+                                    <constraint firstAttribute="width" constant="240" id="kgt-pf-i5I"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyr-Uw-AEp">
                                 <rect key="frame" x="92.5" y="20" width="135" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
@@ -168,11 +176,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="1Xz-VB-miu" firstAttribute="top" secondItem="Lyr-Uw-AEp" secondAttribute="bottom" constant="8" id="5qS-bO-bZZ"/>
+                            <constraint firstItem="0oZ-Ru-P5e" firstAttribute="top" secondItem="1Xz-VB-miu" secondAttribute="top" constant="16" id="Cvr-ki-gt5"/>
                             <constraint firstItem="1Xz-VB-miu" firstAttribute="leading" secondItem="aVB-MZ-cVC" secondAttribute="leading" id="UHg-Ez-W25"/>
-                            <constraint firstItem="Lyr-Uw-AEp" firstAttribute="top" secondItem="aVB-MZ-cVC" secondAttribute="top" id="Z9p-VW-aDG"/>
+                            <constraint firstItem="0oZ-Ru-P5e" firstAttribute="centerX" secondItem="aVB-MZ-cVC" secondAttribute="centerX" id="WNa-gM-4kZ"/>
                             <constraint firstItem="aVB-MZ-cVC" firstAttribute="trailing" secondItem="1Xz-VB-miu" secondAttribute="trailing" id="eNT-jL-LSm"/>
                             <constraint firstItem="Lyr-Uw-AEp" firstAttribute="centerX" secondItem="aVB-MZ-cVC" secondAttribute="centerX" id="kI3-md-9sO"/>
-                            <constraint firstItem="1Xz-VB-miu" firstAttribute="top" secondItem="Lyr-Uw-AEp" secondAttribute="bottom" constant="8" id="mWU-wi-1e0"/>
+                            <constraint firstItem="aVB-MZ-cVC" firstAttribute="top" secondItem="Lyr-Uw-AEp" secondAttribute="top" id="mWU-wi-1e0"/>
                             <constraint firstItem="aVB-MZ-cVC" firstAttribute="bottom" secondItem="1Xz-VB-miu" secondAttribute="bottom" id="ojo-Wz-8OH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aVB-MZ-cVC"/>
@@ -180,6 +190,7 @@
                     <tabBarItem key="tabBarItem" title="Scan Contact" id="C28-16-r9q"/>
                     <navigationItem key="navigationItem" id="6zp-qX-7Z3"/>
                     <connections>
+                        <outlet property="saveContactBanner" destination="0oZ-Ru-P5e" id="Sma-6Y-gST"/>
                         <outlet property="scanView" destination="1Xz-VB-miu" id="Svz-DL-iCe"/>
                     </connections>
                 </viewController>
