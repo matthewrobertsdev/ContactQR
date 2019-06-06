@@ -147,7 +147,7 @@
             </objects>
             <point key="canvasLocation" x="149.59999999999999" y="44.527736131934034"/>
         </scene>
-        <!--Scan Contact-->
+        <!--Get Contact-->
         <scene sceneID="kRt-Bi-pmj">
             <objects>
                 <viewController id="pzX-wY-ICc" customClass="ScanQR_VC" customModule="CardQR" customModuleProvider="target" sceneMemberID="viewController">
@@ -167,8 +167,8 @@
                                     <constraint firstAttribute="width" constant="288" id="Qmv-8S-ifS"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyr-Uw-AEp">
-                                <rect key="frame" x="92.5" y="20" width="135" height="28"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyr-Uw-AEp">
+                                <rect key="frame" x="100" y="20" width="120.5" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -187,7 +187,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aVB-MZ-cVC"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Scan Contact" id="C28-16-r9q"/>
+                    <tabBarItem key="tabBarItem" title="Get Contact" id="C28-16-r9q"/>
                     <navigationItem key="navigationItem" id="6zp-qX-7Z3"/>
                     <connections>
                         <outlet property="saveContactBanner" destination="0oZ-Ru-P5e" id="Sma-6Y-gST"/>

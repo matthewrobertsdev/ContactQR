@@ -12,6 +12,15 @@ import ContactsUI
  */
 class ContactDataConverter{
     
+    static func createCNContactArray(vCardString: String)throws ->[CNContact]{
+        if let vCardData = vCardString.data(using: .utf8) {
+            return try CNContactVCardSerialization.contacts(with: vCardData)
+        }
+        else{
+            throw DataConversionError.dataSerializationError("Couldn't serialize string to data.")
+        }
+    }
+    
     //goes from CNContact, to v card Data, to v card String
     static func cnContactToVCardString(cnContact: CNContact)->String{
         let vCardData=makeVCardData(cnContact: cnContact)
@@ -69,6 +78,11 @@ class ContactDataConverter{
         }
     }
     
-
     
+    
+}
+
+enum DataConversionError: Error{
+    case dataSerializationError(String)
+    case badVCard(String)
 }

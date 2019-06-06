@@ -154,6 +154,20 @@ class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             if (qrCode.stringValue != nil){
                 if (qrString != qrCode.stringValue){
                     qrString=qrCode.stringValue!
+                    do{
+                        let cnContactArray=try ContactDataConverter.createCNContactArray(vCardString: qrString)
+                        saveContactBanner.messageLabel.text="Save to contacts"
+                        if (cnContactArray.first==nil){
+                            throw DataConversionError.badVCard("It's not a v card")
+                        }
+                        saveContactBanner.detailLabel.text = ContactInfoManipulator.createContactPreviewString(cnContact: cnContactArray.first!)
+                        saveContactBanner.imageView.image=ContactDataConverter.makeQRCode(string: qrString)
+                    }
+                    catch{
+                        saveContactBanner.messageLabel.text="Not a Contact"
+                        saveContactBanner.detailLabel.text="Code doesn't have a readbale contact."
+                        saveContactBanner.imageView.image=UIImage()
+                    }
                     
                 }
             }
@@ -162,6 +176,7 @@ class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             qrCodeFocusView.isHidden=true
             saveContactBanner.isHidden=true
             qrString=""
+            saveContactBanner.imageView.image=UIImage()
         }
     }
     

@@ -13,6 +13,55 @@ import Contacts
  */
 class ContactInfoManipulator{
     
+    static func createContactPreviewString(cnContact: CNContact)->String{
+        var contactPreviewString=""
+            if !(cnContact.namePrefix==""){
+                contactPreviewString.append(cnContact.namePrefix+" ")
+            }
+            if !(cnContact.givenName==""){
+                contactPreviewString.append(cnContact.givenName+" ")
+            }
+            if !(cnContact.familyName==""){
+                contactPreviewString.append(cnContact.familyName+" ")
+            }
+            if !(cnContact.nameSuffix==""){
+                contactPreviewString.append(cnContact.nameSuffix+" ")
+            }
+            if !(cnContact.nickname==""){
+                contactPreviewString.append(cnContact.nickname+" ")
+            }
+            for phoneNumber in (cnContact.phoneNumbers){
+                contactPreviewString.append(phoneNumber.value.stringValue+" ")
+            }
+            for emailAddress in (cnContact.emailAddresses){
+                contactPreviewString.append(emailAddress.value as String+" ")
+            }
+            for urlAddress in (cnContact.urlAddresses){
+                contactPreviewString.append( urlAddress.value as String+" ")
+            }
+            for postalAddress in (cnContact.postalAddresses){
+                
+                if !(postalAddress.value.street==""){
+                    contactPreviewString.append(postalAddress.value.street as String+" ")
+                }
+                if !(postalAddress.value.city==""){
+                    contactPreviewString.append( postalAddress.value.city as String+" ")
+                }
+                if !(postalAddress.value.state==""){
+                    contactPreviewString.append( postalAddress.value.state as String+" ")
+                }
+                if !(postalAddress.value.postalCode==""){
+                    contactPreviewString.append( postalAddress.value.postalCode as String+" ")
+                }
+                if !(postalAddress.value.country==""){
+                    contactPreviewString.append( postalAddress.value.country as String+" ")
+                }
+            }
+            return contactPreviewString
+        
+        
+    }
+    
     //get an array of pairs of Strings from a CNContact
     static func makeContactInfoArray(cnContact: CNContact?)->[(String, String)]{
         var contactInfoArray: [(String, String)]=[]
