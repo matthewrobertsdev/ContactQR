@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Contacts
 
 class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -15,6 +16,8 @@ class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var scanView: UIView!
     
     @IBOutlet weak var saveContactBanner: SaveContactBanner!
+    
+    private var validContact=false
     
     
     //for AV input
@@ -65,6 +68,8 @@ class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
         setUpFocusRectangle()
         saveContactBanner.isHidden=true
+        saveContactBanner.setTapActionCallable(tapActionCallable: AddContactNotifier())
+        NotificationCenter.default.addObserver(self, selector: #selector(respondToContactBannerTap), name: .contactChanged, object: nil)
     }
     
     func initializeAVPreviewLayer(){
@@ -154,16 +159,19 @@ class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             if (qrCode.stringValue != nil){
                 if (qrString != qrCode.stringValue){
                     qrString=qrCode.stringValue!
+                    validContact=false
                     do{
                         let cnContactArray=try ContactDataConverter.createCNContactArray(vCardString: qrString)
                         saveContactBanner.messageLabel.text="Save to contacts"
                         if (cnContactArray.first==nil){
                             throw DataConversionError.badVCard("It's not a v card")
                         }
+                        validContact=true
                         saveContactBanner.detailLabel.text = ContactInfoManipulator.createContactPreviewString(cnContact: cnContactArray.first!)
                         saveContactBanner.imageView.image=ContactDataConverter.makeQRCode(string: qrString)
                     }
                     catch{
+                        validContact=false
                         saveContactBanner.messageLabel.text="Not a Contact"
                         saveContactBanner.detailLabel.text="Code doesn't have a readbale contact."
                         saveContactBanner.imageView.image=UIImage()
@@ -189,6 +197,41 @@ class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         qrCodeFocusView.isHidden=true
     }
     
+    class AddContactNotifier: Callable{
+        
+        func call() {
+            NotificationCenter.default.post(name: .contactBannerTapped, object: self)
+        }
+        
+        
+    }
+    
+    @objc private func respondToContactBannerTap(notification: NSNotification){
+        /*
+         if bad input, dismiss
+         if good input, ask permission and add contact
+         hide the notification when action is done
+         */
+        
+        if(validContact){
+            
+        }
+        else{
+            
+        }
+        saveContactBanner.isHidden=true
+        qrCodeFocusView.isHidden=true
+    }
+    
+}
+
+/*
+ Post this WHENEVER contact banner is tapped
+ */
+extension Notification.Name{
+    
+    //Reference as .contactChanged when type inference is possible
+    static let contactBannerTapped=Notification.Name("contact-banner-tapped")
 }
 
 //some errors that can occur when working with the camera and AV sessions

@@ -10,14 +10,20 @@ import UIKit
 
 class SaveContactBanner: UIView {
     
+    @IBAction func tapAction(_ sender: Any) {
+        
+    }
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var messageLabel: UILabel!
     
     @IBOutlet weak var detailLabel: UILabel!
     
+    private var tapActionCallable: Callable!
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
+        tapActionCallable=StubCallable()
         let viewFromNib = UINib(nibName: "SaveContactBanner", bundle: Bundle.main).instantiate(withOwner: self, options: nil).first as? UIView
         self.addSubview(viewFromNib!);
     }
@@ -27,5 +33,8 @@ class SaveContactBanner: UIView {
         layer.masksToBounds = true
     }
 
+    public func setTapActionCallable(tapActionCallable: Callable){
+        self.tapActionCallable=tapActionCallable
+    }
 
 }

@@ -15,6 +15,7 @@
                 <outlet property="detailLabel" destination="gfq-wg-I76" id="SOT-L4-I1s"/>
                 <outlet property="imageView" destination="29M-rU-skR" id="aqX-Rz-aMj"/>
                 <outlet property="messageLabel" destination="g4r-oO-1NO" id="tZ1-Ez-6ZH"/>
+                <outlet property="tapRegonnizer" destination="VJn-6r-B5U" id="5JS-Z1-wye"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -44,6 +45,7 @@
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstAttribute="width" constant="288" id="C5r-oX-WoJ"/>
                 <constraint firstItem="29M-rU-skR" firstAttribute="leading" secondItem="hnP-oF-U2a" secondAttribute="leading" constant="2" id="ZKU-zI-Xts"/>
@@ -54,7 +56,15 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="ZbN-we-Gst"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="VJn-6r-B5U" appends="YES" id="zLy-oV-wF6"/>
+            </connections>
             <point key="canvasLocation" x="111.59420289855073" y="-875.89285714285711"/>
         </view>
+        <tapGestureRecognizer id="VJn-6r-B5U">
+            <connections>
+                <action selector="tapAction:" destination="-1" id="far-vG-XPT"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>
