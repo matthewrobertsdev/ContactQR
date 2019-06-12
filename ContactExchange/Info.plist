@@ -24,6 +24,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) Please Enable Camera Usage to Scan QR Codes</string>
+	<key>NSContactsUsageDescription</key>
+	<string>$(PRODUCT_NAME) Please Enable Contact Usage to Save to Contacts</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

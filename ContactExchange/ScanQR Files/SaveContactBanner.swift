@@ -11,7 +11,7 @@ import UIKit
 class SaveContactBanner: UIView {
     
     @IBAction func tapAction(_ sender: Any) {
-        
+        tapActionCallable.call()
     }
     @IBOutlet weak var imageView: UIImageView!
     
