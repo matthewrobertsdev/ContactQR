@@ -8,7 +8,6 @@
 import UIKit
 import AVFoundation
 import Contacts
-
 import Foundation
 
 class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
@@ -33,6 +32,8 @@ class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
     
     //the string from the qr code or an empty string
     private var qrString=""
+    
+    private var mainQueue=DispatchQueue.main
     
     init(scanQR_VC: ScanQR_VC){
         super.init()
@@ -147,13 +148,13 @@ class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
                         from connection: AVCaptureConnection){
         //Swift.print(metadataObjects.first?.description)
         if (metadataObjects.first != nil){
-            qrCodeFocusView.isHidden=false
-            scanQR_VC.getSaveContactBanner().isHidden=false
             let transformedMetaDataObj=avPreviewLayer.transformedMetadataObject(for: metadataObjects.first!)
             qrCodeFocusView.frame = transformedMetaDataObj!.bounds
             let qrCode=transformedMetaDataObj as! AVMetadataMachineReadableCodeObject
             if (qrCode.stringValue != nil){
                 if (qrString != qrCode.stringValue){
+                    qrCodeFocusView.isHidden=false
+                    scanQR_VC.getSaveContactBanner().isHidden=false
                     qrString=qrCode.stringValue!
                     validContact=false
                     do{
@@ -177,9 +178,9 @@ class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
             }
         }
         else{
+            qrString=""
             qrCodeFocusView.isHidden=true
             scanQR_VC.getSaveContactBanner().isHidden=true
-            qrString=""
             scanQR_VC.getSaveContactBanner().imageView.image=UIImage()
         }
     }
@@ -208,9 +209,15 @@ class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
          if good input, ask permission and add contact
          hide the notification when action is done
          */
+        print("respond to contact banner tapped"+Date().description)
         
         if(validContact){
-            
+            scanQR_VC.contactAddedView.isHidden=false
+            let executionTime=DispatchTime.now()+0.5
+            mainQueue.asyncAfter(deadline: executionTime, execute:{
+                self.scanQR_VC.contactAddedView.isHidden=true
+                print("banner should hide at "+Date().description)
+            });
         }
         
         scanQR_VC.getSaveContactBanner().isHidden=true
