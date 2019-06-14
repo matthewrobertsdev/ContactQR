@@ -18,8 +18,6 @@ class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     //the banner you tap to save a code or dismiss a code that isn't a contact
     @IBOutlet weak var saveContactBanner: SaveContactBanner!
     
-    @IBOutlet weak var contactAddedView: UIView!
-    
     
     //the controller where it all happens
     var controller: ScanQRController!
@@ -29,12 +27,8 @@ class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         controller=ScanQRController(scanQR_VC: self)
     }
     
-    func getScanView()->UIView{
-        return self.scanView
-    }
-    
-    func getSaveContactBanner()->SaveContactBanner{
-        return self.saveContactBanner
+    override func viewWillAppear(_ animated: Bool) {
+        //controller.startSession()
     }
     
     

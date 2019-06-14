@@ -19,8 +19,7 @@ class CreateQR_VC: UIViewController {
     
     
     @IBAction func createFromExisting(_ sender: Any) {
-        
-        
+        controller.createNewContact()
     }
     
     

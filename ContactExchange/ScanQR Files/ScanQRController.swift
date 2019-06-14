@@ -10,7 +10,7 @@ import AVFoundation
 import ContactsUI
 import Foundation
 
-class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate, CNContactViewControllerDelegate{
+class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
     
     private var scanQR_VC: ScanQR_VC!
     
@@ -37,50 +37,94 @@ class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate, CNCont
     
     private var contactToAdd: CNContact!
     
-    private var addContactNC: UINavigationController!
+    private let addContactController=AddContactController()
     
     init(scanQR_VC: ScanQR_VC){
         super.init()
         self.scanQR_VC=scanQR_VC
+        setUpCameraView()
+    }
+    
+    func setUpCameraView(){
+        self.initializeAVPreviewLayer()
+        print("AV preview layer ready "+(DispatchTime.now().uptimeNanoseconds/1000_000).description)
+        self.addAVPreviewToScanView()
+        print("AV preview layer added to scan view"+(DispatchTime.now().uptimeNanoseconds/1000_000).description)
         
+        print("began setting up camera "+(DispatchTime.now().uptimeNanoseconds/1000_000).description)
         //create a layer that will show camera output
-        initializeAVPreviewLayer()
-        do{
-            //try to get video camera and start AV session
-            try initializeAVSession(videoCamera: try getVideoCamera())
-            //start AV session--success
-            session.startRunning()
-        } catch {
-            //tell error
-            print("Couldn't get video input: \(error)")
-            //end configuring
-            session.commitConfiguration()
-            return
+        //do{
+        //try to get video camera and start AV session
+        //start AV session--success
+        sessionQueue.async {
+            do{
+                try self.initializeAVSession(videoCamera: try self.getVideoCamera())
+                self.session.startRunning()
+                print("session ready "+(DispatchTime.now().uptimeNanoseconds/1000_000).description)
+                //add layer that shows camera output to scanView
+                do{
+                    //try to add metadata output
+                    try self.addMetaDataOuput()
+                } catch {
+                    //tell error
+                    print("Couldn't add metadata output: \(error)")
+                    return
+                }
+            }
+            catch {
+                //tell error
+                print("Couldn't get video input: \(error)")
+                //end configuring
+                self.session.commitConfiguration()
+                return
+            }
+            /*
+            DispatchQueue.main.async{
+                self.initializeAVPreviewLayer()
+                print("AV preview layer ready "+Date().description)
+                self.addAVPreviewToScanView()
+                print("AV preview layer added to scan view"+Date().description)
+                //add layer that shows camera output to scanView
+                do{
+                    //try to add metadata output
+                    try self.addMetaDataOuput()
+                } catch {
+                    //tell error
+                    print("Couldn't add metadata output: \(error)")
+                    return
+                }
+            }
+ */
         }
-        //add layer that shows camera output to scanView
-        addAVPreviewToScanView()
-        do{
-            //try to add metadata output
-            try addMetaDataOuput()
-        } catch {
-            //tell error
-            print("Couldn't add metadata output: \(error)")
-            return
-        }
+        /*
+         } catch {
+         //tell error
+         print("Couldn't get video input: \(error)")
+         //end configuring
+         session.commitConfiguration()
+         return
+         }
+         */
         setUpFocusRectangle()
-        scanQR_VC.getSaveContactBanner().isHidden=true
-        scanQR_VC.getSaveContactBanner().setTapActionCallable(tapActionCallable: AddContactNotifier())
+        scanQR_VC.saveContactBanner.isHidden=true
+        scanQR_VC.saveContactBanner.setTapActionCallable(tapActionCallable: AddContactNotifier())
         NotificationCenter.default.addObserver(self, selector: #selector(respondToContactBannerTap), name: .contactBannerTapped, object: nil)
+    }
+    
+    func startSession(){
+        sessionQueue.async {
+            self.session.startRunning()
+        }
     }
     
     func initializeAVPreviewLayer(){
         avPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
-        avPreviewLayer.frame = scanQR_VC.getScanView().layer.bounds
+        avPreviewLayer.frame = scanQR_VC.scanView.layer.bounds
         avPreviewLayer.videoGravity = .resizeAspectFill
     }
     
     func addAVPreviewToScanView(){
-        let viewLayer: CALayer = scanQR_VC.getScanView().layer
+        let viewLayer: CALayer = scanQR_VC.scanView.layer
         viewLayer.masksToBounds=true
         viewLayer.addSublayer(self.avPreviewLayer)
     }
@@ -161,22 +205,22 @@ class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate, CNCont
                     validContact=false
                     do{
                         let cnContactArray=try ContactDataConverter.createCNContactArray(vCardString: qrString)
-                        scanQR_VC.getSaveContactBanner().messageLabel.text="Save to contacts"
+                        scanQR_VC.saveContactBanner.messageLabel.text="Save to contacts"
                         if (cnContactArray.first==nil){
                             throw DataConversionError.badVCard("It's not a v card")
                         }
                         validContact=true
-                        scanQR_VC.getSaveContactBanner().detailLabel.text = ContactInfoManipulator.createContactPreviewString(cnContact: cnContactArray.first!)
-                        scanQR_VC.getSaveContactBanner().imageView.image=ContactDataConverter.makeQRCode(string: qrString)
+                        scanQR_VC.saveContactBanner.detailLabel.text = ContactInfoManipulator.createContactPreviewString(cnContact: cnContactArray.first!)
+                        scanQR_VC.saveContactBanner.imageView.image=ContactDataConverter.makeQRCode(string: qrString)
                         contactToAdd=cnContactArray.first!
                         qrCodeFocusView.isHidden=false
-                        scanQR_VC.getSaveContactBanner().isHidden=false
+                        scanQR_VC.saveContactBanner.isHidden=false
                     }
                     catch{
                         validContact=false
-                        scanQR_VC.getSaveContactBanner().messageLabel.text="Not a Contact"
-                        scanQR_VC.getSaveContactBanner().detailLabel.text="Code doesn't have a readbale contact."
-                        scanQR_VC.getSaveContactBanner().imageView.image=UIImage()
+                        scanQR_VC.saveContactBanner.messageLabel.text="Not a Contact"
+                        scanQR_VC.saveContactBanner.detailLabel.text="Code doesn't have a readbale contact."
+                        scanQR_VC.saveContactBanner.imageView.image=UIImage()
                     }
                     
                 }
@@ -185,8 +229,8 @@ class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate, CNCont
         else{
             qrString=""
             qrCodeFocusView.isHidden=true
-            scanQR_VC.getSaveContactBanner().isHidden=true
-            scanQR_VC.getSaveContactBanner().imageView.image=UIImage()
+            scanQR_VC.saveContactBanner.isHidden=true
+            scanQR_VC.saveContactBanner.imageView.image=UIImage()
         }
     }
     
@@ -194,8 +238,8 @@ class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate, CNCont
         qrCodeFocusView.layer.borderColor = UIColor.yellow.cgColor
         qrCodeFocusView.layer.borderWidth = 2
         qrCodeFocusView.backgroundColor=UIColor.clear
-        scanQR_VC.getScanView().addSubview(qrCodeFocusView)
-        scanQR_VC.getScanView().bringSubviewToFront(qrCodeFocusView)
+        scanQR_VC.scanView.addSubview(qrCodeFocusView)
+        scanQR_VC.scanView.bringSubviewToFront(qrCodeFocusView)
         qrCodeFocusView.isHidden=true
     }
     
@@ -217,28 +261,12 @@ class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate, CNCont
         print("respond to contact banner tapped"+Date().description)
         
         if(validContact){
-            let addContactVC=CNContactViewController(forNewContact: contactToAdd)
-            addContactVC.delegate=self
-            /*
-            scanQR_VC.contactAddedView.isHidden=false
-            let executionTime=DispatchTime.now()+0.5
-            mainQueue.asyncAfter(deadline: executionTime, execute:{
-                self.scanQR_VC.contactAddedView.isHidden=true
-                print("banner should hide at "+Date().description)
-            });
- */
-            addContactNC=UINavigationController(rootViewController: addContactVC)
-           scanQR_VC.present(addContactNC, animated: true)
+            addContactController.showAddContactUI(presentingVC: scanQR_VC, contactToAdd: contactToAdd, forQR: false)
           
         }
         
-        scanQR_VC.getSaveContactBanner().isHidden=true
+        scanQR_VC.saveContactBanner.isHidden=true
         qrCodeFocusView.isHidden=true
-    }
-    
-    func contactViewController(_ viewController: CNContactViewController,
-                                        didCompleteWith contact: CNContact?){
-        viewController.dismiss(animated: true)
     }
     
     
