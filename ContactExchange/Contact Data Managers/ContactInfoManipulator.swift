@@ -129,9 +129,15 @@ class ContactInfoManipulator{
     static func makeContactLabel(label: String)->String{
         var displayLabel=label
         print("label:"+displayLabel)
+        if (displayLabel.count<4){
+            return ""
+        }
         let removeStartRange=displayLabel.startIndex..<label.index(displayLabel.startIndex, offsetBy: 4)
         displayLabel.removeSubrange(removeStartRange)
         print(displayLabel)
+        if (displayLabel.count<4){
+            return ""
+        }
         let removeEndRange=displayLabel.index(displayLabel.endIndex, offsetBy: -4)..<displayLabel.endIndex
         displayLabel.removeSubrange(removeEndRange)
         print(displayLabel)

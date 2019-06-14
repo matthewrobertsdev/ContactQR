@@ -25,21 +25,21 @@ class DisplayQRController{
     //assign view controller, set-up table view, and add observer to .contactChanged notification
     init(displayQR_VC: DisplayQR_VC){
         vc=displayQR_VC
+       
+        print(model.description)
+        print(model.getContactTVDataSource().description)
+        print(vc.contactInfoTV.description)
         vc.contactInfoTV.dataSource=model.getContactTVDataSource()
         vc.contactInfoTV.delegate=contactTVDelegate
-        NotificationCenter.default.addObserver(self, selector: #selector(respondToContactChoice), name: .contactChanged, object: nil)
+        
+        //NotificationCenter.default.addObserver(self, selector: #selector(respondToContactChoice), name: .contactChanged, object: nil)
     }
     
     //if activeContact isn't nil, assigbn it to model, make and assign the qr code, update the table view's data source, and reload the table view
-    @objc private func respondToContactChoice(notification: NSNotification) {
+    func prepareView() {
         if (ActiveContact.shared.activeContact==nil){
             return
         }
-        /*
-        model.makeVCardString()
-        print(model.getVCardString())
-        model.makeQRCode()
-         */
         model.updateActiveContact(activeContact: ActiveContact.shared.activeContact!)
         vc.qrImageView.image=model.makeQRCode()
         model.updateContactInfoTVDataSource()
@@ -47,9 +47,6 @@ class DisplayQRController{
     }
     
     //calls a pick conact view controller so the user can pick a contact (notiication is sent that calls respondToContactChoice if user chooses a contact
-    func chooseContact(vc: UIViewController){
-        let pickContactVC=PickContactVC()
-        vc.present(pickContactVC, animated: true)
-    }
+    
     
 }
