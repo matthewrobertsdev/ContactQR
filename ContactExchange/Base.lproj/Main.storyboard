@@ -140,14 +140,14 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Nrv-c0-ku4"/>
-                        <segue destination="pzX-wY-ICc" kind="relationship" relationship="viewControllers" id="K6g-YH-zLP"/>
+                        <segue destination="pzX-wY-ICc" kind="relationship" relationship="viewControllers" id="NMB-0o-vce"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ie0-5o-YAn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="149.59999999999999" y="44.527736131934034"/>
         </scene>
-        <!--Get Contact-->
+        <!--Item-->
         <scene sceneID="kRt-Bi-pmj">
             <objects>
                 <viewController id="pzX-wY-ICc" customClass="ScanQR_VC" customModule="ContactExchange" customModuleProvider="target" sceneMemberID="viewController">
@@ -200,7 +200,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aVB-MZ-cVC"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Get Contact" id="C28-16-r9q"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="ng6-gr-fMr"/>
                     <navigationItem key="navigationItem" id="6zp-qX-7Z3"/>
                     <connections>
                         <outlet property="contactAddedView" destination="RHY-eb-NGQ" id="cI9-Ma-cd4"/>
@@ -210,7 +210,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fWW-wE-srW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="770.625" y="813.75"/>
+            <point key="canvasLocation" x="1856.25" y="748.75"/>
         </scene>
     </scenes>
 </document>

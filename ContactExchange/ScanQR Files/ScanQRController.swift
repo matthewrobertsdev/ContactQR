@@ -7,10 +7,10 @@
 //
 import UIKit
 import AVFoundation
-import Contacts
+import ContactsUI
 import Foundation
 
-class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
+class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate, CNContactViewControllerDelegate{
     
     private var scanQR_VC: ScanQR_VC!
     
@@ -34,6 +34,10 @@ class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
     private var qrString=""
     
     private var mainQueue=DispatchQueue.main
+    
+    private var contactToAdd: CNContact!
+    
+    private var addContactNC: UINavigationController!
     
     init(scanQR_VC: ScanQR_VC){
         super.init()
@@ -153,8 +157,6 @@ class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
             let qrCode=transformedMetaDataObj as! AVMetadataMachineReadableCodeObject
             if (qrCode.stringValue != nil){
                 if (qrString != qrCode.stringValue){
-                    qrCodeFocusView.isHidden=false
-                    scanQR_VC.getSaveContactBanner().isHidden=false
                     qrString=qrCode.stringValue!
                     validContact=false
                     do{
@@ -166,6 +168,9 @@ class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
                         validContact=true
                         scanQR_VC.getSaveContactBanner().detailLabel.text = ContactInfoManipulator.createContactPreviewString(cnContact: cnContactArray.first!)
                         scanQR_VC.getSaveContactBanner().imageView.image=ContactDataConverter.makeQRCode(string: qrString)
+                        contactToAdd=cnContactArray.first!
+                        qrCodeFocusView.isHidden=false
+                        scanQR_VC.getSaveContactBanner().isHidden=false
                     }
                     catch{
                         validContact=false
@@ -212,16 +217,28 @@ class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
         print("respond to contact banner tapped"+Date().description)
         
         if(validContact){
+            let addContactVC=CNContactViewController(forNewContact: contactToAdd)
+            addContactVC.delegate=self
+            /*
             scanQR_VC.contactAddedView.isHidden=false
             let executionTime=DispatchTime.now()+0.5
             mainQueue.asyncAfter(deadline: executionTime, execute:{
                 self.scanQR_VC.contactAddedView.isHidden=true
                 print("banner should hide at "+Date().description)
             });
+ */
+            addContactNC=UINavigationController(rootViewController: addContactVC)
+           scanQR_VC.present(addContactNC, animated: true)
+          
         }
         
         scanQR_VC.getSaveContactBanner().isHidden=true
         qrCodeFocusView.isHidden=true
+    }
+    
+    func contactViewController(_ viewController: CNContactViewController,
+                                        didCompleteWith contact: CNContact?){
+        viewController.dismiss(animated: true)
     }
     
     
