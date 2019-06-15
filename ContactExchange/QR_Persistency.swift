@@ -11,9 +11,9 @@ import Contacts
 
 class QR_Persistency{
     
-    let SAVED_CONTACTS_STRING="saved_contacts"
+    private let SAVED_CONTACTS_STRING="saved_contacts"
     
-    let ACTIVE_CONTACT_STRING="active_contact"
+    private let ACTIVE_CONTACT_STRING="active_contact"
     
     static let shared=QR_Persistency()
     
@@ -26,8 +26,9 @@ class QR_Persistency{
         try PersistenceManager.shared.saveData(appendingPath: SAVED_CONTACTS_STRING, dataToSave: data)
     }
     
-    func saveActiveContact(activeContact: SavedContact) throws{
-        let data=try PersistenceManager.shared.encoder.encode(activeContact)
+    func saveActiveContact(activeContact: CNContact) throws{
+        let vCardString=ContactDataConverter.makeVCardData(cnContact: activeContact)
+        let data=try PersistenceManager.shared.encoder.encode(vCardString)
         try PersistenceManager.shared.saveData(appendingPath: ACTIVE_CONTACT_STRING, dataToSave: data)
     }
     
@@ -36,9 +37,10 @@ class QR_Persistency{
         return try PersistenceManager.shared.decoder.decode([SavedContact].self, from: data!)
     }
     
-    func getSavedActiveContact()throws ->[SavedContact]?{
+    func getSavedActiveContact()throws ->CNContact?{
         let data=try PersistenceManager.shared.loadData(appendingPath: ACTIVE_CONTACT_STRING)
-        return try PersistenceManager.shared.decoder.decode([SavedContact].self, from: data!)
+        let vCardString=try PersistenceManager.shared.decoder.decode(String.self, from: data!)
+        return try ContactDataConverter.createCNContactArray(vCardString: vCardString).first
     }
     
 }

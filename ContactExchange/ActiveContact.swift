@@ -19,10 +19,15 @@ class ActiveContact{
     static let shared=ActiveContact()
     
     //stoes a CNContact for use throughout the app
-    var activeContact: SavedContact?
+    var activeContact: CNContact?
     
     private init(){
-        
+        do{
+            activeContact=try QR_Persistency.shared.getSavedActiveContact()
+        }
+        catch{
+            print("Error loading saved active contact")
+        }
     }
     
 }
