@@ -8,9 +8,9 @@
 
 import UIKit
 
-class CreateQR_VC: UIViewController {
+class GiveQR_VC: UIViewController {
     
-    var controller: CreateQRController!
+    var controller: GiveQRController!
 
     
     @IBAction func createCodeFromExisting(_ sender: Any) {
@@ -25,7 +25,7 @@ class CreateQR_VC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        controller=CreateQRController(createQR_VC: self)
+        controller=GiveQRController(createQR_VC: self)
         
     }
     

@@ -11,7 +11,7 @@ import UIKit
 import Photos
 import Contacts
 
-class Privacy{
+class PrivacyPermissions{
     
     static func cameraPrivacyCheck(presentingVC: UIViewController)->Bool{
         switch AVCaptureDevice.authorizationStatus(for: .video){
@@ -91,7 +91,7 @@ class Privacy{
             print("Requesting permission")
             let changePrivacySetting = AppStringConstants.APP_NAME+" doesn't have permission to access your Contacts.  Please change privacy settings."
             let alertMessage = NSLocalizedString(changePrivacySetting, comment: "Alert message when the user has denied access to Contacts.")
-            presentingVC.present(Privacy.makeUpdatePrivacyAlert(alertMessage: alertMessage), animated: true, completion: nil)
+            presentingVC.present(PrivacyPermissions.makeUpdatePrivacyAlert(alertMessage: alertMessage), animated: true, completion: nil)
         }
     }
     
@@ -100,7 +100,7 @@ class Privacy{
             print("Requesting permission")
             let changePrivacySetting = AppStringConstants.APP_NAME+" doesn't have permission to use the camera.  Please change privacy settings."
             let alertMessage = NSLocalizedString(changePrivacySetting, comment: "Alert message when the user has denied access to the camera.")
-            presentingVC.present(Privacy.makeUpdatePrivacyAlert(alertMessage: alertMessage), animated: true, completion: nil)
+            presentingVC.present(PrivacyPermissions.makeUpdatePrivacyAlert(alertMessage: alertMessage), animated: true, completion: nil)
         }
     }
     

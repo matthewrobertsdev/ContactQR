@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import Contacts
 
-class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class GetQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //the view for scanning qr codes
     @IBOutlet weak var scanView: UIView!
@@ -20,15 +20,11 @@ class ScanQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     
     //the controller where it all happens
-    var controller: ScanQRController!
+    var controller: GetQRController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        controller=ScanQRController(scanQR_VC: self)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        //controller.startSession()
+        controller=GetQRController(scanQR_VC: self)
     }
     
     

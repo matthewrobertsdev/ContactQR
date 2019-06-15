@@ -9,6 +9,8 @@
 import Foundation
 
 class StubCallable: Callable{
+    
+    //so it won't crash while you haven't developed your Callable yet
     func call() {
         print("Stub callable: you need to implement a Callable or delete the use of the protocol.")
     }

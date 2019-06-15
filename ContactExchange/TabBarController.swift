@@ -19,8 +19,8 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate{
     func tabBarController(_ tabBarController: UITabBarController,shouldSelect viewController: UIViewController) -> Bool{
         
         //if user is trying to go to ScanQR_VC
-        if (viewController is ScanQR_VC){
-            return Privacy.cameraPrivacyCheck(presentingVC: self) && Privacy.contactPrivacyCheck(presentingVC: self)
+        if (viewController is GetQR_VC){
+            return PrivacyPermissions.cameraPrivacyCheck(presentingVC: self) && PrivacyPermissions.contactPrivacyCheck(presentingVC: self)
         }
         
         //if it's any othe view controller that the UITabBarController is trying to present, just return true so that it will do it

@@ -11,6 +11,7 @@ import Foundation
 //common in Java
 protocol Callable{
     
+    //implement whatever you want
     func call()
     
 }

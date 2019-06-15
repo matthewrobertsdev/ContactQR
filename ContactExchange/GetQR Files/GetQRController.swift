@@ -10,9 +10,9 @@ import AVFoundation
 import ContactsUI
 import Foundation
 
-class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
+class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
     
-    private var scanQR_VC: ScanQR_VC!
+    private var scanQR_VC: GetQR_VC!
     
     //boolean for if the qr is a valid contact
     private var validContact=false
@@ -39,7 +39,7 @@ class ScanQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
     
     private let addContactController=AddContactController()
     
-    init(scanQR_VC: ScanQR_VC){
+    init(scanQR_VC: GetQR_VC){
         super.init()
         self.scanQR_VC=scanQR_VC
         setUpCameraView()

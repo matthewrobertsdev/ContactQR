@@ -9,13 +9,13 @@
 import UIKit
 import Contacts
 
-class CreateQRController{
+class GiveQRController{
     
-    var vc: CreateQR_VC!
+    var vc: GiveQR_VC!
     
     var addContactController=AddContactController()
     
-    init(createQR_VC: CreateQR_VC!) {
+    init(createQR_VC: GiveQR_VC!) {
         self.vc=createQR_VC
         
         NotificationCenter.default.addObserver(self, selector: #selector(displayQRforContact), name: .contactChanged, object: nil)
@@ -29,12 +29,12 @@ class CreateQRController{
     }
     
     func createNewContact(){
-        if (Privacy.contactPrivacyCheck(presentingVC: vc)){
+        if (PrivacyPermissions.contactPrivacyCheck(presentingVC: vc)){
             addContactController.showAddContactUI(presentingVC: vc, contactToAdd: CNContact(), forQR: true)
         }
     }
     
-    //if activeContact isn't nil, assigbn it to model, make and assign the qr code, update the table view's data source, and reload the table view
+    //if activeContact isn't nil, piush a DisplayQR_VC
     @objc private func displayQRforContact(notification: NSNotification) {
         if (ActiveContact.shared.activeContact==nil){
             return
@@ -42,6 +42,17 @@ class CreateQRController{
         let displayQR_VC = vc.storyboard?.instantiateViewController(withIdentifier: "DisplayQR_VC") as! DisplayQR_VC
         vc.navigationController?.pushViewController(displayQR_VC, animated: false)
     }
+    
+    /*
+     Table view
+        delete
+        rename rows
+        move rows
+        model
+        save to disk
+     active contact
+        save to disk
+     */
     
     
 }
