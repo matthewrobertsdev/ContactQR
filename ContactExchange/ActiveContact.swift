@@ -30,6 +30,15 @@ class ActiveContact{
         }
     }
     
+    func saveActiveContact(){
+        do{
+            try QR_Persistency.shared.saveActiveContact(activeContact: activeContact)
+        }
+        catch{
+            print("Error saving active contact")
+        }
+    }
+    
 }
 
 /*
