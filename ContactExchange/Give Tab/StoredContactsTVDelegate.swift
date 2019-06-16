@@ -9,19 +9,6 @@
 import UIKit
 
  class StoredContactsTVDelegate: NSObject, UITableViewDelegate {
-    /*
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        print("should delete")
-        StoredContacts.shared.contacts.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .fade)
-    }
-    
-    func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
-        
-        
-        return true
-    }
- */
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
@@ -35,6 +22,17 @@ import UIKit
         
         
         return [delete]
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath){
+        do{
+            ActiveContact.shared.activeContact=try ContactDataConverter.createCNContactArray(vCardString: StoredContacts.shared.contacts[indexPath.row].vCardString).first
+        }
+        catch{
+            print(error)
+        }
+        NotificationCenter.default.post(name: .contactChanged, object: self)
     }
 }
 

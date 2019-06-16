@@ -51,7 +51,9 @@ class DisplayQRController{
         let manageSaveAlert=UIAlertController(title: "Save Contact", message: "Please enter the name for this QR code", preferredStyle: UIAlertController.Style.alert)
         manageSaveAlert.addTextField()
         manageSaveAlert.addAction(UIAlertAction(title: "Cancel", style: .default))
-        manageSaveAlert.addAction(UIAlertAction(title: NSLocalizedString("Save", comment: "Alert button to save contyact with title"), style: .default, handler: { _  in self.addToStoredContacts(name: manageSaveAlert.textFields![0].text!)}))
+        manageSaveAlert.addAction(UIAlertAction(title: NSLocalizedString("Save", comment: "Alert button to save contyact with title"), style: .default, handler: { _  in self.addToStoredContacts(name: manageSaveAlert.textFields![0].text!)
+            self.vc.disableSave()
+        }))
         DispatchQueue.main.async {
             self.vc.present(manageSaveAlert, animated: true)
         }

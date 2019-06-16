@@ -26,6 +26,7 @@ class DisplayQR_VC: UIViewController {
     @IBOutlet weak var contactInfoTV: UITableView!
     //tells controller to display PickContactVC, which uses some of Apple's classes for picking a CNContact to pick (or not pick) a CNContact
     
+    var savable=true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +36,18 @@ class DisplayQR_VC: UIViewController {
         controller.prepareView()
         
         self.navigationItem.rightBarButtonItem=UIBarButtonItem(barButtonSystemItem: .save, target: controller, action: #selector(controller.presentSaveDialog))
+        if(!savable){
+            disableSave()
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         controller.prepareView()
+    }
+    
+    func disableSave(){
+            self.navigationItem.rightBarButtonItem?.isEnabled=false
     }
 
 

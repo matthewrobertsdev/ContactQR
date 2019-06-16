@@ -149,8 +149,28 @@
                                 <rect key="frame" x="0.0" y="160" width="320" height="359"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactTVCell" rowHeight="52" id="Yzc-79-eXU" customClass="SavedContactTVCell" customModule="ContactExchange" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tOa-Yi-elp">
                                         <rect key="frame" x="0.0" y="28" width="320" height="52"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tOa-Yi-elp" id="K5S-FQ-0pJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="51.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Contact Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lF-8J-RhS">
+                                                    <rect key="frame" x="15" y="11" width="122" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1lF-8J-RhS" firstAttribute="leading" secondItem="K5S-FQ-0pJ" secondAttribute="leading" constant="15" id="t6n-rL-3zi"/>
+                                                <constraint firstItem="1lF-8J-RhS" firstAttribute="top" secondItem="K5S-FQ-0pJ" secondAttribute="top" constant="11" id="yNA-BA-5v5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactTVCell" rowHeight="52" id="Yzc-79-eXU" customClass="SavedContactTVCell" customModule="ContactExchange" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="80" width="320" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yzc-79-eXU" id="7cN-MP-4h6">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="51.5"/>

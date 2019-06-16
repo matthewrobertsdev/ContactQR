@@ -14,6 +14,11 @@ import UIKit
  */
 class StoredContactsTVDataSource: NSObject, UITableViewDataSource{
     
+    func tableView(_ tableView: UITableView,
+                   titleForHeaderInSection section: Int) -> String?{
+        return "My Contact Info"
+    }
+    
     //num in table is num in StoredContacts.shared
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("total contacts loaded by TV"+StoredContacts.shared.contacts.count.description)

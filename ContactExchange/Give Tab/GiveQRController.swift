@@ -13,6 +13,8 @@ class GiveQRController: NSObject, UITableViewDelegate{
     
     var vc: GiveQR_VC!
     
+    var pickContactVC=PickContactVC()
+    
     var addContactController=AddContactController()
     
     let tvDataSource=StoredContactsTVDataSource()
@@ -26,15 +28,19 @@ class GiveQRController: NSObject, UITableViewDelegate{
         self.vc.storedContactsTV.dataSource=tvDataSource
         self.vc.storedContactsTV.reloadData()
         
+        /*
+         Need to post from different places and have different responses
+         */
         NotificationCenter.default.addObserver(self, selector: #selector(displayQRforContact), name: .contactChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(displayQRforContact), name: .contactCreated, object: addContactController)
+        //NotificationCenter.default.addObserver(self, selector: #selector(displayQRforContact), name: .contactChanged, object: tvDelegate)
         NotificationCenter.default.addObserver(self, selector: #selector(stopEditing), name: .allDeleted, object: addContactController)
     }
     
     
     //calls a pick conact view controller so the user can pick a contact (notiication is sent that calls respondToContactChoice if user chooses a contact
     func chooseExistingContact(){
-        let pickContactVC=PickContactVC()
+        pickContactVC=PickContactVC()
         vc.present(pickContactVC, animated: true)
     }
     
@@ -49,9 +55,15 @@ class GiveQRController: NSObject, UITableViewDelegate{
         if (ActiveContact.shared.activeContact==nil){
             return
         }
+        var animated=false
         let displayQR_VC = vc.storyboard?.instantiateViewController(withIdentifier: "DisplayQR_VC") as! DisplayQR_VC
-        vc.navigationController?.pushViewController(displayQR_VC, animated: false)
+        if (notification.object is StoredContactsTVDelegate){
+            animated=true
+            displayQR_VC.savable=false
+        }
+        vc.navigationController?.pushViewController(displayQR_VC, animated: animated)
     }
+    
     
     @objc func toggleEditing(){
         if (vc.storedContactsTV.isEditing){
