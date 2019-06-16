@@ -34,36 +34,13 @@ class QR_Persistency{
             print(contact.vCardString)
         }
         print("--------------------")
- 
-        
     }
     
     /*
-    func saveContacts(contactsToSave: [SavedContact]) throws{
-        for contact in contactsToSave{
-            print(contact.vCardString)
-        }
-        let data: Data=try PersistenceManager.shared.encoder.encode(contactsToSave)
-        //print("hello "+data.description)
-        //let dataString=String(data: data, encoding: .utf8)
-        try PersistenceManager.shared.saveData(appendingPath: SAVED_CONTACTS_FILENAME, data: data)
-        print("Saving done")
-    }
-    
     func saveActiveContact(activeContact: CNContact) throws{
         let vCardString=ContactDataConverter.makeVCardData(cnContact: activeContact)
         let data=try PersistenceManager.shared.encoder.encode(vCardString)
         //try PersistenceManager.shared.saveData(appendingPath: ACTIVE_CONTACT_FILENAME, dataToSave: data)
-    }
-    
-    func getSavedContacts()throws ->[SavedContact]{
-        let data=try PersistenceManager.shared.loadData(appendingPath: SAVED_CONTACTS_FILENAME)
-        if (data==nil){
-            return [SavedContact]()
-        }
-        //let data=string!.data(using: .utf8)
-        let savedContacts=try PersistenceManager.shared.decoder.decode([SavedContact].self, from: data!)
-        return savedContacts
     }
     
     func getSavedActiveContact()throws ->CNContact?{
@@ -84,8 +61,6 @@ class QR_Persistency{
             print(contact.vCardString)
         }
         let data: Data=try PersistenceManager.shared.encoder.encode(contactsToSave)
-        //let string=String(data: data, encoding: .utf8)
-        //try PersistenceManager.shared.saveString(appendingPath: SAVED_CONTACTS_FILENAME, string: string!)
         try PersistenceManager.shared.saveData(appendingPath: SAVED_CONTACTS_FILENAME, data: data)
         print("Saving done")
     }
@@ -95,7 +70,6 @@ class QR_Persistency{
         if (data==nil){
             return [SavedContact]()
         }
-        //let data=string!.data(using: .utf8)
         let savedContacts=try PersistenceManager.shared.decoder.decode([SavedContact].self, from: data!)
         return savedContacts
     }
