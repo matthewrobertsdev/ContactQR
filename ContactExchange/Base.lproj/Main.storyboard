@@ -119,17 +119,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fEN-Yd-lay">
-                                <rect key="frame" x="66.5" y="74" width="187" height="68"/>
+                                <rect key="frame" x="44" y="74" width="232" height="78"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6jK-qe-bPr">
-                                        <rect key="frame" x="0.0" y="0.0" width="187" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="232" height="35"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <state key="normal" title="Create from a Contact"/>
                                         <connections>
                                             <action selector="createCodeFromExisting:" destination="eWW-Kj-E90" eventType="touchUpInside" id="I06-Qt-TSt"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rL3-3v-kKU">
-                                        <rect key="frame" x="0.0" y="38" width="187" height="30"/>
+                                        <rect key="frame" x="0.0" y="43" width="232" height="35"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <state key="normal" title="Create from a New Contact"/>
                                         <connections>
                                             <action selector="createFromExisting:" destination="eWW-Kj-E90" eventType="touchUpInside" id="CDx-5Y-85z"/>
@@ -144,7 +146,7 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="52" estimatedRowHeight="52" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nz5-hO-YFw">
-                                <rect key="frame" x="0.0" y="150" width="320" height="369"/>
+                                <rect key="frame" x="0.0" y="160" width="320" height="359"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactTVCell" rowHeight="52" id="Yzc-79-eXU" customClass="SavedContactTVCell" customModule="ContactExchange" customModuleProvider="target">
@@ -187,10 +189,15 @@
                         <viewLayoutGuide key="safeArea" id="BhL-8T-CWS"/>
                     </view>
                     <navigationItem key="navigationItem" title="Give Code" id="n2O-fz-Hdc">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="uwW-SM-hAn"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="uwW-SM-hAn">
+                            <connections>
+                                <action selector="toggleEditing:" destination="eWW-Kj-E90" id="e6z-Hn-yWN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="storedContactsTV" destination="Nz5-hO-YFw" id="Ula-Dz-Ywn"/>
+                        <outlet property="toggleEditButton" destination="uwW-SM-hAn" id="GYY-iO-jgi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8z1-Nw-W30" userLabel="First Responder" sceneMemberID="firstResponder"/>

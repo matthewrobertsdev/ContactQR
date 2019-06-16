@@ -8,8 +8,13 @@
 
 import UIKit
 
-class GiveQR_VC: UIViewController {
+class GiveQR_VC: UIViewController, UITableViewDelegate {
     
+    @IBOutlet weak var toggleEditButton: UIBarButtonItem!
+    
+    @IBAction func toggleEditing(_ sender: Any) {
+        controller.toggleEditing()
+    }
     
     @IBOutlet weak var storedContactsTV: UITableView!
     
@@ -35,7 +40,6 @@ class GiveQR_VC: UIViewController {
         storedContactsTV.reloadData()
     }
     
-
     
 
 }

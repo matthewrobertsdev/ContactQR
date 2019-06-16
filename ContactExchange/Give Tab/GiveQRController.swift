@@ -9,7 +9,7 @@
 import UIKit
 import Contacts
 
-class GiveQRController{
+class GiveQRController: NSObject, UITableViewDelegate{
     
     var vc: GiveQR_VC!
     
@@ -17,14 +17,18 @@ class GiveQRController{
     
     let tvDataSource=StoredContactsTVDataSource()
     
+    let tvDelegate=StoredContactsTVDelegate()
+    
     init(createQR_VC: GiveQR_VC!) {
+        super.init()
         self.vc=createQR_VC
-        
+        self.vc.storedContactsTV.delegate=tvDelegate
         self.vc.storedContactsTV.dataSource=tvDataSource
-        //self.vc.storedContactsTV.reloadData()
+        self.vc.storedContactsTV.reloadData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(displayQRforContact), name: .contactChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(displayQRforContact), name: .contactCreated, object: addContactController)
+        NotificationCenter.default.addObserver(self, selector: #selector(stopEditing), name: .allDeleted, object: addContactController)
     }
     
     
@@ -47,6 +51,26 @@ class GiveQRController{
         }
         let displayQR_VC = vc.storyboard?.instantiateViewController(withIdentifier: "DisplayQR_VC") as! DisplayQR_VC
         vc.navigationController?.pushViewController(displayQR_VC, animated: false)
+    }
+    
+    @objc func toggleEditing(){
+        if (vc.storedContactsTV.isEditing){
+            stopEditing()
+        }
+        else if StoredContacts.shared.contacts.count>0{
+            //set it to state when it is editing
+            vc.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(toggleEditing)), animated: true)
+            vc.storedContactsTV.setEditing(true, animated: true)
+            print("set editing")
+        }
+    }
+    
+    @objc func stopEditing(){
+        //set it back to state when it is not editing
+        vc.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(toggleEditing)), animated: true)
+        
+        vc.storedContactsTV.setEditing(false, animated: true)
+        print("set normal")
     }
     
     /*
