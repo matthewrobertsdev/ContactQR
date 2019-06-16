@@ -10,9 +10,11 @@ import UIKit
 
 class GiveQR_VC: UIViewController {
     
+    
+    @IBOutlet weak var storedContactsTV: UITableView!
+    
     var controller: GiveQRController!
 
-    
     @IBAction func createCodeFromExisting(_ sender: Any) {
         controller.chooseExistingContact()
     }
@@ -27,6 +29,10 @@ class GiveQR_VC: UIViewController {
         super.viewDidLoad()
         controller=GiveQRController(createQR_VC: self)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        storedContactsTV.reloadData()
     }
     
 

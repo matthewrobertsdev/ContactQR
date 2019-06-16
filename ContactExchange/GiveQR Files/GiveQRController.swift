@@ -15,12 +15,18 @@ class GiveQRController{
     
     var addContactController=AddContactController()
     
+    let tvDataSource=StoredContactsTVDataSource()
+    
     init(createQR_VC: GiveQR_VC!) {
         self.vc=createQR_VC
+        
+        self.vc.storedContactsTV.dataSource=tvDataSource
+        //self.vc.storedContactsTV.reloadData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(displayQRforContact), name: .contactChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(displayQRforContact), name: .contactCreated, object: addContactController)
     }
+    
     
     //calls a pick conact view controller so the user can pick a contact (notiication is sent that calls respondToContactChoice if user chooses a contact
     func chooseExistingContact(){

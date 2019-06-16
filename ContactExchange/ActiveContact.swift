@@ -22,21 +22,27 @@ class ActiveContact{
     var activeContact: CNContact?
     
     private init(){
+        /*
         do{
             activeContact=try QR_Persistency.shared.getSavedActiveContact()
         }
         catch{
             print("Error loading saved active contact")
         }
+ */
     }
     
     func saveActiveContact(){
+        /*
         do{
-            try QR_Persistency.shared.saveActiveContact(activeContact: activeContact)
+            if (activeContact != nil){
+                try QR_Persistency.shared.saveActiveContact(activeContact: activeContact!)
+            }
         }
         catch{
             print("Error saving active contact")
         }
+ */
     }
     
 }

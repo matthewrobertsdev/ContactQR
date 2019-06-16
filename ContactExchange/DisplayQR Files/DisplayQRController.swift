@@ -46,6 +46,26 @@ class DisplayQRController{
         vc.contactInfoTV.reloadData()
     }
     
+    @objc func presentSaveDialog(){
+        //StoredContacts.shared.contacts.append()
+        let manageSaveAlert=UIAlertController(title: "Save Contact", message: "Please enter the name for this QR code", preferredStyle: UIAlertController.Style.alert)
+        manageSaveAlert.addTextField()
+        manageSaveAlert.addAction(UIAlertAction(title: "Cancel", style: .default))
+        manageSaveAlert.addAction(UIAlertAction(title: NSLocalizedString("Save", comment: "Alert button to save contyact with title"), style: .default, handler: { _  in self.addToStoredContacts(name: manageSaveAlert.textFields![0].text!)}))
+        DispatchQueue.main.async {
+            self.vc.present(manageSaveAlert, animated: true)
+        }
+    }
+    
+    func addToStoredContacts(name: String){
+        print("Adding to contact store "+name)
+        let contactToStore=SavedContact(name: name, cnContact: ActiveContact.shared.activeContact!)
+        StoredContacts.shared.contacts.append(contactToStore)
+        StoredContacts.shared.tryToSave()
+        //StoredContacts.shared.testEncodeAndDecode()
+        NotificationCenter.default.post(name: .contactAdded, object: self)
+    }
+    
     //calls a pick conact view controller so the user can pick a contact (notiication is sent that calls respondToContactChoice if user chooses a contact
     
     

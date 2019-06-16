@@ -33,6 +33,8 @@ class DisplayQR_VC: UIViewController {
         //assigns controller, passing ViewController in so view can be updated from controller
         controller=DisplayQRController(displayQR_VC: self)
         controller.prepareView()
+        
+        self.navigationItem.rightBarButtonItem=UIBarButtonItem(barButtonSystemItem: .save, target: controller, action: #selector(controller.presentSaveDialog))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,5 +42,11 @@ class DisplayQR_VC: UIViewController {
     }
 
 
+}
+
+extension Notification.Name{
+    
+    //Reference as .contactChanged when type inference is possible
+    static let contactAdded=Notification.Name("contact-added")
 }
 

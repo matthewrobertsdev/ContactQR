@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jz0-hI-N8U">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -12,20 +16,20 @@
             <objects>
                 <viewController restorationIdentifier="DisplayQR_VC" storyboardIdentifier="DisplayQR_VC" title="Give Contact" id="BYZ-38-t0r" customClass="DisplayQR_VC" customModule="ContactExchange" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gOo-dn-ejU">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9xi-lW-HDw">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqJ-lU-ADN">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="191"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="191"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VOF-ut-MjQ">
-                                                        <rect key="frame" x="215.5" y="11" width="169" height="169"/>
+                                                        <rect key="frame" x="75.5" y="11" width="169" height="169"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="VOF-ut-MjQ" secondAttribute="height" multiplier="1:1" id="bJc-6v-Gg3"/>
                                                             <constraint firstAttribute="height" constant="169" id="gMh-VC-gCy"/>
@@ -40,14 +44,14 @@
                                                 </constraints>
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pRK-tk-Loh">
-                                                <rect key="frame" x="0.0" y="191" width="600" height="389"/>
+                                                <rect key="frame" x="0.0" y="191" width="320" height="357"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactInfoTVCell" textLabel="IYD-ZP-iHl" detailTextLabel="9iB-OU-v31" style="IBUITableViewCellStyleValue1" id="MRj-Lq-DNj">
-                                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MRj-Lq-DNj" id="8CP-Ju-GKa">
-                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IYD-ZP-iHl">
@@ -58,7 +62,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9iB-OU-v31">
-                                                                    <rect key="frame" x="541" y="12" width="44" height="20.5"/>
+                                                                    <rect key="frame" x="261" y="12" width="44" height="20.5"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -96,6 +100,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Old" id="M7i-rW-UUq"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="contactInfoTV" destination="pRK-tk-Loh" id="8v6-n2-Gb0"/>
                         <outlet property="qrImageView" destination="VOF-ut-MjQ" id="rq9-1Y-XWY"/>
@@ -110,11 +115,11 @@
             <objects>
                 <viewController title="Create" id="eWW-Kj-E90" customClass="GiveQR_VC" customModule="ContactExchange" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PxO-RU-OeD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fEN-Yd-lay">
-                                <rect key="frame" x="67" y="77" width="187" height="68"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fEN-Yd-lay">
+                                <rect key="frame" x="66.5" y="74" width="187" height="68"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6jK-qe-bPr">
                                         <rect key="frame" x="0.0" y="0.0" width="187" height="30"/>
@@ -131,16 +136,22 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="rL3-3v-kKU" secondAttribute="bottom" id="Oh9-lT-bub"/>
+                                    <constraint firstItem="6jK-qe-bPr" firstAttribute="top" secondItem="fEN-Yd-lay" secondAttribute="top" id="UmX-CK-2pV"/>
+                                    <constraint firstAttribute="width" secondItem="rL3-3v-kKU" secondAttribute="width" id="X8i-0F-ry0"/>
+                                    <constraint firstItem="rL3-3v-kKU" firstAttribute="top" secondItem="6jK-qe-bPr" secondAttribute="bottom" constant="8" id="YHg-ky-Rwu"/>
+                                </constraints>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nz5-hO-YFw">
-                                <rect key="frame" x="0.0" y="153" width="600" height="398"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="52" estimatedRowHeight="52" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nz5-hO-YFw">
+                                <rect key="frame" x="0.0" y="150" width="320" height="369"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="52" id="Yzc-79-eXU">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="52"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactTVCell" rowHeight="52" id="Yzc-79-eXU" customClass="SavedContactTVCell" customModule="ContactExchange" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yzc-79-eXU" id="7cN-MP-4h6">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="51.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Uv-2Q-nAo">
@@ -157,6 +168,9 @@
                                                 <constraint firstItem="8Uv-2Q-nAo" firstAttribute="top" secondItem="7cN-MP-4h6" secondAttribute="top" constant="11" id="twf-e9-PeO"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="8Uv-2Q-nAo" id="ogl-2x-sDH"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -166,17 +180,22 @@
                             <constraint firstItem="BhL-8T-CWS" firstAttribute="bottom" secondItem="Nz5-hO-YFw" secondAttribute="bottom" id="42r-Bv-RiA"/>
                             <constraint firstItem="fEN-Yd-lay" firstAttribute="top" secondItem="BhL-8T-CWS" secondAttribute="top" constant="10" id="auF-8e-vOi"/>
                             <constraint firstItem="fEN-Yd-lay" firstAttribute="centerX" secondItem="BhL-8T-CWS" secondAttribute="centerX" id="eSY-aE-T4F"/>
-                            <constraint firstItem="Nz5-hO-YFw" firstAttribute="top" secondItem="BhL-8T-CWS" secondAttribute="top" constant="89" id="ksp-gF-82d"/>
+                            <constraint firstItem="Nz5-hO-YFw" firstAttribute="top" secondItem="fEN-Yd-lay" secondAttribute="bottom" constant="8" id="iBa-Ta-KWI"/>
                             <constraint firstItem="BhL-8T-CWS" firstAttribute="trailing" secondItem="Nz5-hO-YFw" secondAttribute="trailing" id="rz9-1e-mkP"/>
                             <constraint firstItem="Nz5-hO-YFw" firstAttribute="leading" secondItem="BhL-8T-CWS" secondAttribute="leading" id="toj-Tf-qs7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BhL-8T-CWS"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Give Code" id="n2O-fz-Hdc"/>
+                    <navigationItem key="navigationItem" title="Give Code" id="n2O-fz-Hdc">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="uwW-SM-hAn"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="storedContactsTV" destination="Nz5-hO-YFw" id="Ula-Dz-Ywn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8z1-Nw-W30" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="221.25" y="205"/>
+            <point key="canvasLocation" x="221.25" y="204.92957746478874"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="8Ob-mu-l7M">
@@ -202,11 +221,11 @@
             <objects>
                 <viewController title="Get" id="pzX-wY-ICc" customClass="GetQR_VC" customModule="ContactExchange" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aut-Nh-78T">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Xz-VB-miu">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loading Camera" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9l-5D-jnW">
                                         <rect key="frame" x="65" y="88" width="190" height="34"/>
@@ -221,7 +240,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0oZ-Ru-P5e" customClass="SaveContactBanner" customModule="ContactExchange" customModuleProvider="target">
-                                <rect key="frame" x="156" y="72" width="288" height="52"/>
+                                <rect key="frame" x="16" y="72" width="288" height="52"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="3YK-Xb-bQO"/>

@@ -27,6 +27,4 @@ class GetQR_VC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         controller=GetQRController(scanQR_VC: self)
     }
     
-    
-    
 }
