@@ -84,17 +84,18 @@ class QR_Persistency{
             print(contact.vCardString)
         }
         let data: Data=try PersistenceManager.shared.encoder.encode(contactsToSave)
-        let string=String(data: data, encoding: .utf8)
-        try PersistenceManager.shared.saveString(appendingPath: SAVED_CONTACTS_FILENAME, string: string!)
+        //let string=String(data: data, encoding: .utf8)
+        //try PersistenceManager.shared.saveString(appendingPath: SAVED_CONTACTS_FILENAME, string: string!)
+        try PersistenceManager.shared.saveData(appendingPath: SAVED_CONTACTS_FILENAME, data: data)
         print("Saving done")
     }
     
     func getSavedContacts()throws ->[SavedContact]{
-        let string=try PersistenceManager.shared.loadString(appendingPath: SAVED_CONTACTS_FILENAME)
-        if (string==nil){
+        let data=try PersistenceManager.shared.loadData(appendingPath: SAVED_CONTACTS_FILENAME)
+        if (data==nil){
             return [SavedContact]()
         }
-        let data=string!.data(using: .utf8)
+        //let data=string!.data(using: .utf8)
         let savedContacts=try PersistenceManager.shared.decoder.decode([SavedContact].self, from: data!)
         return savedContacts
     }
