@@ -39,7 +39,5 @@ class GiveQR_VC: UIViewController, UITableViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         storedContactsTV.reloadData()
     }
-    
-    
 
 }
