@@ -73,17 +73,17 @@
 		9F6A082C22A9B9E1008ECF2F /* Callable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Callable.swift; sourceTree = "<group>"; };
 		9F6A082E22A9BB95008ECF2F /* StubCallable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubCallable.swift; sourceTree = "<group>"; };
 		9F6A083222A9C2F7008ECF2F /* PrivacyPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPermissions.swift; sourceTree = "<group>"; };
-		9F9E9ADF21BA1690003A6A33 /* CardQR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardQR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F9E9ADF21BA1690003A6A33 /* ContactQR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactQR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F9E9AE421BA1690003A6A33 /* DisplayQR_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayQR_VC.swift; sourceTree = "<group>"; };
 		9F9E9AE721BA1690003A6A33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F9E9AE921BA1691003A6A33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F9E9AEC21BA1691003A6A33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F9E9AEE21BA1691003A6A33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F9E9AF321BA1691003A6A33 /* CardQRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardQRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F9E9AF321BA1691003A6A33 /* ContactQRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactQRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9E9AF721BA1691003A6A33 /* CardQRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardQRTests.swift; sourceTree = "<group>"; };
 		9F9E9AF921BA1691003A6A33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F9E9AFE21BA1691003A6A33 /* CardQRUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardQRUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F9E9AFE21BA1691003A6A33 /* ContactQRUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactQRUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9E9B0221BA1691003A6A33 /* CardQRUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardQRUITests.swift; sourceTree = "<group>"; };
 		9F9E9B0421BA1691003A6A33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FB1564222B6149A00D64614 /* StoredContactsTVDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredContactsTVDelegate.swift; sourceTree = "<group>"; };
@@ -169,9 +169,9 @@
 		9F9E9AD621BA1690003A6A33 = {
 			isa = PBXGroup;
 			children = (
-				9F9E9AE121BA1690003A6A33 /* CardQR */,
-				9F9E9AF621BA1691003A6A33 /* CardQRTests */,
-				9F9E9B0121BA1691003A6A33 /* CardQRUITests */,
+				9F9E9AE121BA1690003A6A33 /* ContactQR */,
+				9F9E9AF621BA1691003A6A33 /* ContactQRTests */,
+				9F9E9B0121BA1691003A6A33 /* ContactQRUITests */,
 				9F9E9AE021BA1690003A6A33 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -179,14 +179,14 @@
 		9F9E9AE021BA1690003A6A33 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9F9E9ADF21BA1690003A6A33 /* CardQR.app */,
-				9F9E9AF321BA1691003A6A33 /* CardQRTests.xctest */,
-				9F9E9AFE21BA1691003A6A33 /* CardQRUITests.xctest */,
+				9F9E9ADF21BA1690003A6A33 /* ContactQR.app */,
+				9F9E9AF321BA1691003A6A33 /* ContactQRTests.xctest */,
+				9F9E9AFE21BA1691003A6A33 /* ContactQRUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9F9E9AE121BA1690003A6A33 /* CardQR */ = {
+		9F9E9AE121BA1690003A6A33 /* ContactQR */ = {
 			isa = PBXGroup;
 			children = (
 				9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */,
@@ -202,25 +202,25 @@
 				9F9E9AEB21BA1691003A6A33 /* LaunchScreen.storyboard */,
 				9F9E9AE921BA1691003A6A33 /* Assets.xcassets */,
 			);
-			path = CardQR;
+			path = ContactQR;
 			sourceTree = "<group>";
 		};
-		9F9E9AF621BA1691003A6A33 /* CardQRTests */ = {
+		9F9E9AF621BA1691003A6A33 /* ContactQRTests */ = {
 			isa = PBXGroup;
 			children = (
 				9F9E9AF721BA1691003A6A33 /* CardQRTests.swift */,
 				9F9E9AF921BA1691003A6A33 /* Info.plist */,
 			);
-			path = CardQRTests;
+			path = ContactQRTests;
 			sourceTree = "<group>";
 		};
-		9F9E9B0121BA1691003A6A33 /* CardQRUITests */ = {
+		9F9E9B0121BA1691003A6A33 /* ContactQRUITests */ = {
 			isa = PBXGroup;
 			children = (
 				9F9E9B0221BA1691003A6A33 /* CardQRUITests.swift */,
 				9F9E9B0421BA1691003A6A33 /* Info.plist */,
 			);
-			path = CardQRUITests;
+			path = ContactQRUITests;
 			sourceTree = "<group>";
 		};
 		9FBFACD722B49D0000730E7B /* Utilities */ = {
@@ -249,9 +249,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9F9E9ADE21BA1690003A6A33 /* CardQR */ = {
+		9F9E9ADE21BA1690003A6A33 /* ContactQR */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F9E9B0721BA1691003A6A33 /* Build configuration list for PBXNativeTarget "CardQR" */;
+			buildConfigurationList = 9F9E9B0721BA1691003A6A33 /* Build configuration list for PBXNativeTarget "ContactQR" */;
 			buildPhases = (
 				9F9E9ADB21BA1690003A6A33 /* Sources */,
 				9F9E9ADC21BA1690003A6A33 /* Frameworks */,
@@ -261,14 +261,14 @@
 			);
 			dependencies = (
 			);
-			name = CardQR;
+			name = ContactQR;
 			productName = CardQR;
-			productReference = 9F9E9ADF21BA1690003A6A33 /* CardQR.app */;
+			productReference = 9F9E9ADF21BA1690003A6A33 /* ContactQR.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9F9E9AF221BA1691003A6A33 /* CardQRTests */ = {
+		9F9E9AF221BA1691003A6A33 /* ContactQRTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F9E9B0A21BA1691003A6A33 /* Build configuration list for PBXNativeTarget "CardQRTests" */;
+			buildConfigurationList = 9F9E9B0A21BA1691003A6A33 /* Build configuration list for PBXNativeTarget "ContactQRTests" */;
 			buildPhases = (
 				9F9E9AEF21BA1691003A6A33 /* Sources */,
 				9F9E9AF021BA1691003A6A33 /* Frameworks */,
@@ -279,14 +279,14 @@
 			dependencies = (
 				9F9E9AF521BA1691003A6A33 /* PBXTargetDependency */,
 			);
-			name = CardQRTests;
+			name = ContactQRTests;
 			productName = CardQRTests;
-			productReference = 9F9E9AF321BA1691003A6A33 /* CardQRTests.xctest */;
+			productReference = 9F9E9AF321BA1691003A6A33 /* ContactQRTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9F9E9AFD21BA1691003A6A33 /* CardQRUITests */ = {
+		9F9E9AFD21BA1691003A6A33 /* ContactQRUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F9E9B0D21BA1691003A6A33 /* Build configuration list for PBXNativeTarget "CardQRUITests" */;
+			buildConfigurationList = 9F9E9B0D21BA1691003A6A33 /* Build configuration list for PBXNativeTarget "ContactQRUITests" */;
 			buildPhases = (
 				9F9E9AFA21BA1691003A6A33 /* Sources */,
 				9F9E9AFB21BA1691003A6A33 /* Frameworks */,
@@ -297,9 +297,9 @@
 			dependencies = (
 				9F9E9B0021BA1691003A6A33 /* PBXTargetDependency */,
 			);
-			name = CardQRUITests;
+			name = ContactQRUITests;
 			productName = CardQRUITests;
-			productReference = 9F9E9AFE21BA1691003A6A33 /* CardQRUITests.xctest */;
+			productReference = 9F9E9AFE21BA1691003A6A33 /* ContactQRUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -328,7 +328,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9F9E9ADA21BA1690003A6A33 /* Build configuration list for PBXProject "CardQR" */;
+			buildConfigurationList = 9F9E9ADA21BA1690003A6A33 /* Build configuration list for PBXProject "ContactQR" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -341,9 +341,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9F9E9ADE21BA1690003A6A33 /* CardQR */,
-				9F9E9AF221BA1691003A6A33 /* CardQRTests */,
-				9F9E9AFD21BA1691003A6A33 /* CardQRUITests */,
+				9F9E9ADE21BA1690003A6A33 /* ContactQR */,
+				9F9E9AF221BA1691003A6A33 /* ContactQRTests */,
+				9F9E9AFD21BA1691003A6A33 /* ContactQRUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -433,12 +433,12 @@
 /* Begin PBXTargetDependency section */
 		9F9E9AF521BA1691003A6A33 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9F9E9ADE21BA1690003A6A33 /* CardQR */;
+			target = 9F9E9ADE21BA1690003A6A33 /* ContactQR */;
 			targetProxy = 9F9E9AF421BA1691003A6A33 /* PBXContainerItemProxy */;
 		};
 		9F9E9B0021BA1691003A6A33 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9F9E9ADE21BA1690003A6A33 /* CardQR */;
+			target = 9F9E9ADE21BA1690003A6A33 /* ContactQR */;
 			targetProxy = 9F9E9AFF21BA1691003A6A33 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -585,12 +585,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
-				INFOPLIST_FILE = "$(SRCROOT)/CardQR/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ContactQR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "macOS-App.ContactExchange";
+				PRODUCT_BUNDLE_IDENTIFIER = "macOS-App.ContactQR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -603,12 +603,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
-				INFOPLIST_FILE = "$(SRCROOT)/CardQR/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ContactQR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "macOS-App.ContactExchange";
+				PRODUCT_BUNDLE_IDENTIFIER = "macOS-App.ContactQR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -632,7 +632,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardQR.app/CardQR";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ContactQR.app/ContactQR";
 			};
 			name = Debug;
 		};
@@ -653,7 +653,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardQR.app/CardQR";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ContactQR.app/ContactQR";
 			};
 			name = Release;
 		};
@@ -700,7 +700,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9F9E9ADA21BA1690003A6A33 /* Build configuration list for PBXProject "CardQR" */ = {
+		9F9E9ADA21BA1690003A6A33 /* Build configuration list for PBXProject "ContactQR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F9E9B0521BA1691003A6A33 /* Debug */,
@@ -709,7 +709,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F9E9B0721BA1691003A6A33 /* Build configuration list for PBXNativeTarget "CardQR" */ = {
+		9F9E9B0721BA1691003A6A33 /* Build configuration list for PBXNativeTarget "ContactQR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F9E9B0821BA1691003A6A33 /* Debug */,
@@ -718,7 +718,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F9E9B0A21BA1691003A6A33 /* Build configuration list for PBXNativeTarget "CardQRTests" */ = {
+		9F9E9B0A21BA1691003A6A33 /* Build configuration list for PBXNativeTarget "ContactQRTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F9E9B0B21BA1691003A6A33 /* Debug */,
@@ -727,7 +727,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F9E9B0D21BA1691003A6A33 /* Build configuration list for PBXNativeTarget "CardQRUITests" */ = {
+		9F9E9B0D21BA1691003A6A33 /* Build configuration list for PBXNativeTarget "ContactQRUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F9E9B0E21BA1691003A6A33 /* Debug */,

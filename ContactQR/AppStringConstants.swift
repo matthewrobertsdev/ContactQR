@@ -9,5 +9,5 @@
 import Foundation
 
 struct AppStringConstants{
-    static let APP_NAME="Contact Exchange"
+    static let APP_NAME="ContactQR"
 }
