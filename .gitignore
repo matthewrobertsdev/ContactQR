@@ -10,6 +10,7 @@ DerivedData/
 *.pbxproj
 *.xcworkspacedata
 *.xcuserdatad
+*.xcuserstate
 
 ## Various settings
 *.pbxuser
