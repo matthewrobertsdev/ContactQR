@@ -11,6 +11,7 @@ DerivedData/
 *.xcworkspacedata
 *.xcuserdatad
 *.xcuserstate
+*.xcbkptlist
 
 ## Various settings
 *.pbxuser
