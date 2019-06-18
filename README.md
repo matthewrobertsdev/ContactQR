@@ -1,4 +1,4 @@
-# CardQR
+# ContactQR
 An iOS project for sharing contact info with QR codes
 
 
