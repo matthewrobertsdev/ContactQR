@@ -6,13 +6,6 @@
 build/
 DerivedData/
 
-#Xcode related
-*.pbxproj
-*.xcworkspacedata
-*.xcuserdatad
-*.xcuserstate
-*.xcbkptlist
-
 ## Various settings
 *.pbxuser
 !default.pbxuser

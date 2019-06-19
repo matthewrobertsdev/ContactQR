@@ -8,6 +8,8 @@
 
 import Foundation
 
+//for Strings that should be the same throughout the entire app
 struct AppStringConstants{
+    //app title
     static let APP_NAME="ContactQR"
 }
