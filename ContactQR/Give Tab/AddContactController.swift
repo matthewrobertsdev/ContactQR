@@ -9,11 +9,8 @@
 import ContactsUI
 
 class AddContactController: NSObject,CNContactViewControllerDelegate{
-    
     var addContactNC: UINavigationController!
-    
     var forQR: Bool!
-    
     func showAddContactUI(presentingVC: UIViewController, contactToAdd: CNContact, forQR: Bool){
         self.forQR=forQR
         let addContactVC=CNContactViewController(forNewContact: contactToAdd)

@@ -9,13 +9,13 @@
 import Foundation
 import Contacts
 
-class QR_Persistency{
+class QRPersistency{
     
-    private let SAVED_CONTACTS_FILENAME="saved_contacts.json"
+    private let SAVEDCONTACTSFILENAME="saved_contacts.json"
     
-    private let ACTIVE_CONTACT_FILENAME="active_contact.json"
+    private let ACTIVECONTACTFILENAME="active_contact.json"
     
-    static let shared=QR_Persistency()
+    static let shared=QRPersistency()
     
     private init(){
         
@@ -61,12 +61,12 @@ class QR_Persistency{
             print(contact.vCardString)
         }
         let data: Data=try PersistenceManager.shared.encoder.encode(contactsToSave)
-        try PersistenceManager.shared.saveData(appendingPath: SAVED_CONTACTS_FILENAME, data: data)
+        try PersistenceManager.shared.saveData(appendingPath: SAVEDCONTACTSFILENAME, data: data)
         print("Saving done")
     }
     
     func getSavedContacts()throws ->[SavedContact]{
-        let data=try PersistenceManager.shared.loadData(appendingPath: SAVED_CONTACTS_FILENAME)
+        let data=try PersistenceManager.shared.loadData(appendingPath: SAVEDCONTACTSFILENAME)
         if (data==nil){
             return [SavedContact]()
         }

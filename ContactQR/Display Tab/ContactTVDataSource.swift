@@ -35,6 +35,4 @@ class ContactTVDataSource: NSObject, UITableViewDataSource{
         
         return cell!
     }
-    
-    
 }

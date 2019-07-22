@@ -12,7 +12,7 @@ import Foundation
 
 class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
     
-    private var scanQR_VC: GetQR_VC!
+    private var scanQRViewContr0ller: GetQRViewController!
     
     //boolean for if the qr is a valid contact
     private var validContact=false
@@ -39,9 +39,9 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
     
     private let addContactController=AddContactController()
     
-    init(scanQR_VC: GetQR_VC){
+    init(scanQRViewController: GetQRViewController){
         super.init()
-        self.scanQR_VC=scanQR_VC
+        self.scanQRViewContr0ller=scanQRViewController
         setUpCameraView()
     }
     
@@ -106,8 +106,8 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
          }
          */
         setUpFocusRectangle()
-        scanQR_VC.saveContactBanner.isHidden=true
-        scanQR_VC.saveContactBanner.setTapActionCallable(tapActionCallable: AddContactNotifier())
+        scanQRViewContr0ller.saveContactBanner.isHidden=true
+        scanQRViewContr0ller.saveContactBanner.setTapActionCallable(tapActionCallable: AddContactNotifier())
         NotificationCenter.default.addObserver(self, selector: #selector(respondToContactBannerTap), name: .contactBannerTapped, object: nil)
     }
     
@@ -119,12 +119,12 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
     
     func initializeAVPreviewLayer(){
         avPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
-        avPreviewLayer.frame = scanQR_VC.scanView.layer.bounds
+        avPreviewLayer.frame = scanQRViewContr0ller.scanView.layer.bounds
         avPreviewLayer.videoGravity = .resizeAspectFill
     }
     
     func addAVPreviewToScanView(){
-        let viewLayer: CALayer = scanQR_VC.scanView.layer
+        let viewLayer: CALayer = scanQRViewContr0ller.scanView.layer
         viewLayer.masksToBounds=true
         viewLayer.addSublayer(self.avPreviewLayer)
     }
@@ -198,29 +198,31 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
         if (metadataObjects.first != nil){
             let transformedMetaDataObj=avPreviewLayer.transformedMetadataObject(for: metadataObjects.first!)
             qrCodeFocusView.frame = transformedMetaDataObj!.bounds
-            let qrCode=transformedMetaDataObj as! AVMetadataMachineReadableCodeObject
+            guard let qrCode=transformedMetaDataObj as? AVMetadataMachineReadableCodeObject else{
+                return
+            }
             if (qrCode.stringValue != nil){
                 if (qrString != qrCode.stringValue){
                     qrString=qrCode.stringValue!
                     validContact=false
                     do{
                         let cnContactArray=try ContactDataConverter.createCNContactArray(vCardString: qrString)
-                        scanQR_VC.saveContactBanner.messageLabel.text="Save to contacts"
+                        scanQRViewContr0ller.saveContactBanner.messageLabel.text="Save to contacts"
                         if (cnContactArray.first==nil){
                             throw DataConversionError.badVCard("It's not a v card")
                         }
                         validContact=true
-                        scanQR_VC.saveContactBanner.detailLabel.text = ContactInfoManipulator.createContactPreviewString(cnContact: cnContactArray.first!)
-                        scanQR_VC.saveContactBanner.imageView.image=ContactDataConverter.makeQRCode(string: qrString)
+                        scanQRViewContr0ller.saveContactBanner.detailLabel.text = ContactInfoManipulator.createContactPreviewString(cnContact: cnContactArray.first!)
+                        scanQRViewContr0ller.saveContactBanner.imageView.image=ContactDataConverter.makeQRCode(string: qrString)
                         contactToAdd=cnContactArray.first!
                         qrCodeFocusView.isHidden=false
-                        scanQR_VC.saveContactBanner.isHidden=false
+                        scanQRViewContr0ller.saveContactBanner.isHidden=false
                     }
                     catch{
                         validContact=false
-                        scanQR_VC.saveContactBanner.messageLabel.text="Not a Contact"
-                        scanQR_VC.saveContactBanner.detailLabel.text="Code doesn't have a readbale contact."
-                        scanQR_VC.saveContactBanner.imageView.image=UIImage()
+                        scanQRViewContr0ller.saveContactBanner.messageLabel.text="Not a Contact"
+                        scanQRViewContr0ller.saveContactBanner.detailLabel.text="Code doesn't have a readbale contact."
+                        scanQRViewContr0ller.saveContactBanner.imageView.image=UIImage()
                     }
                     
                 }
@@ -229,8 +231,8 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
         else{
             qrString=""
             qrCodeFocusView.isHidden=true
-            scanQR_VC.saveContactBanner.isHidden=true
-            scanQR_VC.saveContactBanner.imageView.image=UIImage()
+            scanQRViewContr0ller.saveContactBanner.isHidden=true
+            scanQRViewContr0ller.saveContactBanner.imageView.image=UIImage()
         }
     }
     
@@ -238,8 +240,8 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
         qrCodeFocusView.layer.borderColor = UIColor.yellow.cgColor
         qrCodeFocusView.layer.borderWidth = 2
         qrCodeFocusView.backgroundColor=UIColor.clear
-        scanQR_VC.scanView.addSubview(qrCodeFocusView)
-        scanQR_VC.scanView.bringSubviewToFront(qrCodeFocusView)
+        scanQRViewContr0ller.scanView.addSubview(qrCodeFocusView)
+        scanQRViewContr0ller.scanView.bringSubviewToFront(qrCodeFocusView)
         qrCodeFocusView.isHidden=true
     }
     
@@ -261,11 +263,11 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate{
         print("respond to contact banner tapped"+Date().description)
         
         if(validContact){
-            addContactController.showAddContactUI(presentingVC: scanQR_VC, contactToAdd: contactToAdd, forQR: false)
+            addContactController.showAddContactUI(presentingVC: scanQRViewContr0ller, contactToAdd: contactToAdd, forQR: false)
           
         }
         
-        scanQR_VC.saveContactBanner.isHidden=true
+        scanQRViewContr0ller.saveContactBanner.isHidden=true
         qrCodeFocusView.isHidden=true
     }
     

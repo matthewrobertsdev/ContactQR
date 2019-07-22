@@ -89,7 +89,7 @@ class PrivacyPermissions{
     static func showContactPrivacyAlert(presentingVC: UIViewController){
         DispatchQueue.main.async {
             print("Requesting permission")
-            let changePrivacySetting = AppStringConstants.APP_NAME+" doesn't have permission to access your Contacts.  Please change privacy settings."
+            let changePrivacySetting = AppStringConstants.APPNAME+" doesn't have permission to access your Contacts.  Please change privacy settings."
             let alertMessage = NSLocalizedString(changePrivacySetting, comment: "Alert message when the user has denied access to Contacts.")
             presentingVC.present(PrivacyPermissions.makeUpdatePrivacyAlert(alertMessage: alertMessage), animated: true, completion: nil)
         }
@@ -98,7 +98,7 @@ class PrivacyPermissions{
     static func showCameraPrivacyAlert(presentingVC: UIViewController){
         DispatchQueue.main.async {
             print("Requesting permission")
-            let changePrivacySetting = AppStringConstants.APP_NAME+" doesn't have permission to use the camera.  Please change privacy settings."
+            let changePrivacySetting = AppStringConstants.APPNAME+" doesn't have permission to use the camera.  Please change privacy settings."
             let alertMessage = NSLocalizedString(changePrivacySetting, comment: "Alert message when the user has denied access to the camera.")
             presentingVC.present(PrivacyPermissions.makeUpdatePrivacyAlert(alertMessage: alertMessage), animated: true, completion: nil)
         }
@@ -109,7 +109,7 @@ class PrivacyPermissions{
             print("Camera unavailable")
             let changePrivacySetting = "You have allowed acccess to the camera, but your device does not have a camera available."
             let alertMessage = NSLocalizedString(changePrivacySetting, comment: "Alert message when the user has given access to the camera, but the device doesn''t have one available.")
-            let alertController = UIAlertController(title: AppStringConstants.APP_NAME, message: alertMessage, preferredStyle: .alert)
+            let alertController = UIAlertController(title: AppStringConstants.APPNAME, message: alertMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"),style: .cancel,handler: nil))
             presentingVC.present(alertController, animated: true, completion: nil)
             
@@ -118,9 +118,13 @@ class PrivacyPermissions{
     }
     
     static func makeUpdatePrivacyAlert(alertMessage: String)->UIAlertController{
-            let alertController = UIAlertController(title: AppStringConstants.APP_NAME, message: alertMessage, preferredStyle: .alert)
+            let alertController = UIAlertController(title: AppStringConstants.APPNAME, message: alertMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"),style: .cancel,handler: nil))
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("Settings", comment: "Alert button to open Settings"), style: .default, handler: { _  in UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:],completionHandler: nil)}))
+        let privacyAlertHandler={ (alertAction: UIAlertAction) -> Void in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:],completionHandler: nil)}
+        let openSettingsString=NSLocalizedString("Settings", comment: "Alert button to open Settings")
+        let alertAction=UIAlertAction(title: openSettingsString, style: .default, handler: privacyAlertHandler)
+            alertController.addAction(alertAction)
         return alertController
         }
     

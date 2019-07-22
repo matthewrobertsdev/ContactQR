@@ -14,7 +14,7 @@
         <!--Give Contact-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController restorationIdentifier="DisplayQR_VC" storyboardIdentifier="DisplayQR_VC" title="Give Contact" id="BYZ-38-t0r" customClass="DisplayQR_VC" customModule="ContactExchange" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="DisplayQR_VC" storyboardIdentifier="DisplayQR_VC" title="Give Contact" id="BYZ-38-t0r" customClass="DisplayQRViewController" customModule="ContactQR" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,7 +113,7 @@
         <!--Create-->
         <scene sceneID="MDy-ad-u7b">
             <objects>
-                <viewController title="Create" id="eWW-Kj-E90" customClass="GiveQR_VC" customModule="ContactExchange" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Create" id="eWW-Kj-E90" customClass="GiveQRViewController" customModule="ContactQR" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PxO-RU-OeD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -149,28 +149,8 @@
                                 <rect key="frame" x="0.0" y="160" width="320" height="359"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tOa-Yi-elp">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactTVCell" rowHeight="52" id="Yzc-79-eXU" customClass="SavedContactTVCell" customModule="ContactQR" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="52"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tOa-Yi-elp" id="K5S-FQ-0pJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="51.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Contact Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lF-8J-RhS">
-                                                    <rect key="frame" x="15" y="11" width="122" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="1lF-8J-RhS" firstAttribute="leading" secondItem="K5S-FQ-0pJ" secondAttribute="leading" constant="15" id="t6n-rL-3zi"/>
-                                                <constraint firstItem="1lF-8J-RhS" firstAttribute="top" secondItem="K5S-FQ-0pJ" secondAttribute="top" constant="11" id="yNA-BA-5v5"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactTVCell" rowHeight="52" id="Yzc-79-eXU" customClass="SavedContactTVCell" customModule="ContactExchange" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="80" width="320" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yzc-79-eXU" id="7cN-MP-4h6">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="51.5"/>
@@ -227,7 +207,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="8Ob-mu-l7M">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Jz0-hI-N8U" customClass="TabBarController" customModule="ContactExchange" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Jz0-hI-N8U" customClass="TabBarController" customModule="ContactQR" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CDY-BT-YKe">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -246,7 +226,7 @@
         <!--Get-->
         <scene sceneID="kRt-Bi-pmj">
             <objects>
-                <viewController title="Get" id="pzX-wY-ICc" customClass="GetQR_VC" customModule="ContactExchange" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Get" id="pzX-wY-ICc" customClass="GetQRViewController" customModule="ContactQR" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aut-Nh-78T">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -266,7 +246,7 @@
                                     <constraint firstItem="c9l-5D-jnW" firstAttribute="centerX" secondItem="1Xz-VB-miu" secondAttribute="centerX" id="iwu-AT-XBN"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0oZ-Ru-P5e" customClass="SaveContactBanner" customModule="ContactExchange" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0oZ-Ru-P5e" customClass="SaveContactBanner" customModule="ContactQR" customModuleProvider="target">
                                 <rect key="frame" x="16" y="72" width="288" height="52"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
