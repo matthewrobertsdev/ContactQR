@@ -16,19 +16,19 @@ class QRPersistency {
     func testEncodeAndDecode(contactsToSave: [SavedContact]) throws {
         print("--------------------")
         for contact in contactsToSave {
-            print(contact.vCardString)
+            print(contact.vCardString.description)
         }
         let data=try PersistenceManager.shared.encoder.encode(contactsToSave)
         print(String(data: data, encoding: .utf8)!)
         let savedContacts=try PersistenceManager.shared.decoder.decode([SavedContact].self, from: data)
         for contact in savedContacts {
-            print(contact.vCardString)
+            print(contact.vCardString.description)
         }
         print("--------------------")
     }
     func saveContacts(contactsToSave: [SavedContact]) throws {
         for contact in contactsToSave {
-            print(contact.vCardString)
+            print(contact.vCardString.description)
         }
         let data: Data=try PersistenceManager.shared.encoder.encode(contactsToSave)
         try PersistenceManager.shared.saveData(appendingPath: SAVEDCONTACTSFILENAME, data: data)

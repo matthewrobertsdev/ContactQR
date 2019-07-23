@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import CardQR
+@testable import ContactQR
 
 class CardQRTests: XCTestCase {
 

@@ -164,8 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				9F9E9AE121BA1690003A6A33 /* ContactQR */,
-				9F9E9AF621BA1691003A6A33 /* ContactQRTests */,
-				9F9E9B0121BA1691003A6A33 /* ContactQRUITests */,
+				9F9E9AF621BA1691003A6A33 /* CardQRTests */,
+				9F9E9B0121BA1691003A6A33 /* CardQRUITests */,
 				9F9E9AE021BA1690003A6A33 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -199,22 +199,22 @@
 			path = ContactQR;
 			sourceTree = "<group>";
 		};
-		9F9E9AF621BA1691003A6A33 /* ContactQRTests */ = {
+		9F9E9AF621BA1691003A6A33 /* CardQRTests */ = {
 			isa = PBXGroup;
 			children = (
 				9F9E9AF721BA1691003A6A33 /* CardQRTests.swift */,
 				9F9E9AF921BA1691003A6A33 /* Info.plist */,
 			);
-			path = ContactQRTests;
+			path = CardQRTests;
 			sourceTree = "<group>";
 		};
-		9F9E9B0121BA1691003A6A33 /* ContactQRUITests */ = {
+		9F9E9B0121BA1691003A6A33 /* CardQRUITests */ = {
 			isa = PBXGroup;
 			children = (
 				9F9E9B0221BA1691003A6A33 /* CardQRUITests.swift */,
 				9F9E9B0421BA1691003A6A33 /* Info.plist */,
 			);
-			path = ContactQRUITests;
+			path = CardQRUITests;
 			sourceTree = "<group>";
 		};
 		9FBFACD722B49D0000730E7B /* Utilities */ = {
@@ -315,10 +315,12 @@
 					};
 					9F9E9AF221BA1691003A6A33 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 9F9E9ADE21BA1690003A6A33;
 					};
 					9F9E9AFD21BA1691003A6A33 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 9F9E9ADE21BA1690003A6A33;
 					};
 				};
@@ -605,7 +607,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "macOS-App.ContactQR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -623,7 +625,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "macOS-App.ContactQR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -643,7 +645,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "macOS-App.CardQRTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ContactQR.app/ContactQR";
 			};
@@ -664,7 +666,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "macOS-App.CardQRTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ContactQR.app/ContactQR";
 			};
@@ -684,7 +686,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "macOS-App.CardQRUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = CardQR;
 			};
@@ -704,7 +706,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "macOS-App.CardQRUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = CardQR;
 			};

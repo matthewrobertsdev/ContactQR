@@ -36,6 +36,8 @@ class Privacy {
             }
             //so qr code scanner can be shown
             return true
+        @unknown default:
+            return false
         }
     }
     static func contactsCheck(viewController: UIViewController) -> Bool {
@@ -60,6 +62,8 @@ class Privacy {
         case .authorized:
             //so qr code scanner can be shown
             return true
+        @unknown default:
+            return false
         }
     }
     static func showContactPrivacyAlert(viewController: UIViewController) {
