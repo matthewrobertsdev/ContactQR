@@ -29,6 +29,9 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     private var contactToAdd: CNContact!
     private let addContactController=AddContactViewController()
     private let notifcationCenter=NotificationCenter.default
+    let addContactNotifier = { () -> Void in
+        NotificationCenter.default.post(name: .contactBannerTapped, object: self)
+    }
     init(scanQRViewController: GetQRViewController) {
         super.init()
         self.scanQRViewController=scanQRViewController
@@ -64,7 +67,7 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
         }
         setUpFocusRectangle()
         scanQRViewController.saveContactBanner.isHidden=true
-        scanQRViewController.saveContactBanner.setTapActionCallable(tapActionCallable: AddContactNotifier())
+        scanQRViewController.saveContactBanner.setTapAction(tapAction: addContactNotifier)
         let contactTappedSelector=#selector(respondToContactBannerTap)
         notifcationCenter.addObserver(self, selector: contactTappedSelector, name: .contactBannerTapped, object: nil)
     }
@@ -134,6 +137,8 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
                         from connection: AVCaptureConnection) {
         //Swift.print(metadataObjects.first?.description)
         guard let metaData=metadataObjects.first else {
+            qrCodeFocusView.isHidden=true
+            scanQRViewController.saveContactBanner.isHidden=true
             return
         }
         let transformedMetaDataObj=avPreviewLayer.transformedMetadataObject(for: metaData)
@@ -144,7 +149,7 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
         guard let qrCodeString=qrCode.stringValue else {
             return
         }
-        if qrString != qrCode.stringValue {
+        if qrString != qrCodeString {
             qrString=qrCodeString
             validContact=false
             do {
@@ -163,6 +168,7 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
                 saveContactBanner.detailLabel.text = ContactInfoManipulator.createPreviewString(cnContact: contact)
                 scanQRViewController.saveContactBanner.imageView.image=ContactDataConverter.makeQRCode(string: qrString)
                 contactToAdd=cnContactArray.first!
+                qrString=""
                 qrCodeFocusView.isHidden=false
                 scanQRViewController.saveContactBanner.isHidden=false
             } catch {
@@ -185,11 +191,6 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
         scanQRViewController.scanView.addSubview(qrCodeFocusView)
         scanQRViewController.scanView.bringSubviewToFront(qrCodeFocusView)
         qrCodeFocusView.isHidden=true
-    }
-    class AddContactNotifier: Callable {
-        func call() {
-            NotificationCenter.default.post(name: .contactBannerTapped, object: self)
-        }
     }
     @objc private func respondToContactBannerTap(notification: NSNotification) {
         /*

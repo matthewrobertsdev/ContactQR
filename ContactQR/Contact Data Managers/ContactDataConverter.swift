@@ -65,7 +65,6 @@ class ContactDataConverter {
         }
     }
 }
-
 enum DataConversionError: Error {
     case dataSerializationError(String)
     case badVCard(String)

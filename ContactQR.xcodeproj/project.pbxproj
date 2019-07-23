@@ -16,8 +16,6 @@
 		9F4ABE8122A852F300316EB2 /* GetQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4ABE8022A852F300316EB2 /* GetQRViewController.swift */; };
 		9F4ABE8322A8586E00316EB2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4ABE8222A8586E00316EB2 /* TabBarController.swift */; };
 		9F5C647221D3E10A00832897 /* ContactInfoManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5C647121D3E10A00832897 /* ContactInfoManipulator.swift */; };
-		9F6A082D22A9B9E1008ECF2F /* Callable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A082C22A9B9E1008ECF2F /* Callable.swift */; };
-		9F6A082F22A9BB95008ECF2F /* StubCallable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A082E22A9BB95008ECF2F /* StubCallable.swift */; };
 		9F6A083322A9C2F7008ECF2F /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A083222A9C2F7008ECF2F /* Privacy.swift */; };
 		9F9E9AE321BA1690003A6A33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */; };
 		9F9E9AE521BA1690003A6A33 /* DisplayQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE421BA1690003A6A33 /* DisplayQRViewController.swift */; };
@@ -68,8 +66,6 @@
 		9F4ABE8022A852F300316EB2 /* GetQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQRViewController.swift; sourceTree = "<group>"; };
 		9F4ABE8222A8586E00316EB2 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		9F5C647121D3E10A00832897 /* ContactInfoManipulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoManipulator.swift; sourceTree = "<group>"; };
-		9F6A082C22A9B9E1008ECF2F /* Callable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Callable.swift; sourceTree = "<group>"; };
-		9F6A082E22A9BB95008ECF2F /* StubCallable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubCallable.swift; sourceTree = "<group>"; };
 		9F6A083222A9C2F7008ECF2F /* Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
 		9F9E9ADF21BA1690003A6A33 /* ContactQR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactQR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -220,8 +216,6 @@
 		9FBFACD722B49D0000730E7B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				9F6A082C22A9B9E1008ECF2F /* Callable.swift */,
-				9F6A082E22A9BB95008ECF2F /* StubCallable.swift */,
 				9F6A083222A9C2F7008ECF2F /* Privacy.swift */,
 				9FB74C0D22B4783000F34181 /* PersistencManager.swift */,
 				9FB74C0F22B4825C00F34181 /* QRPersistency.swift */,
@@ -403,7 +397,6 @@
 				9FB74C0E22B4783000F34181 /* PersistencManager.swift in Sources */,
 				9F5C647221D3E10A00832897 /* ContactInfoManipulator.swift in Sources */,
 				9FB74C1022B4825C00F34181 /* QRPersistency.swift in Sources */,
-				9F6A082D22A9B9E1008ECF2F /* Callable.swift in Sources */,
 				9F4ABE8122A852F300316EB2 /* GetQRViewController.swift in Sources */,
 				9F9E9AE521BA1690003A6A33 /* DisplayQRViewController.swift in Sources */,
 				9F3FDD0121CC376F00D2FBB2 /* ContactDataConverter.swift in Sources */,
@@ -419,7 +412,6 @@
 				9F6A083322A9C2F7008ECF2F /* Privacy.swift in Sources */,
 				9F4ABE8322A8586E00316EB2 /* TabBarController.swift in Sources */,
 				9FC30F2322B42AA0002CB40C /* AddContactViewController.swift in Sources */,
-				9F6A082F22A9BB95008ECF2F /* StubCallable.swift in Sources */,
 				9F9E9AE321BA1690003A6A33 /* AppDelegate.swift in Sources */,
 				9FBFACDB22B4A30800730E7B /* SavedContactCell.swift in Sources */,
 				9F14B5C222A9888200689842 /* SaveContactBanner.swift in Sources */,

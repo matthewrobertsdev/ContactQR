@@ -7,7 +7,10 @@
 //
 
 import UIKit
-
+/*
+ for slecting contact to give from saved table view or from Contacts
+ or by making a new one
+ */
 class GiveQRViewController: UIViewController {
     //properties
     @IBOutlet weak var toggleEditButton: UIBarButtonItem!

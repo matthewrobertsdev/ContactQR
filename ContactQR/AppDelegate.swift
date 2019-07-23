@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func applicationWillResignActive(_ application: UIApplication) {
     }
+    //save before entering the background
     func applicationDidEnterBackground(_ application: UIApplication) {
         save()
     }
@@ -21,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func applicationDidBecomeActive(_ application: UIApplication) {
     }
+    //save before ending
     func applicationWillTerminate(_ application: UIApplication) {
         save()
     }

@@ -5,20 +5,20 @@
 //  Created by Matt Roberts on 6/5/19.
 //  Copyright © 2019 Matt Roberts. All rights reserved.
 //
-
 import UIKit
-
+/*
+ Checks that user has granted access to camera and contacts before
+ allowing the user to go to tab 2, GetQRViewController
+ */
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate=self
     }
-    func tabBarController(_ tabBarController: UITabBarController, viewController: UIViewController) -> Bool {
+    //check privacy and request as needed
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         //if user is trying to go to ScanQR_VC
-        guard let selectedViewController=tabBarController.viewControllers?[1] else {
-            return true
-        }
-        if viewController==selectedViewController {
+        if viewController==tabBarController.viewControllers?[1] {
             return Privacy.cameraCheck(viewController: self) && Privacy.contactsCheck(viewController: self)
         }
         /*
