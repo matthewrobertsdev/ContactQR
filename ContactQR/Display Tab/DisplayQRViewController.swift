@@ -27,7 +27,9 @@ class DisplayQRViewController: UIViewController {
         //assigns controller, passing ViewController in so view can be updated from controller
         controller=DisplayQRController(displayQRViewController: self)
         controller.prepareView()
-        self.navigationItem.rightBarButtonItem=UIBarButtonItem(barButtonSystemItem: .save, target: controller, action: #selector(controller.presentSaveDialog))
+        let saveSelector=#selector(controller.presentSaveDialog)
+        let saveBarButtonItem=UIBarButtonItem(barButtonSystemItem: .save, target: controller, action: saveSelector)
+        navigationItem.rightBarButtonItem=saveBarButtonItem
         if !savable {
             disableSave()
         }

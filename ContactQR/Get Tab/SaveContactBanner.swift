@@ -17,8 +17,11 @@ class SaveContactBanner: UIView {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         tapActionCallable=StubCallable()
-        let viewFromNib = UINib(nibName: "SaveContactBanner", bundle: Bundle.main).instantiate(withOwner: self, options: nil).first as? UIView
-        self.addSubview(viewFromNib!)
+        let contactNib=UINib(nibName: "SaveContactBanner", bundle: Bundle.main).instantiate(withOwner: self, options: nil)
+        guard let viewFromNib = contactNib.first as? UIView else {
+            return
+        }
+        self.addSubview(viewFromNib)
     }
     override func draw(_ rect: CGRect) {
         layer.cornerRadius = 5

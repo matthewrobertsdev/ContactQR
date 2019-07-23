@@ -15,8 +15,11 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     func tabBarController(_ tabBarController: UITabBarController, viewController: UIViewController) -> Bool {
         //if user is trying to go to ScanQR_VC
-        if (viewController==tabBarController.viewControllers![1]) {
-            return PrivacyPermissions.cameraPrivacyCheck(presentingVC: self) && PrivacyPermissions.contactPrivacyCheck(presentingVC: self)
+        guard let selectedViewController=tabBarController.viewControllers?[1] else {
+            return true
+        }
+        if viewController==selectedViewController {
+            return Privacy.cameraCheck(viewController: self) && Privacy.contactsCheck(viewController: self)
         }
         /*
         if it's any othe view controller that the UITabBarController is

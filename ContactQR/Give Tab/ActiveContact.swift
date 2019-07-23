@@ -17,7 +17,7 @@ class ActiveContact {
     //shared is the singleton
     static let shared=ActiveContact()
     //stoes a CNContact for use throughout the app
-    var activeContact: CNContact?
+    var contact: CNContact?
     private init() {
     }
 }

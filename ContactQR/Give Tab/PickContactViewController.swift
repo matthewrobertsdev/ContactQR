@@ -21,7 +21,7 @@ class PickContactVC: CNContactPickerViewController, CNContactPickerDelegate {
      */
     func contactPicker(_ picker: CNContactPickerViewController,
                        didSelect contact: CNContact) {
-        ActiveContact.shared.activeContact=contact
+        ActiveContact.shared.contact=contact
         NotificationCenter.default.post(name: .contactChanged, object: self)
     }
 }

@@ -13,7 +13,8 @@ class GiveQRController: NSObject, UITableViewDelegate {
     //properties
     var viewController: GiveQRViewController!
     var pickContactVC=PickContactVC()
-    var addContactController=AddContactController()
+    var addContactController=AddContactViewController()
+    let notificationCenter=NotificationCenter.default
     //init
     init(createQRViewController: GiveQRViewController!) {
         super.init()
@@ -22,9 +23,9 @@ class GiveQRController: NSObject, UITableViewDelegate {
         self.viewController.storedContactsTV.dataSource=self
         self.viewController.storedContactsTV.reloadData()
         //Need to post from different places and have different responses
-        NotificationCenter.default.addObserver(self, selector: #selector(displayQRforContact), name: .contactChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(displayQRforContact), name: .contactCreated, object: addContactController)
-        NotificationCenter.default.addObserver(self, selector: #selector(stopEditing), name: .allDeleted, object: addContactController)
+        notificationCenter.addObserver(self, selector: #selector(displayQR), name: .contactChanged, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(displayQR), name: .contactCreated, object: addContactController)
+        notificationCenter.addObserver(self, selector: #selector(stopEditing), name: .allDeleted, object: addContactController)
     }
     /*
      calls a pick conact view controller so the user can pick a contact
@@ -36,18 +37,18 @@ class GiveQRController: NSObject, UITableViewDelegate {
         viewController.present(pickContactVC, animated: true)
     }
     func createNewContact() {
-        if (PrivacyPermissions.contactPrivacyCheck(presentingVC: viewController)) {
-            addContactController.showAddContactUI(presentingVC: viewController, contactToAdd: CNContact(), forQR: true)
+        if Privacy.contactsCheck(viewController: viewController) {
+            addContactController.showUI(viewController: viewController, contact: CNContact(), forQR: true)
         }
     }
     //if activeContact isn't nil, piush a DisplayQR_VC
-    @objc private func displayQRforContact(notification: NSNotification) {
+    @objc private func displayQR(notification: NSNotification) {
         print("should display contact")
-        if (ActiveContact.shared.activeContact==nil) {
+        if ActiveContact.shared.contact==nil {
             return
         }
         var animated=false
-        guard let displayQRViewController = viewController.storyboard?.instantiateViewController(withIdentifier: "DisplayQR_VC") as? DisplayQRViewController else {
+        guard let displayQRViewController = viewController.storyboard?.instantiateViewController(withIdentifier: "DisplayQRViewController") as? DisplayQRViewController else {
             return
         }
         if notification.object is GiveQRController {
@@ -81,7 +82,7 @@ class GiveQRController: NSObject, UITableViewDelegate {
             StoredContacts.shared.tryToSave()
             tableView.deleteRows(at: [indexPath], with: .fade)
             //so that the save button can be disabled
-            if (StoredContacts.shared.contacts.count==0) {
+            if StoredContacts.shared.contacts.count==0 {
                 NotificationCenter.default.post(Notification(name: .allDeleted))
             }
         }
@@ -97,7 +98,7 @@ class GiveQRController: NSObject, UITableViewDelegate {
             guard let contactVCard=StoredContacts.shared.contacts[indexPath.row].vCardString else {
                 return
             }
-            ActiveContact.shared.activeContact=try ContactDataConverter.createCNContactArray(vCardString: contactVCard).first
+            ActiveContact.shared.contact=try ContactDataConverter.createCNContactArray(vCardString: contactVCard).first
         } catch {
             print(error)
         }

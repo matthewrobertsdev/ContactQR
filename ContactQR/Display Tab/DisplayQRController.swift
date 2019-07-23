@@ -26,10 +26,10 @@ class DisplayQRController: NSObject, UITableViewDelegate {
      code, update the table view's data source, and reload the table view
      */
     func prepareView() {
-        if (ActiveContact.shared.activeContact==nil) {
+        guard let activeContact=ActiveContact.shared.contact else {
             return
         }
-        model.updateActiveContact(activeContact: ActiveContact.shared.activeContact!)
+        model.updateActiveContact(activeContact: activeContact)
         viewController.qrImageView.image=model.makeQRCode()
         model.updateContactInfoTVDataSource()
         viewController.contactInfoTV.reloadData()
@@ -37,14 +37,14 @@ class DisplayQRController: NSObject, UITableViewDelegate {
     @objc func presentSaveDialog() {
         //StoredContacts.shared.contacts.append()
         let saveMessage="Please enter the name for this QR code"
-        let manageSaveAlert=UIAlertController(title: "Save Contact", message: saveMessage, preferredStyle: UIAlertController.Style.alert)
+        let manageSaveAlert=UIAlertController(title: "Save Contact", message: saveMessage, preferredStyle: .alert)
         manageSaveAlert.addTextField()
         manageSaveAlert.addAction(UIAlertAction(title: "Cancel", style: .default))
         let saveAlertHandler = { (alertAction: UIAlertAction) -> Void in
             self.addToStoredContacts(name: manageSaveAlert.textFields![0].text!)
             self.viewController.disableSave()
         }
-        let saveAlertString=NSLocalizedString("Save", comment: "Alert button to save contyact with title")
+        let saveAlertString=NSLocalizedString("Save", comment: "Alert button to save contact with title")
         let saveAlertAction=UIAlertAction(title: saveAlertString, style: .default, handler: saveAlertHandler)
         manageSaveAlert.addAction(saveAlertAction)
         DispatchQueue.main.async {
@@ -53,7 +53,7 @@ class DisplayQRController: NSObject, UITableViewDelegate {
     }
     func addToStoredContacts(name: String) {
         print("Adding to contact store "+name)
-        let contactToStore=SavedContact(name: name, cnContact: ActiveContact.shared.activeContact!)
+        let contactToStore=SavedContact(name: name, cnContact: ActiveContact.shared.contact!)
         StoredContacts.shared.contacts.append(contactToStore)
         StoredContacts.shared.tryToSave()
         //StoredContacts.shared.testEncodeAndDecode()

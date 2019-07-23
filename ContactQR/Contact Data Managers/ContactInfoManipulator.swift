@@ -13,7 +13,7 @@ import Contacts
  with the name of the field and the value for each pair
  */
 class ContactInfoManipulator {
-    static func createContactPreviewString(cnContact: CNContact) -> String {
+    static func createPreviewString(cnContact: CNContact) -> String {
         var contactPreviewString=""
         if !(cnContact.namePrefix=="") {
             contactPreviewString.append(cnContact.namePrefix+" ")
@@ -39,6 +39,11 @@ class ContactInfoManipulator {
         for urlAddress in (cnContact.urlAddresses) {
             contactPreviewString.append( urlAddress.value as String+" ")
         }
+        contactPreviewString.append(createPostalPreviewString(cnContact: cnContact))
+        return contactPreviewString
+    }
+    private static func createPostalPreviewString(cnContact: CNContact) -> String {
+        var contactPreviewString=""
         for postalAddress in (cnContact.postalAddresses) {
             if !(postalAddress.value.street=="") {
                 contactPreviewString.append(postalAddress.value.street as String+" ")
@@ -91,35 +96,39 @@ class ContactInfoManipulator {
                 let urlAddresslabel=ContactInfoManipulator.makeContactLabel(label: urlAddress.label!)
                 contactInfoArray.append((urlAddresslabel, urlAddress.value as String))
             }
-            for postalAddress in (cnContact?.postalAddresses)! {
-                let postalAddresslabel=ContactInfoManipulator.makeContactLabel(label: postalAddress.label!)
-                if !(postalAddress.value.street=="") {
-                    contactInfoArray.append((postalAddresslabel, postalAddress.value.street))
-                }
-                if !(postalAddress.value.city=="") {
-                    contactInfoArray.append((postalAddresslabel, postalAddress.value.city))
-                }
-                if !(postalAddress.value.state=="") {
-                    contactInfoArray.append((postalAddresslabel, postalAddress.value.state))
-                }
-                if !(postalAddress.value.postalCode=="") {
-                    contactInfoArray.append((postalAddresslabel, postalAddress.value.postalCode))
-                }
-                if !(postalAddress.value.country=="") {
-                    contactInfoArray.append((postalAddresslabel, postalAddress.value.country))
-                }
+        }
+        return contactInfoArray
+    }
+    private static func createPostalPreviewString(cnContact: CNContact?) -> [(String, String)] {
+        var contactInfoArray: [(String, String)]=[]
+        for postalAddress in (cnContact?.postalAddresses)! {
+            let postalAddresslabel=ContactInfoManipulator.makeContactLabel(label: postalAddress.label!)
+            if !(postalAddress.value.street=="") {
+                contactInfoArray.append((postalAddresslabel, postalAddress.value.street))
+            }
+            if !(postalAddress.value.city=="") {
+                contactInfoArray.append((postalAddresslabel, postalAddress.value.city))
+            }
+            if !(postalAddress.value.state=="") {
+                contactInfoArray.append((postalAddresslabel, postalAddress.value.state))
+            }
+            if !(postalAddress.value.postalCode=="") {
+                contactInfoArray.append((postalAddresslabel, postalAddress.value.postalCode))
+            }
+            if !(postalAddress.value.country=="") {
+                contactInfoArray.append((postalAddresslabel, postalAddress.value.country))
             }
         }
         return contactInfoArray
     }
     static func makeContactLabel(label: String) -> String {
         var displayLabel=label
-        if (displayLabel.count<4) {
+        if displayLabel.count<4 {
             return ""
         }
         let removeStartRange=displayLabel.startIndex..<label.index(displayLabel.startIndex, offsetBy: 4)
         displayLabel.removeSubrange(removeStartRange)
-        if (displayLabel.count<4) {
+        if displayLabel.count<4 {
             return ""
         }
         let removeEndRange=displayLabel.index(displayLabel.endIndex, offsetBy: -4)..<displayLabel.endIndex

@@ -36,7 +36,7 @@ class QRPersistency {
     }
     func getSavedContacts()throws -> [SavedContact] {
         let data=try PersistenceManager.shared.loadData(appendingPath: SAVEDCONTACTSFILENAME)
-        if (data==nil) {
+        if data==nil {
             return [SavedContact]()
         }
         let savedContacts=try PersistenceManager.shared.decoder.decode([SavedContact].self, from: data!)

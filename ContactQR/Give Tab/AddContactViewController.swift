@@ -6,20 +6,20 @@
 //  Copyright © 2019 Matt Roberts. All rights reserved.
 //
 import ContactsUI
-class AddContactController: NSObject, CNContactViewControllerDelegate {
+class AddContactViewController: NSObject, CNContactViewControllerDelegate {
     var addContactNC: UINavigationController!
     var forQR: Bool!
-    func showAddContactUI(presentingVC: UIViewController, contactToAdd: CNContact, forQR: Bool) {
+    func showUI(viewController: UIViewController, contact: CNContact, forQR: Bool) {
         self.forQR=forQR
-        let addContactVC=CNContactViewController(forNewContact: contactToAdd)
+        let addContactVC=CNContactViewController(forNewContact: contact)
         addContactVC.delegate=self
         addContactNC=UINavigationController(rootViewController: addContactVC)
-        presentingVC.present(addContactNC, animated: true)
+        viewController.present(addContactNC, animated: true)
     }
     func contactViewController(_ viewController: CNContactViewController,
                                didCompleteWith contact: CNContact?) {
-        if (forQR) {
-            ActiveContact.shared.activeContact=contact
+        if forQR {
+            ActiveContact.shared.contact=contact
         }
         viewController.dismiss(animated: !forQR)
         NotificationCenter.default.post(name: .contactCreated, object: self)
