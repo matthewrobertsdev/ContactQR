@@ -9,9 +9,7 @@
 import UIKit
 
 //A very simple tv cell--for formatting in interface builder
-class SavedContactTVCell: UITableViewCell{
-    
+class SavedContactCell: UITableViewCell {
     //name of file for contact
     @IBOutlet weak var nameLabel: UILabel!
-    
 }

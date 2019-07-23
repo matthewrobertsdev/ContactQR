@@ -5,11 +5,9 @@
 //  Created by Matt Roberts on 6/6/19.
 //  Copyright © 2019 Matt Roberts. All rights reserved.
 //
-
 import Foundation
-
 //for Strings that should be the same throughout the entire app
-struct AppStringConstants{
+struct Constants {
     //app title
-    static let APP_NAME="ContactQR"
+    static let APPNAME="ContactQR"
 }

@@ -5,53 +5,26 @@
 //  Created by Matt Roberts on 6/4/19.
 //  Copyright © 2019 Matt Roberts. All rights reserved.
 //
-
 import Foundation
-
 import Contacts
-
 /*
- Singleton for holding the active contact (the one to be used thgroughout the app).  See below for extension of Notification.Name, .contactChanged, for notifications about when activeContact changes
+ Singleton for holding the active contact (the one to
+ be used thgroughout the app).  See below for extension of
+ Notification.Name, .contactChanged, for notifications
+ about when activeContact changes
  */
-class ActiveContact{
-    
+class ActiveContact {
     //shared is the singleton
     static let shared=ActiveContact()
-    
     //stoes a CNContact for use throughout the app
-    var activeContact: CNContact?
-    
-    private init(){
-        /*
-        do{
-            activeContact=try QR_Persistency.shared.getSavedActiveContact()
-        }
-        catch{
-            print("Error loading saved active contact")
-        }
- */
+    var contact: CNContact?
+    private init() {
     }
-    
-    func saveActiveContact(){
-        /*
-        do{
-            if (activeContact != nil){
-                try QR_Persistency.shared.saveActiveContact(activeContact: activeContact!)
-            }
-        }
-        catch{
-            print("Error saving active contact")
-        }
- */
-    }
-    
 }
-
 /*
  Post this WHENEVER ActiveContact.shared.activeContact changes
  */
-extension Notification.Name{
-    
+extension Notification.Name {
     //Reference as .contactChanged when type inference is possible
     static let contactChanged=Notification.Name("contact-changed")
 }

@@ -9,14 +9,11 @@
 import Foundation
 import Contacts
 
-class SavedContact: Codable{
-    
+class SavedContact: Codable {
     var filename: String!
     var vCardString: String!
-    
-    init(name: String, cnContact: CNContact){
-        self.filename=name
+    init(name: String, cnContact: CNContact) {
+        filename=name
         vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
     }
-    
 }
