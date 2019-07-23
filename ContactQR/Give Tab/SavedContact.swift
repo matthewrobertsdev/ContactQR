@@ -13,7 +13,7 @@ class SavedContact: Codable {
     var filename: String!
     var vCardString: String!
     init(name: String, cnContact: CNContact) {
-        self.filename=name
+        filename=name
         vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
     }
 }

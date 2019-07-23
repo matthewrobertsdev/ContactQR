@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GiveQRViewController: UIViewController, UITableViewDelegate {
+class GiveQRViewController: UIViewController {
     //properties
     @IBOutlet weak var toggleEditButton: UIBarButtonItem!
     @IBAction func toggleEditing(_ sender: Any) {

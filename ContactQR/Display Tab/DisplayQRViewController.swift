@@ -16,7 +16,11 @@ class DisplayQRViewController: UIViewController {
     @IBOutlet weak var qrImageView: UIImageView!
     //displays the info of the current QR code as rows in a table
     @IBOutlet weak var contactInfoTV: UITableView!
-    //tells controller to display PickContactVC, which uses some of Apple's classes for picking a CNContact to pick (or not pick) a CNContact
+    /*
+    tells controller to display PickContactVC, which uses some of
+    Apple's classes for picking a CNContact to pick (or not pick) a
+     CNContact
+     */
     var savable=true
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -16,7 +16,6 @@ class StoredContacts {
     private init() {
         do {
             contacts=try QRPersistency.shared.getSavedContacts()
-            print("Loaded contacts")
         } catch {
             print("Failed to load contacts or none were there to load "+error.localizedDescription)
             contacts=[SavedContact]()
@@ -25,9 +24,7 @@ class StoredContacts {
     }
     func tryToSave() {
             do {
-                print("trying to save contacts")
                 try QRPersistency.shared.saveContacts(contactsToSave: contacts)
-                print("saved contacts")
             } catch {
                 print("Failed to save contacts "+error.localizedDescription)
             }

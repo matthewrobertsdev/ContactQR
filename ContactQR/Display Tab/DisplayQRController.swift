@@ -9,7 +9,7 @@ import ContactsUI
 /*
  Gets contact, gets conversion of it from model, and updates qr code image view and the tableview
  */
-class DisplayQRController {
+class DisplayQRController: NSObject, UITableViewDelegate {
      //model for managing data concerning the CNContact, its properties, and the qr code
     private let model=DisplayQRModel()
     //the display qr code view controller
@@ -17,8 +17,9 @@ class DisplayQRController {
     //assign view controller, set-up table view, and add observer to .contactChanged notification
     init(displayQRViewController: DisplayQRViewController) {
         viewController=displayQRViewController
+        super.init()
         viewController.contactInfoTV.dataSource=model.getContactTVDataSource()
-        viewController.contactInfoTV.delegate=ContactTVDelegate()
+        viewController.contactInfoTV.delegate=self
     }
     /*
      if activeContact isn't nil, assigbn it to model, make and assign the qr

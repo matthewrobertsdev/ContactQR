@@ -12,7 +12,7 @@ import UIKit
  A data source for the give contact table view entirely based off of
  StoredContacts.shared
  */
-class StoredContactsTVDataSource: NSObject, UITableViewDataSource {
+extension GiveQRController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    titleForHeaderInSection section: Int) -> String? {
         return "My Contact Info"
@@ -25,7 +25,7 @@ class StoredContactsTVDataSource: NSObject, UITableViewDataSource {
     //a cell is just a SavedContactTVCell with the filename of a contact as its
     //label's text
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let savedContactTVCell=tableView.dequeueReusableCell(withIdentifier: "SavedContactTVCell") as? SavedContactTVCell else{
+        guard let savedContactTVCell=tableView.dequeueReusableCell(withIdentifier: "SavedContactTVCell") as? SavedContactTVCell else {
             return UITableViewCell()
         }
         savedContactTVCell.nameLabel.text=StoredContacts.shared.contacts[indexPath.row].filename

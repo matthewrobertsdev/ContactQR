@@ -10,15 +10,16 @@ import UIKit
 import Contacts
 
 class GiveQRController: NSObject, UITableViewDelegate {
+    //properties
     var viewController: GiveQRViewController!
     var pickContactVC=PickContactVC()
     var addContactController=AddContactController()
-    let tvDataSource=StoredContactsTVDataSource()
+    //init
     init(createQRViewController: GiveQRViewController!) {
         super.init()
         self.viewController=createQRViewController
-        self.viewController.storedContactsTV.delegate=StoredContactsTVDelegate()
-        self.viewController.storedContactsTV.dataSource=tvDataSource
+        self.viewController.storedContactsTV.delegate=self
+        self.viewController.storedContactsTV.dataSource=self
         self.viewController.storedContactsTV.reloadData()
         //Need to post from different places and have different responses
         NotificationCenter.default.addObserver(self, selector: #selector(displayQRforContact), name: .contactChanged, object: nil)
@@ -35,20 +36,21 @@ class GiveQRController: NSObject, UITableViewDelegate {
         viewController.present(pickContactVC, animated: true)
     }
     func createNewContact() {
-        if (PrivacyPermissions.contactPrivacyCheck(presentingVC: viewController)){
+        if (PrivacyPermissions.contactPrivacyCheck(presentingVC: viewController)) {
             addContactController.showAddContactUI(presentingVC: viewController, contactToAdd: CNContact(), forQR: true)
         }
     }
     //if activeContact isn't nil, piush a DisplayQR_VC
     @objc private func displayQRforContact(notification: NSNotification) {
+        print("should display contact")
         if (ActiveContact.shared.activeContact==nil) {
             return
         }
         var animated=false
-        guard let displayQRViewController = viewController.storyboard?.instantiateViewController(withIdentifier: "DisplayQR_VC") as? DisplayQRViewController else{
+        guard let displayQRViewController = viewController.storyboard?.instantiateViewController(withIdentifier: "DisplayQR_VC") as? DisplayQRViewController else {
             return
         }
-        if notification.object is StoredContactsTVDelegate {
+        if notification.object is GiveQRController {
             animated=true
             displayQRViewController.savable=false
         }
@@ -72,14 +74,38 @@ class GiveQRController: NSObject, UITableViewDelegate {
         viewController.storedContactsTV.setEditing(false, animated: true)
         print("set normal")
     }
+    //delete from the model, save, and delete from the tableview
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
+            StoredContacts.shared.contacts.remove(at: indexPath.row)
+            StoredContacts.shared.tryToSave()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            //so that the save button can be disabled
+            if (StoredContacts.shared.contacts.count==0) {
+                NotificationCenter.default.post(Notification(name: .allDeleted))
+            }
+        }
+        return [delete]
+    }
     /*
-     Table view
-        delete
-        rename rows
-        move rows
-        model
-        save to disk
-     active contact
-        save to disk
+     save selected contact to ActiveContact and post notification that contactChanged,
+     so that the display VC can be presented
      */
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        do {
+            guard let contactVCard=StoredContacts.shared.contacts[indexPath.row].vCardString else {
+                return
+            }
+            ActiveContact.shared.activeContact=try ContactDataConverter.createCNContactArray(vCardString: contactVCard).first
+        } catch {
+            print(error)
+        }
+        print("contact in tableview selected")
+        NotificationCenter.default.post(name: .contactChanged, object: self)
+    }
+}
+//name for notification for when all saved contacts have been deleted
+extension Notification.Name {
+    static let allDeleted=Notification.Name("all-deleted")
 }
