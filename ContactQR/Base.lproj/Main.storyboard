@@ -14,7 +14,7 @@
         <!--Give Contact-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController restorationIdentifier="DisplayQRViewController" storyboardIdentifier="DisplayQRViewController" title="Give Contact" id="BYZ-38-t0r" customClass="DisplayQRViewController" customModule="ContactQR" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DisplayQRViewController" title="Give Contact" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="DisplayQRViewController" customModule="ContactQR" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -234,8 +234,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Xz-VB-miu">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loading Camera" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9l-5D-jnW">
-                                        <rect key="frame" x="65" y="83" width="190" height="34"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Camera" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9l-5D-jnW">
+                                        <rect key="frame" x="65" y="88" width="190" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="190" id="ETU-cd-o0E"/>
+                                            <constraint firstAttribute="height" constant="34" id="xfG-Cb-flC"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

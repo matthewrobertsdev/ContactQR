@@ -25,7 +25,8 @@ extension GiveQRController: UITableViewDataSource {
     //a cell is just a SavedContactTVCell with the filename of a contact as its
     //label's text
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let contactCell=tableView.dequeueReusableCell(withIdentifier: "SavedContactCell") as? SavedContactCell else {
+        let cell=tableView.dequeueReusableCell(withIdentifier: "SavedContactCell") as? SavedContactCell
+        guard let contactCell=cell else {
             return UITableViewCell()
         }
         contactCell.nameLabel.text=StoredContacts.shared.contacts[indexPath.row].filename

@@ -17,7 +17,8 @@ class SaveContactBanner: UIView {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         tapActionCallable=StubCallable()
-        let contactNib=UINib(nibName: "SaveContactBanner", bundle: Bundle.main).instantiate(withOwner: self, options: nil)
+        let bundle=Bundle.main
+        let contactNib=UINib(nibName: "SaveContactBanner", bundle: bundle).instantiate(withOwner: self, options: nil)
         guard let viewFromNib = contactNib.first as? UIView else {
             return
         }

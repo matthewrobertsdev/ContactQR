@@ -13,7 +13,7 @@ class GiveQRController: NSObject, UITableViewDelegate {
     //properties
     var viewController: GiveQRViewController!
     var pickContactVC=PickContactVC()
-    var addContactController=AddContactViewController()
+    var addContactViewController=AddContactViewController()
     let notificationCenter=NotificationCenter.default
     //init
     init(createQRViewController: GiveQRViewController!) {
@@ -24,8 +24,8 @@ class GiveQRController: NSObject, UITableViewDelegate {
         self.viewController.storedContactsTV.reloadData()
         //Need to post from different places and have different responses
         notificationCenter.addObserver(self, selector: #selector(displayQR), name: .contactChanged, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(displayQR), name: .contactCreated, object: addContactController)
-        notificationCenter.addObserver(self, selector: #selector(stopEditing), name: .allDeleted, object: addContactController)
+        notificationCenter.addObserver(self, selector: #selector(displayQR), name: .contactCreated, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(stopEditing), name: .allDeleted, object: nil)
     }
     /*
      calls a pick conact view controller so the user can pick a contact
@@ -38,7 +38,7 @@ class GiveQRController: NSObject, UITableViewDelegate {
     }
     func createNewContact() {
         if Privacy.contactsCheck(viewController: viewController) {
-            addContactController.showUI(viewController: viewController, contact: CNContact(), forQR: true)
+            addContactViewController.showUI(viewController: viewController, contact: CNContact(), forQR: true)
         }
     }
     //if activeContact isn't nil, piush a DisplayQR_VC
@@ -48,7 +48,9 @@ class GiveQRController: NSObject, UITableViewDelegate {
             return
         }
         var animated=false
-        guard let displayQRViewController = viewController.storyboard?.instantiateViewController(withIdentifier: "DisplayQRViewController") as? DisplayQRViewController else {
+        let storyBoard=viewController.storyboard
+        let desiredViewController = storyBoard?.instantiateViewController(withIdentifier: "DisplayQRViewController")
+        guard let displayQRViewController = desiredViewController as? DisplayQRViewController else {
             return
         }
         if notification.object is GiveQRController {
