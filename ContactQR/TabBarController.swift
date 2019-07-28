@@ -19,10 +19,18 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         //if user is trying to go to ScanQR_VC
         if viewController==tabBarController.viewControllers?[1] {
-            return Privacy.cameraCheck(viewController: self) && Privacy.contactsCheck(viewController: self)
+            guard let viewController=tabBarController.selectedViewController else {
+                return false
+            }
+                let cameraCompletionHandler = {() -> Void in
+                    if !UIImagePickerController.isSourceTypeAvailable( .camera) {
+                    CameraPrivacy.showCameraUnavailableAlert(fromViewController: viewController, appName: Constants.APPNAME)
+                    }
+                }
+            return CameraPrivacy.cameraCheck(viewController: viewController, appName: Constants.APPNAME, completionHandler: cameraCompletionHandler)
         }
-        /*
-        if it's any othe view controller that the UITabBarController is
+            /*
+             if it's any othe view controller that the UITabBarController is
         trying to present, just return true so that it will do it
          */
         return true

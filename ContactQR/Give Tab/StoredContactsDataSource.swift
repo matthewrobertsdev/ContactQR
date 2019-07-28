@@ -19,7 +19,6 @@ extension GiveQRController: UITableViewDataSource {
     }
     //num in table is num in StoredContacts.shared
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("total contacts loaded by TV"+StoredContacts.shared.contacts.count.description)
         return StoredContacts.shared.contacts.count
     }
     //a cell is just a SavedContactTVCell with the filename of a contact as its

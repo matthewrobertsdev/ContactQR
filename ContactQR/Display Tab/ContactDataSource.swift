@@ -12,7 +12,7 @@ import Contacts
 /*
  Data source for the display QR view controller's table view
  */
-class ContactTVDataSource: NSObject, UITableViewDataSource {
+class ContactDataSource: NSObject, UITableViewDataSource {
     //an array of pairs of Strings for the data source
     private var contactInfoArray: [(String, String)]=[]
     //called by other objects to update the array

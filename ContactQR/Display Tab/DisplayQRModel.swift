@@ -15,7 +15,7 @@ class DisplayQRModel: NSObject {
     private var activeContact: CNContact?
     //an array of pairs of strings for the data source of the table view
     private var contactInfoArray: [(String, String)] = []
-    private let contactTVDataSource=ContactTVDataSource()
+    private let contactTVDataSource=ContactDataSource()
     //the string from the v card
     private var vCardString: String!
     //the qr code containing the string from the v card
@@ -27,7 +27,7 @@ class DisplayQRModel: NSObject {
     private func makeVCardString() {
         vCardString=ContactDataConverter.cnContactToVCardString(cnContact: activeContact!)
     }
-    func getContactTVDataSource() -> ContactTVDataSource {
+    func getContactTVDataSource() -> ContactDataSource {
         return contactTVDataSource
     }
     //get the v card String
@@ -36,7 +36,7 @@ class DisplayQRModel: NSObject {
     }
     //get a qr code from the active contact
     func makeQRCode() -> UIImage {
-        print(ContactDataConverter.cnContactToVCardString(cnContact: activeContact!))
+        //ContactDataConverter.cnContactToVCardString(cnContact: activeContact!)
         qrCode=ContactDataConverter.cnContactToQR_Code(cnContact: activeContact!)
         return qrCode
     }

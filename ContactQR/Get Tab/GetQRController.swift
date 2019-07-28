@@ -40,6 +40,7 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     func setUpCameraView() {
         self.initializeAVPreviewLayer()
         self.addAVPreviewToScanView()
+        ContactsPrivacy.contactsCheck(viewController: scanQRViewController, appName: Constants.APPNAME)
         //create a layer that will show camera output
         //do{
         //try to get video camera and start AV session
@@ -135,7 +136,6 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput,
                         didOutput metadataObjects: [AVMetadataObject],
                         from connection: AVCaptureConnection) {
-        //Swift.print(metadataObjects.first?.description)
         guard let metaData=metadataObjects.first else {
             qrCodeFocusView.isHidden=true
             scanQRViewController.saveContactBanner.isHidden=true
@@ -198,11 +198,13 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
          if good input, ask permission and add contact
          hide the notification when action is done
          */
-        if validContact {
-            addContactController.showUI(viewController: scanQRViewController, contact: contactToAdd, forQR: false)
+        if ContactsPrivacy.contactsCheck(viewController: scanQRViewController, appName: Constants.APPNAME) {
+            if validContact {
+                addContactController.showUI(viewController: scanQRViewController, contact: contactToAdd, forQR: false)
         }
         scanQRViewController.saveContactBanner.isHidden=true
         qrCodeFocusView.isHidden=true
+        }
     }
 }
 /*

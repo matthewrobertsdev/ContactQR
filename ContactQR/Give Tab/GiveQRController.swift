@@ -37,13 +37,12 @@ class GiveQRController: NSObject, UITableViewDelegate {
         viewController.present(pickContactVC, animated: true)
     }
     func createNewContact() {
-        if Privacy.contactsCheck(viewController: viewController) {
+        if ContactsPrivacy.contactsCheck(viewController: viewController, appName: Constants.APPNAME) {
             addContactViewController.showUI(viewController: viewController, contact: CNContact(), forQR: true)
         }
     }
     //if activeContact isn't nil, piush a DisplayQR_VC
     @objc private func displayQR(notification: NSNotification) {
-        print("should display contact")
         if ActiveContact.shared.contact==nil {
             return
         }
@@ -67,7 +66,6 @@ class GiveQRController: NSObject, UITableViewDelegate {
            let editBarButton=UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(toggleEditing))
             viewController.navigationItem.setRightBarButton(editBarButton, animated: true)
             viewController.storedContactsTV.setEditing(true, animated: true)
-            print("set editing")
         }
     }
     @objc func stopEditing() {
@@ -75,7 +73,6 @@ class GiveQRController: NSObject, UITableViewDelegate {
        let editBarButton=UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(toggleEditing))
         viewController.navigationItem.setRightBarButton(editBarButton, animated: true)
         viewController.storedContactsTV.setEditing(false, animated: true)
-        print("set normal")
     }
     //delete from the model, save, and delete from the tableview
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -104,7 +101,6 @@ class GiveQRController: NSObject, UITableViewDelegate {
         } catch {
             print(error)
         }
-        print("contact in tableview selected")
         NotificationCenter.default.post(name: .contactChanged, object: self)
     }
 }

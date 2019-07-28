@@ -52,7 +52,6 @@ class DisplayQRController: NSObject, UITableViewDelegate {
         }
     }
     func addToStoredContacts(name: String) {
-        print("Adding to contact store "+name)
         let contactToStore=SavedContact(name: name, cnContact: ActiveContact.shared.contact!)
         StoredContacts.shared.contacts.append(contactToStore)
         StoredContacts.shared.tryToSave()

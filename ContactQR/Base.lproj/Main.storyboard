@@ -110,10 +110,10 @@
             </objects>
             <point key="canvasLocation" x="2071.875" y="-178.75"/>
         </scene>
-        <!--Create-->
+        <!--Give-->
         <scene sceneID="MDy-ad-u7b">
             <objects>
-                <viewController title="Create" id="eWW-Kj-E90" customClass="GiveQRViewController" customModule="ContactQR" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Give" id="eWW-Kj-E90" customClass="GiveQRViewController" customModule="ContactQR" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PxO-RU-OeD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -188,7 +188,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BhL-8T-CWS"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Give Code" id="n2O-fz-Hdc">
+                    <navigationItem key="navigationItem" title="Give Contact" id="n2O-fz-Hdc">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="uwW-SM-hAn">
                             <connections>
                                 <action selector="toggleEditing:" destination="eWW-Kj-E90" id="e6z-Hn-yWN"/>
@@ -271,7 +271,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aVB-MZ-cVC"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Scan Code" id="6zp-qX-7Z3"/>
+                    <navigationItem key="navigationItem" title="Scan Contact" id="6zp-qX-7Z3"/>
                     <connections>
                         <outlet property="saveContactBanner" destination="0oZ-Ru-P5e" id="Sma-6Y-gST"/>
                         <outlet property="scanView" destination="1Xz-VB-miu" id="Svz-DL-iCe"/>

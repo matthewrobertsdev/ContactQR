@@ -133,7 +133,6 @@ class ContactInfoManipulator {
         }
         let removeEndRange=displayLabel.index(displayLabel.endIndex, offsetBy: -4)..<displayLabel.endIndex
         displayLabel.removeSubrange(removeEndRange)
-        print(displayLabel)
         return String(displayLabel)
     }
 }

@@ -27,12 +27,8 @@ class QRPersistency {
         print("--------------------")
     }
     func saveContacts(contactsToSave: [SavedContact]) throws {
-        for contact in contactsToSave {
-            print(contact.vCardString.description)
-        }
         let data: Data=try PersistenceManager.shared.encoder.encode(contactsToSave)
         try PersistenceManager.shared.saveData(appendingPath: SAVEDCONTACTSFILENAME, data: data)
-        print("Saving done")
     }
     func getSavedContacts()throws -> [SavedContact] {
         let data=try PersistenceManager.shared.loadData(appendingPath: SAVEDCONTACTSFILENAME)
