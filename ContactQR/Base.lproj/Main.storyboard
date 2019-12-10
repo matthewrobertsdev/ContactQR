@@ -267,7 +267,7 @@
         <scene sceneID="u7h-PL-XBa">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zvw-L4-DDg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Give" id="GMC-yJ-zq7"/>
+                    <tabBarItem key="tabBarItem" title="Give" image="qrcode" catalog="system" landscapeImage="qrcode" largeContentSizeImage="qrcode" id="GMC-yJ-zq7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Llj-0C-pVH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -286,7 +286,7 @@
         <scene sceneID="0Ms-fm-GbE">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ETQ-9Y-uH8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Get" id="ng6-gr-fMr"/>
+                    <tabBarItem key="tabBarItem" title="Get" image="qrcode.viewfinder" catalog="system" landscapeImage="qrcode.viewfinder" largeContentSizeImage="qrcode.viewfinder" id="ng6-gr-fMr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="H2W-qx-z9u">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -302,4 +302,9 @@
             <point key="canvasLocation" x="2853.75" y="748.75"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="qrcode" catalog="system" width="64" height="56"/>
+        <image name="qrcode.viewfinder" catalog="system" width="64" height="56"/>
+        <image name="qrcode.viewfinder" width="16" height="16"/>
+    </resources>
 </document>
