@@ -21,7 +21,7 @@ class AddContactViewController: NSObject, CNContactViewControllerDelegate {
         if forQR {
             ActiveContact.shared.contact=contact
         }
-        viewController.dismiss(animated: !forQR)
+        viewController.dismiss(animated: true)
         NotificationCenter.default.post(name: .contactCreated, object: self)
     }
 }
