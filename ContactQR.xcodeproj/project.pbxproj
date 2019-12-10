@@ -15,6 +15,17 @@
 		9F3FDD0121CC376F00D2FBB2 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */; };
 		9F4ABE8122A852F300316EB2 /* GetQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4ABE8022A852F300316EB2 /* GetQRViewController.swift */; };
 		9F4ABE8322A8586E00316EB2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4ABE8222A8586E00316EB2 /* TabBarController.swift */; };
+		9F5074B2239F25D5009E3631 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F5074B0239F25D5009E3631 /* Interface.storyboard */; };
+		9F5074B4239F25D6009E3631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F5074B3239F25D6009E3631 /* Assets.xcassets */; };
+		9F5074BB239F25D6009E3631 /* WatchContactQR Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F5074BA239F25D6009E3631 /* WatchContactQR Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9F5074C0239F25D6009E3631 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5074BF239F25D6009E3631 /* ContentView.swift */; };
+		9F5074C2239F25D6009E3631 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5074C1239F25D6009E3631 /* HostingController.swift */; };
+		9F5074C4239F25D6009E3631 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5074C3239F25D6009E3631 /* ExtensionDelegate.swift */; };
+		9F5074C6239F25D6009E3631 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5074C5239F25D6009E3631 /* NotificationController.swift */; };
+		9F5074C8239F25D6009E3631 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5074C7239F25D6009E3631 /* NotificationView.swift */; };
+		9F5074CA239F25D7009E3631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F5074C9239F25D7009E3631 /* Assets.xcassets */; };
+		9F5074CD239F25D7009E3631 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F5074CC239F25D7009E3631 /* Preview Assets.xcassets */; };
+		9F5074D2239F25D7009E3631 /* WatchContactQR.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9F5074AE239F25D5009E3631 /* WatchContactQR.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F5C647221D3E10A00832897 /* ContactInfoManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5C647121D3E10A00832897 /* ContactInfoManipulator.swift */; };
 		9F6A083322A9C2F7008ECF2F /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A083222A9C2F7008ECF2F /* Privacy.swift */; };
 		9F9E9AE321BA1690003A6A33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */; };
@@ -42,6 +53,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9F5074BC239F25D6009E3631 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F9E9AD721BA1690003A6A33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9F5074B9239F25D6009E3631;
+			remoteInfo = "WatchContactQR Extension";
+		};
+		9F5074D0239F25D7009E3631 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F9E9AD721BA1690003A6A33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9F5074AD239F25D5009E3631;
+			remoteInfo = WatchContactQR;
+		};
 		9F9E9AF421BA1691003A6A33 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9F9E9AD721BA1690003A6A33 /* Project object */;
@@ -58,6 +83,31 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9F5074D6239F25D7009E3631 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9F5074BB239F25D6009E3631 /* WatchContactQR Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F776871239B7A6300DB69D7 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				9F5074D2239F25D7009E3631 /* WatchContactQR.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		9F0330BD22EE595F0046FA02 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9F14B5C122A9888200689842 /* SaveContactBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveContactBanner.swift; sourceTree = "<group>"; };
@@ -67,6 +117,20 @@
 		9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDataConverter.swift; sourceTree = "<group>"; };
 		9F4ABE8022A852F300316EB2 /* GetQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQRViewController.swift; sourceTree = "<group>"; };
 		9F4ABE8222A8586E00316EB2 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		9F5074AE239F25D5009E3631 /* WatchContactQR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchContactQR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F5074B1239F25D5009E3631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		9F5074B3239F25D6009E3631 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9F5074B5239F25D6009E3631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F5074BA239F25D6009E3631 /* WatchContactQR Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchContactQR Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F5074BF239F25D6009E3631 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9F5074C1239F25D6009E3631 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
+		9F5074C3239F25D6009E3631 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		9F5074C5239F25D6009E3631 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		9F5074C7239F25D6009E3631 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		9F5074C9239F25D7009E3631 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9F5074CC239F25D7009E3631 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9F5074CE239F25D7009E3631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F5074CF239F25D7009E3631 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		9F5C647121D3E10A00832897 /* ContactInfoManipulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoManipulator.swift; sourceTree = "<group>"; };
 		9F6A083222A9C2F7008ECF2F /* Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
 		9F9E9ADF21BA1690003A6A33 /* ContactQR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactQR.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +164,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9F5074B7239F25D6009E3631 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9F9E9ADC21BA1690003A6A33 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -151,6 +222,40 @@
 			path = "Give Tab";
 			sourceTree = "<group>";
 		};
+		9F5074AF239F25D5009E3631 /* WatchContactQR */ = {
+			isa = PBXGroup;
+			children = (
+				9F5074B0239F25D5009E3631 /* Interface.storyboard */,
+				9F5074B3239F25D6009E3631 /* Assets.xcassets */,
+				9F5074B5239F25D6009E3631 /* Info.plist */,
+			);
+			path = WatchContactQR;
+			sourceTree = "<group>";
+		};
+		9F5074BE239F25D6009E3631 /* WatchContactQR Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9F5074BF239F25D6009E3631 /* ContentView.swift */,
+				9F5074C1239F25D6009E3631 /* HostingController.swift */,
+				9F5074C3239F25D6009E3631 /* ExtensionDelegate.swift */,
+				9F5074C5239F25D6009E3631 /* NotificationController.swift */,
+				9F5074C7239F25D6009E3631 /* NotificationView.swift */,
+				9F5074C9239F25D7009E3631 /* Assets.xcassets */,
+				9F5074CE239F25D7009E3631 /* Info.plist */,
+				9F5074CF239F25D7009E3631 /* PushNotificationPayload.apns */,
+				9F5074CB239F25D7009E3631 /* Preview Content */,
+			);
+			path = "WatchContactQR Extension";
+			sourceTree = "<group>";
+		};
+		9F5074CB239F25D7009E3631 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				9F5074CC239F25D7009E3631 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		9F6BEA6622A78369008D9745 /* Contact Data Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +271,8 @@
 				9F9E9AE121BA1690003A6A33 /* ContactQR */,
 				9F9E9AF621BA1691003A6A33 /* CardQRTests */,
 				9F9E9B0121BA1691003A6A33 /* CardQRUITests */,
+				9F5074AF239F25D5009E3631 /* WatchContactQR */,
+				9F5074BE239F25D6009E3631 /* WatchContactQR Extension */,
 				9F9E9AE021BA1690003A6A33 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -176,6 +283,8 @@
 				9F9E9ADF21BA1690003A6A33 /* ContactQR.app */,
 				9F9E9AF321BA1691003A6A33 /* ContactQRTests.xctest */,
 				9F9E9AFE21BA1691003A6A33 /* ContactQRUITests.xctest */,
+				9F5074AE239F25D5009E3631 /* WatchContactQR.app */,
+				9F5074BA239F25D6009E3631 /* WatchContactQR Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -243,6 +352,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9F5074AD239F25D5009E3631 /* WatchContactQR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F5074D7239F25D7009E3631 /* Build configuration list for PBXNativeTarget "WatchContactQR" */;
+			buildPhases = (
+				9F5074AC239F25D5009E3631 /* Resources */,
+				9F5074D6239F25D7009E3631 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9F5074BD239F25D6009E3631 /* PBXTargetDependency */,
+			);
+			name = WatchContactQR;
+			productName = WatchContactQR;
+			productReference = 9F5074AE239F25D5009E3631 /* WatchContactQR.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		9F5074B9239F25D6009E3631 /* WatchContactQR Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F5074D3239F25D7009E3631 /* Build configuration list for PBXNativeTarget "WatchContactQR Extension" */;
+			buildPhases = (
+				9F5074B6239F25D6009E3631 /* Sources */,
+				9F5074B7239F25D6009E3631 /* Frameworks */,
+				9F5074B8239F25D6009E3631 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "WatchContactQR Extension";
+			productName = "WatchContactQR Extension";
+			productReference = 9F5074BA239F25D6009E3631 /* WatchContactQR Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		9F9E9ADE21BA1690003A6A33 /* ContactQR */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F9E9B0721BA1691003A6A33 /* Build configuration list for PBXNativeTarget "ContactQR" */;
@@ -251,10 +394,12 @@
 				9F9E9ADC21BA1690003A6A33 /* Frameworks */,
 				9F9E9ADD21BA1690003A6A33 /* Resources */,
 				9FD1E71422E654E200756749 /* ShellScript */,
+				9F776871239B7A6300DB69D7 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9F5074D1239F25D7009E3631 /* PBXTargetDependency */,
 			);
 			name = ContactQR;
 			productName = CardQR;
@@ -306,10 +451,16 @@
 				KnownAssetTags = (
 					New,
 				);
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1110;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Matt Roberts";
 				TargetAttributes = {
+					9F5074AD239F25D5009E3631 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					9F5074B9239F25D6009E3631 = {
+						CreatedOnToolsVersion = 11.1;
+					};
 					9F9E9ADE21BA1690003A6A33 = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -341,11 +492,31 @@
 				9F9E9ADE21BA1690003A6A33 /* ContactQR */,
 				9F9E9AF221BA1691003A6A33 /* ContactQRTests */,
 				9F9E9AFD21BA1691003A6A33 /* ContactQRUITests */,
+				9F5074AD239F25D5009E3631 /* WatchContactQR */,
+				9F5074B9239F25D6009E3631 /* WatchContactQR Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9F5074AC239F25D5009E3631 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F5074B4239F25D6009E3631 /* Assets.xcassets in Resources */,
+				9F5074B2239F25D5009E3631 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F5074B8239F25D6009E3631 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F5074CD239F25D7009E3631 /* Preview Assets.xcassets in Resources */,
+				9F5074CA239F25D7009E3631 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9F9E9ADD21BA1690003A6A33 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -394,6 +565,18 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9F5074B6239F25D6009E3631 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F5074C2239F25D6009E3631 /* HostingController.swift in Sources */,
+				9F5074C0239F25D6009E3631 /* ContentView.swift in Sources */,
+				9F5074C6239F25D6009E3631 /* NotificationController.swift in Sources */,
+				9F5074C4239F25D6009E3631 /* ExtensionDelegate.swift in Sources */,
+				9F5074C8239F25D6009E3631 /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9F9E9ADB21BA1690003A6A33 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -446,6 +629,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9F5074BD239F25D6009E3631 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9F5074B9239F25D6009E3631 /* WatchContactQR Extension */;
+			targetProxy = 9F5074BC239F25D6009E3631 /* PBXContainerItemProxy */;
+		};
+		9F5074D1239F25D7009E3631 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9F5074AD239F25D5009E3631 /* WatchContactQR */;
+			targetProxy = 9F5074D0239F25D7009E3631 /* PBXContainerItemProxy */;
+		};
 		9F9E9AF521BA1691003A6A33 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9F9E9ADE21BA1690003A6A33 /* ContactQR */;
@@ -459,6 +652,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9F5074B0239F25D5009E3631 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F5074B1239F25D5009E3631 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		9F9E9AE621BA1690003A6A33 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -478,6 +679,92 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9F5074D4239F25D7009E3631 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"WatchContactQR Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "WatchContactQR Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "macOS-App.ContactQR.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		9F5074D5239F25D7009E3631 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"WatchContactQR Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "WatchContactQR Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "macOS-App.ContactQR.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		9F5074D8239F25D7009E3631 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
+				IBSC_MODULE = WatchContactQR_Extension;
+				INFOPLIST_FILE = WatchContactQR/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "macOS-App.ContactQR.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		9F5074D9239F25D7009E3631 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
+				IBSC_MODULE = WatchContactQR_Extension;
+				INFOPLIST_FILE = WatchContactQR/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "macOS-App.ContactQR.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
 		9F9E9B0521BA1691003A6A33 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -715,6 +1002,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9F5074D3239F25D7009E3631 /* Build configuration list for PBXNativeTarget "WatchContactQR Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F5074D4239F25D7009E3631 /* Debug */,
+				9F5074D5239F25D7009E3631 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F5074D7239F25D7009E3631 /* Build configuration list for PBXNativeTarget "WatchContactQR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F5074D8239F25D7009E3631 /* Debug */,
+				9F5074D9239F25D7009E3631 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9F9E9ADA21BA1690003A6A33 /* Build configuration list for PBXProject "ContactQR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
