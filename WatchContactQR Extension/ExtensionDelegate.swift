@@ -15,7 +15,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     }
 
     func applicationDidBecomeActive() {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        /* Restart any tasks that were paused (or not yet started) while
+		the application was inactive. If the application was previously in the
+		background, optionally refresh the user interface.
+		*/
     }
 
     func applicationWillResignActive() {
@@ -28,7 +31,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     }
 
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
-        // Sent when the system needs to launch the application in the background to process tasks. Tasks arrive in a set, so loop through and process each one.
+        /*Sent when the system needs to launch the application in the
+		background to process tasks. Tasks arrive in a set, so loop through and
+		process each one.*/
         for task in backgroundTasks {
             // Use a switch statement to check the task type
             switch task {
