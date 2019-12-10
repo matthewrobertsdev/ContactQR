@@ -22,6 +22,7 @@ class GiveQRController: NSObject, UITableViewDelegate {
         self.viewController.storedContactsTV.delegate=self
         self.viewController.storedContactsTV.dataSource=self
         self.viewController.storedContactsTV.reloadData()
+		CameraPrivacy.check(viewController: createQRViewController, appName: Constants.APPNAME)
         //Need to post from different places and have different responses
         notificationCenter.addObserver(self, selector: #selector(displayQR), name: .contactChanged, object: nil)
         notificationCenter.addObserver(self, selector: #selector(displayQR), name: .contactCreated, object: nil)
@@ -37,7 +38,7 @@ class GiveQRController: NSObject, UITableViewDelegate {
         viewController.present(pickContactVC, animated: true)
     }
     func createNewContact() {
-        if ContactsPrivacy.contactsCheck(viewController: viewController, appName: Constants.APPNAME) {
+        if ContactsPrivacy.check(viewController: viewController, appName: Constants.APPNAME) {
             addContactViewController.showUI(viewController: viewController, contact: CNContact(), forQR: true)
         }
     }

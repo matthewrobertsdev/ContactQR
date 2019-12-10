@@ -40,7 +40,7 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     func setUpCameraView() {
         self.initializeAVPreviewLayer()
         self.addAVPreviewToScanView()
-        ContactsPrivacy.contactsCheck(viewController: scanQRViewController, appName: Constants.APPNAME)
+        ContactsPrivacy.check(viewController: scanQRViewController, appName: Constants.APPNAME)
         //create a layer that will show camera output
         //do{
         //try to get video camera and start AV session
@@ -198,7 +198,7 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
          if good input, ask permission and add contact
          hide the notification when action is done
          */
-        if ContactsPrivacy.contactsCheck(viewController: scanQRViewController, appName: Constants.APPNAME) {
+        if ContactsPrivacy.check(viewController: scanQRViewController, appName: Constants.APPNAME) {
             if validContact {
                 addContactController.showUI(viewController: scanQRViewController, contact: contactToAdd, forQR: false)
         }

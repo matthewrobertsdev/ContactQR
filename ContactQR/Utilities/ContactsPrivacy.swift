@@ -8,7 +8,7 @@
 import UIKit
 import Contacts
 class ContactsPrivacy: Privacy {
-    static func contactsCheck(viewController: UIViewController, appName: String) -> Bool {
+    static func check(viewController: UIViewController, appName: String) -> Bool {
         switch CNContactStore.authorizationStatus(for: .contacts) {
         //if authorization is not determined, request it
         case .notDetermined:

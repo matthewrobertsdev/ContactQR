@@ -22,16 +22,19 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             guard let viewController=tabBarController.selectedViewController else {
                 return false
             }
-                let cameraCompletionHandler = {() -> Void in
+			/*
+                let cameraCompletionHandler = {() -> Void in*/
                     if !UIImagePickerController.isSourceTypeAvailable( .camera) {
-                    CameraPrivacy.showCameraUnavailableAlert(fromViewController: viewController, appName: Constants.APPNAME)
-                    }
-                }
-            return CameraPrivacy.cameraCheck(viewController: viewController, appName: Constants.APPNAME, completionHandler: cameraCompletionHandler)
+                    CameraPrivacy.showUnavailableAlert(fromViewController: viewController, appName: Constants.APPNAME)
+					}
+                
+            return UIImagePickerController.isSourceTypeAvailable( .camera)
+				
+				
         }
             /*
-             if it's any othe view controller that the UITabBarController is
-        trying to present, just return true so that it will do it
+             if it's any othe view controller that the UITabBarController
+		is trying to present, just return true so that it will do it
          */
         return true
     }

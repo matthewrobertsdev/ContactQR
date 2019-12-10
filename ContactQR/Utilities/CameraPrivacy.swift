@@ -8,33 +8,26 @@
 import UIKit
 import Photos
 class CameraPrivacy: Privacy {
-    static func cameraCheck(viewController: UIViewController, appName: String, completionHandler: @escaping () -> Void) -> Bool {
+    static func check(viewController: UIViewController, appName: String) -> Bool {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         //if authorization is not determined, request it
         case .notDetermined:
             var authorized=false
             AVCaptureDevice.requestAccess(for: .video) { (granted) in
                 authorized=granted
-                if granted {
-                    DispatchQueue.main.async {
-                        completionHandler()
-                    }
-                }
             }
             return authorized
         //if authorization is restricted, request that the user goes to privacy settings
         case .restricted:
-            showCameraPrivacyAlert(viewController: viewController, appName: appName)
             return false
         //if authorization is denied, request that the user goes to privacy settings
         case .denied:
-            showCameraPrivacyAlert(viewController: viewController, appName: appName)
             return false
         //if authorization is authorized and camera is available, return true so that the tab can be shwon
         case .authorized:
             //if no camera is available, return false
             if !UIImagePickerController.isSourceTypeAvailable( .camera) {
-                showCameraUnavailableAlert(fromViewController: viewController, appName: appName)
+                showUnavailableAlert(fromViewController: viewController, appName: appName)
                 return false
             }
             //so qr code scanner can be shown
@@ -53,7 +46,7 @@ class CameraPrivacy: Privacy {
             viewController.present(privacyAlert, animated: true)
         }
     }
-    static func showCameraUnavailableAlert(fromViewController: UIViewController, appName: String) {
+    static func showUnavailableAlert(fromViewController: UIViewController, appName: String) {
         DispatchQueue.main.async {
             let privacyString = "You have allowed acccess to the camera, but your device does not have one available."
             let comment="Alert message when the user has given access to camera, but device has none available."
