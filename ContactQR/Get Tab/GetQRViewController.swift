@@ -12,7 +12,9 @@ class GetQRViewController: UIViewController, UIImagePickerControllerDelegate, UI
     //the view for scanning qr codes
     @IBOutlet weak var scanView: UIView!
     //the banner you tap to save a code or dismiss a code that isn't a contact
-    @IBOutlet weak var saveContactBanner: SaveContactBanner!
+    @IBOutlet weak var saveBanner: SaveContactBanner!
+    //the banner that appears when a contact is saved
+	@IBOutlet weak var savedBanner: ContactSavedBanner!
     //the controller where it all happens
     var controller: GetQRController!
     override func viewDidLoad() {

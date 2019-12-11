@@ -27,10 +27,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
                     if !UIImagePickerController.isSourceTypeAvailable( .camera) {
                     CameraPrivacy.showUnavailableAlert(fromViewController: viewController, appName: Constants.APPNAME)
 					}
-                
             return UIImagePickerController.isSourceTypeAvailable( .camera)
-				
-				
         }
             /*
              if it's any othe view controller that the UITabBarController

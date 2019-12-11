@@ -48,7 +48,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eWj-tC-sXB" secondAttribute="trailing" constant="2" id="4f8-XR-LMS"/>
                 <constraint firstItem="VCH-Yk-0WB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="6" id="6O6-Cz-unx"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sPr-6k-CPG" secondAttribute="trailing" constant="2" id="T6y-Hx-miB"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="eWj-tC-sXB" secondAttribute="top" constant="42" id="dMu-hE-GdT"/>
+                <constraint firstItem="sPr-6k-CPG" firstAttribute="top" secondItem="eWj-tC-sXB" secondAttribute="bottom" constant="5" id="byt-pN-5PF"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="sPr-6k-CPG" secondAttribute="bottom" constant="3" id="ebO-zD-xAy"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="VCH-Yk-0WB" secondAttribute="bottom" constant="3" id="jti-9V-Q86"/>
                 <constraint firstItem="eWj-tC-sXB" firstAttribute="leading" secondItem="VCH-Yk-0WB" secondAttribute="trailing" constant="2" id="mxv-Qo-L6d"/>
@@ -60,6 +60,10 @@
             </connections>
             <point key="canvasLocation" x="-10" y="25"/>
         </view>
-        <tapGestureRecognizer id="0ll-6i-0ZN"/>
+        <tapGestureRecognizer id="0ll-6i-0ZN">
+            <connections>
+                <action selector="tapAction:" destination="-1" id="z6x-h7-hNX"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

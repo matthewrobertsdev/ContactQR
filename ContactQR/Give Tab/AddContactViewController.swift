@@ -24,8 +24,6 @@ class AddContactViewController: NSObject, CNContactViewControllerDelegate {
         viewController.dismiss(animated: true)
         NotificationCenter.default.post(name: .contactCreated, object: self)
     }
-	
-	
 }
 /*
  Post this when contact is created

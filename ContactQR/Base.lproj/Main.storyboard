@@ -265,7 +265,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Scan Contact" id="6zp-qX-7Z3"/>
                     <connections>
-                        <outlet property="saveContactBanner" destination="0oZ-Ru-P5e" id="Sma-6Y-gST"/>
+                        <outlet property="saveBanner" destination="0oZ-Ru-P5e" id="Sma-6Y-gST"/>
+                        <outlet property="savedBanner" destination="LI2-fc-bOq" id="Nlh-oi-dff"/>
                         <outlet property="scanView" destination="1Xz-VB-miu" id="Svz-DL-iCe"/>
                     </connections>
                 </viewController>
