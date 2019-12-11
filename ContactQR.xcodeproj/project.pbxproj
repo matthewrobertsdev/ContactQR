@@ -41,6 +41,8 @@
 		9FB74C0C22B476E100F34181 /* StoredContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0B22B476E100F34181 /* StoredContacts.swift */; };
 		9FB74C0E22B4783000F34181 /* PersistencManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0D22B4783000F34181 /* PersistencManager.swift */; };
 		9FB74C1022B4825C00F34181 /* QRPersistency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0F22B4825C00F34181 /* QRPersistency.swift */; };
+		9FB8C18A23A14F5B002B6D46 /* ContactSavedBanner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB8C18923A14F5B002B6D46 /* ContactSavedBanner.xib */; };
+		9FB8C18C23A14F62002B6D46 /* ContactSavedBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8C18B23A14F62002B6D46 /* ContactSavedBanner.swift */; };
 		9FBFACD922B4A21A00730E7B /* StoredContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFACD822B4A21A00730E7B /* StoredContactsDataSource.swift */; };
 		9FBFACDB22B4A30800730E7B /* SavedContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */; };
 		9FC1B85522EE4499000BFB65 /* ContactsPrivacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1B85422EE4499000BFB65 /* ContactsPrivacy.swift */; };
@@ -152,6 +154,8 @@
 		9FB74C0B22B476E100F34181 /* StoredContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredContacts.swift; sourceTree = "<group>"; };
 		9FB74C0D22B4783000F34181 /* PersistencManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistencManager.swift; sourceTree = "<group>"; };
 		9FB74C0F22B4825C00F34181 /* QRPersistency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRPersistency.swift; sourceTree = "<group>"; };
+		9FB8C18923A14F5B002B6D46 /* ContactSavedBanner.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactSavedBanner.xib; sourceTree = "<group>"; };
+		9FB8C18B23A14F62002B6D46 /* ContactSavedBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactSavedBanner.swift; sourceTree = "<group>"; };
 		9FBFACD822B4A21A00730E7B /* StoredContactsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredContactsDataSource.swift; sourceTree = "<group>"; };
 		9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedContactCell.swift; sourceTree = "<group>"; };
 		9FC1B85422EE4499000BFB65 /* ContactsPrivacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsPrivacy.swift; sourceTree = "<group>"; };
@@ -341,6 +345,8 @@
 		9FFFA71D22A990500096A3F1 /* Get Tab */ = {
 			isa = PBXGroup;
 			children = (
+				9FB8C18B23A14F62002B6D46 /* ContactSavedBanner.swift */,
+				9FB8C18923A14F5B002B6D46 /* ContactSavedBanner.xib */,
 				9F4ABE8022A852F300316EB2 /* GetQRViewController.swift */,
 				9F14B5C122A9888200689842 /* SaveContactBanner.swift */,
 				9FFFA71B22A98F9C0096A3F1 /* SaveContactBanner.xib */,
@@ -522,6 +528,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F9E9AED21BA1691003A6A33 /* LaunchScreen.storyboard in Resources */,
+				9FB8C18A23A14F5B002B6D46 /* ContactSavedBanner.xib in Resources */,
 				9F9E9AEA21BA1691003A6A33 /* Assets.xcassets in Resources */,
 				9F9E9AE821BA1690003A6A33 /* Main.storyboard in Resources */,
 				9FFFA71C22A98F9C0096A3F1 /* SaveContactBanner.xib in Resources */,
@@ -582,6 +589,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FBFACD922B4A21A00730E7B /* StoredContactsDataSource.swift in Sources */,
+				9FB8C18C23A14F62002B6D46 /* ContactSavedBanner.swift in Sources */,
 				9FDBED0E21D33960007466B5 /* ContactDataSource.swift in Sources */,
 				9FC1B85522EE4499000BFB65 /* ContactsPrivacy.swift in Sources */,
 				9FB74C0E22B4783000F34181 /* PersistencManager.swift in Sources */,

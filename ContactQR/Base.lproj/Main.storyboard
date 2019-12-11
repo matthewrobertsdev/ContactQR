@@ -233,9 +233,17 @@
                                 <rect key="frame" x="0.0" y="44" width="320" height="475"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LI2-fc-bOq" customClass="ContactSavedBanner" customModule="ContactQR" customModuleProvider="target">
+                                <rect key="frame" x="16" y="255.5" width="288" height="52"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="288" id="HAl-1l-63O"/>
+                                    <constraint firstAttribute="height" constant="52" id="YTI-1x-18V"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0oZ-Ru-P5e" customClass="SaveContactBanner" customModule="ContactQR" customModuleProvider="target">
                                 <rect key="frame" x="16" y="52" width="288" height="52"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="3YK-Xb-bQO"/>
                                     <constraint firstAttribute="width" constant="288" id="Qmv-8S-ifS"/>
@@ -244,7 +252,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="LI2-fc-bOq" firstAttribute="centerX" secondItem="1Xz-VB-miu" secondAttribute="centerX" id="1Jz-cj-yWd"/>
                             <constraint firstItem="1Xz-VB-miu" firstAttribute="top" secondItem="aVB-MZ-cVC" secondAttribute="top" id="CRl-bK-WXL"/>
+                            <constraint firstItem="LI2-fc-bOq" firstAttribute="centerY" secondItem="1Xz-VB-miu" secondAttribute="centerY" id="FKD-DR-DeX"/>
                             <constraint firstItem="1Xz-VB-miu" firstAttribute="top" secondItem="0oZ-Ru-P5e" secondAttribute="bottom" constant="-60" id="TcC-jw-0da"/>
                             <constraint firstItem="1Xz-VB-miu" firstAttribute="leading" secondItem="aVB-MZ-cVC" secondAttribute="leading" id="UHg-Ez-W25"/>
                             <constraint firstItem="0oZ-Ru-P5e" firstAttribute="centerX" secondItem="aVB-MZ-cVC" secondAttribute="centerX" id="WNa-gM-4kZ"/>
@@ -305,6 +315,5 @@
     <resources>
         <image name="qrcode" catalog="system" width="64" height="56"/>
         <image name="qrcode.viewfinder" catalog="system" width="64" height="56"/>
-        <image name="qrcode.viewfinder" width="16" height="16"/>
     </resources>
 </document>

@@ -206,6 +206,10 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
         qrCodeFocusView.isHidden=true
         }
     }
+	
+	@objc private func respondToSavedBannerTa(notification: NSNotification){
+		
+	}
 }
 /*
  Post this WHENEVER contact banner is tapped
