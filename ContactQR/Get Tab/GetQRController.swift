@@ -5,6 +5,22 @@
 //  Created by Matt Roberts on 6/12/19.
 //  Copyright © 2019 Matt Roberts. All rights reserved.
 //
+
+/*
+
+Portions of the code for the video capture is a copy of software provided by Apple with this copyright notice:
+Copyright © 2019 Apple Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in the
+Software without restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
 import UIKit
 import AVFoundation
 import ContactsUI
@@ -29,9 +45,9 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 	private var contactToAdd: CNContact!
 	private let addContactController=AddContactViewController()
 	private let notifcationCenter=NotificationCenter.default
-	init(scanQRViewController: GetQRViewController) {
+	init(getQRViewController: GetQRViewController) {
 		super.init()
-		self.getQRViewController=scanQRViewController
+		self.getQRViewController=getQRViewController
 		setUpCameraView()
 	}
 	func setUpCameraView() {
@@ -119,7 +135,7 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 	func initializeAVSession(videoCamera: AVCaptureDevice) throws {
 		//begin configuration--doesn't end until commitConfiguration is called
 		session.beginConfiguration()
-		session.sessionPreset = .photo
+		session.sessionPreset = .high
 		//check one last time that the app is authorized for video and throw an error if not authorized
 		if AVCaptureDevice.authorizationStatus(for: .video)==AVAuthorizationStatus.authorized {
 			//get input from the chosen video camera
@@ -140,8 +156,8 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 		}
 	}
 	func metadataOutput(_ output: AVCaptureMetadataOutput,
-						didOutput metadataObjects: [AVMetadataObject],
-						from connection: AVCaptureConnection) {
+							didOutput metadataObjects: [AVMetadataObject],
+							from connection: AVCaptureConnection) {
 		guard let metaData=metadataObjects.first else {
 			qrCodeFocusView.isHidden=true
 			getQRViewController.saveBanner.isHidden=true

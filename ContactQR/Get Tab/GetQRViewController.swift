@@ -19,6 +19,9 @@ class GetQRViewController: UIViewController, UIImagePickerControllerDelegate, UI
     var controller: GetQRController!
     override func viewDidLoad() {
         super.viewDidLoad()
-        controller=GetQRController(scanQRViewController: self)
+        controller=GetQRController(getQRViewController: self)
     }
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+	}
 }
