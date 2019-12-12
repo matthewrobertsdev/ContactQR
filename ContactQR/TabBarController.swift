@@ -16,6 +16,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         delegate=self
     }
+	
     //check privacy and request as needed
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         //if user is trying to go to ScanQR_VC
