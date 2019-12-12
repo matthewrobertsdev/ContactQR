@@ -45,6 +45,7 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 	private var contactToAdd: CNContact!
 	private let addContactController=AddContactViewController()
 	private let notifcationCenter=NotificationCenter.default
+	private var videoCamera: AVCaptureDevice!
 	init(getQRViewController: GetQRViewController) {
 		super.init()
 		self.getQRViewController=getQRViewController
@@ -66,6 +67,7 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 			//start AV session--success
 			sessionQueue.async {
 				do {
+					try self.videoCamera=self.getVideoCamera()
 					try self.initializeAVSession(videoCamera: try self.getVideoCamera())
 					self.session.startRunning()
 					//add layer that shows camera output to scanView
@@ -250,6 +252,21 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 			getQRViewController.saveBanner.isHidden=true
 			qrCodeFocusView.isHidden=true
 		}
+	}
+	func focusOnTap(tap: UITapGestureRecognizer) {
+		/*
+		do {
+			try videoCamera.lockForConfiguration()
+			print("trying to focus")
+			videoCamera.focusPointOfInterest = tap.location(in: getQRViewController.view)
+			videoCamera.focusMode = AVCaptureDevice.FocusMode.autoFocus
+			videoCamera.exposurePointOfInterest = tap.location(in: getQRViewController.view)
+			videoCamera.exposureMode = AVCaptureDevice.ExposureMode.autoExpose
+			videoCamera.unlockForConfiguration()
+		} catch {
+			print("Couldn't lock for configuration")
+		}
+*/
 	}
 }
 /*

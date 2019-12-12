@@ -16,7 +16,12 @@ class GetQRViewController: UIViewController, UIImagePickerControllerDelegate, UI
     //the banner that appears when a contact is saved
 	@IBOutlet weak var savedBanner: ContactSavedBanner!
     //the controller where it all happens
-    var controller: GetQRController!
+	@IBAction func tapOnView(_ sender: Any) {
+		if let tapGesture=sender as? UITapGestureRecognizer{
+			controller.focusOnTap(tap: tapGesture)
+		}
+	}
+	var controller: GetQRController!
     override func viewDidLoad() {
         super.viewDidLoad()
         controller=GetQRController(getQRViewController: self)

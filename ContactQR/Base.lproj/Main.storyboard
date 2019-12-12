@@ -232,6 +232,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Xz-VB-miu">
                                 <rect key="frame" x="0.0" y="44" width="320" height="475"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="cqa-5U-irX" appends="YES" id="UJP-Cx-9qJ"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LI2-fc-bOq" customClass="ContactSavedBanner" customModule="ContactQR" customModuleProvider="target">
                                 <rect key="frame" x="16" y="255.5" width="288" height="52"/>
@@ -271,6 +275,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fWW-wE-srW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="cqa-5U-irX">
+                    <connections>
+                        <action selector="tapOnView:" destination="pzX-wY-ICc" id="eQN-6j-r2y"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3851.25" y="748.75"/>
         </scene>
