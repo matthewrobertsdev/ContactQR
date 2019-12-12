@@ -27,10 +27,11 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
                 let cameraCompletionHandler = {() -> Void in*/
                     if !UIImagePickerController.isSourceTypeAvailable( .camera) {
                     CameraPrivacy.showUnavailableAlert(fromViewController: viewController, appName: Constants.APPNAME)
+						return false
 					} else if !(AVCaptureDevice.authorizationStatus(for: .video)==AVAuthorizationStatus.authorized) {
 						CameraPrivacy.showCameraPrivacyAlert(viewController: viewController, appName: Constants.APPNAME)
+						return false
 					}
-			return AVCaptureDevice.authorizationStatus(for: .video)==AVAuthorizationStatus.authorized
         }
             /*
              if it's any othe view controller that the UITabBarController

@@ -45,12 +45,23 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 	private var contactToAdd: CNContact!
 	private let addContactController=AddContactViewController()
 	private let notifcationCenter=NotificationCenter.default
+	private var videoCamera: AVCaptureDevice!
 	init(getQRViewController: GetQRViewController) {
 		super.init()
 		self.getQRViewController=getQRViewController
 		setUpCameraView()
 	}
+	/*
+	func camera() {
+		if UIImagePickerController.isSourceTypeAvailable(.camera){
+			let myPickerController = UIImagePickerController()
+			myPickerController.sourceType = .camera
+			getQRViewController.present(myPickerController, animated: true, completion: nil)
+		}
+	}
+*/
 	func setUpCameraView() {
+		//camera()
 		let addContactNotifier = { () -> Void in
 			NotificationCenter.default.post(name: .contactBannerTapped, object: self)
 		}
@@ -66,6 +77,7 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 			//start AV session--success
 			sessionQueue.async {
 				do {
+					try self.videoCamera=self.getVideoCamera()
 					try self.initializeAVSession(videoCamera: try self.getVideoCamera())
 					self.session.startRunning()
 					//add layer that shows camera output to scanView
@@ -251,6 +263,36 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 			qrCodeFocusView.isHidden=true
 		}
 	}
+	func focusOnTap(tap: UITapGestureRecognizer) {
+		let devicePoint = avPreviewLayer.captureDevicePointConverted(fromLayerPoint: tap.location(in: tap.view))
+        focus(with: .autoFocus, exposureMode: .autoExpose, at: devicePoint, monitorSubjectAreaChange: true)
+	}
+	private func focus(with focusMode: AVCaptureDevice.FocusMode,
+                       exposureMode: AVCaptureDevice.ExposureMode,
+                       at devicePoint: CGPoint,
+                       monitorSubjectAreaChange: Bool) {
+        sessionQueue.async {
+            do {
+				try self.videoCamera.lockForConfiguration()
+                /*
+                 Setting (focus/exposure)PointOfInterest alone does not initiate a (focus/exposure) operation.
+                 Call set(Focus/Exposure)Mode() to apply the new point of interest.
+                 */
+				if self.videoCamera.isFocusPointOfInterestSupported && self.videoCamera.isFocusModeSupported(focusMode) {
+					self.videoCamera.focusPointOfInterest = devicePoint
+					self.videoCamera.focusMode = focusMode
+                }
+				if self.videoCamera.isExposurePointOfInterestSupported && self.videoCamera.isExposureModeSupported(exposureMode) {
+					self.videoCamera.exposurePointOfInterest = devicePoint
+					self.videoCamera.exposureMode = exposureMode
+                }
+				self.videoCamera.isSubjectAreaChangeMonitoringEnabled = monitorSubjectAreaChange
+				self.videoCamera.unlockForConfiguration()
+            } catch {
+                print("Could not lock device for configuration: \(error)")
+            }
+        }
+    }
 }
 /*
 Post this WHENEVER contact banner is tapped
