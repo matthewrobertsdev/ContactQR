@@ -110,24 +110,24 @@ class CreateContactViewController: UIViewController {
 		let address=CNMutablePostalAddress()
 			address.street=homeStreetTextField.text ?? ""
 			address.city=homeCityTextField.text ?? ""
-			address.city=homeStateTextField.text ?? ""
-			address.city=homeZipTextField.text ?? ""
+			address.state=homeStateTextField.text ?? ""
+			address.postalCode=homeZipTextField.text ?? ""
 			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: "Home", value: address))
 			}
 		if !(workStreetTextField.text=="") || !(workCityTextField.text=="") || !(workStateTextField.text=="") || !(workZipTextField.text=="") {
 		let address=CNMutablePostalAddress()
 			address.street=workStreetTextField.text ?? ""
 			address.city=workCityTextField.text ?? ""
-			address.city=workStateTextField.text ?? ""
-			address.city=workZipTextField.text ?? ""
+			address.state=workStateTextField.text ?? ""
+			address.postalCode=workZipTextField.text ?? ""
 			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: "Work", value: address))
 			}
 		if !(otherStreetTextField.text=="") || !(otherCityTextField.text=="") || !(otherStateTextField.text=="") || !(otherZipTextField.text=="") {
 		let address=CNMutablePostalAddress()
 			address.street=otherStreetTextField.text ?? ""
 			address.city=otherCityTextField.text ?? ""
-			address.city=otherStateTextField.text ?? ""
-			address.city=otherZipTextField.text ?? ""
+			address.state=otherStateTextField.text ?? ""
+			address.postalCode=otherZipTextField.text ?? ""
 			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: "Work", value: address))
 			}
 		ActiveContact.shared.contact=contact

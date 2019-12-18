@@ -1,5 +1,5 @@
 //
-//  NotificationController.swift
+//  InterfaceController.swift
 //  wtach-toss Extension
 //
 //  Created by Matt Roberts on 12/18/19.
@@ -8,32 +8,29 @@
 
 import WatchKit
 import Foundation
-import UserNotifications
+import WatchConnectivity
 
 
-class NotificationController: WKUserNotificationInterfaceController {
+class MainInterfaceController: WKInterfaceController, WCSessionDelegate {
 
-    override init() {
-        // Initialize variables here.
-        super.init()
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         
         // Configure interface objects here.
     }
-
+    
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
     }
-
+    
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
 
-    override func didReceive(_ notification: UNNotification) {
-        // This method is called when a notification needs to be presented.
-        // Implement it if you use a dynamic notification interface.
-        // Populate your dynamic notification interface as quickly as possible.
-    }
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+	}
+
 }
 

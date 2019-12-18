@@ -100,6 +100,13 @@ class ContactInfoManipulator {
 					contactInfoArray.append((urlAddresslabel, urlAddress.value as String))
 				}
             }
+			for address in (cnContact?.postalAddresses)! {
+					let addressLabel=ContactInfoManipulator.makeContactLabel(label: address.label ?? "")
+					contactInfoArray.append((addressLabel, address.value.street as String))
+					contactInfoArray.append((addressLabel, address.value.city as String))
+					contactInfoArray.append((addressLabel, address.value.state as String))
+					contactInfoArray.append((addressLabel, address.value.postalCode as String))
+            }
         }
         return contactInfoArray
     }
