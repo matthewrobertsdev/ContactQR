@@ -17,7 +17,7 @@ class GetQRViewController: UIViewController, UIImagePickerControllerDelegate, UI
 	@IBOutlet weak var savedBanner: ContactSavedBanner!
     //the controller where it all happens
 	@IBAction func tapOnView(_ sender: Any) {
-		if let tapGesture=sender as? UITapGestureRecognizer{
+		if let tapGesture=sender as? UITapGestureRecognizer {
 			controller.focusOnTap(tap: tapGesture)
 		}
 	}

@@ -96,8 +96,8 @@ class ContactInfoManipulator {
             }
             for urlAddress in (cnContact?.urlAddresses)! {
 				if urlAddress.label != nil {
-                let urlAddresslabel=ContactInfoManipulator.makeContactLabel(label: urlAddress.label!)
-                contactInfoArray.append((urlAddresslabel, urlAddress.value as String))
+					let urlAddresslabel=ContactInfoManipulator.makeContactLabel(label: urlAddress.label!)
+					contactInfoArray.append((urlAddresslabel, urlAddress.value as String))
 				}
             }
         }

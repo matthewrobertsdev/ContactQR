@@ -23,9 +23,9 @@ class GiveQRViewController: UIViewController {
     @IBAction func createCodeFromExisting(_ sender: Any) {
         controller.chooseExistingContact()
     }
-    @IBAction func createFromExisting(_ sender: Any) {
-        controller.createNewContact()
-    }
+	@IBAction func createNewContact(_ sender: Any) {
+		controller.createNewContact()
+	}
     override func viewDidLoad() {
         super.viewDidLoad()
         controller=GiveQRController(createQRViewController: self)

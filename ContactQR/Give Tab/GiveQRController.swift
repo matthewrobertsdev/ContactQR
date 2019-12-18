@@ -38,9 +38,11 @@ class GiveQRController: NSObject, UITableViewDelegate {
         viewController.present(pickContactVC, animated: true)
     }
     func createNewContact() {
+		/*
         if ContactsPrivacy.check(viewController: viewController, appName: Constants.APPNAME) {
             addContactViewController.showUI(viewController: viewController, contact: CNContact(), forQR: true)
         }
+*/
     }
     //if activeContact isn't nil, piush a DisplayQR_VC
     @objc private func displayQR(notification: NSNotification) {

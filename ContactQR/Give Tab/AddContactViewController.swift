@@ -18,26 +18,18 @@ class AddContactViewController: NSObject, CNContactViewControllerDelegate {
 		viewController.navigationController?.pushViewController(addContactVC, animated: true)
 		//viewController.navigationController?.present(addContactVC, animated: true, completion: {
 		//})
-		viewController.navigationController?.navigationItem.leftBarButtonItem?.action=#selector(leftBarButtonTapped)
-
     }
     func contactViewController(_ viewController: CNContactViewController,
                                didCompleteWith contact: CNContact?) {
         if forQR {
             ActiveContact.shared.contact=contact
         }
-		for view in viewController.view.subviews {
-			view.resignFirstResponder()
-		}
 		//viewController.view.becomeFirstResponder()
 		//viewController.view.resignFirstResponder()
 		viewController.navigationController?.popViewController(animated: true)
         //viewController.dismiss(animated: true)
         NotificationCenter.default.post(name: .contactCreated, object: self)
     }
-	@objc func leftBarButtonTapped() {
-		print("abcd")
-	}
 }
 /*
  Post this when contact is created

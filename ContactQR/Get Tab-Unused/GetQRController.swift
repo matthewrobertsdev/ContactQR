@@ -18,7 +18,8 @@ copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
 Software, and to permit persons to whom the Software is furnished to do so,
 subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+Software.
 
 */
 import UIKit
@@ -70,7 +71,7 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 		}
 		self.initializeAVPreviewLayer()
 		self.addAVPreviewToScanView()
-		if(ContactsPrivacy.check(viewController: getQRViewController, appName: Constants.APPNAME)){
+		if ContactsPrivacy.check(viewController: getQRViewController, appName: Constants.APPNAME) {
 			//create a layer that will show camera output
 			//do{
 			//try to get video camera and start AV session
@@ -238,7 +239,7 @@ class GetQRController: NSObject, AVCaptureMetadataOutputObjectsDelegate {
 				if let mutableContact = contactToAdd.mutableCopy() as? CNMutableContact {
 					let store = CNContactStore()
 					let saveRequest = CNSaveRequest()
-					saveRequest.add(mutableContact, toContainerWithIdentifier:nil)
+					saveRequest.add(mutableContact, toContainerWithIdentifier: nil)
 					do {
 						try store.execute(saveRequest)
 					} catch {
