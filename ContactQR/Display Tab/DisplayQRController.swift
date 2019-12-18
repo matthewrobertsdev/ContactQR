@@ -43,6 +43,7 @@ class DisplayQRController: NSObject, UITableViewDelegate {
         let saveAlertHandler = { (alertAction: UIAlertAction) -> Void in
             self.addToStoredContacts(name: manageSaveAlert.textFields![0].text!)
             self.viewController.disableSave()
+			self.viewController.navigationController?.popToRootViewController(animated: true)
         }
         let saveAlertString=NSLocalizedString("Save", comment: "Alert button to save contact with title")
         let saveAlertAction=UIAlertAction(title: saveAlertString, style: .default, handler: saveAlertHandler)
