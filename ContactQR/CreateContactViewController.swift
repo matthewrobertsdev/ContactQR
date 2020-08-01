@@ -131,7 +131,7 @@ class CreateContactViewController: UIViewController {
 			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: "Work", value: address))
 			}
 		ActiveContact.shared.contact=contact
-		NotificationCenter.default.post(name: .contactCreated, object: self)
+		NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: ["animated": true])
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()

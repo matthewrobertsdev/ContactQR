@@ -28,7 +28,7 @@ class AddContactViewController: NSObject, CNContactViewControllerDelegate {
 		//viewController.view.resignFirstResponder()
 		viewController.navigationController?.popViewController(animated: true)
         //viewController.dismiss(animated: true)
-        NotificationCenter.default.post(name: .contactCreated, object: self)
+		NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: ["animated" : true])
     }
 }
 /*

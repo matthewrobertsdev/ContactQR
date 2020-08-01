@@ -31,5 +31,9 @@ extension GiveQRController: UITableViewDataSource {
         contactCell.nameLabel.text=StoredContacts.shared.contacts[indexPath.row].filename
         return contactCell
     }
-
+	func tableView(_: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+		return true
+	}
+	func tableView(_: UITableView, moveRowAt: IndexPath, to: IndexPath) {
+	}
 }

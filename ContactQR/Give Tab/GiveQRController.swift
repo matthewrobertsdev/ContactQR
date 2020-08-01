@@ -49,7 +49,10 @@ class GiveQRController: NSObject, UITableViewDelegate {
         if ActiveContact.shared.contact==nil {
             return
         }
-        var animated=false
+		var animated=false
+		if let animatedUserInfo=notification.userInfo?["animated"] as? Bool {
+			animated=animatedUserInfo
+		}
         let storyBoard=viewController.storyboard
         let desiredViewController = storyBoard?.instantiateViewController(withIdentifier: "DisplayQRViewController")
         guard let displayQRViewController = desiredViewController as? DisplayQRViewController else {
