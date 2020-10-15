@@ -26,6 +26,7 @@ class GiveQRController: NSObject, UITableViewDelegate {
         //Need to post from different places and have different responses
         notificationCenter.addObserver(self, selector: #selector(displayQR), name: .contactChanged, object: nil)
         notificationCenter.addObserver(self, selector: #selector(displayQR), name: .contactCreated, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(displayEditViewController), name: .contactPicked, object: nil)
         notificationCenter.addObserver(self, selector: #selector(stopEditing), name: .allDeleted, object: nil)
     }
     /*
@@ -80,6 +81,15 @@ class GiveQRController: NSObject, UITableViewDelegate {
         viewController.navigationItem.setRightBarButton(editBarButton, animated: true)
         viewController.storedContactsTV.setEditing(false, animated: true)
     }
+	
+	@objc func displayEditViewController(){
+		let storyBoard=viewController.storyboard
+		let desiredViewController = storyBoard?.instantiateViewController(withIdentifier: "CreateContactViewController")
+		guard let displayQRViewController = desiredViewController as? CreateContactViewController else {
+			return
+		}
+		viewController.navigationController?.pushViewController(displayQRViewController, animated: true)
+	}
 	/*
     //delete from the model, save, and delete from the tableview
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
