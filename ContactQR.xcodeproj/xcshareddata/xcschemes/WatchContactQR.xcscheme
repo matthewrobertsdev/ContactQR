@@ -46,7 +46,7 @@
          RemotePath = "/ContactQR">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9F5074AD239F25D5009E3631"
+            BlueprintIdentifier = "9F5DD93623AAA82C008722BB"
             BuildableName = "WatchContactQR.app"
             BlueprintName = "WatchContactQR"
             ReferencedContainer = "container:ContactQR.xcodeproj">
@@ -65,7 +65,7 @@
          RemotePath = "/ContactQR">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9F5074AD239F25D5009E3631"
+            BlueprintIdentifier = "9F5DD93623AAA82C008722BB"
             BuildableName = "WatchContactQR.app"
             BlueprintName = "WatchContactQR"
             ReferencedContainer = "container:ContactQR.xcodeproj">
@@ -74,7 +74,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9F5074AD239F25D5009E3631"
+            BlueprintIdentifier = "9F5DD93623AAA82C008722BB"
             BuildableName = "WatchContactQR.app"
             BlueprintName = "WatchContactQR"
             ReferencedContainer = "container:ContactQR.xcodeproj">

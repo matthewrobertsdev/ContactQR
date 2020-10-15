@@ -15,7 +15,7 @@ import UIKit
 extension GiveQRController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    titleForHeaderInSection section: Int) -> String? {
-        return "My Contact Info"
+        return "My Contact QR Codes"
     }
     //num in table is num in StoredContacts.shared
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

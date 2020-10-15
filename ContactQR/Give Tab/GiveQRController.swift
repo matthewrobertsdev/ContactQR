@@ -80,6 +80,7 @@ class GiveQRController: NSObject, UITableViewDelegate {
         viewController.navigationItem.setRightBarButton(editBarButton, animated: true)
         viewController.storedContactsTV.setEditing(false, animated: true)
     }
+	/*
     //delete from the model, save, and delete from the tableview
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
@@ -93,6 +94,20 @@ class GiveQRController: NSObject, UITableViewDelegate {
         }
         return [delete]
     }
+*/
+	
+	func tableView(_ tableView: UITableView,
+			  leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+		return UISwipeActionsConfiguration(actions:[UIContextualAction(style: UIContextualAction.Style.destructive, title: "Delete", handler: { (action, view, copmpletionHandler) in
+			StoredContacts.shared.contacts.remove(at: indexPath.row)
+            StoredContacts.shared.tryToSave()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            //so that the save button can be disabled
+            if StoredContacts.shared.contacts.count==0 {
+                NotificationCenter.default.post(Notification(name: .allDeleted))
+            }
+		})])
+	}
     /*
      save selected contact to ActiveContact and post notification that contactChanged,
      so that the display VC can be presented

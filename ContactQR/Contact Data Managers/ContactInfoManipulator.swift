@@ -88,17 +88,13 @@ class ContactInfoManipulator {
                 let phoneNumberLabel=ContactInfoManipulator.makeContactLabel(label: phoneNumber.label!)
                 contactInfoArray.append((phoneNumberLabel, phoneNumber.value.stringValue))
             }
-            for emailAddress in (cnContact?.emailAddresses)! {
-				if emailAddress.label != nil {
+            for emailAddress in (cnContact?.emailAddresses)! where emailAddress.label != nil{
 					let emailAddressLabel=ContactInfoManipulator.makeContactLabel(label: emailAddress.label!)
 					contactInfoArray.append((emailAddressLabel, emailAddress.value as String))
-				}
             }
-            for urlAddress in (cnContact?.urlAddresses)! {
-				if urlAddress.label != nil {
+            for urlAddress in (cnContact?.urlAddresses)! where urlAddress.label != nil{
 					let urlAddresslabel=ContactInfoManipulator.makeContactLabel(label: urlAddress.label!)
 					contactInfoArray.append((urlAddresslabel, urlAddress.value as String))
-				}
             }
 			for address in (cnContact?.postalAddresses)! {
 					let addressLabel=ContactInfoManipulator.makeContactLabel(label: address.label ?? "")
