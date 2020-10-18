@@ -30,7 +30,7 @@ class DisplayQRController: NSObject, UITableViewDelegate {
             return
         }
         model.updateActiveContact(activeContact: activeContact)
-        viewController.qrImageView.image=model.makeQRCode()
+		viewController.qrImageView.image=getTintedForeground(image: model.makeQRCode(), color:UIColor.systemGreen)
         model.updateContactInfoTVDataSource()
         viewController.contactInfoTV.reloadData()
     }

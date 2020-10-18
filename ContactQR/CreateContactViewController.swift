@@ -133,7 +133,7 @@ class CreateContactViewController: UIViewController {
 		ActiveContact.shared.contact=contact
 		NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: ["animated": true])
 	}
-	func fillWithContact(contact: CNContact){
+	func fillWithContact(contact: CNContact) {
 		firstNameTextField.text=contact.givenName
 		lastNameTextField.text=contact.familyName
 		let phoneNumbers=contact.phoneNumbers
