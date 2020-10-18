@@ -83,6 +83,7 @@
 		9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDataConverter.swift; sourceTree = "<group>"; };
 		9F4ABE8022A852F300316EB2 /* GetQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQRViewController.swift; sourceTree = "<group>"; };
 		9F4ABE8222A8586E00316EB2 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		9F56C72E253BCB96006D8DE6 /* Contact QR.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Contact QR.entitlements"; sourceTree = "<group>"; };
 		9F5C647121D3E10A00832897 /* ContactInfoManipulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoManipulator.swift; sourceTree = "<group>"; };
 		9F6A083222A9C2F7008ECF2F /* Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
 		9F9E9ADF21BA1690003A6A33 /* Contact QR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Contact QR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +184,7 @@
 		9F9E9AD621BA1690003A6A33 = {
 			isa = PBXGroup;
 			children = (
+				9F56C72E253BCB96006D8DE6 /* Contact QR.entitlements */,
 				9F9E9AE121BA1690003A6A33 /* ContactQR */,
 				9F9E9AF621BA1691003A6A33 /* CardQRTests */,
 				9F9E9B0121BA1691003A6A33 /* CardQRUITests */,
