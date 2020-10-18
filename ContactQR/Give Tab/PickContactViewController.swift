@@ -11,6 +11,7 @@ import ContactsUI
  assigns a chosen contact to ActiveContact.shared.activeContact
  */
 class PickContactVC: CNContactPickerViewController, CNContactPickerDelegate {
+	var picked=false
     //set as CNContactPickerDelegate
     override func viewDidLoad() {
         delegate=self
@@ -21,8 +22,10 @@ class PickContactVC: CNContactPickerViewController, CNContactPickerDelegate {
      */
     func contactPicker(_ picker: CNContactPickerViewController,
                        didSelect contact: CNContact) {
-        ActiveContact.shared.contact=contact
-		NotificationCenter.default.post(name: .contactPicked, object: self, userInfo: ["animated": false])
+		if (picked==false) {
+			ActiveContact.shared.contact=contact
+			NotificationCenter.default.post(name: .contactPicked, object: self, userInfo: ["animated": false])
+		}
     }
 }
 
@@ -30,4 +33,3 @@ extension Notification.Name {
 	//Reference as .contactChanged when type inference is possible
 	static let contactPicked=Notification.Name("contact-picked")
 }
-

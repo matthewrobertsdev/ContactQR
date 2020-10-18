@@ -81,13 +81,13 @@ class GiveQRController: NSObject, UITableViewDelegate {
         viewController.navigationItem.setRightBarButton(editBarButton, animated: true)
         viewController.storedContactsTV.setEditing(false, animated: true)
     }
-	
 	@objc func displayEditViewController(){
 		let storyBoard=viewController.storyboard
 		let desiredViewController = storyBoard?.instantiateViewController(withIdentifier: "CreateContactViewController")
 		guard let displayQRViewController = desiredViewController as? CreateContactViewController else {
 			return
 		}
+		displayQRViewController.contact=ActiveContact.shared.contact ?? CNContact()
 		viewController.navigationController?.pushViewController(displayQRViewController, animated: true)
 	}
 	/*
