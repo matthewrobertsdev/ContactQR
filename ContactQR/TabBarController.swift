@@ -14,8 +14,9 @@ import AVFoundation
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
-        delegate=self
+        //delegate=self
     }
+	/*
     //check privacy and request as needed
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         //if user is trying to go to ScanQR_VC
@@ -39,4 +40,5 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
          */
         return true
     }
+*/
 }
