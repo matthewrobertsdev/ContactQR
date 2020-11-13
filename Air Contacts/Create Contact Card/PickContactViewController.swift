@@ -10,7 +10,7 @@ import ContactsUI
  A CNContactPickerViewController subclassed to be a delgate that
  assigns a chosen contact to ActiveContact.shared.activeContact
  */
-class PickContactVC: CNContactPickerViewController, CNContactPickerDelegate {
+class PickContactViewController: CNContactPickerViewController, CNContactPickerDelegate {
 	var picked=false
     //set as CNContactPickerDelegate
     override func viewDidLoad() {

@@ -12,7 +12,7 @@ import Contacts
 class GiveQRController: NSObject, UITableViewDelegate {
     //properties
     var viewController: GiveQRViewController!
-    var pickContactVC=PickContactVC()
+    var pickContactViewController=PickContactViewController()
     var addContactViewController=AddContactViewController()
     let notificationCenter=NotificationCenter.default
     //init
@@ -35,8 +35,8 @@ class GiveQRController: NSObject, UITableViewDelegate {
      contact
      */
     func chooseExistingContact() {
-        pickContactVC=PickContactVC()
-        viewController.present(pickContactVC, animated: true)
+        pickContactViewController=PickContactViewController()
+        viewController.present(pickContactViewController, animated: true)
     }
     func createNewContact() {
 		/*

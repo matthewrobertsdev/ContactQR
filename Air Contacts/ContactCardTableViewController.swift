@@ -7,6 +7,7 @@
 //
 import UIKit
 class ContactCardTableViewController: UITableViewController {
+	var pickContactViewController=PickContactViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -14,7 +15,6 @@ class ContactCardTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-	
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -26,13 +26,12 @@ class ContactCardTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
         // Configure the cell...
-
         return cell
     }
 	@IBAction func createContactCardFromContact(_ sender: Any) {
-		
+		self.present(pickContactViewController, animated: true) {
+		}
 	}
 	/*
     // Override to support conditional editing of the table view.

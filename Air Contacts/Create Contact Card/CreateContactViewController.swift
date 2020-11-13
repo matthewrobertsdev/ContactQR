@@ -40,9 +40,9 @@ class CreateContactViewController: UIViewController {
 	@IBOutlet weak var otherZipTextField: UITextField!
 	var contact=CNContact()
 	@IBAction func cancel(_ sender: Any) {
-		self.navigationController?.popViewController(animated: true)
+		self.dismiss(animated: true)
 	}
-	@IBAction func createQRCode(_ sender: Any) {
+	@IBAction func createContact(_ sender: Any) {
 		let contact=CNMutableContact()
 		if  !(firstNameTextField.text=="") {
 			contact.givenName=firstNameTextField.text ?? ""

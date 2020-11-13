@@ -161,7 +161,7 @@
 			path = "Display Tab";
 			sourceTree = "<group>";
 		};
-		9F3EFEF822B36C29001A28E0 /* Give Tab */ = {
+		9F3EFEF822B36C29001A28E0 /* Create Contact Card */ = {
 			isa = PBXGroup;
 			children = (
 				9F7EB966255E10420032563C /* CreateContactViewController.swift */,
@@ -175,7 +175,7 @@
 				9FC30F2222B42AA0002CB40C /* AddContactViewController.swift */,
 				9FCA500A22A75CE90004C20F /* ActiveContact.swift */,
 			);
-			path = "Give Tab";
+			path = "Create Contact Card";
 			sourceTree = "<group>";
 		};
 		9F6BEA6622A78369008D9745 /* Contact Data Managers */ = {
@@ -215,8 +215,7 @@
 				9FBD0E81255E362B00C9C9DA /* Old Code */,
 				9F6BEA6622A78369008D9745 /* Contact Data Managers */,
 				9F02577521C98FB3003A5EAA /* Display Tab */,
-				9FFFA71D22A990500096A3F1 /* Get Tab-Unused */,
-				9F3EFEF822B36C29001A28E0 /* Give Tab */,
+				9F3EFEF822B36C29001A28E0 /* Create Contact Card */,
 				9FBFACD722B49D0000730E7B /* Utilities */,
 				9F9E9AEE21BA1691003A6A33 /* Info.plist */,
 				9F9E9AE621BA1690003A6A33 /* Main.storyboard */,
@@ -249,6 +248,7 @@
 		9FBD0E81255E362B00C9C9DA /* Old Code */ = {
 			isa = PBXGroup;
 			children = (
+				9FFFA71D22A990500096A3F1 /* Get Tab-Unused */,
 				9F4ABE8222A8586E00316EB2 /* TabBarController.swift */,
 			);
 			path = "Old Code";
@@ -646,7 +646,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Contact QR.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Air Contacts.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "$(SRCROOT)/Air Contacts/Info.plist";
@@ -667,7 +667,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Contact QR.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Air Contacts.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "$(SRCROOT)/Air Contacts/Info.plist";
