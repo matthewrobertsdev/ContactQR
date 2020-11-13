@@ -35,6 +35,7 @@
 		9FB74C1022B4825C00F34181 /* QRPersistency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0F22B4825C00F34181 /* QRPersistency.swift */; };
 		9FB8C18A23A14F5B002B6D46 /* ContactSavedBanner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB8C18923A14F5B002B6D46 /* ContactSavedBanner.xib */; };
 		9FB8C18C23A14F62002B6D46 /* ContactSavedBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8C18B23A14F62002B6D46 /* ContactSavedBanner.swift */; };
+		9FBD0E86255E36DE00C9C9DA /* ContactCardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBD0E85255E36DE00C9C9DA /* ContactCardTableViewController.swift */; };
 		9FBFACD922B4A21A00730E7B /* StoredContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFACD822B4A21A00730E7B /* StoredContactsDataSource.swift */; };
 		9FBFACDB22B4A30800730E7B /* SavedContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */; };
 		9FC1B85522EE4499000BFB65 /* ContactsPrivacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1B85422EE4499000BFB65 /* ContactsPrivacy.swift */; };
@@ -112,6 +113,7 @@
 		9FB74C0F22B4825C00F34181 /* QRPersistency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRPersistency.swift; sourceTree = "<group>"; };
 		9FB8C18923A14F5B002B6D46 /* ContactSavedBanner.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactSavedBanner.xib; sourceTree = "<group>"; };
 		9FB8C18B23A14F62002B6D46 /* ContactSavedBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactSavedBanner.swift; sourceTree = "<group>"; };
+		9FBD0E85255E36DE00C9C9DA /* ContactCardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardTableViewController.swift; sourceTree = "<group>"; };
 		9FBFACD822B4A21A00730E7B /* StoredContactsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredContactsDataSource.swift; sourceTree = "<group>"; };
 		9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedContactCell.swift; sourceTree = "<group>"; };
 		9FC1B85422EE4499000BFB65 /* ContactsPrivacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsPrivacy.swift; sourceTree = "<group>"; };
@@ -210,7 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */,
-				9F4ABE8222A8586E00316EB2 /* TabBarController.swift */,
+				9FBD0E81255E362B00C9C9DA /* Old Code */,
 				9F6BEA6622A78369008D9745 /* Contact Data Managers */,
 				9F02577521C98FB3003A5EAA /* Display Tab */,
 				9FFFA71D22A990500096A3F1 /* Get Tab-Unused */,
@@ -218,6 +220,7 @@
 				9FBFACD722B49D0000730E7B /* Utilities */,
 				9F9E9AEE21BA1691003A6A33 /* Info.plist */,
 				9F9E9AE621BA1690003A6A33 /* Main.storyboard */,
+				9FBD0E85255E36DE00C9C9DA /* ContactCardTableViewController.swift */,
 				9F9E9AEB21BA1691003A6A33 /* LaunchScreen.storyboard */,
 				9F9E9AE921BA1691003A6A33 /* Assets.xcassets */,
 				9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */,
@@ -241,6 +244,14 @@
 				9F9E9B0421BA1691003A6A33 /* Info.plist */,
 			);
 			path = AirContactsUITests;
+			sourceTree = "<group>";
+		};
+		9FBD0E81255E362B00C9C9DA /* Old Code */ = {
+			isa = PBXGroup;
+			children = (
+				9F4ABE8222A8586E00316EB2 /* TabBarController.swift */,
+			);
+			path = "Old Code";
 			sourceTree = "<group>";
 		};
 		9FBFACD722B49D0000730E7B /* Utilities */ = {
@@ -449,6 +460,7 @@
 				9F3EFEF722B36982001A28E0 /* GiveQRViewController.swift in Sources */,
 				9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */,
 				9FCA500B22A75CE90004C20F /* ActiveContact.swift in Sources */,
+				9FBD0E86255E36DE00C9C9DA /* ContactCardTableViewController.swift in Sources */,
 				9FB74C0A22B4752900F34181 /* SavedContact.swift in Sources */,
 				9F34C273255CCF1900B9DEA4 /* MainSplitViewController.swift in Sources */,
 				9F6A083322A9C2F7008ECF2F /* Privacy.swift in Sources */,

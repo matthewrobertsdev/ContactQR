@@ -13,7 +13,7 @@
         <!--Give Contact-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="DisplayQRViewController" title="Give Contact" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="DisplayQRViewController" customModule="Contact_QR" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DisplayQRViewController" title="Give Contact" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="DisplayQRViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -140,7 +140,7 @@
         <!--Contact Cards-->
         <scene sceneID="ZMn-av-x8s">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="8w3-e5-v8i" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="8w3-e5-v8i" customClass="ContactCardTableViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lBD-Qa-6jB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -161,8 +161,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Contact Cards" id="Vzi-tw-EHX">
-                        <barButtonItem key="leftBarButtonItem" image="person.crop.circle.badge.plus" catalog="system" id="ymM-BI-js4"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="aSk-2u-Brq"/>
+                        <barButtonItem key="leftBarButtonItem" image="person.crop.circle.badge.plus" catalog="system" id="ymM-BI-js4">
+                            <connections>
+                                <action selector="createContactCardFromContact:" destination="8w3-e5-v8i" id="tdm-yN-NgJ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="aSk-2u-Brq">
+                            <connections>
+                                <segue destination="icA-no-8s3" kind="presentation" id="awB-Dv-FXV"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXb-db-Xvt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -188,7 +196,7 @@
         <!--Main Split View Controller-->
         <scene sceneID="MLd-qb-Qbu">
             <objects>
-                <splitViewController allowDoubleColumnStyle="YES" id="aYm-LV-jC5" customClass="MainSplitViewController" customModule="Contact_QR" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController allowDoubleColumnStyle="YES" id="aYm-LV-jC5" customClass="MainSplitViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="dYb-Ni-z5G" kind="relationship" relationship="masterViewController" id="w4t-ag-yaq"/>
                         <segue destination="IJa-nU-fZ3" kind="relationship" relationship="detailViewController" id="zMB-sw-Tn6"/>
@@ -201,7 +209,7 @@
         <!--Give-->
         <scene sceneID="MDy-ad-u7b">
             <objects>
-                <viewController title="Give" id="eWW-Kj-E90" customClass="GiveQRViewController" customModule="Contact_QR" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Give" id="eWW-Kj-E90" customClass="GiveQRViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PxO-RU-OeD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -223,7 +231,7 @@
                                         <state key="normal" title="Create New"/>
                                         <connections>
                                             <action selector="createNewContact:" destination="eWW-Kj-E90" eventType="touchUpInside" id="Uu6-nd-GrU"/>
-                                            <segue destination="33H-KV-B3q" kind="show" id="qcX-us-qVK"/>
+                                            <segue destination="icA-no-8s3" kind="show" id="qcX-us-qVK"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -242,7 +250,7 @@
                                     <constraint firstAttribute="width" priority="1" constant="600" id="QQv-Ne-PlU"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactCell" rowHeight="52" id="Yzc-79-eXU" customClass="SavedContactCell" customModule="Contact_QR" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactCell" rowHeight="52" id="Yzc-79-eXU" customClass="SavedContactCell" customModule="Air_Contacts" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yzc-79-eXU" id="7cN-MP-4h6">
@@ -328,16 +336,16 @@
             </objects>
             <point key="canvasLocation" x="1079.7101449275362" y="0.0"/>
         </scene>
-        <!--Create Contact View Controller-->
+        <!--New Card-->
         <scene sceneID="nKg-hX-7nX">
             <objects>
-                <viewController storyboardIdentifier="CreateContactViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="33H-KV-B3q" customClass="CreateContactViewController" customModule="Contact_QR" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateContactViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="33H-KV-B3q" customClass="CreateContactViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0dw-fN-jnj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="514"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dob-FW-hfJ">
-                                <rect key="frame" x="0.0" y="88" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="56" width="320" height="458"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="ANh-ce-Scc">
                                         <rect key="frame" x="7" y="7" width="306" height="1911"/>
@@ -677,13 +685,13 @@
                             <constraint firstItem="ANh-ce-Scc" firstAttribute="leading" secondItem="gqU-ov-JTM" secondAttribute="leading" priority="999" constant="7" id="wKz-XJ-br0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="auu-UQ-b5w">
+                    <navigationItem key="navigationItem" title="New Card" id="auu-UQ-b5w">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="h8Z-bO-nJ7">
                             <connections>
                                 <action selector="cancel:" destination="33H-KV-B3q" id="cJf-ae-vx0"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Create QR Code" id="HMe-Pz-OmC">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="HMe-Pz-OmC">
                             <connections>
                                 <action selector="createQRCode:" destination="33H-KV-B3q" id="Ai3-3j-pzf"/>
                             </connections>
@@ -724,12 +732,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uTg-Lt-Hfg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-557" y="910"/>
+            <point key="canvasLocation" x="352.17391304347831" y="909.375"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="8Ob-mu-l7M">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Jz0-hI-N8U" customClass="TabBarController" customModule="Contact_QR" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Jz0-hI-N8U" customClass="TabBarController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CDY-BT-YKe">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -742,12 +750,12 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ie0-5o-YAn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1322" y="748"/>
+            <point key="canvasLocation" x="2231.8840579710145" y="747.99107142857144"/>
         </scene>
         <!--Get-->
         <scene sceneID="kRt-Bi-pmj">
             <objects>
-                <viewController title="Get" id="pzX-wY-ICc" customClass="GetQRViewController" customModule="Contact_QR" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Get" id="pzX-wY-ICc" customClass="GetQRViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aut-Nh-78T">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -760,7 +768,7 @@
                                     <outletCollection property="gestureRecognizers" destination="cqa-5U-irX" appends="YES" id="UJP-Cx-9qJ"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LI2-fc-bOq" customClass="ContactSavedBanner" customModule="Contact_QR" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LI2-fc-bOq" customClass="ContactSavedBanner" customModule="Air_Contacts" customModuleProvider="target">
                                 <rect key="frame" x="63" y="424.5" width="288" height="52"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -768,7 +776,7 @@
                                     <constraint firstAttribute="height" constant="52" id="YTI-1x-18V"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0oZ-Ru-P5e" customClass="SaveContactBanner" customModule="Contact_QR" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0oZ-Ru-P5e" customClass="SaveContactBanner" customModule="Air_Contacts" customModuleProvider="target">
                                 <rect key="frame" x="63" y="96" width="288" height="52"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -804,7 +812,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3009" y="748"/>
+            <point key="canvasLocation" x="3918.8405797101454" y="747.99107142857144"/>
         </scene>
         <!--Give-->
         <scene sceneID="u7h-PL-XBa">
@@ -842,9 +850,45 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lTk-qE-QLg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2156" y="748"/>
+            <point key="canvasLocation" x="3065.217391304348" y="747.99107142857144"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="069-Rb-nOI">
+            <objects>
+                <viewController id="YkQ-HE-pbk" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YJE-sv-l8c">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dLx-Uz-SVN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-665" y="4"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zwW-wO-6fN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="icA-no-8s3" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="8bR-DH-6eJ"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="P9R-AP-yWz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="33H-KV-B3q" kind="relationship" relationship="rootViewController" id="1IW-kB-9Ak"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IiA-rX-lzc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-557.97101449275362" y="909.375"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="awB-Dv-FXV"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="113"/>
         <image name="qrcode" catalog="system" width="128" height="114"/>

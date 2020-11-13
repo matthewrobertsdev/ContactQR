@@ -1,13 +1,11 @@
 //
 //  MainSplitViewController.swift
-//  Contact QR
+//  Air Contacts
 //
 //  Created by Matt Roberts on 11/11/20.
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
-
 import UIKit
-
 class MainSplitViewController: UISplitViewController, UISplitViewControllerDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -20,10 +18,9 @@ class MainSplitViewController: UISplitViewController, UISplitViewControllerDeleg
 		onto primaryViewController: UIViewController) -> Bool {
 		return true
 	}
-
 	@available(iOS 14.0, *)
-	func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {
+	func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn
+								proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {
 		return .primary
 	}
-
 }
