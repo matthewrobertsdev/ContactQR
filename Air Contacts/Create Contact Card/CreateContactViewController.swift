@@ -131,7 +131,9 @@ class CreateContactViewController: UIViewController {
 			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelOther, value: address))
 			}
 		ActiveContact.shared.contact=contact
-		NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: ["animated": true])
+		dismiss(animated: true) {
+		}
+		//NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: ["animated": true])
 	}
 	func fillWithContact(contact: CNContact) {
 		firstNameTextField.text=contact.givenName

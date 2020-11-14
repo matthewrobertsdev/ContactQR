@@ -22,9 +22,19 @@ class PickContactViewController: CNContactPickerViewController, CNContactPickerD
      */
     func contactPicker(_ picker: CNContactPickerViewController,
                        didSelect contact: CNContact) {
-		if (picked==false) {
+		if picked==false {
 			ActiveContact.shared.contact=contact
-			NotificationCenter.default.post(name: .contactPicked, object: self, userInfo: ["animated": false])
+			let storyboard = UIStoryboard(name: "Main", bundle: nil)
+			guard let createContactViewController=storyboard.instantiateViewController(withIdentifier: "CreateContactViewController") as? CreateContactViewController else {
+				print("Failed to instantiate CreateContactViewController")
+				return
+			}
+			weak var contactCardTableViewController=presentingViewController
+			let navigationController=UINavigationController(rootViewController: createContactViewController)
+			dismiss(animated: true) {
+				contactCardTableViewController?.present(navigationController, animated: true)
+			}
+			//NotificationCenter.default.post(name: .contactPicked, object: self, userInfo: ["animated": false])
 		}
     }
 }
