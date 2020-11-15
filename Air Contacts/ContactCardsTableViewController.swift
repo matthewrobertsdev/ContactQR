@@ -9,28 +9,58 @@ import UIKit
 class ContactCardsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+		let notificationCenter=NotificationCenter.default
+		notificationCenter.addObserver(self, selector: #selector(selectNewContact), name: .contactCreated, object: nil)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		guard let selectedIndexPath=tableView.indexPathForSelectedRow else {
+			return
+		}
+		tableView.deselectRow(at: selectedIndexPath, animated: false)
+	}
+	@objc func selectNewContact() {
+		tableView.reloadData()
+		let lastRowNumber=ContactCardStore.sharedInstance.contacts.count-1
+		tableView.selectRow(at: IndexPath(row: lastRowNumber, section: 0), animated: true, scrollPosition: .middle)
+		showContactCard()
+	}
+
+	func showContactCard() {
+		guard let splitViewController=splitViewController else {
+			return
+		}
+		//bug: should be only 14 and above according to plist
+		if #available(iOS 14.0, *) {
+			splitViewController.show(.secondary)
+		} else {
+		}
+	}
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return ContactCardStore.sharedInstance.contacts.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = UITableViewCell()
         // Configure the cell...
         return cell
     }
 	@IBAction func createContactCardFromContact(_ sender: Any) {
 		self.present(PickContactViewController(), animated: true) {
 		}
+	}
+	override func tableView(_ tableView: UITableView,
+				   didSelectRowAt indexPath: IndexPath) {
+		showContactCard()
 	}
 	/*
     // Override to support conditional editing of the table view.

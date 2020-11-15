@@ -25,10 +25,12 @@ class PickContactViewController: CNContactPickerViewController, CNContactPickerD
 		if picked==false {
 			ActiveContact.shared.contact=contact
 			let storyboard = UIStoryboard(name: "Main", bundle: nil)
-			guard let createContactViewController=storyboard.instantiateViewController(withIdentifier: "CreateContactViewController") as? CreateContactViewController else {
+			guard let createContactViewController=storyboard.instantiateViewController(withIdentifier: "CreateContactViewController")
+					as? CreateContactViewController else {
 				print("Failed to instantiate CreateContactViewController")
 				return
 			}
+			createContactViewController.contact=contact
 			weak var contactCardTableViewController=presentingViewController
 			let navigationController=UINavigationController(rootViewController: createContactViewController)
 			dismiss(animated: true) {
