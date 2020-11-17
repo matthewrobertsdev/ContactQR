@@ -46,6 +46,7 @@
 		9FC30F2322B42AA0002CB40C /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC30F2222B42AA0002CB40C /* AddContactViewController.swift */; };
 		9FCA500B22A75CE90004C20F /* ActiveContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA500A22A75CE90004C20F /* ActiveContact.swift */; };
 		9FDBED0E21D33960007466B5 /* ContactDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDBED0D21D33960007466B5 /* ContactDataSource.swift */; };
+		9FEC6192256229DE004A03BE /* SaveContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEC6191256229DE004A03BE /* SaveContactCardViewController.swift */; };
 		9FFF4CF022B1B40D00889B7F /* GetQRController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFF4CEF22B1B40D00889B7F /* GetQRController.swift */; };
 		9FFFA71C22A98F9C0096A3F1 /* SaveContactBanner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFFA71B22A98F9C0096A3F1 /* SaveContactBanner.xib */; };
 /* End PBXBuildFile section */
@@ -127,6 +128,7 @@
 		9FC30F2222B42AA0002CB40C /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		9FCA500A22A75CE90004C20F /* ActiveContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveContact.swift; sourceTree = "<group>"; };
 		9FDBED0D21D33960007466B5 /* ContactDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDataSource.swift; sourceTree = "<group>"; };
+		9FEC6191256229DE004A03BE /* SaveContactCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveContactCardViewController.swift; sourceTree = "<group>"; };
 		9FFF4CEF22B1B40D00889B7F /* GetQRController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQRController.swift; sourceTree = "<group>"; };
 		9FFFA71B22A98F9C0096A3F1 /* SaveContactBanner.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SaveContactBanner.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -232,6 +234,7 @@
 				9F9E9AEB21BA1691003A6A33 /* LaunchScreen.storyboard */,
 				9F9E9AE921BA1691003A6A33 /* Assets.xcassets */,
 				9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */,
+				9FEC6191256229DE004A03BE /* SaveContactCardViewController.swift */,
 			);
 			path = "Air Contacts";
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				9F3EFEF722B36982001A28E0 /* GiveQRViewController.swift in Sources */,
 				9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */,
 				9FCA500B22A75CE90004C20F /* ActiveContact.swift in Sources */,
+				9FEC6192256229DE004A03BE /* SaveContactCardViewController.swift in Sources */,
 				9FBD0E86255E36DE00C9C9DA /* ContactCardsTableViewController.swift in Sources */,
 				9FB74C0A22B4752900F34181 /* SavedContact.swift in Sources */,
 				9F34C273255CCF1900B9DEA4 /* MainSplitViewController.swift in Sources */,

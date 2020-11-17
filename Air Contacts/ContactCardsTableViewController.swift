@@ -21,7 +21,12 @@ class ContactCardsTableViewController: UITableViewController {
 		guard let selectedIndexPath=tableView.indexPathForSelectedRow else {
 			return
 		}
-		tableView.deselectRow(at: selectedIndexPath, animated: false)
+		guard let splitViewController=splitViewController else {
+			return
+		}
+		if splitViewController.isCollapsed {
+			tableView.deselectRow(at: selectedIndexPath, animated: false)
+		}
 	}
 	@objc func selectNewContact() {
 		tableView.reloadData()
@@ -29,7 +34,6 @@ class ContactCardsTableViewController: UITableViewController {
 		tableView.selectRow(at: IndexPath(row: lastRowNumber, section: 0), animated: true, scrollPosition: .middle)
 		showContactCard()
 	}
-
 	func showContactCard() {
 		guard let splitViewController=splitViewController else {
 			return
@@ -59,7 +63,7 @@ class ContactCardsTableViewController: UITableViewController {
 		}
 	}
 	override func tableView(_ tableView: UITableView,
-				   didSelectRowAt indexPath: IndexPath) {
+							didSelectRowAt indexPath: IndexPath) {
 		showContactCard()
 	}
 	/*
@@ -83,7 +87,6 @@ class ContactCardsTableViewController: UITableViewController {
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
     }
     */
     /*

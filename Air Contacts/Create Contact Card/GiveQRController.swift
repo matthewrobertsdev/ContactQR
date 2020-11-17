@@ -125,9 +125,7 @@ class GiveQRController: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         do {
-            guard let contactVCard=StoredContacts.shared.contacts[indexPath.row].vCardString else {
-                return
-            }
+            let contactVCard=StoredContacts.shared.contacts[indexPath.row].vCardString
             ActiveContact.shared.contact=try ContactDataConverter.createCNContactArray(vCardString: contactVCard).first
         } catch {
             print(error)

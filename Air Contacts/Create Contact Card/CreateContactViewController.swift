@@ -41,7 +41,7 @@ class CreateContactViewController: UIViewController {
 	@IBOutlet weak var fieldsScrollView: UIScrollView!
 	var contact: CNContact?
 	@IBAction func cancel(_ sender: Any) {
-		self.dismiss(animated: true)
+		dismiss(animated: true)
 	}
 	@IBAction func createContact(_ sender: Any) {
 		let contact=CNMutableContact()
@@ -131,9 +131,18 @@ class CreateContactViewController: UIViewController {
 			address.postalCode=otherZipTextField.text ?? ""
 			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelOther, value: address))
 			}
-		ContactCardStore.sharedInstance.contacts.append(contact)
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		guard let saveContactCardViewController=storyboard.instantiateViewController(withIdentifier:
+																						"SaveContactCardViewController")
+				as? SaveContactCardViewController else {
+			print("Failed to instantiate SaveContactCardViewController")
+			return
+		}
+		saveContactCardViewController.contact=contact
+		weak var contactCardTableViewController=presentingViewController
+		let navigationController=UINavigationController(rootViewController: saveContactCardViewController)
 		dismiss(animated: true) {
-			NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: nil)
+			contactCardTableViewController?.present(navigationController, animated: true)
 		}
 	}
 	func fillWithContact(contact: CNContact) {
