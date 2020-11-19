@@ -26,10 +26,12 @@ class DisplayQRController: NSObject, UITableViewDelegate {
      code, update the table view's data source, and reload the table view
      */
     func prepareView() {
-        guard let activeContact=ActiveContact.shared.contact else {
+		/*
+        guard let activeContact=ActiveContactCard.shared.contact else {
             return
         }
-        model.updateActiveContact(activeContact: activeContact)
+*/
+        //model.updateActiveContact(activeContact: activeContact)
 		viewController.qrImageView.image=getTintedForeground(image: model.makeQRCode(), color:UIColor.systemGreen)
         model.updateContactInfoTVDataSource()
         viewController.contactInfoTV.reloadData()
@@ -53,11 +55,13 @@ class DisplayQRController: NSObject, UITableViewDelegate {
         }
     }
     func addToStoredContacts(name: String) {
-        let contactToStore=ContactCard(filename: name, cnContact: ActiveContact.shared.contact!)
+		/*
+        let contactToStore=ContactCard(filename: name, cnContact: ActiveContactCard.shared.contact!)
         StoredContacts.shared.contacts.append(contactToStore)
         StoredContacts.shared.tryToSave()
         //StoredContacts.shared.testEncodeAndDecode()
         NotificationCenter.default.post(name: .contactAdded, object: self)
+*/
     }
     /*
      calls a pick conact view controller so the user can pick a contact

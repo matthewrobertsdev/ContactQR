@@ -23,7 +23,7 @@ class PickContactViewController: CNContactPickerViewController, CNContactPickerD
     func contactPicker(_ picker: CNContactPickerViewController,
                        didSelect contact: CNContact) {
 		if picked==false {
-			ActiveContact.shared.contact=contact
+			//ActiveContactCard.shared.contact=contact
 			let storyboard = UIStoryboard(name: "Main", bundle: nil)
 			guard let createContactViewController=storyboard.instantiateViewController(withIdentifier: "CreateContactViewController")
 					as? CreateContactViewController else {

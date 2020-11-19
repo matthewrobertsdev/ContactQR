@@ -22,7 +22,7 @@ class AddContactViewController: NSObject, CNContactViewControllerDelegate {
     func contactViewController(_ viewController: CNContactViewController,
                                didCompleteWith contact: CNContact?) {
         if forQR {
-            ActiveContact.shared.contact=contact
+            //ActiveContactCard.shared.contact=contact
         }
 		//viewController.view.becomeFirstResponder()
 		//viewController.view.resignFirstResponder()

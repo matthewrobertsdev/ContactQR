@@ -13,11 +13,11 @@ import Contacts
  Notification.Name, .contactChanged, for notifications
  about when activeContact changes
  */
-class ActiveContact {
+class ActiveContactCard {
     //shared is the singleton
-    static let shared=ActiveContact()
+    static let shared=ActiveContactCard()
     //stoes a CNContact for use throughout the app
-    var contact: CNContact?
+    var contactCard: ContactCard?
     private init() {
     }
 }

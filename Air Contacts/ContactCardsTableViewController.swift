@@ -7,6 +7,7 @@
 //
 import UIKit
 class ContactCardsTableViewController: UITableViewController {
+	var selectedRow = -1
     override func viewDidLoad() {
         super.viewDidLoad()
 		let notificationCenter=NotificationCenter.default
@@ -32,14 +33,20 @@ class ContactCardsTableViewController: UITableViewController {
 		tableView.reloadData()
 		let lastRowNumber=ContactCardStore.sharedInstance.contacts.count-1
 		tableView.selectRow(at: IndexPath(row: lastRowNumber, section: 0), animated: true, scrollPosition: .middle)
-		showContactCard()
+			selectedRow=lastRowNumber
+			showContactCard()
 	}
 	func showContactCard() {
 		guard let splitViewController=splitViewController else {
 			return
 		}
+		guard let indexPath=tableView.indexPathForSelectedRow else {
+			return
+		}
 		//bug: should be only 14 and above according to plist
 		if #available(iOS 14.0, *) {
+			ActiveContactCard.shared.contactCard=ContactCardStore.sharedInstance.contacts[indexPath.row]
+			NotificationCenter.default.post(name: .contactChanged, object: nil)
 			splitViewController.show(.secondary)
 		} else {
 		}
@@ -67,7 +74,10 @@ class ContactCardsTableViewController: UITableViewController {
 	}
 	override func tableView(_ tableView: UITableView,
 								didSelectRowAt indexPath: IndexPath) {
-		showContactCard()
+		if selectedRow != indexPath.row {
+			selectedRow=indexPath.row
+			showContactCard()
+		}
 	}
 	/*
     // Override to support conditional editing of the table view.

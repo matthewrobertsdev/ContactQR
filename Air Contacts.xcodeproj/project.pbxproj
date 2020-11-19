@@ -44,7 +44,7 @@
 		9FC1B85522EE4499000BFB65 /* ContactsPrivacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1B85422EE4499000BFB65 /* ContactsPrivacy.swift */; };
 		9FC1B85722EE4591000BFB65 /* CameraPrivacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC1B85622EE4591000BFB65 /* CameraPrivacy.swift */; };
 		9FC30F2322B42AA0002CB40C /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC30F2222B42AA0002CB40C /* AddContactViewController.swift */; };
-		9FCA500B22A75CE90004C20F /* ActiveContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA500A22A75CE90004C20F /* ActiveContact.swift */; };
+		9FCA500B22A75CE90004C20F /* ActiveContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA500A22A75CE90004C20F /* ActiveContactCard.swift */; };
 		9FDBED0E21D33960007466B5 /* ContactDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDBED0D21D33960007466B5 /* ContactDataSource.swift */; };
 		9FEC6192256229DE004A03BE /* SaveContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEC6191256229DE004A03BE /* SaveContactCardViewController.swift */; };
 		9FFF4CF022B1B40D00889B7F /* GetQRController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFF4CEF22B1B40D00889B7F /* GetQRController.swift */; };
@@ -126,7 +126,7 @@
 		9FC1B85422EE4499000BFB65 /* ContactsPrivacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsPrivacy.swift; sourceTree = "<group>"; };
 		9FC1B85622EE4591000BFB65 /* CameraPrivacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPrivacy.swift; sourceTree = "<group>"; };
 		9FC30F2222B42AA0002CB40C /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
-		9FCA500A22A75CE90004C20F /* ActiveContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveContact.swift; sourceTree = "<group>"; };
+		9FCA500A22A75CE90004C20F /* ActiveContactCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveContactCard.swift; sourceTree = "<group>"; };
 		9FDBED0D21D33960007466B5 /* ContactDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDataSource.swift; sourceTree = "<group>"; };
 		9FEC6191256229DE004A03BE /* SaveContactCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveContactCardViewController.swift; sourceTree = "<group>"; };
 		9FFF4CEF22B1B40D00889B7F /* GetQRController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQRController.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 				9FB74C0922B4752900F34181 /* ContactCard.swift */,
 				9FB3E45E21C967410011752F /* PickContactViewController.swift */,
 				9FC30F2222B42AA0002CB40C /* AddContactViewController.swift */,
-				9FCA500A22A75CE90004C20F /* ActiveContact.swift */,
+				9FCA500A22A75CE90004C20F /* ActiveContactCard.swift */,
 			);
 			path = "Create Contact Card";
 			sourceTree = "<group>";
@@ -472,7 +472,7 @@
 				9F3EFEFA22B36C57001A28E0 /* GiveQRController.swift in Sources */,
 				9F3EFEF722B36982001A28E0 /* GiveQRViewController.swift in Sources */,
 				9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */,
-				9FCA500B22A75CE90004C20F /* ActiveContact.swift in Sources */,
+				9FCA500B22A75CE90004C20F /* ActiveContactCard.swift in Sources */,
 				9FEC6192256229DE004A03BE /* SaveContactCardViewController.swift in Sources */,
 				9FBD0E86255E36DE00C9C9DA /* ContactCardsTableViewController.swift in Sources */,
 				9FB74C0A22B4752900F34181 /* ContactCard.swift in Sources */,

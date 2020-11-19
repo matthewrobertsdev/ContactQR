@@ -47,7 +47,7 @@ class GiveQRController: NSObject, UITableViewDelegate {
     }
     //if activeContact isn't nil, piush a DisplayQR_VC
     @objc private func displayQR(notification: NSNotification) {
-        if ActiveContact.shared.contact==nil {
+        if ActiveContactCard.shared.contactCard==nil {
             return
         }
 		var animated=false
@@ -87,7 +87,7 @@ class GiveQRController: NSObject, UITableViewDelegate {
 		guard let displayQRViewController = desiredViewController as? CreateContactViewController else {
 			return
 		}
-		displayQRViewController.contact=ActiveContact.shared.contact ?? CNContact()
+		//displayQRViewController.contact=ActiveContactCard.shared.contact ?? CNContact()
 		viewController.navigationController?.pushViewController(displayQRViewController, animated: true)
 	}
 	/*
@@ -126,7 +126,7 @@ class GiveQRController: NSObject, UITableViewDelegate {
                    didSelectRowAt indexPath: IndexPath) {
         do {
             let contactVCard=StoredContacts.shared.contacts[indexPath.row].vCardString
-            ActiveContact.shared.contact=try ContactDataConverter.createCNContactArray(vCardString: contactVCard).first
+            //ActiveContactCard.shared.contact=try ContactDataConverter.createCNContactArray(vCardString: contactVCard).first
         } catch {
             print(error)
         }
