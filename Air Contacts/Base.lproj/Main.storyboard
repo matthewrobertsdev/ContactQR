@@ -806,7 +806,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8Se-sp-OuC">
-                                <rect key="frame" x="82" y="342.66666666666669" width="250" height="94.666666666666686"/>
+                                <rect key="frame" x="82" y="66" width="250" height="94.666666666666686"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the Title for Your Card to Be Saved As:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gke-5L-Bvv">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="40.666666666666664"/>
@@ -815,7 +815,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T2u-y7-Pqe">
-                                        <rect key="frame" x="0.0" y="60.666666666666629" width="250" height="34"/>
+                                        <rect key="frame" x="0.0" y="60.666666666666671" width="250" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -828,8 +828,8 @@
                         <viewLayoutGuide key="safeArea" id="VEO-jq-KFn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="8Se-sp-OuC" firstAttribute="centerX" secondItem="VEO-jq-KFn" secondAttribute="centerX" id="SZ6-WE-rKt"/>
-                            <constraint firstItem="8Se-sp-OuC" firstAttribute="centerY" secondItem="VEO-jq-KFn" secondAttribute="centerY" id="X6g-sc-jbF"/>
+                            <constraint firstItem="8Se-sp-OuC" firstAttribute="centerX" secondItem="VEO-jq-KFn" secondAttribute="centerX" id="G0L-mw-Yly"/>
+                            <constraint firstItem="8Se-sp-OuC" firstAttribute="top" secondItem="VEO-jq-KFn" secondAttribute="top" constant="22" id="ouw-dC-tfA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Choose Title" id="GNm-kg-Xc4">
