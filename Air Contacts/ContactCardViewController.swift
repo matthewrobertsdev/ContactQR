@@ -6,10 +6,11 @@
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 import UIKit
-class ContactCardViewController: UIViewController {
+class ContactCardViewController: UIViewController, UITableViewDataSource {
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var titleLabel: UILabel!
 	var contactCard: ContactCard?
+	private var contactInfoArray: [(String, String)]=[]
     override func viewDidLoad() {
         super.viewDidLoad()
 		let shareBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
@@ -18,7 +19,8 @@ class ContactCardViewController: UIViewController {
 												target: self, action: nil)
 		navigationItem.rightBarButtonItems=[shareBarButtonItem, qrCodeBarButtonItem]
 		navigationItem.title="Contact Card"
-		showOrHideTableView()
+		tableView.dataSource=self
+		loadContact()
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .contactChanged, object: nil)
     }
@@ -36,6 +38,13 @@ class ContactCardViewController: UIViewController {
 		}
 		tableView.isHidden=false
 		titleLabel.text=contactCard.filename
+		do {
+			let contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)[0]
+			contactInfoArray=ContactInfoManipulator.makeContactInfoArray(cnContact: contact)
+			tableView.reloadData()
+		} catch {
+			print("Error making CNContact from VCard String.")
+		}
 	}
     /*
     // MARK: - Navigation
@@ -45,4 +54,15 @@ class ContactCardViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return contactInfoArray.count
+	}
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		guard let cell=tableView.dequeueReusableCell(withIdentifier: "ContactInfoTableViewCell") as? ContactInfoTableViewCell else {
+			return UITableViewCell()
+		}
+		cell.labelLabel.text=contactInfoArray[indexPath.row].0
+		cell.infoLabel.text=contactInfoArray[indexPath.row].1
+		return cell
+	}
 }

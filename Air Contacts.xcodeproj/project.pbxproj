@@ -38,6 +38,7 @@
 		9FB74C1022B4825C00F34181 /* QRPersistency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0F22B4825C00F34181 /* QRPersistency.swift */; };
 		9FB8C18A23A14F5B002B6D46 /* ContactSavedBanner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB8C18923A14F5B002B6D46 /* ContactSavedBanner.xib */; };
 		9FB8C18C23A14F62002B6D46 /* ContactSavedBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8C18B23A14F62002B6D46 /* ContactSavedBanner.swift */; };
+		9FB93DB32566D3EC006D1427 /* ContactInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB93DB22566D3EC006D1427 /* ContactInfoTableViewCell.swift */; };
 		9FBD0E86255E36DE00C9C9DA /* ContactCardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBD0E85255E36DE00C9C9DA /* ContactCardsTableViewController.swift */; };
 		9FBFACD922B4A21A00730E7B /* StoredContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFACD822B4A21A00730E7B /* StoredContactsDataSource.swift */; };
 		9FBFACDB22B4A30800730E7B /* SavedContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */; };
@@ -120,6 +121,7 @@
 		9FB74C0F22B4825C00F34181 /* QRPersistency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRPersistency.swift; sourceTree = "<group>"; };
 		9FB8C18923A14F5B002B6D46 /* ContactSavedBanner.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactSavedBanner.xib; sourceTree = "<group>"; };
 		9FB8C18B23A14F62002B6D46 /* ContactSavedBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactSavedBanner.swift; sourceTree = "<group>"; };
+		9FB93DB22566D3EC006D1427 /* ContactInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoTableViewCell.swift; sourceTree = "<group>"; };
 		9FBD0E85255E36DE00C9C9DA /* ContactCardsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardsTableViewController.swift; sourceTree = "<group>"; };
 		9FBFACD822B4A21A00730E7B /* StoredContactsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredContactsDataSource.swift; sourceTree = "<group>"; };
 		9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedContactCell.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				9F9E9AEE21BA1691003A6A33 /* Info.plist */,
 				9F7F42182560F24700199193 /* SceneDelegate.swift */,
 				9F9E9AE621BA1690003A6A33 /* Main.storyboard */,
+				9FB93DB22566D3EC006D1427 /* ContactInfoTableViewCell.swift */,
 				9FB31896255F954200D31B8B /* ContactCardViewController.swift */,
 				9FBD0E85255E36DE00C9C9DA /* ContactCardsTableViewController.swift */,
 				9F7F41D42560EA4800199193 /* ContactCardStore.swift */,
@@ -461,6 +464,7 @@
 				9F5C647221D3E10A00832897 /* ContactInfoManipulator.swift in Sources */,
 				9FB74C1022B4825C00F34181 /* QRPersistency.swift in Sources */,
 				9F7F42192560F24700199193 /* SceneDelegate.swift in Sources */,
+				9FB93DB32566D3EC006D1427 /* ContactInfoTableViewCell.swift in Sources */,
 				9F4ABE8122A852F300316EB2 /* GetQRViewController.swift in Sources */,
 				9F9E9AE521BA1690003A6A33 /* DisplayQRViewController.swift in Sources */,
 				9F3FDD0121CC376F00D2FBB2 /* ContactDataConverter.swift in Sources */,

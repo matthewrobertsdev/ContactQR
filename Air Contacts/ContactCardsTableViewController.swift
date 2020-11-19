@@ -74,7 +74,10 @@ class ContactCardsTableViewController: UITableViewController {
 	}
 	override func tableView(_ tableView: UITableView,
 								didSelectRowAt indexPath: IndexPath) {
-		if selectedRow != indexPath.row {
+		guard let splitViewController=splitViewController else {
+			return
+		}
+		if splitViewController.isCollapsed || selectedRow != indexPath.row {
 			selectedRow=indexPath.row
 			showContactCard()
 		}
