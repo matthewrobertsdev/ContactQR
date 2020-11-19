@@ -13,29 +13,29 @@ class QRPersistency {
     static let shared=QRPersistency()
     private init() {
     }
-    func testEncodeAndDecode(contactsToSave: [SavedContact]) throws {
+    func testEncodeAndDecode(contactsToSave: [ContactCard]) throws {
         print("--------------------")
         for contact in contactsToSave {
             print(contact.vCardString.description)
         }
         let data=try PersistenceManager.shared.encoder.encode(contactsToSave)
         print(String(data: data, encoding: .utf8)!)
-        let savedContacts=try PersistenceManager.shared.decoder.decode([SavedContact].self, from: data)
+        let savedContacts=try PersistenceManager.shared.decoder.decode([ContactCard].self, from: data)
         for contact in savedContacts {
             print(contact.vCardString.description)
         }
         print("--------------------")
     }
-    func saveContacts(contactsToSave: [SavedContact]) throws {
+    func saveContacts(contactsToSave: [ContactCard]) throws {
         let data: Data=try PersistenceManager.shared.encoder.encode(contactsToSave)
         try PersistenceManager.shared.saveData(appendingPath: SAVEDCONTACTSFILENAME, data: data)
     }
-    func getSavedContacts()throws -> [SavedContact] {
+    func getSavedContacts()throws -> [ContactCard] {
         let data=try PersistenceManager.shared.loadData(appendingPath: SAVEDCONTACTSFILENAME)
         if data==nil {
-            return [SavedContact]()
+            return [ContactCard]()
         }
-        let savedContacts=try PersistenceManager.shared.decoder.decode([SavedContact].self, from: data!)
+        let savedContacts=try PersistenceManager.shared.decoder.decode([ContactCard].self, from: data!)
         return savedContacts
     }
 }

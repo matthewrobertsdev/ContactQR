@@ -54,8 +54,11 @@ class ContactCardsTableViewController: UITableViewController {
         return ContactCardStore.sharedInstance.contacts.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        // Configure the cell...
+		guard let cell=tableView.dequeueReusableCell(withIdentifier: "SavedContactCell", for: indexPath)
+				as? SavedContactCell else {
+			return UITableViewCell()
+		}
+		cell.nameLabel.text=ContactCardStore.sharedInstance.contacts[indexPath.row].filename
         return cell
     }
 	@IBAction func createContactCardFromContact(_ sender: Any) {
@@ -63,7 +66,7 @@ class ContactCardsTableViewController: UITableViewController {
 		}
 	}
 	override func tableView(_ tableView: UITableView,
-							didSelectRowAt indexPath: IndexPath) {
+								didSelectRowAt indexPath: IndexPath) {
 		showContactCard()
 	}
 	/*

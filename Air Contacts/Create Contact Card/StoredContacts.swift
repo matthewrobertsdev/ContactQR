@@ -11,14 +11,14 @@ import Foundation
 class StoredContacts {
     //shared is the singleton
     static let shared=StoredContacts()
-    var contacts: [SavedContact]
+    var contacts: [ContactCard]
     var badLoad=false
     private init() {
         do {
             contacts=try QRPersistency.shared.getSavedContacts()
         } catch {
             print("Failed to load contacts or none were there to load "+error.localizedDescription)
-            contacts=[SavedContact]()
+            contacts=[ContactCard]()
             print("Added empty contacts")
         }
     }

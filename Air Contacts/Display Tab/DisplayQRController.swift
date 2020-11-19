@@ -53,7 +53,7 @@ class DisplayQRController: NSObject, UITableViewDelegate {
         }
     }
     func addToStoredContacts(name: String) {
-        let contactToStore=SavedContact(name: name, cnContact: ActiveContact.shared.contact!)
+        let contactToStore=ContactCard(filename: name, cnContact: ActiveContact.shared.contact!)
         StoredContacts.shared.contacts.append(contactToStore)
         StoredContacts.shared.tryToSave()
         //StoredContacts.shared.testEncodeAndDecode()
