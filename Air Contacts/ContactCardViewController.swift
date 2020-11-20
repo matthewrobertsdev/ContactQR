@@ -10,7 +10,7 @@ class ContactCardViewController: UIViewController, UITableViewDataSource {
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var titleLabel: UILabel!
 	var contactCard: ContactCard?
-	private var contactInfoArray: [(String, String)]=[]
+	private var contactDisplayStrings=[String]()
     override func viewDidLoad() {
         super.viewDidLoad()
 		let shareBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
@@ -40,7 +40,8 @@ class ContactCardViewController: UIViewController, UITableViewDataSource {
 		titleLabel.text=contactCard.filename
 		do {
 			let contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)[0]
-			contactInfoArray=ContactInfoManipulator.makeContactInfoArray(cnContact: contact)
+			let contactInfoArray=ContactInfoManipulator.makeContactInfoArray(cnContact: contact)
+			contactDisplayStrings=ContactInfoManipulator.makeContactDisplayArray(contactInfo: contactInfoArray)
 			tableView.reloadData()
 		} catch {
 			print("Error making CNContact from VCard String.")
@@ -55,14 +56,13 @@ class ContactCardViewController: UIViewController, UITableViewDataSource {
     }
     */
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return contactInfoArray.count
+		return contactDisplayStrings.count
 	}
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell=tableView.dequeueReusableCell(withIdentifier: "ContactInfoTableViewCell") as? ContactInfoTableViewCell else {
 			return UITableViewCell()
 		}
-		cell.labelLabel.text=contactInfoArray[indexPath.row].0
-		cell.infoLabel.text=contactInfoArray[indexPath.row].1
+		cell.infoLabel.text=contactDisplayStrings[indexPath.row]
 		return cell
 	}
 }

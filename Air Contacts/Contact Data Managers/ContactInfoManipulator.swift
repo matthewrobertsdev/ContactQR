@@ -142,4 +142,14 @@ class ContactInfoManipulator {
         displayLabel.removeSubrange(removeEndRange)
         return String(displayLabel)
     }
+	static func makeContactDisplayArray(contactInfo: [(String, String)])->[String]{
+		var infoStrings=[String]()
+		for info in contactInfo {
+			if info.0 != "" {
+				infoStrings.append(info.0+":")
+			}
+			infoStrings.append(info.1)
+		}
+		return infoStrings
+	}
 }
