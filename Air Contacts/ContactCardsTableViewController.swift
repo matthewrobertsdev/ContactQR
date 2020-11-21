@@ -10,6 +10,12 @@ class ContactCardsTableViewController: UITableViewController {
 	var selectedRow = -1
     override func viewDidLoad() {
         super.viewDidLoad()
+		#if targetEnvironment(macCatalyst)
+		navigationController?.navigationBar.prefersLargeTitles=true
+		#endif
+		if UIDevice.current.userInterfaceIdiom == .pad {
+			navigationController?.navigationBar.prefersLargeTitles=true
+		}
 		if let splitViewController=splitViewController {
 			splitViewController.primaryBackgroundStyle = .sidebar
 		}

@@ -19,7 +19,7 @@ class ContactCardViewController: UIViewController {
 		let qrCodeBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "qrcode"), style: .plain,
 												target: self, action: nil)
 		navigationItem.rightBarButtonItems=[shareBarButtonItem, qrCodeBarButtonItem]
-		navigationItem.title="Contact Card"
+		navigationItem.title=""
 		//tableView.dataSource=self
 		loadContact()
 		let notificationCenter=NotificationCenter.default
