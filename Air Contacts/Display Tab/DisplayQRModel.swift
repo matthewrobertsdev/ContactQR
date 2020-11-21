@@ -10,43 +10,30 @@ import Contacts
 /*
  Model for the display qr code view controller
  */
-class DisplayQRModel: NSObject {
-    //the contact to be put in a qr code and displayed
-    private var activeContact: CNContact?
-    //an array of pairs of strings for the data source of the table view
-    private var contactInfoArray: [(String, String)] = []
-    private let contactTVDataSource=ContactDataSource()
-    //the string from the v card
-    private var vCardString: String!
-    //the qr code containing the string from the v card
+class DisplayQRModel {
+    private var contact=CNContact()
     private var qrCode: UIImage!
-    func updateActiveContact(activeContact: CNContact) {
-        self.activeContact=activeContact
-    }
-    //get a v card string from a CNContact
-    private func makeVCardString() {
-        vCardString=ContactDataConverter.cnContactToVCardString(cnContact: activeContact!)
-    }
-    func getContactTVDataSource() -> ContactDataSource {
-        return contactTVDataSource
-    }
-    //get the v card String
-    func getVCardString() -> String {
-        return vCardString
-    }
+	init() {
+		guard let vCardString=ActiveContactCard.shared.contactCard?.vCardString else {
+			return
+		}
+		do {
+			contact=try ContactDataConverter.createCNContactArray(vCardString: vCardString)[0]
+			//tableView.reloadData()
+		} catch {
+			print("Error making CNContact from VCard String.")
+		}
+	}
     //get a qr code from the active contact
     func makeQRCode() -> UIImage {
-        //ContactDataConverter.cnContactToVCardString(cnContact: activeContact!)
-        qrCode=ContactDataConverter.cnContactToQR_Code(cnContact: activeContact!)
+        qrCode=ContactDataConverter.cnContactToQR_Code(cnContact: contact)
         return qrCode
     }
-    //get the qr code
-    func getQRCode() -> UIImage {
-        return qrCode
-    }
-    //update the array for the table view data source
-    func updateContactInfoTVDataSource() {
-        contactInfoArray=ContactInfoManipulator.makeContactInfoArray(cnContact: activeContact)
-        contactTVDataSource.updateModel(contactInfoArray: contactInfoArray)
-    }
+	func getContactCardTitle() -> String {
+		if let filename=ActiveContactCard.shared.contactCard?.filename {
+			return filename
+		} else {
+			return ""
+		}
+	}
 }

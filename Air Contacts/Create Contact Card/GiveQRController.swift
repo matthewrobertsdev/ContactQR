@@ -61,7 +61,7 @@ class GiveQRController: NSObject, UITableViewDelegate {
         }
         if notification.object is GiveQRController {
             animated=true
-            displayQRViewController.savable=false
+            //displayQRViewController.savable=false
         }
         viewController.navigationController?.pushViewController(displayQRViewController, animated: animated)
     }

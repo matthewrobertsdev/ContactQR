@@ -17,7 +17,7 @@ class ContactCardViewController: UIViewController {
 		let shareBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
 											   style: .plain, target: self, action: nil)
 		let qrCodeBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "qrcode"), style: .plain,
-												target: self, action: nil)
+												target: self, action: #selector(showQRCodeViewController))
 		navigationItem.rightBarButtonItems=[shareBarButtonItem, qrCodeBarButtonItem]
 		navigationItem.title=""
 		//tableView.dataSource=self
@@ -41,8 +41,6 @@ class ContactCardViewController: UIViewController {
 		titleLabel.text=contactCard.filename
 		do {
 			let contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)[0]
-			//let contactInfoArray=ContactInfoManipulator.makeContactInfoArray(cnContact: contact)
-			//contactDisplayStrings=ContactInfoManipulator.makeContactDisplayArray(contactInfo: contactInfoArray)
 			contactInfoLabel.text=ContactInfoManipulator.makeContactDisplayString(cnContact: contact)
 			//tableView.reloadData()
 		} catch {
@@ -69,4 +67,19 @@ class ContactCardViewController: UIViewController {
 		return cell
 	}
 */
+	@objc func showQRCodeViewController() {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		guard let displayQRViewController=storyboard.instantiateViewController(withIdentifier: "DisplayQRViewController")
+				as? DisplayQRViewController else {
+			print("Failed to instantiate DisplayQRViewController")
+			return
+		}
+		let navigationController=UINavigationController(rootViewController: displayQRViewController)
+		var animated=true
+		#if targetEnvironment(macCatalyst)
+			animated=false
+		#endif
+		self.present(navigationController, animated: animated) {
+		}
+	}
 }
