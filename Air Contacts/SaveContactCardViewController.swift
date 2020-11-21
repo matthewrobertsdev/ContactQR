@@ -19,7 +19,11 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 	@IBAction func save(_ sender: Any) {
 		let contactCard=ContactCard(filename: titleTextField.text ?? "No Title Given", cnContact: contact)
 		ContactCardStore.sharedInstance.contacts.append(contactCard)
-		dismiss(animated: true) {
+		var animated=true
+		#if targetEnvironment(macCatalyst)
+			animated=false
+		#endif
+		dismiss(animated: animated) {
 			NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: nil)
 		}
 	}

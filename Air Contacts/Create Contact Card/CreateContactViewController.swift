@@ -141,8 +141,12 @@ class CreateContactViewController: UIViewController {
 		saveContactCardViewController.contact=contact
 		weak var contactCardTableViewController=presentingViewController
 		let navigationController=UINavigationController(rootViewController: saveContactCardViewController)
-		dismiss(animated: true) {
-			contactCardTableViewController?.present(navigationController, animated: true)
+		var animated=true
+		#if targetEnvironment(macCatalyst)
+			animated=false
+		#endif
+		dismiss(animated: animated) {
+			contactCardTableViewController?.present(navigationController, animated: animated)
 		}
 	}
 	func fillWithContact(contact: CNContact) {

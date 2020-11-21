@@ -72,7 +72,11 @@ class ContactCardsTableViewController: UITableViewController {
         return cell
     }
 	@IBAction func createContactCardFromContact(_ sender: Any) {
-		self.present(PickContactViewController(), animated: true) {
+		var animated=true
+		#if targetEnvironment(macCatalyst)
+			animated=false
+		#endif
+		self.present(PickContactViewController(), animated: animated) {
 		}
 	}
 	override func tableView(_ tableView: UITableView,

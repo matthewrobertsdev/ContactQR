@@ -33,8 +33,12 @@ class PickContactViewController: CNContactPickerViewController, CNContactPickerD
 			createContactViewController.contact=contact
 			weak var contactCardTableViewController=presentingViewController
 			let navigationController=UINavigationController(rootViewController: createContactViewController)
-			dismiss(animated: true) {
-				contactCardTableViewController?.present(navigationController, animated: true)
+			var animated=true
+			#if targetEnvironment(macCatalyst)
+				animated=false
+			#endif
+			dismiss(animated: animated) {
+				contactCardTableViewController?.present(navigationController, animated: animated)
 			}
 			//NotificationCenter.default.post(name: .contactPicked, object: self, userInfo: ["animated": false])
 		}
