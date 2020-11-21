@@ -10,6 +10,9 @@ class ContactCardsTableViewController: UITableViewController {
 	var selectedRow = -1
     override func viewDidLoad() {
         super.viewDidLoad()
+		if let splitViewController=splitViewController {
+			splitViewController.primaryBackgroundStyle = .sidebar
+		}
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(selectNewContact), name: .contactCreated, object: nil)
         // Uncomment the following line to preserve selection between presentations
