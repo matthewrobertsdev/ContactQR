@@ -142,7 +142,7 @@ class ContactInfoManipulator {
         displayLabel.removeSubrange(removeEndRange)
         return String(displayLabel)
     }
-	static func makeContactDisplayArray(contactInfo: [(String, String)])->[String]{
+	static func makeContactDisplayArray(contactInfo: [(String, String)]) -> [String] {
 		var infoStrings=[String]()
 		for info in contactInfo {
 			if info.0 != "" {
@@ -151,5 +151,57 @@ class ContactInfoManipulator {
 			infoStrings.append(info.1)
 		}
 		return infoStrings
+	}
+	static func makeContactDisplayString(cnContact: CNContact?) -> String {
+		var displayString=""
+		guard let cnContact=cnContact else {
+			return ""
+		}
+			if !(cnContact.namePrefix=="") {
+				displayString+="Prefix: \(cnContact.namePrefix)\n"
+			}
+			if !(cnContact.givenName=="") {
+				displayString+="First Name: \(cnContact.givenName)\n"
+			}
+		if !(cnContact.familyName=="") {
+			displayString+="Family Name: \(cnContact.familyName)\n"
+			}
+			if !(cnContact.nameSuffix=="") {
+				displayString+="Suffix: \(cnContact.nameSuffix)\n"
+			}
+			if !(cnContact.nickname=="") {
+				displayString+="Nickname: \(cnContact.nickname)\n"
+			}
+			for phoneNumber in cnContact.phoneNumbers {
+				var phoneLabelString=""
+				if let phoneNumberLabel=phoneNumber.label {
+					phoneLabelString =
+					ContactInfoManipulator.makeContactLabel(label: phoneNumberLabel)
+				}
+				displayString+="\(phoneLabelString) Phone: \(phoneNumber.value.stringValue)\n"
+			}
+			for emailAddress in cnContact.emailAddresses {
+				var emailLabelString=""
+				if let emailLabel=emailAddress.label { emailLabelString =
+					ContactInfoManipulator.makeContactLabel(label: emailLabel)
+				}
+				displayString+="\(emailLabelString) Email: \(emailAddress.value)\n"
+			}
+			for urlAddress in (cnContact.urlAddresses) {
+				var urlAddressLabelString=""
+				if let urlAddressLabel=urlAddress.label { urlAddressLabelString =
+					ContactInfoManipulator.makeContactLabel(label: urlAddressLabel)
+				}
+				displayString+="\(urlAddressLabelString) URL: \(urlAddress.value)\n"
+			}
+			for address in cnContact.postalAddresses {
+				var addressLabelString=""
+				if let addressLabel=address.label { addressLabelString =
+					ContactInfoManipulator.makeContactLabel(label: addressLabel)
+				}
+				displayString+="\(addressLabelString) Address: \(address.value.street as String)\n"
+				displayString+="\(address.value.city as String) \(address.value.state)\n\(address.value.postalCode)"
+			}
+		return displayString
 	}
 }

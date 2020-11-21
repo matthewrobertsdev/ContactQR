@@ -6,9 +6,10 @@
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 import UIKit
-class ContactCardViewController: UIViewController, UITableViewDataSource {
-	@IBOutlet weak var tableView: UITableView!
+class ContactCardViewController: UIViewController {
 	@IBOutlet weak var titleLabel: UILabel!
+	@IBOutlet weak var scrollView: UIScrollView!
+	@IBOutlet weak var contactInfoLabel: UILabel!
 	var contactCard: ContactCard?
 	private var contactDisplayStrings=[String]()
     override func viewDidLoad() {
@@ -19,30 +20,31 @@ class ContactCardViewController: UIViewController, UITableViewDataSource {
 												target: self, action: nil)
 		navigationItem.rightBarButtonItems=[shareBarButtonItem, qrCodeBarButtonItem]
 		navigationItem.title="Contact Card"
-		tableView.dataSource=self
+		//tableView.dataSource=self
 		loadContact()
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .contactChanged, object: nil)
     }
 	func showOrHideTableView() {
 		if contactCard==nil {
-			tableView.isHidden=true
+			scrollView.isHidden=true
 		} else {
-			tableView.isHidden=false
+			scrollView.isHidden=false
 		}
 	}
 	@objc func loadContact() {
 		guard let contactCard=ActiveContactCard.shared.contactCard else {
-			tableView.isHidden=true
+			scrollView.isHidden=true
 			return
 		}
-		tableView.isHidden=false
+		scrollView.isHidden=false
 		titleLabel.text=contactCard.filename
 		do {
 			let contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)[0]
-			let contactInfoArray=ContactInfoManipulator.makeContactInfoArray(cnContact: contact)
-			contactDisplayStrings=ContactInfoManipulator.makeContactDisplayArray(contactInfo: contactInfoArray)
-			tableView.reloadData()
+			//let contactInfoArray=ContactInfoManipulator.makeContactInfoArray(cnContact: contact)
+			//contactDisplayStrings=ContactInfoManipulator.makeContactDisplayArray(contactInfo: contactInfoArray)
+			contactInfoLabel.text=ContactInfoManipulator.makeContactDisplayString(cnContact: contact)
+			//tableView.reloadData()
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
@@ -55,6 +57,7 @@ class ContactCardViewController: UIViewController, UITableViewDataSource {
         // Pass the selected object to the new view controller.
     }
     */
+	/*
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return contactDisplayStrings.count
 	}
@@ -65,4 +68,5 @@ class ContactCardViewController: UIViewController, UITableViewDataSource {
 		cell.infoLabel.text=contactDisplayStrings[indexPath.row]
 		return cell
 	}
+*/
 }
