@@ -44,8 +44,6 @@ class PickContactViewController: CNContactPickerViewController, CNContactPickerD
 		}
     }
 }
-
 extension Notification.Name {
-	//Reference as .contactChanged when type inference is possible
 	static let contactPicked=Notification.Name("contact-picked")
 }

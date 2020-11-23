@@ -18,7 +18,8 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
     }
 	@IBAction func save(_ sender: Any) {
 		let contactCard=ContactCard(filename: titleTextField.text ?? "No Title Given", cnContact: contact)
-		ContactCardStore.sharedInstance.contacts.append(contactCard)
+		ContactCardStore.sharedInstance.contactCards.append(contactCard)
+		ContactCardStore.sharedInstance.saveContacts()
 		var animated=true
 		#if targetEnvironment(macCatalyst)
 			animated=false

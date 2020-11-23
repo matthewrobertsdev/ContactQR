@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     //save before entering the background
     func applicationDidEnterBackground(_ application: UIApplication) {
-        save()
     }
     func applicationWillEnterForeground(_ application: UIApplication) {
     }
@@ -30,10 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     //save before ending
     func applicationWillTerminate(_ application: UIApplication) {
-        save()
-    }
-    func save() {
-        StoredContacts.shared.tryToSave()
     }
 }
 

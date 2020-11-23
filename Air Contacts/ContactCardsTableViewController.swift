@@ -7,20 +7,15 @@
 //
 import UIKit
 class ContactCardsTableViewController: UITableViewController {
-	var selectedRow = -1
+	var selectedCardUUID: String?
     override func viewDidLoad() {
         super.viewDidLoad()
-		#if targetEnvironment(macCatalyst)
-		navigationController?.navigationBar.prefersLargeTitles=true
-		#endif
-		if UIDevice.current.userInterfaceIdiom == .pad {
-			navigationController?.navigationBar.prefersLargeTitles=true
-		}
 		if let splitViewController=splitViewController {
 			splitViewController.primaryBackgroundStyle = .sidebar
 		}
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(selectNewContact), name: .contactCreated, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(removeContact), name: .contactDeleted, object: nil)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -40,10 +35,16 @@ class ContactCardsTableViewController: UITableViewController {
 	}
 	@objc func selectNewContact() {
 		tableView.reloadData()
-		let lastRowNumber=ContactCardStore.sharedInstance.contacts.count-1
+		let lastRowNumber=ContactCardStore.sharedInstance.contactCards.count-1
 		tableView.selectRow(at: IndexPath(row: lastRowNumber, section: 0), animated: true, scrollPosition: .middle)
-			selectedRow=lastRowNumber
+		selectedCardUUID=ContactCardStore.sharedInstance.contactCards.last?.uuidString
 			showContactCard()
+	}
+	@objc func removeContact(notification: NSNotification) {
+		guard let removalIndex=notification.userInfo?["index"] as? Int else {
+			return
+		}
+		tableView.deleteRows(at: [IndexPath(row: removalIndex, section: 0)], with: .automatic)
 	}
 	func showContactCard() {
 		guard let splitViewController=splitViewController else {
@@ -54,7 +55,7 @@ class ContactCardsTableViewController: UITableViewController {
 		}
 		//bug: should be only 14 and above according to plist
 		if #available(iOS 14.0, *) {
-			ActiveContactCard.shared.contactCard=ContactCardStore.sharedInstance.contacts[indexPath.row]
+			ActiveContactCard.shared.contactCard=ContactCardStore.sharedInstance.contactCards[indexPath.row]
 			NotificationCenter.default.post(name: .contactChanged, object: nil)
 			splitViewController.show(.secondary)
 		} else {
@@ -67,14 +68,14 @@ class ContactCardsTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return ContactCardStore.sharedInstance.contacts.count
+        return ContactCardStore.sharedInstance.contactCards.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell=tableView.dequeueReusableCell(withIdentifier: "SavedContactCell", for: indexPath)
 				as? SavedContactCell else {
 			return UITableViewCell()
 		}
-		cell.nameLabel.text=ContactCardStore.sharedInstance.contacts[indexPath.row].filename
+		cell.nameLabel.text=ContactCardStore.sharedInstance.contactCards[indexPath.row].filename
         return cell
     }
 	@IBAction func createContactCardFromContact(_ sender: Any) {
@@ -86,12 +87,13 @@ class ContactCardsTableViewController: UITableViewController {
 		}
 	}
 	override func tableView(_ tableView: UITableView,
-								didSelectRowAt indexPath: IndexPath) {
+							didSelectRowAt indexPath: IndexPath) {
 		guard let splitViewController=splitViewController else {
 			return
 		}
-		if splitViewController.isCollapsed || selectedRow != indexPath.row {
-			selectedRow=indexPath.row
+		let currentUUID=ContactCardStore.sharedInstance.contactCards[indexPath.row].uuidString
+		if splitViewController.isCollapsed || selectedCardUUID != currentUUID {
+			selectedCardUUID=currentUUID
 			showContactCard()
 		}
 	}
@@ -104,12 +106,14 @@ class ContactCardsTableViewController: UITableViewController {
     */
     /*
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle:
+		UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            // Create a new instance of the appropriate class, insert it
+				into the array, and add a new row to the table view
         }    
     }
     */
