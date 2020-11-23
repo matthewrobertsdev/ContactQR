@@ -6,6 +6,7 @@
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 import UIKit
+import Contacts
 class ContactCardViewController: UIViewController {
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var scrollView: UIScrollView!
@@ -15,7 +16,7 @@ class ContactCardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		let shareBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
-											   style: .plain, target: self, action: nil)
+											   style: .plain, target: self, action: #selector(shareContact))
 		let qrCodeBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "qrcode"), style: .plain,
 												target: self, action: #selector(showQRCodeViewController))
 		navigationItem.rightBarButtonItems=[shareBarButtonItem, qrCodeBarButtonItem]
@@ -83,6 +84,42 @@ class ContactCardViewController: UIViewController {
 			animated=false
 		#endif
 		self.present(navigationController, animated: animated) {
+		}
+	}
+	@objc func shareContact(sender: Any?) {
+		guard let contactCard=contactCard else {
+			return
+		}
+		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+				return
+			}
+		var filename="Contact"
+		var contact=CNContact()
+		do {
+			contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)[0]
+			//tableView.reloadData()
+		} catch {
+			print("Error making CNContact from VCard String.")
+		}
+		if let name=CNContactFormatter().string(from: contact) {
+			filename=name
+		}
+		let fileURL = directoryURL.appendingPathComponent(filename)
+			.appendingPathExtension("vcf")
+		do {
+		let data = try CNContactVCardSerialization.data(with: [contact])
+
+		try data.write(to: fileURL, options: [.atomicWrite])
+
+			let activityViewController = UIActivityViewController(
+				activityItems: [fileURL],
+				applicationActivities: nil
+			)
+			activityViewController.popoverPresentationController?.barButtonItem=sender as? UIBarButtonItem
+
+			present(activityViewController, animated: true)
+		} catch {
+			print("Error trying to make vCard file to share")
 		}
 	}
 	@IBAction func deleteContact(_ sender: Any) {
