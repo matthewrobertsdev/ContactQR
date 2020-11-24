@@ -51,3 +51,7 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
     }
     */
 }
+extension Notification.Name {
+	//Reference as .contactChanged when type inference is possible
+	static let contactCreated=Notification.Name("contact-created")
+}

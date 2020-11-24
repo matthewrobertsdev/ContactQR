@@ -14,7 +14,8 @@ class PersistenceManager {
     private init() {
     }
     func saveData(appendingPath: String, data: Data) throws {
-        let path = try fileManager.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let path = try fileManager.url(for: .applicationSupportDirectory, in:
+										.userDomainMask, appropriateFor: nil, create: true)
         let fileURL = path.appendingPathComponent(appendingPath)
         if fileManager.fileExists(atPath: fileURL.absoluteString) {
         } else {
@@ -23,12 +24,14 @@ class PersistenceManager {
         try data.write(to: fileURL, options: .atomic)
     }
     func loadData(appendingPath: String) throws -> Data? {
-		let path = try fileManager.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+		let path = try fileManager.url(for: .applicationSupportDirectory, in:
+										.userDomainMask, appropriateFor: nil, create: false)
         let fileURL = path.appendingPathComponent(appendingPath)
        return try Data(contentsOf: fileURL)
     }
     func saveString(appendingPath: String, string: String) throws {
-        let path = try fileManager.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let path = try fileManager.url(for: .applicationSupportDirectory, in:
+										.userDomainMask, appropriateFor: nil, create: true)
         let fileURL = path.appendingPathComponent(appendingPath)
         if FileManager.default.fileExists(atPath: fileURL.absoluteString) {
         } else {

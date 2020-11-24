@@ -64,7 +64,8 @@ class ContactCardViewController: UIViewController {
 		return contactDisplayStrings.count
 	}
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell=tableView.dequeueReusableCell(withIdentifier: "ContactInfoTableViewCell") as? ContactInfoTableViewCell else {
+		guard let cell=tableView.dequeueReusableCell(withIdentifier: "ContactInfoTableViewCell") as?
+			ContactInfoTableViewCell else {
 			return UITableViewCell()
 		}
 		cell.infoLabel.text=contactDisplayStrings[indexPath.row]

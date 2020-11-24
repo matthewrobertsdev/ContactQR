@@ -10,9 +10,10 @@ class MainSplitViewController: UISplitViewController, UISplitViewControllerDeleg
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.delegate = self
-		self.preferredDisplayMode = .allVisible
+		self.preferredDisplayMode = .oneBesideSecondary
 	}
-	func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
+	func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary
+								secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
 	return false
 	}
 	@available(iOS 14.0, *)

@@ -5,9 +5,7 @@
 //  Created by Matt Roberts on 11/19/20.
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
-
 import UIKit
-
 class ContactInfoTableViewCell: UITableViewCell {
 	@IBOutlet weak var infoLabel: UILabel!
 	override func awakeFromNib() {

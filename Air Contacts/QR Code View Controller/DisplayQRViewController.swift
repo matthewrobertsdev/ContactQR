@@ -15,7 +15,7 @@ class DisplayQRViewController: UIViewController {
         prepareView()
     }
 	func prepareView() {
-		qrImageView.image=getTintedForeground(image: model.makeQRCode(), color:UIColor.systemGreen)
+		qrImageView.image=getTintedForeground(image: model.makeQRCode(), color: UIColor.systemGreen)
 		contactCardTitleLabel.text=model.getContactCardTitle()
 	}
 	@IBAction func done(_ sender: Any) {
