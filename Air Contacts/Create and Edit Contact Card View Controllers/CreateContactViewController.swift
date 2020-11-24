@@ -53,7 +53,7 @@ class CreateContactViewController: UIViewController {
 		}
 		if  !(mobilePhoneTextField.text=="") {
 		let phone=CNPhoneNumber(stringValue: mobilePhoneTextField.text ?? "")
-			contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelPhoneNumberMobile, value:phone))
+			contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelPhoneNumberMobile, value: phone))
 		}
 		if  !(workPhone1TextField.text=="") {
 		let phone=CNPhoneNumber(stringValue: workPhone1TextField.text ?? "")
@@ -107,7 +107,8 @@ class CreateContactViewController: UIViewController {
 		let url=NSString(string: otherUrl2TextField.text ?? "")
 			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelOther, value: url))
 		}
-		if !(homeStreetTextField.text=="") || !(homeCityTextField.text=="") || !(homeStateTextField.text=="") || !(homeZipTextField.text=="") {
+		if !(homeStreetTextField.text=="") || !(homeCityTextField.text=="") ||
+			!(homeStateTextField.text=="") || !(homeZipTextField.text=="") {
 		let address=CNMutablePostalAddress()
 			address.street=homeStreetTextField.text ?? ""
 			address.city=homeCityTextField.text ?? ""
@@ -115,7 +116,8 @@ class CreateContactViewController: UIViewController {
 			address.postalCode=homeZipTextField.text ?? ""
 			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelHome, value: address))
 			}
-		if !(workStreetTextField.text=="") || !(workCityTextField.text=="") || !(workStateTextField.text=="") || !(workZipTextField.text=="") {
+		if !(workStreetTextField.text=="") || !(workCityTextField.text=="") ||
+			!(workStateTextField.text=="") || !(workZipTextField.text=="") {
 		let address=CNMutablePostalAddress()
 			address.street=workStreetTextField.text ?? ""
 			address.city=workCityTextField.text ?? ""
@@ -123,7 +125,8 @@ class CreateContactViewController: UIViewController {
 			address.postalCode=workZipTextField.text ?? ""
 			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelWork, value: address))
 			}
-		if !(otherStreetTextField.text=="") || !(otherCityTextField.text=="") || !(otherStateTextField.text=="") || !(otherZipTextField.text=="") {
+		if !(otherStreetTextField.text=="") || !(otherCityTextField.text=="") ||
+			!(otherStateTextField.text=="") || !(otherZipTextField.text=="") {
 		let address=CNMutablePostalAddress()
 			address.street=otherStreetTextField.text ?? ""
 			address.city=otherCityTextField.text ?? ""
@@ -160,7 +163,7 @@ class CreateContactViewController: UIViewController {
 			return labeledNumber.label==CNLabelWork
 		})
 		workPhone1TextField.text=workPhoneNumbers.first?.value.stringValue
-		if (workPhoneNumbers.count>1) {
+		if workPhoneNumbers.count>1 {
 			workPhone2TextField.text=workPhoneNumbers[1].value.stringValue
 		}
 		homePhoneTextField.text=phoneNumbers.first(where: {  (labeledNumber) in
@@ -180,7 +183,7 @@ class CreateContactViewController: UIViewController {
 			return labeledEmail.label==CNLabelWork
 		})
 		workEmail1TextField.text=workEmails.first?.value.stringValue
-		if (workPhoneNumbers.count>1) {
+		if workPhoneNumbers.count>1 {
 			workEmail2TextField.text=workEmails[1].value.stringValue
 		}
 		/*

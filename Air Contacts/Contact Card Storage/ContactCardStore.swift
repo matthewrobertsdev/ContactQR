@@ -10,7 +10,7 @@ import Contacts
 class ContactCardStore {
 	static let sharedInstance=ContactCardStore()
 	var contactCards=[ContactCard]()
-	private init(){
+	private init() {
 		loadContacts()
 	}
 	func saveContacts() {

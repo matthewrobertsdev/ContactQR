@@ -25,8 +25,8 @@ class PickContactViewController: CNContactPickerViewController, CNContactPickerD
 		if picked==false {
 			//ActiveContactCard.shared.contact=contact
 			let storyboard = UIStoryboard(name: "Main", bundle: nil)
-			guard let createContactViewController=storyboard.instantiateViewController(withIdentifier: "CreateContactViewController")
-					as? CreateContactViewController else {
+			guard let createContactViewController=storyboard.instantiateViewController(withIdentifier:
+																						"CreateContactViewController") as? CreateContactViewController else {
 				print("Failed to instantiate CreateContactViewController")
 				return
 			}

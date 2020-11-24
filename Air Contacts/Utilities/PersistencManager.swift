@@ -40,7 +40,8 @@ class PersistenceManager {
         try string.write(to: fileURL, atomically: true, encoding: .utf8)
     }
     func loadString(appendingPath: String) throws ->String? {
-		let path = try fileManager.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+		let path = try fileManager.url(for: .applicationSupportDirectory, in:
+										.userDomainMask, appropriateFor: nil, create: false)
         let fileURL = path.appendingPathComponent(appendingPath)
         return try String(contentsOf: fileURL, encoding: .utf8)
     }

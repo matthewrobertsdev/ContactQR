@@ -269,7 +269,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="514"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dob-FW-hfJ">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dob-FW-hfJ">
                                 <rect key="frame" x="0.0" y="56" width="320" height="458"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="ANh-ce-Scc">
@@ -591,8 +591,10 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="ANh-ce-Scc" firstAttribute="leading" secondItem="dob-FW-hfJ" secondAttribute="leading" constant="7" id="1Jv-EK-ay9"/>
                                     <constraint firstItem="ANh-ce-Scc" firstAttribute="top" secondItem="dob-FW-hfJ" secondAttribute="top" constant="7" id="3CW-jX-veI"/>
                                     <constraint firstAttribute="bottom" secondItem="ANh-ce-Scc" secondAttribute="bottom" constant="7" id="6oB-Bh-keS"/>
+                                    <constraint firstAttribute="trailing" secondItem="ANh-ce-Scc" secondAttribute="trailing" constant="7" id="e3S-TS-OSE"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="PMd-B9-zJl"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="wJb-kS-n9Z"/>
@@ -737,7 +739,7 @@
         <!--Navigation Controller-->
         <scene sceneID="FPL-RH-2XU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dAX-eH-brL" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SaveContactCardNavoigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dAX-eH-brL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FxD-h3-l0Y">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
@@ -755,7 +757,7 @@
         <!--Old-->
         <scene sceneID="tJw-2z-2ZK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cba-G8-qMB" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ShowContactQRNavoigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cba-G8-qMB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Old" id="M7i-rW-UUq"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cGL-qm-Kgr">
