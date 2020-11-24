@@ -143,14 +143,16 @@ class CreateContactViewController: UIViewController {
 		}
 		saveContactCardViewController.contact=contact
 		weak var contactCardTableViewController=presentingViewController
-		let navigationController=UINavigationController(rootViewController: saveContactCardViewController)
+		//let navigationController=UINavigationController(rootViewController: saveContactCardViewController)
 		var animated=true
 		#if targetEnvironment(macCatalyst)
 			animated=false
 		#endif
-		dismiss(animated: animated) {
+		/*dismiss(animated: animated) {
 			contactCardTableViewController?.present(navigationController, animated: animated)
 		}
+*/
+		navigationController?.pushViewController(saveContactCardViewController, animated: true)
 	}
 	func fillWithContact(contact: CNContact) {
 		firstNameTextField.text=contact.givenName

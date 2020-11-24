@@ -36,7 +36,9 @@ class ContactCardsTableViewController: UITableViewController {
 	@objc func selectNewContact() {
 		tableView.reloadData()
 		let lastRowNumber=ContactCardStore.sharedInstance.contactCards.count-1
-		tableView.selectRow(at: IndexPath(row: lastRowNumber, section: 0), animated: true, scrollPosition: .middle)
+		let indexPath=IndexPath(row: lastRowNumber, section: 0)
+		//tableView.insertRows(at: [indexPath], with: .left)
+		tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
 		selectedCardUUID=ContactCardStore.sharedInstance.contactCards.last?.uuidString
 			showContactCard()
 	}
@@ -44,7 +46,7 @@ class ContactCardsTableViewController: UITableViewController {
 		guard let removalIndex=notification.userInfo?["index"] as? Int else {
 			return
 		}
-		tableView.deleteRows(at: [IndexPath(row: removalIndex, section: 0)], with: .automatic)
+		tableView.deleteRows(at: [IndexPath(row: removalIndex, section: 0)], with: .none)
 	}
 	func showContactCard() {
 		guard let splitViewController=splitViewController else {

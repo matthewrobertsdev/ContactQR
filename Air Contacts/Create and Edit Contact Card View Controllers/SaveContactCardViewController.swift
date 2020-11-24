@@ -24,12 +24,18 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 		#if targetEnvironment(macCatalyst)
 			animated=false
 		#endif
+		navigationController?.dismiss(animated: true, completion: {
+			NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: nil)
+		})
+		/*
 		dismiss(animated: animated) {
 			NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: nil)
 		}
+*/
 	}
 	@IBAction func cancel(_ sender: Any) {
-		dismiss(animated: true)
+		//dismiss(animated: true)
+		navigationController?.dismiss(animated: true)
 	}
 	@objc func enableOrDisableSaveButton() {
 		if let text=titleTextField.text {
