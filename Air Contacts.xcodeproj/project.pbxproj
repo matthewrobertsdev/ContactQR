@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9F34C273255CCF1900B9DEA4 /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */; };
 		9F3FDD0121CC376F00D2FBB2 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */; };
+		9F422691256CD5BF00F1A0FA /* CircularColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F422690256CD5BF00F1A0FA /* CircularColorView.swift */; };
 		9F56C73C253BD2C8006D8DE6 /* TintImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F56C73B253BD2C8006D8DE6 /* TintImages.swift */; };
 		9F5C647221D3E10A00832897 /* ContactInfoManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5C647121D3E10A00832897 /* ContactInfoManipulator.swift */; };
 		9F7147AB256CCCC600A979B8 /* ContactCardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7147AA256CCCC600A979B8 /* ContactCardStore.swift */; };
@@ -66,6 +67,7 @@
 /* Begin PBXFileReference section */
 		9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
 		9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDataConverter.swift; sourceTree = "<group>"; };
+		9F422690256CD5BF00F1A0FA /* CircularColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularColorView.swift; sourceTree = "<group>"; };
 		9F56C72E253BCB96006D8DE6 /* Air Contacts.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Air Contacts.entitlements"; sourceTree = "<group>"; };
 		9F56C73B253BD2C8006D8DE6 /* TintImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintImages.swift; sourceTree = "<group>"; };
 		9F5C647121D3E10A00832897 /* ContactInfoManipulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoManipulator.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */,
+				9F422690256CD5BF00F1A0FA /* CircularColorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				9FB3E45F21C967410011752F /* PickContactViewController.swift in Sources */,
 				9FB3E46521C96F990011752F /* DisplayQRModel.swift in Sources */,
 				9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */,
+				9F422691256CD5BF00F1A0FA /* CircularColorView.swift in Sources */,
 				9F7147AB256CCCC600A979B8 /* ContactCardStore.swift in Sources */,
 				9FCA500B22A75CE90004C20F /* ActiveContactCard.swift in Sources */,
 				9FEC6192256229DE004A03BE /* SaveContactCardViewController.swift in Sources */,

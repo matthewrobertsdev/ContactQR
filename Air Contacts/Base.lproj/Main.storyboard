@@ -162,18 +162,32 @@
                                     <rect key="frame" x="0.0" y="0.0" width="428" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NFX-TQ-tAC" customClass="CircularColorView" customModule="Air_Contacts" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="17.333333333333336" width="17.666666666666671" height="17.333333333333336"/>
+                                            <color key="backgroundColor" systemColor="labelColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="17.5" id="NKQ-hU-f4Q"/>
+                                                <constraint firstAttribute="width" constant="17.5" id="Up1-lX-crE"/>
+                                            </constraints>
+                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ContactCard Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Uv-2Q-nAo">
-                                            <rect key="frame" x="15" y="11" width="398" height="34.666666666666664"/>
+                                            <rect key="frame" x="45.666666666666657" y="5" width="367.33333333333337" height="42"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="ZQ9-8G-rPT"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="8Uv-2Q-nAo" secondAttribute="bottom" constant="6.5" id="giG-M7-72b"/>
-                                        <constraint firstItem="8Uv-2Q-nAo" firstAttribute="leading" secondItem="7cN-MP-4h6" secondAttribute="leading" constant="15" id="nfW-Cy-l53"/>
+                                        <constraint firstItem="8Uv-2Q-nAo" firstAttribute="leading" secondItem="NFX-TQ-tAC" secondAttribute="trailing" constant="8" symbolic="YES" id="75L-Pm-eT2"/>
+                                        <constraint firstAttribute="bottom" secondItem="8Uv-2Q-nAo" secondAttribute="bottom" constant="5" id="azJ-Fh-vZN"/>
+                                        <constraint firstItem="8Uv-2Q-nAo" firstAttribute="top" secondItem="7cN-MP-4h6" secondAttribute="top" constant="5" id="fhn-sd-JId"/>
+                                        <constraint firstItem="8Uv-2Q-nAo" firstAttribute="centerY" secondItem="7cN-MP-4h6" secondAttribute="centerY" id="mHi-1j-uhz"/>
+                                        <constraint firstItem="NFX-TQ-tAC" firstAttribute="leading" secondItem="7cN-MP-4h6" secondAttribute="leading" constant="20" symbolic="YES" id="rA9-GE-Jlz"/>
                                         <constraint firstAttribute="trailing" secondItem="8Uv-2Q-nAo" secondAttribute="trailing" constant="15" id="tEf-Po-Knd"/>
-                                        <constraint firstItem="8Uv-2Q-nAo" firstAttribute="top" secondItem="7cN-MP-4h6" secondAttribute="top" constant="11" id="twf-e9-PeO"/>
+                                        <constraint firstItem="NFX-TQ-tAC" firstAttribute="centerY" secondItem="7cN-MP-4h6" secondAttribute="centerY" id="zDp-Fd-eg0"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -201,7 +215,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXb-db-Xvt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="91" y="-654"/>
+            <point key="canvasLocation" x="89.719626168224295" y="-654.42764578833703"/>
         </scene>
         <!--Main Menu-->
         <scene sceneID="XNg-gS-Bgz">
@@ -776,6 +790,9 @@
     </scenes>
     <resources>
         <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
