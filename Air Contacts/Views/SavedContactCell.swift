@@ -11,5 +11,9 @@ import UIKit
 //A very simple tv cell--for formatting in interface builder
 class SavedContactCell: UITableViewCell {
     //name of file for contact
-    @IBOutlet weak var nameLabel: UILabel!
+	@IBOutlet weak var circularColorView: CircularColorView!
+	@IBOutlet weak var nameLabel: UILabel!
+	override func setSelected(_ selected: Bool, animated: Bool) {
+		super.setSelected(selected, animated: animated)
+	}
 }

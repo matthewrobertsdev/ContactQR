@@ -135,24 +135,14 @@ class CreateContactViewController: UIViewController {
 			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelOther, value: address))
 			}
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		guard let saveContactCardViewController=storyboard.instantiateViewController(withIdentifier:
-																						"SaveContactCardViewController")
-				as? SaveContactCardViewController else {
-			print("Failed to instantiate SaveContactCardViewController")
+		guard let chooseColorTableViewController=storyboard.instantiateViewController(withIdentifier:
+																						"ChooseColorTableViewController")
+				as? ChooseColorTableViewController else {
+			print("Failed to instantiate chooseColorTableViewController")
 			return
 		}
-		saveContactCardViewController.contact=contact
-		weak var contactCardTableViewController=presentingViewController
-		//let navigationController=UINavigationController(rootViewController: saveContactCardViewController)
-		var animated=true
-		#if targetEnvironment(macCatalyst)
-			animated=false
-		#endif
-		/*dismiss(animated: animated) {
-			contactCardTableViewController?.present(navigationController, animated: animated)
-		}
-*/
-		navigationController?.pushViewController(saveContactCardViewController, animated: true)
+		chooseColorTableViewController.contact=contact
+		navigationController?.pushViewController(chooseColorTableViewController, animated: true)
 	}
 	func fillWithContact(contact: CNContact) {
 		firstNameTextField.text=contact.givenName

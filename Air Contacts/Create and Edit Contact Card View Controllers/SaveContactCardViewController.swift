@@ -11,19 +11,17 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var saveButton: UIBarButtonItem!
 	@IBOutlet weak var titleTextField: UITextField!
 	var contact=CNContact()
+	var color=ColorChoice.contrastingColor.rawValue
     override func viewDidLoad() {
         super.viewDidLoad()
 		saveButton.isEnabled=false
 		titleTextField.addTarget(self, action: #selector(enableOrDisableSaveButton), for: .editingChanged)
     }
 	@IBAction func save(_ sender: Any) {
-		let contactCard=ContactCard(filename: titleTextField.text ?? "No Title Given", cnContact: contact)
+		let contactCard=ContactCard(filename: titleTextField.text ?? "No Title Given", cnContact: contact, color: color)
+		print(color)
 		ContactCardStore.sharedInstance.contactCards.append(contactCard)
 		ContactCardStore.sharedInstance.saveContacts()
-		var animated=true
-		#if targetEnvironment(macCatalyst)
-			animated=false
-		#endif
 		navigationController?.dismiss(animated: true, completion: {
 			NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: nil)
 		})

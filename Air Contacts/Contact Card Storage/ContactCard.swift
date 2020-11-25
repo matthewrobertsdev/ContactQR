@@ -12,11 +12,12 @@ import Contacts
 class ContactCard: Codable {
     var filename=""
     var vCardString=""
-	var color="contrasting_color"
+	var color=ColorChoice.contrastingColor.rawValue
 	var uuidString: String?
-    init(filename: String, cnContact: CNContact) {
+	init(filename: String, cnContact: CNContact, color: String) {
 		self.filename=filename
         vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
 		uuidString=UUID().uuidString
+		self.color=color
     }
 }

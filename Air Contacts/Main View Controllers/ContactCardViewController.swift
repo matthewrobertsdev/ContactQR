@@ -12,6 +12,7 @@ class ContactCardViewController: UIViewController {
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var contactInfoLabel: UILabel!
 	var contactCard: ContactCard?
+	let colorModel=ColorModel()
 	private var contactDisplayStrings=[String]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,10 @@ class ContactCardViewController: UIViewController {
 											   style: .plain, target: self, action: #selector(shareContact))
 		let qrCodeBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "qrcode"), style: .plain,
 												target: self, action: #selector(showQRCodeViewController))
+		#if targetEnvironment(macCatalyst)
+		let docBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "doc.badge.plus"), style: .plain, target: self, action: nil)
+		navigationItem.leftBarButtonItems=[docBarButtonItem]
+		#endif
 		navigationItem.rightBarButtonItems=[shareBarButtonItem, qrCodeBarButtonItem]
 		navigationItem.title=""
 		navigationItem.largeTitleDisplayMode = .never
@@ -43,6 +48,9 @@ class ContactCardViewController: UIViewController {
 		contactCard=activeCard
 		scrollView.isHidden=false
 		titleLabel.text=activeCard.filename
+		if let color=colorModel.colorsDictionary[activeCard.color] as? UIColor {
+			titleLabel.textColor=color
+		}
 		do {
 			let contact=try ContactDataConverter.createCNContactArray(vCardString: activeCard.vCardString)[0]
 			contactInfoLabel.text=ContactInfoManipulator.makeContactDisplayString(cnContact: contact)

@@ -8,6 +8,7 @@
 import UIKit
 class ContactCardsTableViewController: UITableViewController {
 	var selectedCardUUID: String?
+	let colorModel=ColorModel()
     override func viewDidLoad() {
         super.viewDidLoad()
 		if let splitViewController=splitViewController {
@@ -56,11 +57,10 @@ class ContactCardsTableViewController: UITableViewController {
 			return
 		}
 		//bug: should be only 14 and above according to plist
-		if #available(iOS 14.0, *) {
 			ActiveContactCard.shared.contactCard=ContactCardStore.sharedInstance.contactCards[indexPath.row]
 			NotificationCenter.default.post(name: .contactChanged, object: nil)
+		if #available(iOS 14.0, *) {
 			splitViewController.show(.secondary)
-		} else {
 		}
 	}
     // MARK: - Table view data source
@@ -78,6 +78,9 @@ class ContactCardsTableViewController: UITableViewController {
 			return UITableViewCell()
 		}
 		cell.nameLabel.text=ContactCardStore.sharedInstance.contactCards[indexPath.row].filename
+		if let color=colorModel.colorsDictionary[ContactCardStore.sharedInstance.contactCards[indexPath.row].color] as? UIColor {
+			cell.circularColorView.backgroundColor=color
+		}
         return cell
     }
 	@IBAction func createContactCardFromContact(_ sender: Any) {
