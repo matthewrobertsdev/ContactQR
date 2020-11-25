@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aYm-LV-jC5" initialMenu="gZU-Yg-2BV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aYm-LV-jC5">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -217,35 +216,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXb-db-Xvt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="89.719626168224295" y="-654.42764578833703"/>
-        </scene>
-        <!--Main Menu-->
-        <scene sceneID="XNg-gS-Bgz">
-            <objects>
-                <menu isSystemItem="YES" title="Main Menu" identifier="com.apple.menu.root" id="gZU-Yg-2BV" sceneMemberID="viewController">
-                    <children>
-                        <menu isSystemItem="YES" title="Application" identifier="com.apple.menu.application" id="UkZ-6H-irS">
-                            <systemMenuChildDeletions>
-                                <menuDeletion anchor="com.apple.menu.services"/>
-                            </systemMenuChildDeletions>
-                        </menu>
-                        <menu isSystemItem="YES" title="View" identifier="com.apple.menu.view" id="h8U-rK-gPg">
-                            <systemMenuChildDeletions>
-                                <menuDeletion anchor="com.apple.menu.toolbar"/>
-                            </systemMenuChildDeletions>
-                        </menu>
-                        <menu isSystemItem="YES" title="Help" identifier="com.apple.menu.help" id="x3G-wa-07c">
-                            <systemMenuChildDeletions>
-                                <itemDeletion anchorAction="showHelp:"/>
-                            </systemMenuChildDeletions>
-                        </menu>
-                    </children>
-                    <systemMenuChildDeletions>
-                        <menuDeletion anchor="com.apple.menu.format"/>
-                    </systemMenuChildDeletions>
-                </menu>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IOs-hb-Zrq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-739" y="-1106"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LvG-zQ-Zm6">

@@ -17,6 +17,12 @@ class ContactCardsTableViewController: UITableViewController {
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(selectNewContact), name: .contactCreated, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(removeContact), name: .contactDeleted, object: nil)
+		/*let createNewContactCommand =
+			UIKeyCommand(input: "n",
+						 modifierFlags: [],
+						 action: #selector(createNewContact))
+		addKeyCommand(createNewContactCommand)
+*/
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -103,6 +109,20 @@ class ContactCardsTableViewController: UITableViewController {
 			showContactCard()
 		}
 	}
+	@objc func createNewContact(){
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		guard let createContactViewController=storyboard.instantiateViewController(withIdentifier:
+																					"CreateContactViewController") as? CreateContactViewController else {
+			print("Failed to instantiate CreateContactViewController")
+			return
+		}
+		let navigationController=UINavigationController(rootViewController: createContactViewController)
+		var animated=true
+		#if targetEnvironment(macCatalyst)
+			animated=false
+		#endif
+		present(navigationController, animated: animated)
+	}
 	/*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -144,4 +164,5 @@ class ContactCardsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+	//*
 }

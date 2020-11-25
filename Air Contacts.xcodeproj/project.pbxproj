@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F1EE642256EE47D004F444B /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1EE641256EE47D004F444B /* AppState.swift */; };
 		9F339FF3256E9C9500F31F9F /* ExportContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F339FF2256E9C9500F31F9F /* ExportContactCardViewController.swift */; };
 		9F34C273255CCF1900B9DEA4 /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */; };
 		9F3FDD0121CC376F00D2FBB2 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */; };
@@ -70,6 +71,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9F1EE640256EE479004F444B /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = ../../../../AppState.swift; sourceTree = "<group>"; };
+		9F1EE641256EE47D004F444B /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		9F339FF2256E9C9500F31F9F /* ExportContactCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportContactCardViewController.swift; sourceTree = "<group>"; };
 		9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
 		9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDataConverter.swift; sourceTree = "<group>"; };
@@ -214,6 +217,7 @@
 		9F9E9AD621BA1690003A6A33 = {
 			isa = PBXGroup;
 			children = (
+				9F1EE640256EE479004F444B /* AppState.swift */,
 				9F56C72E253BCB96006D8DE6 /* Air Contacts.entitlements */,
 				9F9E9AE121BA1690003A6A33 /* Air Contacts */,
 				9F9E9AF621BA1691003A6A33 /* AirContactsTests */,
@@ -235,6 +239,7 @@
 		9F9E9AE121BA1690003A6A33 /* Air Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				9F1EE641256EE47D004F444B /* AppState.swift */,
 				9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */,
 				9F7F42182560F24700199193 /* SceneDelegate.swift */,
 				9F2CFACD256DF0C1000C57E6 /* Colors */,
@@ -462,6 +467,7 @@
 				9FEE378C256DBB9F0089337E /* ColorChoice.swift in Sources */,
 				9F56C73C253BD2C8006D8DE6 /* TintImages.swift in Sources */,
 				9F9E9AE321BA1690003A6A33 /* AppDelegate.swift in Sources */,
+				9F1EE642256EE47D004F444B /* AppState.swift in Sources */,
 				9FBFACDB22B4A30800730E7B /* SavedContactCell.swift in Sources */,
 				9FB31897255F954200D31B8B /* ContactCardViewController.swift in Sources */,
 			);

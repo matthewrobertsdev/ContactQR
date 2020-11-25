@@ -32,6 +32,7 @@ class ContactCardViewController: UIViewController {
 		loadContact()
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .contactChanged, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(exportVCardtoFile), name: .exportAsVCard, object: nil)
     }
 	func showOrHideTableView() {
 		if contactCard==nil {
