@@ -21,7 +21,8 @@ class ContactCardViewController: UIViewController {
 		let qrCodeBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "qrcode"), style: .plain,
 												target: self, action: #selector(showQRCodeViewController))
 		#if targetEnvironment(macCatalyst)
-		let docBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "doc.badge.plus"), style: .plain, target: self, action: nil)
+		let docBarButtonItem=UIBarButtonItem(image: UIImage(systemName:
+																"doc.badge.plus"), style: .plain, target: self, action: #selector(exportVCardtoFile))
 		navigationItem.leftBarButtonItems=[docBarButtonItem]
 		#endif
 		navigationItem.rightBarButtonItems=[shareBarButtonItem, qrCodeBarButtonItem]
@@ -99,27 +100,9 @@ class ContactCardViewController: UIViewController {
 		guard let contactCard=contactCard else {
 			return
 		}
-		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
-				return
-			}
-		var filename="Contact"
-		var contact=CNContact()
-		do {
-			contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)[0]
-			//tableView.reloadData()
-		} catch {
-			print("Error making CNContact from VCard String.")
+		guard let fileURL=writeTemporaryFile(contactCard: contactCard) else {
+			return
 		}
-		if let name=CNContactFormatter().string(from: contact) {
-			filename=name
-		}
-		let fileURL = directoryURL.appendingPathComponent(filename)
-			.appendingPathExtension("vcf")
-		do {
-		let data = try CNContactVCardSerialization.data(with: [contact])
-
-		try data.write(to: fileURL, options: [.atomicWrite])
-
 			let activityViewController = UIActivityViewController(
 				activityItems: [fileURL],
 				applicationActivities: nil
@@ -127,9 +110,6 @@ class ContactCardViewController: UIViewController {
 			activityViewController.popoverPresentationController?.barButtonItem=sender as? UIBarButtonItem
 
 			present(activityViewController, animated: true)
-		} catch {
-			print("Error trying to make vCard file to share")
-		}
 	}
 	@IBAction func deleteContact(_ sender: Any) {
 		guard let uuidString=contactCard?.uuidString else {
@@ -158,6 +138,45 @@ class ContactCardViewController: UIViewController {
 			}
 		}))
 		self.present(deleteAlert, animated: true, completion: nil)
+	}
+	@objc func exportVCardtoFile() {
+		guard let contactCard=contactCard else {
+			return
+		}
+		guard let fileURL=writeTemporaryFile(contactCard: contactCard) else {
+			print("Couldn't write temporary vCard file")
+			return
+		}
+		let exportContactCardViewController = ExportContactCardViewController(forExporting: [fileURL], asCopy: false)
+		exportContactCardViewController.url=fileURL
+		present(exportContactCardViewController, animated: true)
+	}
+	func writeTemporaryFile(contactCard: ContactCard) -> URL? {
+		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+				return nil
+			}
+		var filename="Contact"
+		var contact=CNContact()
+		do {
+			contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)[0]
+			//tableView.reloadData()
+		} catch {
+			print("Error making CNContact from VCard String.")
+		}
+		if let name=CNContactFormatter().string(from: contact) {
+			filename=name
+		}
+		let fileURL = directoryURL.appendingPathComponent(filename)
+			.appendingPathExtension("vcf")
+		do {
+		let data = try CNContactVCardSerialization.data(with: [contact])
+
+		try data.write(to: fileURL, options: [.atomicWrite])
+		} catch {
+			print("Error trying to make vCard file")
+			return nil
+		}
+		return fileURL
 	}
 }
 extension Notification.Name {

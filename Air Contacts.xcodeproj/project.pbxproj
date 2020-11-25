@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F339FF3256E9C9500F31F9F /* ExportContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F339FF2256E9C9500F31F9F /* ExportContactCardViewController.swift */; };
 		9F34C273255CCF1900B9DEA4 /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */; };
 		9F3FDD0121CC376F00D2FBB2 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */; };
 		9F422691256CD5BF00F1A0FA /* CircularColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F422690256CD5BF00F1A0FA /* CircularColorView.swift */; };
@@ -69,6 +70,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9F339FF2256E9C9500F31F9F /* ExportContactCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportContactCardViewController.swift; sourceTree = "<group>"; };
 		9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
 		9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDataConverter.swift; sourceTree = "<group>"; };
 		9F422690256CD5BF00F1A0FA /* CircularColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularColorView.swift; sourceTree = "<group>"; };
@@ -149,6 +151,14 @@
 				9FEE378B256DBB9F0089337E /* ColorChoice.swift */,
 			);
 			path = Colors;
+			sourceTree = "<group>";
+		};
+		9F339FF1256E9C0E00F31F9F /* Export Contact Card View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9F339FF2256E9C9500F31F9F /* ExportContactCardViewController.swift */,
+			);
+			path = "Export Contact Card View Controller";
 			sourceTree = "<group>";
 		};
 		9F3EFEF822B36C29001A28E0 /* Create and Edit Contact Card View Controllers */ = {
@@ -233,6 +243,7 @@
 				9FBFACD722B49D0000730E7B /* Utilities */,
 				9F7147BA256CCD5700A979B8 /* Main View Controllers */,
 				9F02577521C98FB3003A5EAA /* QR Code View Controller */,
+				9F339FF1256E9C0E00F31F9F /* Export Contact Card View Controller */,
 				9F3EFEF822B36C29001A28E0 /* Create and Edit Contact Card View Controllers */,
 				9F7147BB256CCDB800A979B8 /* Views */,
 				9F9E9AE621BA1690003A6A33 /* Main.storyboard */,
@@ -434,6 +445,7 @@
 				9FB74C1022B4825C00F34181 /* ContactCardPersistencyManager.swift in Sources */,
 				9F7F42192560F24700199193 /* SceneDelegate.swift in Sources */,
 				9F9E9AE521BA1690003A6A33 /* DisplayQRViewController.swift in Sources */,
+				9F339FF3256E9C9500F31F9F /* ExportContactCardViewController.swift in Sources */,
 				9F3FDD0121CC376F00D2FBB2 /* ContactDataConverter.swift in Sources */,
 				9FB3E45F21C967410011752F /* PickContactViewController.swift in Sources */,
 				9FB3E46521C96F990011752F /* DisplayQRModel.swift in Sources */,

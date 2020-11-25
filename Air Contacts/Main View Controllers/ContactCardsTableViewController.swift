@@ -78,7 +78,8 @@ class ContactCardsTableViewController: UITableViewController {
 			return UITableViewCell()
 		}
 		cell.nameLabel.text=ContactCardStore.sharedInstance.contactCards[indexPath.row].filename
-		if let color=colorModel.colorsDictionary[ContactCardStore.sharedInstance.contactCards[indexPath.row].color] as? UIColor {
+		let colorString=ContactCardStore.sharedInstance.contactCards[indexPath.row].color
+		if let color=colorModel.colorsDictionary[colorString] as? UIColor {
 			cell.circularColorView.backgroundColor=color
 		}
         return cell
