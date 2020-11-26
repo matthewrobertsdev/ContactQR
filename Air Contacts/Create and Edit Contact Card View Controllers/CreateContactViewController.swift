@@ -209,6 +209,14 @@ class CreateContactViewController: UIViewController {
 			notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name:
 											UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		AppState.shared.appState=AppStateValue.isModal
+	}
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		AppState.shared.appState=AppStateValue.isNotModal
+	}
 	/*
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation

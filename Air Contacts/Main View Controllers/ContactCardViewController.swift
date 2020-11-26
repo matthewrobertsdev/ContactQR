@@ -33,6 +33,7 @@ class ContactCardViewController: UIViewController {
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .contactChanged, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(exportVCardtoFile), name: .exportAsVCard, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(showQRCodeViewController), name: .showQRCode, object: nil)
     }
 	func showOrHideTableView() {
 		if contactCard==nil {

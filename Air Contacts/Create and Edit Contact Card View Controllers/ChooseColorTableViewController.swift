@@ -19,6 +19,14 @@ class ChooseColorTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		AppState.shared.appState=AppStateValue.isModal
+	}
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		AppState.shared.appState=AppStateValue.isNotModal
+	}
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections

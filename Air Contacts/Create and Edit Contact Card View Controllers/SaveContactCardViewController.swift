@@ -17,6 +17,14 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 		saveButton.isEnabled=false
 		titleTextField.addTarget(self, action: #selector(enableOrDisableSaveButton), for: .editingChanged)
     }
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		AppState.shared.appState=AppStateValue.isModal
+	}
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		AppState.shared.appState=AppStateValue.isNotModal
+	}
 	@IBAction func save(_ sender: Any) {
 		let contactCard=ContactCard(filename: titleTextField.text ?? "No Title Given", cnContact: contact, color: color)
 		print(color)

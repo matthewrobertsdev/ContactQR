@@ -13,6 +13,14 @@ class ExportContactCardViewController: UIDocumentPickerViewController, UIDocumen
 		delegate=self
         // Do any additional setup after loading the view.
     }
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		AppState.shared.appState=AppStateValue.isModal
+	}
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		AppState.shared.appState=AppStateValue.isNotModal
+	}
 	func documentPicker(_ controller: UIDocumentPickerViewController,
 						didPickDocumentsAt urls: [URL]) {
 		guard let url=url else {

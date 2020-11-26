@@ -39,22 +39,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let exportAsVCardMenu = UIMenu(title: "", image: nil, identifier:
 										UIMenu.Identifier("exportAsVCard"), options: .displayInline, children: [exportAsVCardCommand])
 		builder.insertChild(exportAsVCardMenu, atStartOfMenu: .file)
+		let showQRCommand =
+			UIKeyCommand(title: NSLocalizedString("Show QR Code", comment: ""),
+						 image: nil,
+						 action: #selector(showQRCode),
+						 input: "1",
+						 modifierFlags: .command,
+						 propertyList: nil)
+		exportAsVCardCommand.discoverabilityTitle = NSLocalizedString("Export as vCard...", comment: "")
+		let showQRMenu = UIMenu(title: "Show QR Code", image: nil, identifier:
+										UIMenu.Identifier("showQRCode"), options: .displayInline, children: [showQRCommand])
+		let cardMenu = UIMenu(title: "Card", image: nil, identifier:
+								UIMenu.Identifier("cardMenu"), options: [], children: [showQRMenu])
+		builder.insertSibling(cardMenu, beforeMenu: .window)
 	}
 	@objc func exportAsVCard() {
 		NotificationCenter.default.post(name: .exportAsVCard, object: self)
+	}
+	@objc func showQRCode() {
+		NotificationCenter.default.post(name: .showQRCode, object: self)
 	}
 	override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
 		guard let splitViewController = self.window?.rootViewController as? UISplitViewController else {
 			return false
 		}
-		if action==#selector(exportAsVCard) {
+		if action==#selector(exportAsVCard) || action==#selector(showQRCode){
 			guard let contactCardViewController=splitViewController.viewController(for: .secondary) as? ContactCardViewController else {
 				return false
 			}
 			guard let _=contactCardViewController.contactCard else {
 				return false
 			}
-			return true
+			return AppState.shared.appState==AppStateValue.isNotModal
 		} else {
 			return super.canPerformAction(action, withSender: nil)
 		}
@@ -78,4 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 extension Notification.Name {
 	static let exportAsVCard=Notification.Name("export-as-vCard")
+	static let createNewContact=Notification.Name("create-new-contact")
+	static let createNewContactFromContact=Notification.Name("create-new-contact-from-contact")
+	static let showQRCode=Notification.Name("show-QR-code")
 }

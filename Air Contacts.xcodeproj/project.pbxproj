@@ -71,7 +71,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9F1EE640256EE479004F444B /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = ../../../../AppState.swift; sourceTree = "<group>"; };
 		9F1EE641256EE47D004F444B /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		9F339FF2256E9C9500F31F9F /* ExportContactCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportContactCardViewController.swift; sourceTree = "<group>"; };
 		9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
@@ -217,7 +216,6 @@
 		9F9E9AD621BA1690003A6A33 = {
 			isa = PBXGroup;
 			children = (
-				9F1EE640256EE479004F444B /* AppState.swift */,
 				9F56C72E253BCB96006D8DE6 /* Air Contacts.entitlements */,
 				9F9E9AE121BA1690003A6A33 /* Air Contacts */,
 				9F9E9AF621BA1691003A6A33 /* AirContactsTests */,

@@ -16,6 +16,14 @@ class DisplayQRViewController: UIViewController {
         super.viewDidLoad()
         prepareView()
     }
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		AppState.shared.appState=AppStateValue.isModal
+	}
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		AppState.shared.appState=AppStateValue.isNotModal
+	}
 	func prepareView() {
 		let color=colorModel.colorsDictionary[ActiveContactCard.shared.contactCard?.color ??
 												"Contasting Color"] ?? UIColor.label

@@ -7,8 +7,8 @@
 //
 import Foundation
 enum AppStateValue: String {
-	case isNotModal="isNotModal"
-	case isModal="isModal"
+	case isNotModal
+	case isModal
 }
 class AppState{
 	static let shared=AppState()
