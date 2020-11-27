@@ -30,6 +30,10 @@ class ContactCardsTableViewController: UITableViewController {
     }
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		#if targetEnvironment(macCatalyst)
+			navigationController?.setNavigationBarHidden(true, animated: animated)
+			navigationController?.setToolbarHidden(true, animated: animated)
+		#endif
 		guard let selectedIndexPath=tableView.indexPathForSelectedRow else {
 			return
 		}
@@ -109,7 +113,7 @@ class ContactCardsTableViewController: UITableViewController {
 			showContactCard()
 		}
 	}
-	@objc func createNewContact(){
+	@objc func createNewContact() {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		guard let createContactViewController=storyboard.instantiateViewController(withIdentifier:
 																					"CreateContactViewController") as? CreateContactViewController else {

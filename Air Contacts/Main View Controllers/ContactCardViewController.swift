@@ -42,6 +42,13 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .modalityChanged, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .modalityChanged, object: nil)
     }
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		#if targetEnvironment(macCatalyst)
+			navigationController?.setNavigationBarHidden(true, animated: animated)
+			navigationController?.setToolbarHidden(true, animated: animated)
+		#endif
+	}
 	func showOrHideTableView() {
 		if contactCard==nil {
 			scrollView.isHidden=true
@@ -201,6 +208,28 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		return fileURL
 	}
 	@objc func share(_ sender: Any?) {
+	}
+	@objc func createNewContact(){
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		guard let createContactViewController=storyboard.instantiateViewController(withIdentifier:
+																					"CreateContactViewController") as? CreateContactViewController else {
+			print("Failed to instantiate CreateContactViewController")
+			return
+		}
+		let navigationController=UINavigationController(rootViewController: createContactViewController)
+		var animated=true
+		#if targetEnvironment(macCatalyst)
+			animated=false
+		#endif
+		present(navigationController, animated: animated)
+	}
+	@objc func createContactCardFromContact() {
+		var animated=true
+		#if targetEnvironment(macCatalyst)
+			animated=false
+		#endif
+		self.present(PickContactViewController(), animated: animated) {
+		}
 	}
 }
 extension Notification.Name {

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aYm-LV-jC5">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -70,21 +69,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jhd-wv-Mk2">
-                                <rect key="frame" x="0.0" y="843" width="428" height="49"/>
-                                <items>
-                                    <barButtonItem title="Delete" id="w4R-9n-pbF">
-                                        <color key="tintColor" systemColor="systemRedColor"/>
-                                        <connections>
-                                            <action selector="deleteContact:" destination="IJa-nU-fZ3" id="Gib-3U-BEL"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="k64-i1-r86"/>
-                                    <barButtonItem title="Edit" id="Zsl-Mo-NRh"/>
-                                </items>
-                            </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Contact Card Selected" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuD-EN-eRZ">
-                                <rect key="frame" x="114.66666666666669" y="480" width="199" height="20.333333333333314"/>
+                                <rect key="frame" x="114.66666666666669" y="455.33333333333331" width="199" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -96,7 +82,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcP-BW-EwX">
-                                <rect key="frame" x="0.0" y="128" width="428" height="720"/>
+                                <rect key="frame" x="0.0" y="128" width="428" height="715"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Info Here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ES0-pi-Nfm">
                                         <rect key="frame" x="8" y="7.9999999999999982" width="412" height="20.333333333333329"/>
@@ -121,21 +107,29 @@
                         <constraints>
                             <constraint firstItem="ES0-pi-Nfm" firstAttribute="leading" secondItem="RpZ-Z8-adj" secondAttribute="leading" constant="8" id="64X-n3-gdz"/>
                             <constraint firstItem="bgk-8b-W0c" firstAttribute="leading" secondItem="RpZ-Z8-adj" secondAttribute="leading" id="9uO-9k-j5q"/>
-                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="leading" secondItem="jhd-wv-Mk2" secondAttribute="leading" id="Hg9-sJ-2qg"/>
                             <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="ES0-pi-Nfm" secondAttribute="trailing" constant="8" id="LZX-BR-oai"/>
-                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="bottom" secondItem="jhd-wv-Mk2" secondAttribute="bottom" id="PC5-Ce-oSv"/>
                             <constraint firstItem="pcP-BW-EwX" firstAttribute="top" secondItem="bgk-8b-W0c" secondAttribute="bottom" constant="20" id="Q8h-Hb-yOL"/>
                             <constraint firstItem="KuD-EN-eRZ" firstAttribute="centerY" secondItem="RpZ-Z8-adj" secondAttribute="centerY" id="ZFS-RX-QpX"/>
                             <constraint firstItem="KuD-EN-eRZ" firstAttribute="centerX" secondItem="RpZ-Z8-adj" secondAttribute="centerX" id="bcn-eN-ecI"/>
-                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="bottom" secondItem="pcP-BW-EwX" secondAttribute="bottom" constant="44" id="cil-eJ-ZYU"/>
+                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="bottom" secondItem="pcP-BW-EwX" secondAttribute="bottom" id="cil-eJ-ZYU"/>
                             <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="bgk-8b-W0c" secondAttribute="trailing" id="dy2-y7-WG7"/>
                             <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="pcP-BW-EwX" secondAttribute="trailing" id="fAR-r5-9zo"/>
                             <constraint firstItem="pcP-BW-EwX" firstAttribute="leading" secondItem="RpZ-Z8-adj" secondAttribute="leading" id="p4I-b5-rGM"/>
                             <constraint firstItem="bgk-8b-W0c" firstAttribute="top" secondItem="RpZ-Z8-adj" secondAttribute="top" constant="20" id="pOy-mm-vcd"/>
-                            <constraint firstItem="jhd-wv-Mk2" firstAttribute="trailing" secondItem="RpZ-Z8-adj" secondAttribute="trailing" id="wyP-TL-uQK"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Delete" id="w4R-9n-pbF">
+                            <color key="tintColor" systemColor="systemRedColor"/>
+                            <connections>
+                                <action selector="deleteContact:" destination="IJa-nU-fZ3" id="Gib-3U-BEL"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="lsk-83-uNr"/>
+                        <barButtonItem title="Edit" id="Zsl-Mo-NRh"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Title" id="3Zp-II-Wva"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="contactInfoLabel" destination="ES0-pi-Nfm" id="Voh-Yq-ueY"/>
                         <outlet property="scrollView" destination="pcP-BW-EwX" id="RcN-tI-keH"/>
@@ -236,7 +230,7 @@
         <!--Main Split View Controller-->
         <scene sceneID="MLd-qb-Qbu">
             <objects>
-                <splitViewController allowDoubleColumnStyle="YES" id="aYm-LV-jC5" customClass="MainSplitViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="MainSplitViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" allowDoubleColumnStyle="YES" id="aYm-LV-jC5" customClass="MainSplitViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="dYb-Ni-z5G" kind="relationship" relationship="masterViewController" id="h0t-w8-lzG"/>
                         <segue destination="IJa-nU-fZ3" kind="relationship" relationship="detailViewController" id="o8u-zJ-UIm"/>
