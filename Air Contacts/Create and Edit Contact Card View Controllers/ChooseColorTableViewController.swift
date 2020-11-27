@@ -14,6 +14,7 @@ class ChooseColorTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		nextButton.isEnabled=false
+		tableView.selectionFollowsFocus=true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -22,10 +23,12 @@ class ChooseColorTableViewController: UITableViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		AppState.shared.appState=AppStateValue.isModal
+		NotificationCenter.default.post(name: .modalityChanged, object: nil)
 	}
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		AppState.shared.appState=AppStateValue.isNotModal
+		NotificationCenter.default.post(name: .modalityChanged, object: nil)
 	}
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -45,10 +48,6 @@ class ChooseColorTableViewController: UITableViewController {
 		cell.nameLabel.text=model.colors[indexPath.row].name
 		return cell
     }
-	override func tableView(_ tableView: UITableView,
-				   canFocusRowAt indexPath: IndexPath) -> Bool {
-		return false
-	}
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		nextButton.isEnabled=true
 	}

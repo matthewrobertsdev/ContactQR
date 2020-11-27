@@ -220,9 +220,9 @@
         <!--Navigation Controller-->
         <scene sceneID="LvG-zQ-Zm6">
             <objects>
-                <navigationController id="dYb-Ni-z5G" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="ubA-U4-wKy">
-                        <rect key="frame" x="0.0" y="44" width="428" height="96"/>
+                <navigationController toolbarHidden="NO" id="dYb-Ni-z5G" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ubA-U4-wKy">
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

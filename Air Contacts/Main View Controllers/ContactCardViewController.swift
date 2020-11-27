@@ -7,7 +7,8 @@
 //
 import UIKit
 import Contacts
-class ContactCardViewController: UIViewController {
+class ContactCardViewController: UIViewController, UIActivityItemsConfigurationReading {
+	var itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var contactInfoLabel: UILabel!
@@ -16,6 +17,10 @@ class ContactCardViewController: UIViewController {
 	private var contactDisplayStrings=[String]()
     override func viewDidLoad() {
         super.viewDidLoad()
+		guard let appdelegate=UIApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		appdelegate.activityItemsConfiguration=self
 		let shareBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
 											   style: .plain, target: self, action: #selector(shareContact))
 		let qrCodeBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "qrcode"), style: .plain,
@@ -34,6 +39,8 @@ class ContactCardViewController: UIViewController {
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .contactChanged, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(exportVCardtoFile), name: .exportAsVCard, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(showQRCodeViewController), name: .showQRCode, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .modalityChanged, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .modalityChanged, object: nil)
     }
 	func showOrHideTableView() {
 		if contactCard==nil {
@@ -46,6 +53,7 @@ class ContactCardViewController: UIViewController {
 		guard let activeCard=ActiveContactCard.shared.contactCard else {
 			scrollView.isHidden=true
 			titleLabel.text=""
+			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 			return
 		}
 		contactCard=activeCard
@@ -61,6 +69,18 @@ class ContactCardViewController: UIViewController {
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
+		if AppState.shared.appState==AppStateValue.isNotModal {
+			guard let fileURL=writeTemporaryFile(contactCard: activeCard) else {
+				return
+			}
+			guard let itemProvider=NSItemProvider(contentsOf: fileURL) else {
+				return
+			}
+			itemProvidersForActivityItemsConfiguration=[itemProvider]
+		} else {
+			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
+		}
+		
 	}
     /*
     // MARK: - Navigation
@@ -180,7 +200,10 @@ class ContactCardViewController: UIViewController {
 		}
 		return fileURL
 	}
+	@objc func share(_ sender: Any?) {
+	}
 }
 extension Notification.Name {
 	static let contactDeleted=Notification.Name("contact-deleted")
+	static let modalityChanged=Notification.Name("modality-changed")
 }

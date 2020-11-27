@@ -16,10 +16,12 @@ class ExportContactCardViewController: UIDocumentPickerViewController, UIDocumen
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		AppState.shared.appState=AppStateValue.isModal
+		NotificationCenter.default.post(name: .modalityChanged, object: nil)
 	}
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		AppState.shared.appState=AppStateValue.isNotModal
+		NotificationCenter.default.post(name: .modalityChanged, object: nil)
 	}
 	func documentPicker(_ controller: UIDocumentPickerViewController,
 						didPickDocumentsAt urls: [URL]) {

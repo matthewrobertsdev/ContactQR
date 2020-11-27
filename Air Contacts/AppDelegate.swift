@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
     }
     func applicationWillTerminate(_ application: UIApplication) {
+		//ContactCardStore.sharedInstance.saveContacts()
     }
 	override func buildMenu(with builder: UIMenuBuilder) {
 		super.buildMenu(with: builder)
@@ -49,8 +50,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		exportAsVCardCommand.discoverabilityTitle = NSLocalizedString("Export as vCard...", comment: "")
 		let showQRMenu = UIMenu(title: "Show QR Code", image: nil, identifier:
 										UIMenu.Identifier("showQRCode"), options: .displayInline, children: [showQRCommand])
+		guard let splitViewController = self.window?.rootViewController as? UISplitViewController else {
+			return
+		}
+		guard let contactCardViewController=splitViewController.viewController(for: .secondary) as? ContactCardViewController else {
+			return
+		}
+		let shareCommand = UICommand(title: "Share", image: nil, action: #selector(contactCardViewController.share(_:)),
+									 propertyList: UICommandTagShare, alternates: [], discoverabilityTitle: "Share", attributes: [], state: .on)
+		let shareMenu = UIMenu(title: "Share", image: nil, identifier:
+										UIMenu.Identifier("share"), options: .displayInline, children: [shareCommand])
 		let cardMenu = UIMenu(title: "Card", image: nil, identifier:
-								UIMenu.Identifier("cardMenu"), options: [], children: [showQRMenu])
+								UIMenu.Identifier("cardMenu"), options: [], children: [showQRMenu, shareMenu])
 		builder.insertSibling(cardMenu, beforeMenu: .window)
 	}
 	@objc func exportAsVCard() {
@@ -63,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		guard let splitViewController = self.window?.rootViewController as? UISplitViewController else {
 			return false
 		}
-		if action==#selector(exportAsVCard) || action==#selector(showQRCode){
+		if action==#selector(exportAsVCard) || action==#selector(showQRCode) {
 			guard let contactCardViewController=splitViewController.viewController(for: .secondary) as? ContactCardViewController else {
 				return false
 			}
@@ -91,6 +102,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 	}
 	*/
+	@objc func share(){
+		
+	}
 }
 extension Notification.Name {
 	static let exportAsVCard=Notification.Name("export-as-vCard")

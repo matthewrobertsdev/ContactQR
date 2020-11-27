@@ -10,7 +10,7 @@ enum AppStateValue: String {
 	case isNotModal
 	case isModal
 }
-class AppState{
+class AppState {
 	static let shared=AppState()
 	private init() {
 	}
