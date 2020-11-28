@@ -88,7 +88,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		} else {
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 		}
-		
 	}
     /*
     // MARK: - Navigation
@@ -210,7 +209,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	}
 	@objc func share(_ sender: Any?) {
 	}
-	@objc func createNewContact(){
+	@objc func createNewContact() {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		guard let createContactViewController=storyboard.instantiateViewController(withIdentifier:
 																					"CreateContactViewController") as? CreateContactViewController else {
@@ -232,6 +231,21 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		self.present(PickContactViewController(), animated: animated) {
 		}
 	}
+	/*
+	override var keyCommands: [UIKeyCommand]? {
+		var keyCommands=[
+			UIKeyCommand(input: "n", modifierFlags: .command, action: #selector(createNewContact),
+	discoverabilityTitle: "Create New Contact"),
+			UIKeyCommand(input: "n", modifierFlags: UIKeyModifierFlags(arrayLiteral: [.command,.shift]), action:
+	#selector(createContactCardFromContact), discoverabilityTitle: "Create New Card From Contact")
+		]
+		if let _=contactCard {
+			keyCommands.append(UIKeyCommand(input: "1", modifierFlags: .command, action:
+	#selector(showQRCodeViewController), discoverabilityTitle: "Show QR Code"))
+		}
+		return keyCommands
+	}
+*/
 }
 extension Notification.Name {
 	static let contactDeleted=Notification.Name("contact-deleted")

@@ -36,12 +36,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	override func buildMenu(with builder: UIMenuBuilder) {
 		super.buildMenu(with: builder)
+		print("Hello iPad")
 		guard builder.system == UIMenuSystem.main else {
 			return
 		}
 		builder.remove(menu: .format)
 		builder.remove(menu: .services)
 		builder.remove(menu: .toolbar)
+		builder.replaceChildren(ofMenu: .help) { _ in
+			[]
+		}
 		let exportAsVCardCommand =
 			UIKeyCommand(title: NSLocalizedString("Export as vCard...", comment: ""),
 						 image: nil,
