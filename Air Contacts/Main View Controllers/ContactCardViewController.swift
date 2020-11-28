@@ -44,6 +44,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
     }
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		navigationController?.setToolbarHidden(false, animated: true)
 		#if targetEnvironment(macCatalyst)
 			navigationController?.setNavigationBarHidden(true, animated: animated)
 			navigationController?.setToolbarHidden(true, animated: animated)

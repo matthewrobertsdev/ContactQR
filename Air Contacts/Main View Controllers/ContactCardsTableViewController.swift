@@ -11,6 +11,7 @@ class ContactCardsTableViewController: UITableViewController {
 	let colorModel=ColorModel()
     override func viewDidLoad() {
         super.viewDidLoad()
+		//navigationController?.navigationBar.prefersLargeTitles=true
 		if let splitViewController=splitViewController {
 			splitViewController.primaryBackgroundStyle = .sidebar
 		}

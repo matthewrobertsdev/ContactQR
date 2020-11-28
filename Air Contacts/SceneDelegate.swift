@@ -38,7 +38,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 			toolbar.displayMode = .iconOnly
 		if let titlebar = windowScene.titlebar {
 				titlebar.toolbar = toolbar
-				titlebar.toolbarStyle = .automatic
+			titlebar.toolbarStyle = .automatic
 			}
 		#endif
 		print("Should have added toolbar")
