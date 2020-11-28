@@ -33,4 +33,4 @@ func getTintedForeground(image: UIImage, color: UIColor) -> UIImage {
 			UIGraphicsEndImageContext()
 
 			return newImage
-		}
+	}

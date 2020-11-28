@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F1EE642256EE47D004F444B /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1EE641256EE47D004F444B /* AppState.swift */; };
+		9F339FF3256E9C9500F31F9F /* ExportContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F339FF2256E9C9500F31F9F /* ExportContactCardViewController.swift */; };
 		9F34C273255CCF1900B9DEA4 /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */; };
 		9F3FDD0121CC376F00D2FBB2 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */; };
+		9F422691256CD5BF00F1A0FA /* CircularColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F422690256CD5BF00F1A0FA /* CircularColorView.swift */; };
+		9F4ABC7D2570CBEA000A9101 /* ToolBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4ABC7C2570CBEA000A9101 /* ToolBarDelegate.swift */; };
 		9F56C73C253BD2C8006D8DE6 /* TintImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F56C73B253BD2C8006D8DE6 /* TintImages.swift */; };
 		9F5C647221D3E10A00832897 /* ContactInfoManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5C647121D3E10A00832897 /* ContactInfoManipulator.swift */; };
 		9F7147AB256CCCC600A979B8 /* ContactCardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7147AA256CCCC600A979B8 /* ContactCardStore.swift */; };
@@ -31,6 +35,10 @@
 		9FBFACDB22B4A30800730E7B /* SavedContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */; };
 		9FCA500B22A75CE90004C20F /* ActiveContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA500A22A75CE90004C20F /* ActiveContactCard.swift */; };
 		9FEC6192256229DE004A03BE /* SaveContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEC6191256229DE004A03BE /* SaveContactCardViewController.swift */; };
+		9FEE377D256DBA490089337E /* ChooseColorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE377C256DBA490089337E /* ChooseColorTableViewController.swift */; };
+		9FEE3782256DBA990089337E /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3781256DBA990089337E /* ColorModel.swift */; };
+		9FEE3787256DBAA50089337E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3786256DBAA50089337E /* Color.swift */; };
+		9FEE378C256DBB9F0089337E /* ColorChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE378B256DBB9F0089337E /* ColorChoice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,8 +72,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9F1EE641256EE47D004F444B /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		9F339FF2256E9C9500F31F9F /* ExportContactCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportContactCardViewController.swift; sourceTree = "<group>"; };
 		9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
 		9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDataConverter.swift; sourceTree = "<group>"; };
+		9F422690256CD5BF00F1A0FA /* CircularColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularColorView.swift; sourceTree = "<group>"; };
+		9F4ABC7C2570CBEA000A9101 /* ToolBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarDelegate.swift; sourceTree = "<group>"; };
 		9F56C72E253BCB96006D8DE6 /* Air Contacts.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Air Contacts.entitlements"; sourceTree = "<group>"; };
 		9F56C73B253BD2C8006D8DE6 /* TintImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintImages.swift; sourceTree = "<group>"; };
 		9F5C647121D3E10A00832897 /* ContactInfoManipulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoManipulator.swift; sourceTree = "<group>"; };
@@ -95,6 +107,10 @@
 		9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedContactCell.swift; sourceTree = "<group>"; };
 		9FCA500A22A75CE90004C20F /* ActiveContactCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveContactCard.swift; sourceTree = "<group>"; };
 		9FEC6191256229DE004A03BE /* SaveContactCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveContactCardViewController.swift; sourceTree = "<group>"; };
+		9FEE377C256DBA490089337E /* ChooseColorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseColorTableViewController.swift; sourceTree = "<group>"; };
+		9FEE3781256DBA990089337E /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
+		9FEE3786256DBAA50089337E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		9FEE378B256DBB9F0089337E /* ColorChoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorChoice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,11 +147,30 @@
 			path = "QR Code View Controller";
 			sourceTree = "<group>";
 		};
+		9F2CFACD256DF0C1000C57E6 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				9FEE3781256DBA990089337E /* ColorModel.swift */,
+				9FEE3786256DBAA50089337E /* Color.swift */,
+				9FEE378B256DBB9F0089337E /* ColorChoice.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		9F339FF1256E9C0E00F31F9F /* Export Contact Card View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9F339FF2256E9C9500F31F9F /* ExportContactCardViewController.swift */,
+			);
+			path = "Export Contact Card View Controller";
+			sourceTree = "<group>";
+		};
 		9F3EFEF822B36C29001A28E0 /* Create and Edit Contact Card View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9F7EB966255E10420032563C /* CreateContactViewController.swift */,
 				9FB3E45E21C967410011752F /* PickContactViewController.swift */,
+				9F7EB966255E10420032563C /* CreateContactViewController.swift */,
+				9FEE377C256DBA490089337E /* ChooseColorTableViewController.swift */,
 				9FEC6191256229DE004A03BE /* SaveContactCardViewController.swift */,
 			);
 			path = "Create and Edit Contact Card View Controllers";
@@ -175,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */,
+				9F422690256CD5BF00F1A0FA /* CircularColorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -203,13 +239,17 @@
 		9F9E9AE121BA1690003A6A33 /* Air Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				9F1EE641256EE47D004F444B /* AppState.swift */,
 				9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */,
+				9F4ABC7C2570CBEA000A9101 /* ToolBarDelegate.swift */,
 				9F7F42182560F24700199193 /* SceneDelegate.swift */,
+				9F2CFACD256DF0C1000C57E6 /* Colors */,
 				9F7147A6256CCC3000A979B8 /* Contact Card Storage */,
 				9F6BEA6622A78369008D9745 /* Contact Data Workers */,
 				9FBFACD722B49D0000730E7B /* Utilities */,
 				9F7147BA256CCD5700A979B8 /* Main View Controllers */,
 				9F02577521C98FB3003A5EAA /* QR Code View Controller */,
+				9F339FF1256E9C0E00F31F9F /* Export Contact Card View Controller */,
 				9F3EFEF822B36C29001A28E0 /* Create and Edit Contact Card View Controllers */,
 				9F7147BB256CCDB800A979B8 /* Views */,
 				9F9E9AE621BA1690003A6A33 /* Main.storyboard */,
@@ -315,7 +355,7 @@
 					New,
 				);
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "Matt Roberts";
 				TargetAttributes = {
 					9F9E9ADE21BA1690003A6A33 = {
@@ -407,21 +447,29 @@
 			files = (
 				9FB74C0E22B4783000F34181 /* PersistencManager.swift in Sources */,
 				9F5C647221D3E10A00832897 /* ContactInfoManipulator.swift in Sources */,
+				9FEE3787256DBAA50089337E /* Color.swift in Sources */,
 				9FB74C1022B4825C00F34181 /* ContactCardPersistencyManager.swift in Sources */,
 				9F7F42192560F24700199193 /* SceneDelegate.swift in Sources */,
 				9F9E9AE521BA1690003A6A33 /* DisplayQRViewController.swift in Sources */,
+				9F339FF3256E9C9500F31F9F /* ExportContactCardViewController.swift in Sources */,
 				9F3FDD0121CC376F00D2FBB2 /* ContactDataConverter.swift in Sources */,
 				9FB3E45F21C967410011752F /* PickContactViewController.swift in Sources */,
 				9FB3E46521C96F990011752F /* DisplayQRModel.swift in Sources */,
 				9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */,
+				9FEE3782256DBA990089337E /* ColorModel.swift in Sources */,
+				9F4ABC7D2570CBEA000A9101 /* ToolBarDelegate.swift in Sources */,
+				9F422691256CD5BF00F1A0FA /* CircularColorView.swift in Sources */,
 				9F7147AB256CCCC600A979B8 /* ContactCardStore.swift in Sources */,
 				9FCA500B22A75CE90004C20F /* ActiveContactCard.swift in Sources */,
 				9FEC6192256229DE004A03BE /* SaveContactCardViewController.swift in Sources */,
 				9FBD0E86255E36DE00C9C9DA /* ContactCardsTableViewController.swift in Sources */,
 				9FB74C0A22B4752900F34181 /* ContactCard.swift in Sources */,
+				9FEE377D256DBA490089337E /* ChooseColorTableViewController.swift in Sources */,
 				9F34C273255CCF1900B9DEA4 /* MainSplitViewController.swift in Sources */,
+				9FEE378C256DBB9F0089337E /* ColorChoice.swift in Sources */,
 				9F56C73C253BD2C8006D8DE6 /* TintImages.swift in Sources */,
 				9F9E9AE321BA1690003A6A33 /* AppDelegate.swift in Sources */,
+				9F1EE642256EE47D004F444B /* AppState.swift in Sources */,
 				9FBFACDB22B4A30800730E7B /* SavedContactCell.swift in Sources */,
 				9FB31897255F954200D31B8B /* ContactCardViewController.swift in Sources */,
 			);
@@ -504,6 +552,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -565,6 +614,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -602,7 +652,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "$(SRCROOT)/Air Contacts/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -624,7 +674,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "$(SRCROOT)/Air Contacts/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

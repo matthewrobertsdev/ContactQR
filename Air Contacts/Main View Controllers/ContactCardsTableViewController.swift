@@ -8,14 +8,22 @@
 import UIKit
 class ContactCardsTableViewController: UITableViewController {
 	var selectedCardUUID: String?
+	let colorModel=ColorModel()
     override func viewDidLoad() {
         super.viewDidLoad()
+		//navigationController?.navigationBar.prefersLargeTitles=true
 		if let splitViewController=splitViewController {
 			splitViewController.primaryBackgroundStyle = .sidebar
 		}
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(selectNewContact), name: .contactCreated, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(removeContact), name: .contactDeleted, object: nil)
+		/*let createNewContactCommand =
+			UIKeyCommand(input: "n",
+						 modifierFlags: [],
+						 action: #selector(createNewContact))
+		addKeyCommand(createNewContactCommand)
+*/
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -23,6 +31,10 @@ class ContactCardsTableViewController: UITableViewController {
     }
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		#if targetEnvironment(macCatalyst)
+			navigationController?.setNavigationBarHidden(true, animated: animated)
+			navigationController?.setToolbarHidden(true, animated: animated)
+		#endif
 		guard let selectedIndexPath=tableView.indexPathForSelectedRow else {
 			return
 		}
@@ -36,7 +48,9 @@ class ContactCardsTableViewController: UITableViewController {
 	@objc func selectNewContact() {
 		tableView.reloadData()
 		let lastRowNumber=ContactCardStore.sharedInstance.contactCards.count-1
-		tableView.selectRow(at: IndexPath(row: lastRowNumber, section: 0), animated: true, scrollPosition: .middle)
+		let indexPath=IndexPath(row: lastRowNumber, section: 0)
+		//tableView.insertRows(at: [indexPath], with: .left)
+		tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
 		selectedCardUUID=ContactCardStore.sharedInstance.contactCards.last?.uuidString
 			showContactCard()
 	}
@@ -44,7 +58,7 @@ class ContactCardsTableViewController: UITableViewController {
 		guard let removalIndex=notification.userInfo?["index"] as? Int else {
 			return
 		}
-		tableView.deleteRows(at: [IndexPath(row: removalIndex, section: 0)], with: .automatic)
+		tableView.deleteRows(at: [IndexPath(row: removalIndex, section: 0)], with: .none)
 	}
 	func showContactCard() {
 		guard let splitViewController=splitViewController else {
@@ -54,11 +68,10 @@ class ContactCardsTableViewController: UITableViewController {
 			return
 		}
 		//bug: should be only 14 and above according to plist
-		if #available(iOS 14.0, *) {
 			ActiveContactCard.shared.contactCard=ContactCardStore.sharedInstance.contactCards[indexPath.row]
 			NotificationCenter.default.post(name: .contactChanged, object: nil)
+		if #available(iOS 14.0, *) {
 			splitViewController.show(.secondary)
-		} else {
 		}
 	}
     // MARK: - Table view data source
@@ -76,6 +89,10 @@ class ContactCardsTableViewController: UITableViewController {
 			return UITableViewCell()
 		}
 		cell.nameLabel.text=ContactCardStore.sharedInstance.contactCards[indexPath.row].filename
+		let colorString=ContactCardStore.sharedInstance.contactCards[indexPath.row].color
+		if let color=colorModel.colorsDictionary[colorString] as? UIColor {
+			cell.circularColorView.backgroundColor=color
+		}
         return cell
     }
 	@IBAction func createContactCardFromContact(_ sender: Any) {
@@ -96,6 +113,20 @@ class ContactCardsTableViewController: UITableViewController {
 			selectedCardUUID=currentUUID
 			showContactCard()
 		}
+	}
+	@objc func createNewContact() {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		guard let createContactViewController=storyboard.instantiateViewController(withIdentifier:
+																					"CreateContactViewController") as? CreateContactViewController else {
+			print("Failed to instantiate CreateContactViewController")
+			return
+		}
+		let navigationController=UINavigationController(rootViewController: createContactViewController)
+		var animated=true
+		#if targetEnvironment(macCatalyst)
+			animated=false
+		#endif
+		present(navigationController, animated: animated)
 	}
 	/*
     // Override to support conditional editing of the table view.
@@ -138,4 +169,5 @@ class ContactCardsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+	//*
 }

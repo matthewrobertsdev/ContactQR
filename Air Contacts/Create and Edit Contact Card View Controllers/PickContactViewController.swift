@@ -16,6 +16,16 @@ class PickContactViewController: CNContactPickerViewController, CNContactPickerD
     override func viewDidLoad() {
         delegate=self
     }
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		AppState.shared.appState=AppStateValue.isModal
+		NotificationCenter.default.post(name: .modalityChanged, object: nil)
+	}
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		AppState.shared.appState=AppStateValue.isNotModal
+		NotificationCenter.default.post(name: .modalityChanged, object: nil)
+	}
     /*
     delegate function.  Assigns to ActiveContact shared singleton object
     and posts notification so observing classes can get notificiation

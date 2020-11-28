@@ -26,7 +26,7 @@ class DisplayQRModel {
 	}
     //get a qr code from the active contact
     func makeQRCode() -> UIImage {
-        qrCode=ContactDataConverter.cnContactToQR_Code(cnContact: contact)
+		qrCode=ContactDataConverter.cnContactToQR_Code(cnContact: contact)
         return qrCode
     }
 	func getContactCardTitle() -> String {

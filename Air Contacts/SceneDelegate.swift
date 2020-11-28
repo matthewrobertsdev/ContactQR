@@ -7,16 +7,41 @@
 import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	var window: UIWindow?
+	static var mainsSplitViewController: MainSplitViewController?
+	#if targetEnvironment(macCatalyst)
+		var toolbarDelegate = ToolbarDelegate()
+	#endif
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
-		options connectionOptions: UIScene.ConnectionOptions) {
+			   options connectionOptions: UIScene.ConnectionOptions) {
+		print("Hello world")
 		// Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
 		// If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
 		// This delegate does not imply the connecting scene or session are new (see
 		//`application:configurationForConnectingSceneSession` instead).
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		guard let mainSplitViewController=storyboard.instantiateViewController(withIdentifier:
+																					"MainSplitViewController") as? MainSplitViewController else {
+			print("Failed to instantiate mainSplitViewController")
+			return
+		}
+		SceneDelegate.mainsSplitViewController=mainSplitViewController
+		window?.rootViewController = mainSplitViewController
 		if scene as? UIWindowScene != nil {
 		} else {
 			return
 		}
+		#if targetEnvironment(macCatalyst)
+			guard let windowScene = scene as? UIWindowScene else {
+				return }
+			let toolbar = NSToolbar(identifier: "main")
+			toolbar.delegate = toolbarDelegate
+			toolbar.displayMode = .iconOnly
+		if let titlebar = windowScene.titlebar {
+				titlebar.toolbar = toolbar
+			titlebar.toolbarStyle = .automatic
+			}
+		#endif
+		print("Should have added toolbar")
 	}
 
 	func sceneDidDisconnect(_ scene: UIScene) {

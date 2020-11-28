@@ -135,22 +135,14 @@ class CreateContactViewController: UIViewController {
 			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelOther, value: address))
 			}
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		guard let saveContactCardViewController=storyboard.instantiateViewController(withIdentifier:
-																						"SaveContactCardViewController")
-				as? SaveContactCardViewController else {
-			print("Failed to instantiate SaveContactCardViewController")
+		guard let chooseColorTableViewController=storyboard.instantiateViewController(withIdentifier:
+																						"ChooseColorTableViewController")
+				as? ChooseColorTableViewController else {
+			print("Failed to instantiate chooseColorTableViewController")
 			return
 		}
-		saveContactCardViewController.contact=contact
-		weak var contactCardTableViewController=presentingViewController
-		let navigationController=UINavigationController(rootViewController: saveContactCardViewController)
-		var animated=true
-		#if targetEnvironment(macCatalyst)
-			animated=false
-		#endif
-		dismiss(animated: animated) {
-			contactCardTableViewController?.present(navigationController, animated: animated)
-		}
+		chooseColorTableViewController.contact=contact
+		navigationController?.pushViewController(chooseColorTableViewController, animated: true)
 	}
 	func fillWithContact(contact: CNContact) {
 		firstNameTextField.text=contact.givenName
@@ -217,6 +209,16 @@ class CreateContactViewController: UIViewController {
 			notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name:
 											UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		AppState.shared.appState=AppStateValue.isModal
+		NotificationCenter.default.post(name: .modalityChanged, object: nil)
+	}
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		AppState.shared.appState=AppStateValue.isNotModal
+		NotificationCenter.default.post(name: .modalityChanged, object: nil)
+	}
 	/*
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation

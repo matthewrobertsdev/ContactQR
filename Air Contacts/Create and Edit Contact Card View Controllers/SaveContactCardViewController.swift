@@ -11,25 +11,39 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var saveButton: UIBarButtonItem!
 	@IBOutlet weak var titleTextField: UITextField!
 	var contact=CNContact()
+	var color=ColorChoice.contrastingColor.rawValue
     override func viewDidLoad() {
         super.viewDidLoad()
 		saveButton.isEnabled=false
 		titleTextField.addTarget(self, action: #selector(enableOrDisableSaveButton), for: .editingChanged)
     }
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		AppState.shared.appState=AppStateValue.isModal
+		NotificationCenter.default.post(name: .modalityChanged, object: nil)
+	}
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		AppState.shared.appState=AppStateValue.isNotModal
+		NotificationCenter.default.post(name: .modalityChanged, object: nil)
+	}
 	@IBAction func save(_ sender: Any) {
-		let contactCard=ContactCard(filename: titleTextField.text ?? "No Title Given", cnContact: contact)
+		let contactCard=ContactCard(filename: titleTextField.text ?? "No Title Given", cnContact: contact, color: color)
+		print(color)
 		ContactCardStore.sharedInstance.contactCards.append(contactCard)
 		ContactCardStore.sharedInstance.saveContacts()
-		var animated=true
-		#if targetEnvironment(macCatalyst)
-			animated=false
-		#endif
+		navigationController?.dismiss(animated: true, completion: {
+			NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: nil)
+		})
+		/*
 		dismiss(animated: animated) {
 			NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: nil)
 		}
+*/
 	}
 	@IBAction func cancel(_ sender: Any) {
-		dismiss(animated: true)
+		//dismiss(animated: true)
+		navigationController?.dismiss(animated: true)
 	}
 	@objc func enableOrDisableSaveButton() {
 		if let text=titleTextField.text {

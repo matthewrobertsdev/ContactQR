@@ -7,18 +7,29 @@
 //
 import UIKit
 import Contacts
-class ContactCardViewController: UIViewController {
+class ContactCardViewController: UIViewController, UIActivityItemsConfigurationReading {
+	var itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var contactInfoLabel: UILabel!
 	var contactCard: ContactCard?
+	let colorModel=ColorModel()
 	private var contactDisplayStrings=[String]()
     override func viewDidLoad() {
         super.viewDidLoad()
+		guard let appdelegate=UIApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		appdelegate.activityItemsConfiguration=self
 		let shareBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
 											   style: .plain, target: self, action: #selector(shareContact))
 		let qrCodeBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "qrcode"), style: .plain,
 												target: self, action: #selector(showQRCodeViewController))
+		#if targetEnvironment(macCatalyst)
+		let docBarButtonItem=UIBarButtonItem(image: UIImage(systemName:
+																"doc.badge.plus"), style: .plain, target: self, action: #selector(exportVCardtoFile))
+		navigationItem.leftBarButtonItems=[docBarButtonItem]
+		#endif
 		navigationItem.rightBarButtonItems=[shareBarButtonItem, qrCodeBarButtonItem]
 		navigationItem.title=""
 		navigationItem.largeTitleDisplayMode = .never
@@ -26,7 +37,19 @@ class ContactCardViewController: UIViewController {
 		loadContact()
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .contactChanged, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(exportVCardtoFile), name: .exportAsVCard, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(showQRCodeViewController), name: .showQRCode, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .modalityChanged, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .modalityChanged, object: nil)
     }
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		navigationController?.setToolbarHidden(false, animated: true)
+		#if targetEnvironment(macCatalyst)
+			navigationController?.setNavigationBarHidden(true, animated: animated)
+			navigationController?.setToolbarHidden(true, animated: animated)
+		#endif
+	}
 	func showOrHideTableView() {
 		if contactCard==nil {
 			scrollView.isHidden=true
@@ -38,11 +61,15 @@ class ContactCardViewController: UIViewController {
 		guard let activeCard=ActiveContactCard.shared.contactCard else {
 			scrollView.isHidden=true
 			titleLabel.text=""
+			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 			return
 		}
 		contactCard=activeCard
 		scrollView.isHidden=false
 		titleLabel.text=activeCard.filename
+		if let color=colorModel.colorsDictionary[activeCard.color] as? UIColor {
+			titleLabel.textColor=color
+		}
 		do {
 			let contact=try ContactDataConverter.createCNContactArray(vCardString: activeCard.vCardString)[0]
 			contactInfoLabel.text=ContactInfoManipulator.makeContactDisplayString(cnContact: contact)
@@ -50,6 +77,18 @@ class ContactCardViewController: UIViewController {
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
+		if AppState.shared.appState==AppStateValue.isNotModal {
+			guard let fileURL=writeTemporaryFile(contactCard: activeCard) else {
+				return
+			}
+			guard let itemProvider=NSItemProvider(contentsOf: fileURL) else {
+				return
+			}
+			itemProvidersForActivityItemsConfiguration=[itemProvider]
+		} else {
+			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
+		}
+		
 	}
     /*
     // MARK: - Navigation
@@ -91,27 +130,9 @@ class ContactCardViewController: UIViewController {
 		guard let contactCard=contactCard else {
 			return
 		}
-		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
-				return
-			}
-		var filename="Contact"
-		var contact=CNContact()
-		do {
-			contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)[0]
-			//tableView.reloadData()
-		} catch {
-			print("Error making CNContact from VCard String.")
+		guard let fileURL=writeTemporaryFile(contactCard: contactCard) else {
+			return
 		}
-		if let name=CNContactFormatter().string(from: contact) {
-			filename=name
-		}
-		let fileURL = directoryURL.appendingPathComponent(filename)
-			.appendingPathExtension("vcf")
-		do {
-		let data = try CNContactVCardSerialization.data(with: [contact])
-
-		try data.write(to: fileURL, options: [.atomicWrite])
-
 			let activityViewController = UIActivityViewController(
 				activityItems: [fileURL],
 				applicationActivities: nil
@@ -119,9 +140,6 @@ class ContactCardViewController: UIViewController {
 			activityViewController.popoverPresentationController?.barButtonItem=sender as? UIBarButtonItem
 
 			present(activityViewController, animated: true)
-		} catch {
-			print("Error trying to make vCard file to share")
-		}
 	}
 	@IBAction func deleteContact(_ sender: Any) {
 		guard let uuidString=contactCard?.uuidString else {
@@ -151,7 +169,71 @@ class ContactCardViewController: UIViewController {
 		}))
 		self.present(deleteAlert, animated: true, completion: nil)
 	}
+	@objc func exportVCardtoFile() {
+		guard let contactCard=contactCard else {
+			return
+		}
+		guard let fileURL=writeTemporaryFile(contactCard: contactCard) else {
+			print("Couldn't write temporary vCard file")
+			return
+		}
+		let exportContactCardViewController = ExportContactCardViewController(forExporting: [fileURL], asCopy: false)
+		exportContactCardViewController.url=fileURL
+		present(exportContactCardViewController, animated: true)
+	}
+	func writeTemporaryFile(contactCard: ContactCard) -> URL? {
+		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+				return nil
+			}
+		var filename="Contact"
+		var contact=CNContact()
+		do {
+			contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)[0]
+			//tableView.reloadData()
+		} catch {
+			print("Error making CNContact from VCard String.")
+		}
+		if let name=CNContactFormatter().string(from: contact) {
+			filename=name
+		}
+		let fileURL = directoryURL.appendingPathComponent(filename)
+			.appendingPathExtension("vcf")
+		do {
+		let data = try CNContactVCardSerialization.data(with: [contact])
+
+		try data.write(to: fileURL, options: [.atomicWrite])
+		} catch {
+			print("Error trying to make vCard file")
+			return nil
+		}
+		return fileURL
+	}
+	@objc func share(_ sender: Any?) {
+	}
+	@objc func createNewContact(){
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		guard let createContactViewController=storyboard.instantiateViewController(withIdentifier:
+																					"CreateContactViewController") as? CreateContactViewController else {
+			print("Failed to instantiate CreateContactViewController")
+			return
+		}
+		let navigationController=UINavigationController(rootViewController: createContactViewController)
+		var animated=true
+		#if targetEnvironment(macCatalyst)
+			animated=false
+		#endif
+		present(navigationController, animated: animated)
+	}
+	@objc func createContactCardFromContact() {
+		var animated=true
+		#if targetEnvironment(macCatalyst)
+			animated=false
+		#endif
+		self.present(PickContactViewController(), animated: animated) {
+		}
+	}
 }
 extension Notification.Name {
 	static let contactDeleted=Notification.Name("contact-deleted")
+	static let modalityChanged=Notification.Name("modality-changed")
 }
