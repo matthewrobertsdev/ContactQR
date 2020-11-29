@@ -69,6 +69,13 @@ class ChooseColorTableViewController: UITableViewController {
 	@IBAction func cancel(_ sender: Any) {
 		navigationController?.dismiss(animated: true)
 	}
+	override var canBecomeFirstResponder: Bool {
+		return true
+	}
+	override var keyCommands: [UIKeyCommand]? {
+		return [UIKeyCommand(title: "Close", image: nil, action: #selector(cancel(_:)), input: UIKeyCommand.inputEscape, modifierFlags:
+								.command, propertyList: nil, alternates: [], discoverabilityTitle: "Close", attributes: .destructive, state: .on)]
+	}
 	/*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

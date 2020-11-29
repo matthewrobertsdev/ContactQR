@@ -27,6 +27,9 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 		AppState.shared.appState=AppStateValue.isNotModal
 		NotificationCenter.default.post(name: .modalityChanged, object: nil)
 	}
+	override var canBecomeFirstResponder: Bool {
+		return true
+	}
 	@IBAction func save(_ sender: Any) {
 		let contactCard=ContactCard(filename: titleTextField.text ?? "No Title Given", cnContact: contact, color: color)
 		print(color)
@@ -64,6 +67,10 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
         // Pass the selected object to the new view controller.
     }
     */
+	override var keyCommands: [UIKeyCommand]? {
+		return [UIKeyCommand(title: "Close", image: nil, action: #selector(cancel(_:)), input: UIKeyCommand.inputEscape, modifierFlags:
+								.command, propertyList: nil, alternates: [], discoverabilityTitle: "Close", attributes: .destructive, state: .on)]
+	}
 }
 extension Notification.Name {
 	//Reference as .contactChanged when type inference is possible

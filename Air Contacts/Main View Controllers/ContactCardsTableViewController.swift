@@ -45,6 +45,9 @@ class ContactCardsTableViewController: UITableViewController {
 			tableView.deselectRow(at: selectedIndexPath, animated: false)
 		}
 	}
+	override var canBecomeFirstResponder: Bool {
+		return true
+	}
 	@objc func selectNewContact() {
 		tableView.reloadData()
 		let lastRowNumber=ContactCardStore.sharedInstance.contactCards.count-1
@@ -70,9 +73,7 @@ class ContactCardsTableViewController: UITableViewController {
 		//bug: should be only 14 and above according to plist
 			ActiveContactCard.shared.contactCard=ContactCardStore.sharedInstance.contactCards[indexPath.row]
 			NotificationCenter.default.post(name: .contactChanged, object: nil)
-		if #available(iOS 14.0, *) {
 			splitViewController.show(.secondary)
-		}
 	}
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -127,6 +128,44 @@ class ContactCardsTableViewController: UITableViewController {
 			animated=false
 		#endif
 		present(navigationController, animated: animated)
+	}
+	func selectFirstContact() {
+		if ContactCardStore.sharedInstance.contactCards.count>0 {
+			tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .middle)
+		}
+		showContactCard()
+	}
+	@objc func goUpOne() {
+		guard let indexPath=tableView.indexPathForSelectedRow else {
+				selectFirstContact()
+			return
+		}
+		if indexPath.row>0 {
+			tableView.selectRow(at: IndexPath(row: indexPath.row-1, section: 0), animated: true, scrollPosition: .middle)
+			showContactCard()
+		}
+	}
+	@objc func goDownOne() {
+		guard let indexPath=tableView.indexPathForSelectedRow else {
+				selectFirstContact()
+			return
+		}
+		if indexPath.row<ContactCardStore.sharedInstance.contactCards.count-1 {
+			tableView.selectRow(at: IndexPath(row: indexPath.row+1, section: 0), animated: true, scrollPosition: .middle)
+			showContactCard()
+		}
+	}
+	override var keyCommands: [UIKeyCommand]? {
+		if AppState.shared.appState==AppStateValue.isModal {
+			return nil
+		}
+		let keyCommands=[
+			UIKeyCommand(title: "Previous Contact", image: nil, action: #selector(goUpOne), input: UIKeyCommand.inputUpArrow, modifierFlags:
+							.command, propertyList: nil, alternates: [], discoverabilityTitle: "Previous Contact", attributes: [], state: .on),
+			UIKeyCommand(title: "Next Contact", image: nil, action: #selector(goDownOne), input: UIKeyCommand.inputDownArrow, modifierFlags: .command,
+						 propertyList: nil, alternates: [], discoverabilityTitle: "Next Contact", attributes: [], state: .on),
+		]
+		return keyCommands
 	}
 	/*
     // Override to support conditional editing of the table view.

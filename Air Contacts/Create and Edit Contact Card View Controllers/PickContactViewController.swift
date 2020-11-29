@@ -7,7 +7,7 @@
 //
 import ContactsUI
 /*
- A CNContactPickerViewController subclassed to be a delgate that
+ A CNContactPickerViewController subclassed to be a delegate that
  assigns a chosen contact to ActiveContact.shared.activeContact
  */
 class PickContactViewController: CNContactPickerViewController, CNContactPickerDelegate {
@@ -25,6 +25,9 @@ class PickContactViewController: CNContactPickerViewController, CNContactPickerD
 		super.viewWillDisappear(animated)
 		AppState.shared.appState=AppStateValue.isNotModal
 		NotificationCenter.default.post(name: .modalityChanged, object: nil)
+	}
+	override var canBecomeFirstResponder: Bool {
+		return true
 	}
     /*
     delegate function.  Assigns to ActiveContact shared singleton object

@@ -26,6 +26,9 @@ class DisplayQRViewController: UIViewController {
 		AppState.shared.appState=AppStateValue.isNotModal
 		NotificationCenter.default.post(name: .modalityChanged, object: nil)
 	}
+	override var canBecomeFirstResponder: Bool {
+		return true
+	}
 	func prepareView() {
 		let color=colorModel.colorsDictionary[ActiveContactCard.shared.contactCard?.color ??
 												"Contasting Color"] ?? UIColor.label
@@ -36,5 +39,9 @@ class DisplayQRViewController: UIViewController {
 	}
 	@IBAction func done(_ sender: Any) {
 		dismiss(animated: true)
+	}
+	override var keyCommands: [UIKeyCommand]? {
+		return [UIKeyCommand(title: "Close", image: nil, action: #selector(done(_:)), input: UIKeyCommand.inputEscape, modifierFlags:
+								.command, propertyList: nil, alternates: [], discoverabilityTitle: "Close", attributes: .destructive, state: .on)]
 	}
 }

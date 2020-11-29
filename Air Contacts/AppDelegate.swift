@@ -102,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
 		guard let splitViewController = 
-				SceneDelegate.mainsSplitViewController as? UISplitViewController else {
+				SceneDelegate.mainsSplitViewController else {
 			return false
 		}
 		if action==#selector(exportAsVCard) || action==#selector(showQRCode) {

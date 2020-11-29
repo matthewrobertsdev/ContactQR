@@ -50,6 +50,9 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			navigationController?.setToolbarHidden(true, animated: animated)
 		#endif
 	}
+	override var canBecomeFirstResponder: Bool {
+		return true
+	}
 	func showOrHideTableView() {
 		if contactCard==nil {
 			scrollView.isHidden=true
@@ -231,8 +234,10 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		self.present(PickContactViewController(), animated: animated) {
 		}
 	}
-	/*
 	override var keyCommands: [UIKeyCommand]? {
+		if AppState.shared.appState==AppStateValue.isModal {
+			return nil
+		}
 		var keyCommands=[
 			UIKeyCommand(input: "n", modifierFlags: .command, action: #selector(createNewContact),
 	discoverabilityTitle: "Create New Contact"),
@@ -245,7 +250,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		}
 		return keyCommands
 	}
-*/
 }
 extension Notification.Name {
 	static let contactDeleted=Notification.Name("contact-deleted")

@@ -219,6 +219,9 @@ class CreateContactViewController: UIViewController {
 		AppState.shared.appState=AppStateValue.isNotModal
 		NotificationCenter.default.post(name: .modalityChanged, object: nil)
 	}
+	override var canBecomeFirstResponder: Bool {
+		return true
+	}
 	/*
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -240,5 +243,9 @@ class CreateContactViewController: UIViewController {
 															keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
 		}
 		fieldsScrollView.scrollIndicatorInsets = fieldsScrollView.contentInset
+	}
+	override var keyCommands: [UIKeyCommand]? {
+		return [UIKeyCommand(title: "Close", image: nil, action: #selector(cancel(_:)), input: UIKeyCommand.inputEscape, modifierFlags:
+								.command, propertyList: nil, alternates: [], discoverabilityTitle: "Close", attributes: .destructive, state: .on)]
 	}
 }

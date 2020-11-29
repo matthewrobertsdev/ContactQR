@@ -28,13 +28,8 @@ class ExportContactCardViewController: UIDocumentPickerViewController, UIDocumen
 		guard let url=url else {
 			return
 		}
-		do {
-			let fileManager=FileManager.default
-			try? fileManager.removeItem(at: url)
-
-		} catch {
-			print("Error trying to remove temporary vCard file")
-		}
+		let fileManager=FileManager.default
+		try? fileManager.removeItem(at: url)
 		dismiss(animated: true)
 
 	}
@@ -46,5 +41,4 @@ class ExportContactCardViewController: UIDocumentPickerViewController, UIDocumen
         // Pass the selected object to the new view controller.
     }
     */
-	
 }
