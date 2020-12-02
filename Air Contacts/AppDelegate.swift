@@ -144,6 +144,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				as? ContactCardViewController else {
 			return
 		}
+		contactCardViewController.share(nil)
 	}
 	@objc func createNewContact() {
 		guard let splitViewController = SceneDelegate.mainsSplitViewController as? UISplitViewController else {
