@@ -39,8 +39,10 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .contactChanged, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(exportVCardtoFile), name: .exportAsVCard, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(showQRCodeViewController), name: .showQRCode, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(createNewContact), name: .createNewContact, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(createContactCardFromContact), name: .createNewContactFromContact, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .modalityChanged, object: nil)
-		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .modalityChanged, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(deleteContact), name: .deleteContact, object: nil)
     }
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)

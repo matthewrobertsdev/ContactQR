@@ -147,29 +147,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		contactCardViewController.share(nil)
 	}
 	@objc func createNewContact() {
-		guard let splitViewController = SceneDelegate.mainsSplitViewController as? UISplitViewController else {
-			return
-		}
-		splitViewController.show(.primary)
-		guard let contactCardViewController=splitViewController.viewController(for: .secondary) as? ContactCardViewController else {
-			return
-		}
-		contactCardViewController.createNewContact()
+		NotificationCenter.default.post(name: .createNewContact, object: nil)
 	}
 	@objc func newCardFromContact() {
-		print("new card from contact")
-		guard let splitViewController = SceneDelegate.mainsSplitViewController as? UISplitViewController else {
-			return
-		}
-		guard let contactCardViewController=splitViewController.viewController(for: .secondary) as? ContactCardViewController else {
-			return
-		}
-		contactCardViewController.createContactCardFromContact()
+		NotificationCenter.default.post(name: .createNewContactFromContact, object: nil)
+	}
+	@objc func deleteContact() {
+		NotificationCenter.default.post(name: .deleteContact, object: nil)
 	}
 }
 extension Notification.Name {
+	static let showQRCode=Notification.Name("show-QR-code")
 	static let exportAsVCard=Notification.Name("export-as-vCard")
 	static let createNewContact=Notification.Name("create-new-contact")
 	static let createNewContactFromContact=Notification.Name("create-new-contact-from-contact")
-	static let showQRCode=Notification.Name("show-QR-code")
+	static let deleteContact=Notification.Name("delete-contact")
 }

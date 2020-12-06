@@ -26,7 +26,7 @@ extension NSToolbarItem.Identifier {
 class ToolbarDelegate: NSObject, NSToolbarDelegate {
 	func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
 		let identifiers: [NSToolbarItem.Identifier] = [
-			.toggleSidebar, .newCardFromContact, .newContactCard, .showQRCode, .shareCard, .exportCard, .editCard, .deleteCard
+			.toggleSidebar, .shareCard, .showQRCode, .newCardFromContact, .newContactCard, .exportCard, .editCard, .deleteCard
 		]
 		return identifiers
 	}
@@ -59,8 +59,8 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			item.image = UIImage(systemName: "trash")
 			item.label = "Delete Card"
 			item.toolTip = "Delete Card"
-			item.action = #selector(doAction)
-			item.target = self
+			item.action = #selector(appDelegate.deleteContact)
+			item.target = appDelegate
 			toolbarItem = item
 		case .exportCard:
 			let item = NSToolbarItem(itemIdentifier: itemIdentifier)
@@ -109,7 +109,6 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 		return toolbarItem
 	}
 	@objc func doAction() {
-		
 	}
 }
 #endif

@@ -69,8 +69,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Contact Card Selected" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuD-EN-eRZ">
-                                <rect key="frame" x="114.66666666666669" y="455.33333333333331" width="199" height="20.333333333333314"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Contact Card Selected" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuD-EN-eRZ">
+                                <rect key="frame" x="0.0" y="455.33333333333331" width="428" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -110,12 +110,14 @@
                             <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="ES0-pi-Nfm" secondAttribute="trailing" constant="8" id="LZX-BR-oai"/>
                             <constraint firstItem="pcP-BW-EwX" firstAttribute="top" secondItem="bgk-8b-W0c" secondAttribute="bottom" constant="20" id="Q8h-Hb-yOL"/>
                             <constraint firstItem="KuD-EN-eRZ" firstAttribute="centerY" secondItem="RpZ-Z8-adj" secondAttribute="centerY" id="ZFS-RX-QpX"/>
+                            <constraint firstItem="KuD-EN-eRZ" firstAttribute="leading" secondItem="RpZ-Z8-adj" secondAttribute="leading" id="ZtY-nB-J2Q"/>
                             <constraint firstItem="KuD-EN-eRZ" firstAttribute="centerX" secondItem="RpZ-Z8-adj" secondAttribute="centerX" id="bcn-eN-ecI"/>
                             <constraint firstItem="RpZ-Z8-adj" firstAttribute="bottom" secondItem="pcP-BW-EwX" secondAttribute="bottom" id="cil-eJ-ZYU"/>
                             <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="bgk-8b-W0c" secondAttribute="trailing" id="dy2-y7-WG7"/>
                             <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="pcP-BW-EwX" secondAttribute="trailing" id="fAR-r5-9zo"/>
                             <constraint firstItem="pcP-BW-EwX" firstAttribute="leading" secondItem="RpZ-Z8-adj" secondAttribute="leading" id="p4I-b5-rGM"/>
                             <constraint firstItem="bgk-8b-W0c" firstAttribute="top" secondItem="RpZ-Z8-adj" secondAttribute="top" constant="20" id="pOy-mm-vcd"/>
+                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="KuD-EN-eRZ" secondAttribute="trailing" id="pWn-O4-LdF"/>
                         </constraints>
                     </view>
                     <toolbarItems>
