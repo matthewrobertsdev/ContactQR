@@ -49,9 +49,13 @@ class ContactCardsTableViewController: UITableViewController {
 		return true
 	}
 	@objc func selectNewContact() {
-		tableView.reloadData()
 		let lastRowNumber=ContactCardStore.sharedInstance.contactCards.count-1
 		let indexPath=IndexPath(row: lastRowNumber, section: 0)
+		#if targetEnvironment(macCatalyst)
+			tableView.reloadData()
+		#else
+		tableView.insertRows(at: [indexPath], with: .bottom)
+		#endif
 		//tableView.insertRows(at: [indexPath], with: .left)
 		tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
 		selectedCardUUID=ContactCardStore.sharedInstance.contactCards.last?.uuidString
@@ -61,7 +65,11 @@ class ContactCardsTableViewController: UITableViewController {
 		guard let removalIndex=notification.userInfo?["index"] as? Int else {
 			return
 		}
-		tableView.deleteRows(at: [IndexPath(row: removalIndex, section: 0)], with: .none)
+		var animation=UITableView.RowAnimation.top
+		#if targetEnvironment(macCatalyst)
+			animation=UITableView.RowAnimation.none
+		#endif
+		tableView.deleteRows(at: [IndexPath(row: removalIndex, section: 0)], with: animation)
 	}
 	func showContactCard() {
 		guard let splitViewController=splitViewController else {

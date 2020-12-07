@@ -10,6 +10,8 @@ import WatchConnectivity
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+	func applicationDidFinishLaunching(_ application: UIApplication) {
+	}
     func application(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true
     }
@@ -155,6 +157,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	@objc func deleteContact() {
 		NotificationCenter.default.post(name: .deleteContact, object: nil)
 	}
+	@objc func editContact() {
+		NotificationCenter.default.post(name: .editContact, object: nil)
+	}
 }
 extension Notification.Name {
 	static let showQRCode=Notification.Name("show-QR-code")
@@ -162,4 +167,5 @@ extension Notification.Name {
 	static let createNewContact=Notification.Name("create-new-contact")
 	static let createNewContactFromContact=Notification.Name("create-new-contact-from-contact")
 	static let deleteContact=Notification.Name("delete-contact")
+	static let editContact=Notification.Name("edit-contact")
 }

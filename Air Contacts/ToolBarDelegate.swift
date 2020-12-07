@@ -9,11 +9,11 @@ import UIKit
 #if targetEnvironment(macCatalyst)
 extension NSToolbarItem.Identifier {
 	static let deleteCard = NSToolbarItem.Identifier(
-		"com.apps.celeritas.Air.Contacts.delete")
+		"com.apps.celeritas.Air.Contacts.deleteCard")
 	static let editCard = NSToolbarItem.Identifier(
-		"com.apps.celeritas.Air.Contacts.edit")
+		"com.apps.celeritas.Air.Contacts.editCard")
 	static let exportCard = NSToolbarItem.Identifier(
-		"com.apps.celeritas.Air.Contacts.export")
+		"com.apps.celeritas.Air.Contacts.exportCard")
 	static let newContactCard = NSToolbarItem.Identifier(
 		"com.apps.celeritas.Air.Contacts.newCard")
 	static let newCardFromContact = NSToolbarItem.Identifier(
@@ -51,8 +51,9 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			item.image = UIImage(systemName: "pencil")
 			item.label = "Edit Card"
 			item.toolTip = "Edit Card"
-			item.action = #selector(doAction)
+			item.action = #selector(appDelegate.editContact)
 			item.target = self
+			item.isBordered=true
 			toolbarItem = item
 		case .deleteCard:
 			let item = NSToolbarItem(itemIdentifier: itemIdentifier)
@@ -60,7 +61,8 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			item.label = "Delete Card"
 			item.toolTip = "Delete Card"
 			item.action = #selector(appDelegate.deleteContact)
-			item.target = appDelegate
+			item.target = self
+			item.isBordered=true
 			toolbarItem = item
 		case .exportCard:
 			let item = NSToolbarItem(itemIdentifier: itemIdentifier)
@@ -68,7 +70,8 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			item.label = "Export Card"
 			item.toolTip = "Export Card"
 			item.action = #selector(appDelegate.exportAsVCard)
-			item.target = appDelegate
+			item.target = self
+			item.isBordered=true
 			toolbarItem = item
 		case .newContactCard:
 			let item = NSToolbarItem(itemIdentifier: itemIdentifier)
@@ -77,6 +80,7 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			item.toolTip = "New Contact Card"
 			item.action = #selector(appDelegate.createNewContact)
 			item.target = appDelegate
+			item.isBordered=true
 			toolbarItem = item
 		case .newCardFromContact:
 			let item = NSToolbarItem(itemIdentifier: itemIdentifier)
@@ -85,6 +89,7 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			item.toolTip = "New Card from Contact"
 			item.action = #selector(appDelegate.newCardFromContact)
 			item.target = appDelegate
+			item.isBordered=true
 			toolbarItem = item
 		case .showQRCode:
 			let item = NSToolbarItem(itemIdentifier: itemIdentifier)
@@ -92,7 +97,8 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			item.label = "Show QR Code"
 			item.toolTip = "Show QR Code"
 			item.action = #selector(appDelegate.showQRCode)
-			item.target = appDelegate
+			item.target = self
+			item.isBordered=true
 			toolbarItem = item
 		case .shareCard:
 			let item = NSSharingServicePickerToolbarItem(itemIdentifier: .shareCard)
@@ -102,6 +108,7 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			item.toolTip = "Share"
 			item.action = #selector(appDelegate.share)
 			item.target = appDelegate
+			item.isBordered=true
 			toolbarItem = item
 		default:
 			toolbarItem = nil

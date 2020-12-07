@@ -64,12 +64,16 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	}
 	@objc func loadContact() {
 		guard let activeCard=ActiveContactCard.shared.contactCard else {
+			SceneDelegate.enableValidToolbarItems()
+			
+			contactCard=nil
 			scrollView.isHidden=true
 			titleLabel.text=""
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 			return
 		}
 		contactCard=activeCard
+		SceneDelegate.enableValidToolbarItems()
 		scrollView.isHidden=false
 		titleLabel.text=activeCard.filename
 		if let color=colorModel.colorsDictionary[activeCard.color] as? UIColor {

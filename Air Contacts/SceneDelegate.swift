@@ -10,10 +10,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	static var mainsSplitViewController: MainSplitViewController?
 	#if targetEnvironment(macCatalyst)
 		var toolbarDelegate = ToolbarDelegate()
+		static var toolbar: NSToolbar?
 	#endif
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
 			   options connectionOptions: UIScene.ConnectionOptions) {
-		print("Hello world")
 		// Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
 		// If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
 		// This delegate does not imply the connecting scene or session are new (see
@@ -33,11 +33,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		#if targetEnvironment(macCatalyst)
 			guard let windowScene = scene as? UIWindowScene else {
 				return }
-			let toolbar = NSToolbar(identifier: "main")
-			toolbar.delegate = toolbarDelegate
-			toolbar.displayMode = .iconOnly
+			SceneDelegate.toolbar = NSToolbar(identifier: "main")
+			SceneDelegate.toolbar?.delegate = toolbarDelegate
+			SceneDelegate.toolbar?.displayMode = .iconOnly
+			SceneDelegate.enableValidToolbarItems()
 		if let titlebar = windowScene.titlebar {
-				titlebar.toolbar = toolbar
+			titlebar.toolbar = SceneDelegate.toolbar
 			titlebar.toolbarStyle = .automatic
 			}
 		#endif
@@ -71,5 +72,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// Called as the scene transitions from the foreground to the background.
 		// Use this method to save data, release shared resources, and store enough scene-specific state information
 		// to restore the scene back to its current state.
+	}
+	static func enableValidToolbarItems() {
+		guard let splitViewController = SceneDelegate.mainsSplitViewController else {
+			return
+		}
+		guard let contactCardViewController=splitViewController.viewController(for: .secondary)
+				as? ContactCardViewController else {
+			return
+		}
+		guard let appDelegate=UIApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		guard let toolbar=SceneDelegate.toolbar else {
+			return
+		}
+		for item in toolbar.items {
+			switch item.itemIdentifier {
+			case .editCard, .deleteCard, .exportCard, .showQRCode, .shareCard:
+				if let _=contactCardViewController.contactCard {
+					item.target=appDelegate
+					item.isEnabled=true
+				} else {
+					item.target=self
+					item.isEnabled=false
+				}
+			default:
+				print(item.itemIdentifier.rawValue)
+			}
+		}
 	}
 }
