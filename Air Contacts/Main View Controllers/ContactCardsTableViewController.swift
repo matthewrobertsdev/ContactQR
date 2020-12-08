@@ -17,6 +17,7 @@ class ContactCardsTableViewController: UITableViewController {
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(selectNewContact), name: .contactCreated, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(removeContact), name: .contactDeleted, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(reloadWithUUID), name: .contactUpdated, object: nil)
     }
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -36,6 +37,22 @@ class ContactCardsTableViewController: UITableViewController {
 	}
 	override var canBecomeFirstResponder: Bool {
 		return true
+	}
+	@objc func reloadWithUUID(notification: NSNotification) {
+		guard let userInfo = notification.userInfo as? [String: Any] else {
+			return
+		}
+		guard let uuid=userInfo["uuid"] as? String else {
+			return
+		}
+		let index=ContactCardStore.sharedInstance.contactCards.firstIndex { (contactCard) -> Bool in
+			return contactCard.uuidString==uuid
+		}
+		if let index=index {
+			let indexPath=IndexPath(row: index, section: 0)
+			tableView.reloadRows(at: [indexPath], with: .none)
+			tableView.selectRow(at: indexPath, animated: false, scrollPosition: .middle)
+		}
 	}
 	@objc func selectNewContact() {
 		let lastRowNumber=ContactCardStore.sharedInstance.contactCards.count-1

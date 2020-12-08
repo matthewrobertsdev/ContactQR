@@ -43,6 +43,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .modalityChanged, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(deleteContact), name: .deleteContact, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(editContact), name: .editContact, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .contactUpdated, object: nil)
     }
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -258,12 +259,19 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	}
 	@IBAction func editContact(_ sender: Any) {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		guard let createContactViewController=storyboard.instantiateViewController(withIdentifier:
+		guard let editContactCardViewController=storyboard.instantiateViewController(withIdentifier:
 																					"EditContactCardViewController") as? EditContactCardViewController else {
 			print("Failed to instantiate EditContactCardViewController")
 			return
 		}
-		let navigationController=UINavigationController(rootViewController: createContactViewController)
+		do {
+			let contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard?.vCardString ?? "")[0]
+			editContactCardViewController.contact=contact
+			editContactCardViewController.contactCard=contactCard
+		} catch {
+			print("Error making CNContact from VCard String.")
+		}
+		let navigationController=UINavigationController(rootViewController: editContactCardViewController)
 		var animated=true
 		#if targetEnvironment(macCatalyst)
 			animated=false

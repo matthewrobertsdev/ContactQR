@@ -10,11 +10,17 @@ import Contacts
 class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var saveButton: UIBarButtonItem!
 	@IBOutlet weak var titleTextField: UITextField!
+	var forEditing=false
+	var contactCard: ContactCard?
 	var contact=CNContact()
 	var color=ColorChoice.contrastingColor.rawValue
     override func viewDidLoad() {
         super.viewDidLoad()
-		saveButton.isEnabled=false
+		if !forEditing {
+			saveButton.isEnabled=false
+		} else {
+			titleTextField.text=contactCard?.filename
+		}
 		titleTextField.addTarget(self, action: #selector(enableOrDisableSaveButton), for: .editingChanged)
     }
 	override func viewWillAppear(_ animated: Bool) {
@@ -31,18 +37,20 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 		return true
 	}
 	@IBAction func save(_ sender: Any) {
-		let contactCard=ContactCard(filename: titleTextField.text ?? "No Title Given", cnContact: contact, color: color)
-		print(color)
-		ContactCardStore.sharedInstance.contactCards.append(contactCard)
-		ContactCardStore.sharedInstance.saveContacts()
-		navigationController?.dismiss(animated: true, completion: {
+		if forEditing {
+			contactCard?.filename=titleTextField.text ?? "No Title Given"
+			ContactCardStore.sharedInstance.saveContacts()
+			navigationController?.dismiss(animated: true, completion: {
+				NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid":self.contactCard?.uuidString ?? ""])
+			})
+		} else {
+			let contactCard=ContactCard(filename: titleTextField.text ?? "No Title Given", cnContact: contact, color: color)
+			ContactCardStore.sharedInstance.contactCards.append(contactCard)
+			ContactCardStore.sharedInstance.saveContacts()
+			navigationController?.dismiss(animated: true, completion: {
 			NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: nil)
-		})
-		/*
-		dismiss(animated: animated) {
-			NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: nil)
+			})
 		}
-*/
 	}
 	@IBAction func cancel(_ sender: Any) {
 		navigationController?.dismiss(animated: true)
@@ -74,4 +82,6 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 }
 extension Notification.Name {
 	static let contactCreated=Notification.Name("contact-created")
+	static let contactUpdated=Notification.Name("contact-updated")
+
 }
