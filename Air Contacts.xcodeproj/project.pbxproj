@@ -18,6 +18,7 @@
 		9F7147AB256CCCC600A979B8 /* ContactCardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7147AA256CCCC600A979B8 /* ContactCardStore.swift */; };
 		9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EB966255E10420032563C /* CreateContactViewController.swift */; };
 		9F7F42192560F24700199193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F42182560F24700199193 /* SceneDelegate.swift */; };
+		9F98DF6A257F3C9900566779 /* EditContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F98DF69257F3C9900566779 /* EditContactCardViewController.swift */; };
 		9F9E9AE321BA1690003A6A33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */; };
 		9F9E9AE521BA1690003A6A33 /* DisplayQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE421BA1690003A6A33 /* DisplayQRViewController.swift */; };
 		9F9E9AE821BA1690003A6A33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE621BA1690003A6A33 /* Main.storyboard */; };
@@ -84,6 +85,7 @@
 		9F7147AA256CCCC600A979B8 /* ContactCardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardStore.swift; sourceTree = "<group>"; };
 		9F7EB966255E10420032563C /* CreateContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateContactViewController.swift; sourceTree = "<group>"; };
 		9F7F42182560F24700199193 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		9F98DF69257F3C9900566779 /* EditContactCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactCardViewController.swift; sourceTree = "<group>"; };
 		9F9E9ADF21BA1690003A6A33 /* Air Contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Air Contacts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F9E9AE421BA1690003A6A33 /* DisplayQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayQRViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				9F7EB966255E10420032563C /* CreateContactViewController.swift */,
 				9FEE377C256DBA490089337E /* ChooseColorTableViewController.swift */,
 				9FEC6191256229DE004A03BE /* SaveContactCardViewController.swift */,
+				9F98DF69257F3C9900566779 /* EditContactCardViewController.swift */,
 			);
 			path = "Create and Edit Contact Card View Controllers";
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				9F339FF3256E9C9500F31F9F /* ExportContactCardViewController.swift in Sources */,
 				9F3FDD0121CC376F00D2FBB2 /* ContactDataConverter.swift in Sources */,
 				9FB3E45F21C967410011752F /* PickContactViewController.swift in Sources */,
+				9F98DF6A257F3C9900566779 /* EditContactCardViewController.swift in Sources */,
 				9FB3E46521C96F990011752F /* DisplayQRModel.swift in Sources */,
 				9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */,
 				9FEE3782256DBA990089337E /* ColorModel.swift in Sources */,

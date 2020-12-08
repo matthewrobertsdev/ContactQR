@@ -53,7 +53,6 @@ class PickContactViewController: CNContactPickerViewController, CNContactPickerD
 			dismiss(animated: animated) {
 				contactCardTableViewController?.present(navigationController, animated: animated)
 			}
-			//NotificationCenter.default.post(name: .contactPicked, object: self, userInfo: ["animated": false])
 		}
     }
 }

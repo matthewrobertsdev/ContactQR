@@ -10,7 +10,7 @@ import UIKit
 extension NSToolbarItem.Identifier {
 	static let deleteCard = NSToolbarItem.Identifier(
 		"com.apps.celeritas.Air.Contacts.deleteCard")
-	static let editCard = NSToolbarItem.Identifier(
+	static let editContact = NSToolbarItem.Identifier(
 		"com.apps.celeritas.Air.Contacts.editCard")
 	static let exportCard = NSToolbarItem.Identifier(
 		"com.apps.celeritas.Air.Contacts.exportCard")
@@ -26,7 +26,7 @@ extension NSToolbarItem.Identifier {
 class ToolbarDelegate: NSObject, NSToolbarDelegate {
 	func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
 		let identifiers: [NSToolbarItem.Identifier] = [
-			.toggleSidebar, .shareCard, .showQRCode, .newCardFromContact, .newContactCard, .exportCard, .editCard, .deleteCard
+			.toggleSidebar, .shareCard, .showQRCode, .newCardFromContact, .newContactCard, .exportCard, .editContact, .deleteCard
 		]
 		return identifiers
 	}
@@ -46,7 +46,7 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 		switch itemIdentifier {
 		case .toggleSidebar:
 			toolbarItem = NSToolbarItem(itemIdentifier: itemIdentifier)
-		case .editCard:
+		case .editContact:
 			let item = NSToolbarItem(itemIdentifier: itemIdentifier)
 			item.image = UIImage(systemName: "pencil")
 			item.label = "Edit Card"

@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		guard let mainSplitViewController=storyboard.instantiateViewController(withIdentifier:
 																					"MainSplitViewController") as? MainSplitViewController else {
-			print("Failed to instantiate mainSplitViewController")
+			print("Failed to instantiate MainSplitViewController")
 			return
 		}
 		SceneDelegate.mainsSplitViewController=mainSplitViewController
@@ -73,6 +73,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// Use this method to save data, release shared resources, and store enough scene-specific state information
 		// to restore the scene back to its current state.
 	}
+	#if targetEnvironment(macCatalyst)
 	static func enableValidToolbarItems() {
 		guard let splitViewController = SceneDelegate.mainsSplitViewController else {
 			return
@@ -89,7 +90,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		}
 		for item in toolbar.items {
 			switch item.itemIdentifier {
-			case .editCard, .deleteCard, .exportCard, .showQRCode, .shareCard:
+			case .editContact, .deleteCard, .exportCard, .showQRCode, .shareCard:
 				if let _=contactCardViewController.contactCard {
 					item.target=appDelegate
 					item.isEnabled=true
@@ -102,4 +103,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 			}
 		}
 	}
+	#endif
 }

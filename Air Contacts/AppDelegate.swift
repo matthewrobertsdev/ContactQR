@@ -48,6 +48,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		builder.replaceChildren(ofMenu: .help) { _ in
 			[]
 		}
+		let editCardCommand =
+			UICommand(title: "Edit Contact Card", image: nil, action: #selector(editContact),
+										 propertyList: nil, alternates: [], discoverabilityTitle: "Edit Contact Card", attributes: [], state: .off)
+		let deleteCardCommand =
+			UICommand(title: "Delete Contact Card", image: nil, action: #selector(deleteContact),
+										 propertyList: nil, alternates: [], discoverabilityTitle: "Delete Contact Card", attributes: [], state: .off)
+		let editAndDeleteMenu = UIMenu(title: "", image: nil, identifier:
+										UIMenu.Identifier("editAndDeleteMenu"), options: .displayInline, children: [editCardCommand, deleteCardCommand])
+		builder.insertChild(editAndDeleteMenu, atStartOfMenu: .edit)
 		let exportAsVCardCommand =
 			UIKeyCommand(title: NSLocalizedString("Export as vCard...", comment: ""),
 						 image: nil,
@@ -107,7 +116,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				SceneDelegate.mainsSplitViewController else {
 			return false
 		}
-		if action==#selector(exportAsVCard) || action==#selector(showQRCode) {
+		if action==#selector(exportAsVCard) || action==#selector(showQRCode) ||
+			action==#selector(deleteContact) || action==#selector(editContact) {
 			guard let contactCardViewController=splitViewController.viewController(for: .secondary)
 					as? ContactCardViewController else {
 				return false

@@ -61,6 +61,55 @@
             </objects>
             <point key="canvasLocation" x="-414" y="1013"/>
         </scene>
+        <!--Edit Contact Card-->
+        <scene sceneID="Uan-p1-fQQ">
+            <objects>
+                <viewController storyboardIdentifier="EditContactCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SNB-o5-8lY" customClass="EditContactCardViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Mva-TH-GgV">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kf7-s1-hAF">
+                                <rect key="frame" x="138" y="114" width="152" height="30"/>
+                                <state key="normal" title="Edit Card Contact Info"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaX-Z7-bZW">
+                                <rect key="frame" x="148.66666666666666" y="152" width="130.99999999999997" height="30"/>
+                                <state key="normal" title="Change Card Color"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQI-eC-34P">
+                                <rect key="frame" x="152" y="190" width="124" height="30"/>
+                                <state key="normal" title="Change Card Title"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="WNC-kS-aRr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Kf7-s1-hAF" firstAttribute="centerX" secondItem="WNC-kS-aRr" secondAttribute="centerX" id="DyH-ib-TCu"/>
+                            <constraint firstItem="CQI-eC-34P" firstAttribute="centerX" secondItem="WNC-kS-aRr" secondAttribute="centerX" id="E8N-i7-1Xi"/>
+                            <constraint firstItem="CQI-eC-34P" firstAttribute="top" secondItem="QaX-Z7-bZW" secondAttribute="bottom" constant="8" symbolic="YES" id="SaD-k4-smb"/>
+                            <constraint firstItem="QaX-Z7-bZW" firstAttribute="top" secondItem="Kf7-s1-hAF" secondAttribute="bottom" constant="8" symbolic="YES" id="cpM-Cv-QoF"/>
+                            <constraint firstItem="Kf7-s1-hAF" firstAttribute="top" secondItem="WNC-kS-aRr" secondAttribute="top" constant="26" id="hJc-Rj-8l2"/>
+                            <constraint firstItem="QaX-Z7-bZW" firstAttribute="centerX" secondItem="WNC-kS-aRr" secondAttribute="centerX" id="lS2-S1-fEw"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Contact Card" id="kAf-6r-9ad">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="fty-aW-rVJ">
+                            <connections>
+                                <action selector="cancel:" destination="SNB-o5-8lY" id="l25-GH-H2x"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="changeColorButton" destination="QaX-Z7-bZW" id="Fsh-mG-Ro4"/>
+                        <outlet property="changeTitleButton" destination="CQI-eC-34P" id="oOM-8C-BZS"/>
+                        <outlet property="editButton" destination="QaX-Z7-bZW" id="ARd-fW-F70"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yWZ-9c-ti0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2920.0934579439249" y="1209.7192224622031"/>
+        </scene>
         <!--Title-->
         <scene sceneID="CCk-fk-rf8">
             <objects>
@@ -128,7 +177,11 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="lsk-83-uNr"/>
-                        <barButtonItem title="Edit" id="Zsl-Mo-NRh"/>
+                        <barButtonItem title="Edit" id="Zsl-Mo-NRh">
+                            <connections>
+                                <action selector="editContact:" destination="IJa-nU-fZ3" id="m22-Qq-0nh"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Title" id="3Zp-II-Wva"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -846,6 +899,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tML-IQ-PRl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1514" y="915"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aHf-Ac-453">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Prr-80-2lL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="apC-Ip-dc4">
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SNB-o5-8lY" kind="relationship" relationship="rootViewController" id="Hhu-aR-hYe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uUc-GZ-d3G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2020.0934579439252" y="1209.7192224622031"/>
         </scene>
     </scenes>
     <resources>

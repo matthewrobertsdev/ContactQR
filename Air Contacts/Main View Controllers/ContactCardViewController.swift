@@ -43,6 +43,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		notificationCenter.addObserver(self, selector: #selector(createContactCardFromContact), name: .createNewContactFromContact, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .modalityChanged, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(deleteContact), name: .deleteContact, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(editContact), name: .editContact, object: nil)
     }
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -64,8 +65,9 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	}
 	@objc func loadContact() {
 		guard let activeCard=ActiveContactCard.shared.contactCard else {
+			#if targetEnvironment(macCatalyst)
 			SceneDelegate.enableValidToolbarItems()
-			
+			#endif
 			contactCard=nil
 			scrollView.isHidden=true
 			titleLabel.text=""
@@ -73,7 +75,9 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			return
 		}
 		contactCard=activeCard
+		#if targetEnvironment(macCatalyst)
 		SceneDelegate.enableValidToolbarItems()
+		#endif
 		scrollView.isHidden=false
 		titleLabel.text=activeCard.filename
 		if let color=colorModel.colorsDictionary[activeCard.color] as? UIColor {
@@ -239,6 +243,20 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		#endif
 		self.present(PickContactViewController(), animated: animated) {
 		}
+	}
+	@IBAction func editContact(_ sender: Any) {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		guard let createContactViewController=storyboard.instantiateViewController(withIdentifier:
+																					"EditContactCardViewController") as? EditContactCardViewController else {
+			print("Failed to instantiate EditContactCardViewController")
+			return
+		}
+		let navigationController=UINavigationController(rootViewController: createContactViewController)
+		var animated=true
+		#if targetEnvironment(macCatalyst)
+			animated=false
+		#endif
+		present(navigationController, animated: animated)
 	}
 	override var keyCommands: [UIKeyCommand]? {
 		if AppState.shared.appState==AppStateValue.isModal {
