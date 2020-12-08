@@ -11,23 +11,12 @@ class ContactCardsTableViewController: UITableViewController {
 	let colorModel=ColorModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-		//navigationController?.navigationBar.prefersLargeTitles=true
 		if let splitViewController=splitViewController {
 			splitViewController.primaryBackgroundStyle = .sidebar
 		}
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(selectNewContact), name: .contactCreated, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(removeContact), name: .contactDeleted, object: nil)
-		/*let createNewContactCommand =
-			UIKeyCommand(input: "n",
-						 modifierFlags: [],
-						 action: #selector(createNewContact))
-		addKeyCommand(createNewContactCommand)
-*/
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -56,7 +45,6 @@ class ContactCardsTableViewController: UITableViewController {
 		#else
 		tableView.insertRows(at: [indexPath], with: .bottom)
 		#endif
-		//tableView.insertRows(at: [indexPath], with: .left)
 		tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
 		selectedCardUUID=ContactCardStore.sharedInstance.contactCards.last?.uuidString
 			showContactCard()
@@ -78,7 +66,6 @@ class ContactCardsTableViewController: UITableViewController {
 		guard let indexPath=tableView.indexPathForSelectedRow else {
 			return
 		}
-		//bug: should be only 14 and above according to plist
 			ActiveContactCard.shared.contactCard=ContactCardStore.sharedInstance.contactCards[indexPath.row]
 			NotificationCenter.default.post(name: .contactChanged, object: nil)
 			splitViewController.show(.secondary)
@@ -168,10 +155,13 @@ class ContactCardsTableViewController: UITableViewController {
 			return nil
 		}
 		let keyCommands=[
-			UIKeyCommand(title: "Previous Contact", image: nil, action: #selector(goUpOne), input: UIKeyCommand.inputUpArrow, modifierFlags:
-							.command, propertyList: nil, alternates: [], discoverabilityTitle: "Previous Contact", attributes: [], state: .on),
-			UIKeyCommand(title: "Next Contact", image: nil, action: #selector(goDownOne), input: UIKeyCommand.inputDownArrow, modifierFlags: .command,
-						 propertyList: nil, alternates: [], discoverabilityTitle: "Next Contact", attributes: [], state: .on),
+			UIKeyCommand(title: "Previous Contact", image: nil, action: #selector(goUpOne),
+						 input: UIKeyCommand.inputUpArrow, modifierFlags:
+							.command, propertyList: nil, alternates: [], discoverabilityTitle: "Previous Contact",
+						 attributes: [], state: .on),
+			UIKeyCommand(title: "Next Contact", image: nil, action: #selector(goDownOne), input: UIKeyCommand.inputDownArrow,
+						 modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Next Contact",
+						 attributes: [], state: .on),
 		]
 		return keyCommands
 	}

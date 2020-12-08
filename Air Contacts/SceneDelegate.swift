@@ -42,7 +42,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 			titlebar.toolbarStyle = .automatic
 			}
 		#endif
-		print("Should have added toolbar")
 	}
 
 	func sceneDidDisconnect(_ scene: UIScene) {
@@ -91,7 +90,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		for item in toolbar.items {
 			switch item.itemIdentifier {
 			case .editContact, .deleteCard, .exportCard, .showQRCode, .shareCard:
-				if let _=contactCardViewController.contactCard {
+				if contactCardViewController.contactCard != nil {
 					item.target=appDelegate
 					item.isEnabled=true
 				} else {

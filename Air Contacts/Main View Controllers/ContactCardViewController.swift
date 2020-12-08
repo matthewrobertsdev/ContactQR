@@ -33,7 +33,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		navigationItem.rightBarButtonItems=[shareBarButtonItem, qrCodeBarButtonItem]
 		navigationItem.title=""
 		navigationItem.largeTitleDisplayMode = .never
-		//tableView.dataSource=self
 		loadContact()
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .contactChanged, object: nil)
@@ -68,6 +67,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			#if targetEnvironment(macCatalyst)
 			SceneDelegate.enableValidToolbarItems()
 			#endif
+			enableButtons(enable: false)
 			contactCard=nil
 			scrollView.isHidden=true
 			titleLabel.text=""
@@ -75,6 +75,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			return
 		}
 		contactCard=activeCard
+		enableButtons(enable: true)
 		#if targetEnvironment(macCatalyst)
 		SceneDelegate.enableValidToolbarItems()
 		#endif
@@ -100,6 +101,20 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			itemProvidersForActivityItemsConfiguration=[itemProvider]
 		} else {
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
+		}
+	}
+	func enableButtons(enable: Bool) {
+		guard let rightBarButtonItems=navigationItem.rightBarButtonItems else {
+			return
+		}
+		for item in rightBarButtonItems {
+			item.isEnabled=enable
+		}
+		guard let toolbarItems=toolbarItems else {
+			return
+		}
+		for item in toolbarItems {
+			item.isEnabled=enable
 		}
 	}
     /*
@@ -201,7 +216,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		var contact=CNContact()
 		do {
 			contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)[0]
-			//tableView.reloadData()
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
@@ -219,8 +233,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			return nil
 		}
 		return fileURL
-	}
-	@objc func share(_ sender: Any?) {
 	}
 	@objc func createNewContact() {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -268,9 +280,10 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			UIKeyCommand(input: "n", modifierFlags: UIKeyModifierFlags(arrayLiteral: [.command,.shift]), action:
 	#selector(createContactCardFromContact), discoverabilityTitle: "Create New Card From Contact")
 		]
-		if let _=contactCard {
-			keyCommands.append(UIKeyCommand(input: "1", modifierFlags: .command, action:
-	#selector(showQRCodeViewController), discoverabilityTitle: "Show QR Code"))
+		if contactCard != nil {
+			keyCommands.append(UIKeyCommand(title: "Show QR Code", image: nil, action: #selector(showQRCodeViewController),
+											input: "1", modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Show QR Code",
+											attributes: UIKeyCommand.Attributes(), state: .off))
 		}
 		return keyCommands
 	}

@@ -245,7 +245,8 @@ class CreateContactViewController: UIViewController {
 		fieldsScrollView.scrollIndicatorInsets = fieldsScrollView.contentInset
 	}
 	override var keyCommands: [UIKeyCommand]? {
-		return [UIKeyCommand(title: "Close", image: nil, action: #selector(cancel(_:)), input: UIKeyCommand.inputEscape, modifierFlags:
-								.command, propertyList: nil, alternates: [], discoverabilityTitle: "Close", attributes: .destructive, state: .on)]
+		return [UIKeyCommand(title: "Close", image: nil, action: #selector(cancel(_:)), input: UIKeyCommand.inputEscape,
+							 modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Close",
+							 attributes: .destructive, state: .on)]
 	}
 }

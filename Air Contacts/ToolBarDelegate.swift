@@ -34,8 +34,8 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 		return toolbarDefaultItemIdentifiers(toolbar)
 	}
 	func toolbar(_ toolbar: NSToolbar,
-				 itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
-				 willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
+				 itemForItemIdentifier itemIdentifier:
+					NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
 		guard let appDelegate=UIApplication.shared.delegate as? AppDelegate else {
 			return nil
 		}

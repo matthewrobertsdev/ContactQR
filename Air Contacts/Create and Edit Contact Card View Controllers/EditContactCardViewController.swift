@@ -43,4 +43,9 @@ class EditContactCardViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+	override var keyCommands: [UIKeyCommand]? {
+		return [UIKeyCommand(title: "Close", image: nil, action: #selector(cancel(_:)), input: UIKeyCommand.inputEscape,
+							 modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Close",
+							 attributes: .destructive, state: .on)]
+	}
 }

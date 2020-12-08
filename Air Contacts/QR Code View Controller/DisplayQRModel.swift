@@ -19,12 +19,10 @@ class DisplayQRModel {
 		}
 		do {
 			contact=try ContactDataConverter.createCNContactArray(vCardString: vCardString)[0]
-			//tableView.reloadData()
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
 	}
-    //get a qr code from the active contact
     func makeQRCode() -> UIImage {
 		qrCode=ContactDataConverter.cnContactToQR_Code(cnContact: contact)
         return qrCode

@@ -6,7 +6,6 @@
 //  Copyright © 2018 Matt Roberts. All rights reserved.
 //
 import UIKit
-import WatchConnectivity
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
@@ -112,8 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		NotificationCenter.default.post(name: .showQRCode, object: self)
 	}
 	override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-		guard let splitViewController = 
-				SceneDelegate.mainsSplitViewController else {
+		guard let splitViewController = SceneDelegate.mainsSplitViewController else {
 			return false
 		}
 		if action==#selector(exportAsVCard) || action==#selector(showQRCode) ||
@@ -132,31 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			return super.canPerformAction(action, withSender: nil)
 		}
 	}
-//*/
-	/*
-	override func validate(_ command: UICommand) {
-  
-		guard let appDelegate=UIApplication.shared.delegate as? AppDelegate else {
-			print("app delegate was nil")
-			return super.validate(command)
-		}
-		if command.action==#selector(appDelegate.exportAsVCard) {
-			print("for exportToVCard")
-			command.state = .off
-		} else {
-			super.validate(command)
-		}
-	}
-	*/
 	@objc func share() {
-		guard let splitViewController = SceneDelegate.mainsSplitViewController else {
-			return
-		}
-		guard let contactCardViewController=splitViewController.viewController(for: .secondary)
-				as? ContactCardViewController else {
-			return
-		}
-		contactCardViewController.share(nil)
 	}
 	@objc func createNewContact() {
 		NotificationCenter.default.post(name: .createNewContact, object: nil)
@@ -178,4 +152,5 @@ extension Notification.Name {
 	static let createNewContactFromContact=Notification.Name("create-new-contact-from-contact")
 	static let deleteContact=Notification.Name("delete-contact")
 	static let editContact=Notification.Name("edit-contact")
+	static let shareContact=Notification.Name("share-contact")
 }

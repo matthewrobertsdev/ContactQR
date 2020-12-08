@@ -45,7 +45,6 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 */
 	}
 	@IBAction func cancel(_ sender: Any) {
-		//dismiss(animated: true)
 		navigationController?.dismiss(animated: true)
 	}
 	@objc func enableOrDisableSaveButton() {
@@ -68,11 +67,11 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
     }
     */
 	override var keyCommands: [UIKeyCommand]? {
-		return [UIKeyCommand(title: "Close", image: nil, action: #selector(cancel(_:)), input: UIKeyCommand.inputEscape, modifierFlags:
-								.command, propertyList: nil, alternates: [], discoverabilityTitle: "Close", attributes: .destructive, state: .on)]
+		return [UIKeyCommand(title: "Close", image: nil, action: #selector(cancel(_:)), input: UIKeyCommand.inputEscape,
+							 modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Close",
+							 attributes: .destructive, state: .on)]
 	}
 }
 extension Notification.Name {
-	//Reference as .contactChanged when type inference is possible
 	static let contactCreated=Notification.Name("contact-created")
 }
