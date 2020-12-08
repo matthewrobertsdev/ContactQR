@@ -40,9 +40,8 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 		if forEditing {
 			contactCard?.filename=titleTextField.text ?? "No Title Given"
 			ContactCardStore.sharedInstance.saveContacts()
-			navigationController?.dismiss(animated: true, completion: {
-				NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid":self.contactCard?.uuidString ?? ""])
-			})
+			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid":self.contactCard?.uuidString ?? ""])
+			navigationController?.dismiss(animated: true)
 		} else {
 			let contactCard=ContactCard(filename: titleTextField.text ?? "No Title Given", cnContact: contact, color: color)
 			ContactCardStore.sharedInstance.contactCards.append(contactCard)

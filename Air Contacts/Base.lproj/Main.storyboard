@@ -76,12 +76,15 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaX-Z7-bZW">
                                 <rect key="frame" x="148.66666666666666" y="152" width="130.99999999999997" height="30"/>
                                 <state key="normal" title="Change Card Color"/>
+                                <connections>
+                                    <action selector="changeCardColor:" destination="SNB-o5-8lY" eventType="touchUpInside" id="ych-sS-NXA"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQI-eC-34P">
                                 <rect key="frame" x="152" y="190" width="124" height="30"/>
                                 <state key="normal" title="Change Card Title"/>
                                 <connections>
-                                    <action selector="changeTitle:" destination="SNB-o5-8lY" eventType="touchUpInside" id="KKs-sC-T00"/>
+                                    <action selector="changeCardTitle:" destination="SNB-o5-8lY" eventType="touchUpInside" id="KKs-sC-T00"/>
                                 </connections>
                             </button>
                         </subviews>

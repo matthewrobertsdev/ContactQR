@@ -35,8 +35,7 @@ class EditContactCardViewController: UIViewController {
 	@IBAction func cancel(_ sender: Any) {
 		navigationController?.dismiss(animated: true)
 	}
-	
-	@IBAction func changeTitle(_ sender: Any) {
+	@IBAction func changeCardTitle(_ sender: Any) {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		guard let saveContactCardViewController=storyboard.instantiateViewController(withIdentifier:
 																						"SaveContactCardViewController")
@@ -51,6 +50,22 @@ class EditContactCardViewController: UIViewController {
 		}
 		saveContactCardViewController.contactCard=contactCard
 		navigationController?.pushViewController(saveContactCardViewController, animated: true)
+	}
+	@IBAction func changeCardColor(_ sender: Any) {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		guard let chooseColorTableViewController=storyboard.instantiateViewController(withIdentifier:
+																						"ChooseColorTableViewController")
+				as? ChooseColorTableViewController else {
+			print("Failed to instantiate ChooseColorTableViewController")
+			return
+		}
+		chooseColorTableViewController.forEditing=true
+		chooseColorTableViewController.contact=contact
+		guard let contactCard=contactCard else {
+			return
+		}
+		chooseColorTableViewController.contactCard=contactCard
+		navigationController?.pushViewController(chooseColorTableViewController, animated: true)
 	}
 	/*
     // MARK: - Navigation

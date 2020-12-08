@@ -10,11 +10,16 @@ import Contacts
 class ChooseColorTableViewController: UITableViewController {
 	@IBOutlet weak var nextButton: UIBarButtonItem!
 	let model=ColorModel()
+	var forEditing=false
 	var contact=CNContact()
+	var contactCard: ContactCard?
     override func viewDidLoad() {
         super.viewDidLoad()
 		nextButton.isEnabled=false
 		tableView.selectionFollowsFocus=true
+		if forEditing {
+			navigationItem.leftBarButtonItem?.title="Save"
+		}
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -54,6 +59,12 @@ class ChooseColorTableViewController: UITableViewController {
 	@IBAction func next(_ sender: Any) {
 		guard let indexPath=tableView.indexPathForSelectedRow else {
 			return
+		}
+		if forEditing {
+			contactCard?.color=model.colors[indexPath.row].name
+			ContactCardStore.sharedInstance.saveContacts()
+			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid":self.contactCard?.uuidString ?? ""])
+			navigationController?.dismiss(animated: true)
 		}
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		guard let saveContactCardViewController=storyboard.instantiateViewController(withIdentifier:
