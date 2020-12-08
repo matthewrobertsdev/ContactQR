@@ -63,7 +63,7 @@ class ChooseColorTableViewController: UITableViewController {
 		if forEditing {
 			contactCard?.color=model.colors[indexPath.row].name
 			ContactCardStore.sharedInstance.saveContacts()
-			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid":self.contactCard?.uuidString ?? ""])
+			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.uuidString ?? ""])
 			navigationController?.dismiss(animated: true)
 		}
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)

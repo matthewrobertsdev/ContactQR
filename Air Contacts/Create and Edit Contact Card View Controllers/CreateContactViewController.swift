@@ -39,7 +39,9 @@ class CreateContactViewController: UIViewController {
 	@IBOutlet weak var otherStateTextField: UITextField!
 	@IBOutlet weak var otherZipTextField: UITextField!
 	@IBOutlet weak var fieldsScrollView: UIScrollView!
+	var forEditing=false
 	var contact: CNContact?
+	var contactCard: ContactCard?
 	@IBAction func cancel(_ sender: Any) {
 		dismiss(animated: true)
 	}
@@ -51,89 +53,10 @@ class CreateContactViewController: UIViewController {
 		if  !(lastNameTextField.text=="") {
 			contact.familyName=lastNameTextField.text ?? ""
 		}
-		if  !(mobilePhoneTextField.text=="") {
-		let phone=CNPhoneNumber(stringValue: mobilePhoneTextField.text ?? "")
-			contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelPhoneNumberMobile, value: phone))
-		}
-		if  !(workPhone1TextField.text=="") {
-		let phone=CNPhoneNumber(stringValue: workPhone1TextField.text ?? "")
-			contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelWork, value: phone))
-		}
-		if  !(workPhone2TextField.text=="") {
-		let phone=CNPhoneNumber(stringValue: workPhone2TextField.text ?? "")
-			contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelWork, value: phone))
-		}
-		if  !(homePhoneTextField.text=="") {
-			let phone=CNPhoneNumber(stringValue: homePhoneTextField.text ?? "")
-			contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelHome, value: phone))
-		}
-		if  !(otherPhoneTextField.text=="") {
-			let phone=CNPhoneNumber(stringValue: otherPhoneTextField.text ?? "")
-			contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelOther, value: phone))
-		}
-		if  !(homeEmailTextField.text=="") {
-		let email=NSString(string: homeEmailTextField.text ?? "")
-			contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelHome, value: NSString(string: email)))
-		}
-		if  !(workEmail1TextField.text=="") {
-		let email=NSString(string: workEmail1TextField.text ?? "")
-			contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: email))
-		}
-		if  !(workEmail2TextField.text=="") {
-		let email=NSString(string: workEmail2TextField.text ?? "")
-			contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: email))
-		}
-		if  !(otherEmailTextField.text=="") {
-		let email=NSString(string: otherEmailTextField.text ?? "")
-			contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelOther, value: NSString(string: email)))
-		}
-		if  !(urlHomeTextField.text=="") {
-		let url=NSString(string: urlHomeTextField.text ?? "")
-			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelHome, value: NSString(string: url)))
-		}
-		if  !(urlWork1TextField.text=="") {
-		let url=NSString(string: urlWork1TextField.text ?? "")
-			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: url))
-		}
-		if  !(urlWork2TextField.text=="") {
-		let url=NSString(string: urlWork2TextField.text ?? "")
-			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: url))
-		}
-		if  !(otherUrl1TextField.text=="") {
-		let url=NSString(string: otherUrl1TextField.text ?? "")
-			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelOther, value: url))
-		}
-		if  !(otherUrl2TextField.text=="") {
-		let url=NSString(string: otherUrl2TextField.text ?? "")
-			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelOther, value: url))
-		}
-		if !(homeStreetTextField.text=="") || !(homeCityTextField.text=="") ||
-			!(homeStateTextField.text=="") || !(homeZipTextField.text=="") {
-		let address=CNMutablePostalAddress()
-			address.street=homeStreetTextField.text ?? ""
-			address.city=homeCityTextField.text ?? ""
-			address.state=homeStateTextField.text ?? ""
-			address.postalCode=homeZipTextField.text ?? ""
-			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelHome, value: address))
-			}
-		if !(workStreetTextField.text=="") || !(workCityTextField.text=="") ||
-			!(workStateTextField.text=="") || !(workZipTextField.text=="") {
-		let address=CNMutablePostalAddress()
-			address.street=workStreetTextField.text ?? ""
-			address.city=workCityTextField.text ?? ""
-			address.state=workStateTextField.text ?? ""
-			address.postalCode=workZipTextField.text ?? ""
-			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelWork, value: address))
-			}
-		if !(otherStreetTextField.text=="") || !(otherCityTextField.text=="") ||
-			!(otherStateTextField.text=="") || !(otherZipTextField.text=="") {
-		let address=CNMutablePostalAddress()
-			address.street=otherStreetTextField.text ?? ""
-			address.city=otherCityTextField.text ?? ""
-			address.state=otherStateTextField.text ?? ""
-			address.postalCode=otherZipTextField.text ?? ""
-			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelOther, value: address))
-			}
+		getPhoneNumbers(contact: contact)
+		getEmails(contact: contact)
+		getURLs(contact: contact)
+		getAddresses(contact: contact)
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		guard let chooseColorTableViewController=storyboard.instantiateViewController(withIdentifier:
 																						"ChooseColorTableViewController")
@@ -142,9 +65,16 @@ class CreateContactViewController: UIViewController {
 			return
 		}
 		chooseColorTableViewController.contact=contact
+		if forEditing {
+			contactCard?.setContact(cnContact: contact)
+			ContactCardStore.sharedInstance.saveContacts()
+			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.uuidString ?? ""])
+			navigationController?.dismiss(animated: true)
+			return
+		}
 		navigationController?.pushViewController(chooseColorTableViewController, animated: true)
 	}
-	func fillWithContact(contact: CNContact) {
+	private func fillWithContact(contact: CNContact) {
 		firstNameTextField.text=contact.givenName
 		lastNameTextField.text=contact.familyName
 		let phoneNumbers=contact.phoneNumbers
@@ -198,8 +128,102 @@ class CreateContactViewController: UIViewController {
 		@IBOutlet weak var otherZipTextField: UITextField!
 		*/
 	}
+	private func getPhoneNumbers(contact: CNMutableContact) {
+		if  !(mobilePhoneTextField.text=="") {
+		let phone=CNPhoneNumber(stringValue: mobilePhoneTextField.text ?? "")
+			contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelPhoneNumberMobile, value: phone))
+		}
+		if  !(workPhone1TextField.text=="") {
+		let phone=CNPhoneNumber(stringValue: workPhone1TextField.text ?? "")
+			contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelWork, value: phone))
+		}
+		if  !(workPhone2TextField.text=="") {
+		let phone=CNPhoneNumber(stringValue: workPhone2TextField.text ?? "")
+			contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelWork, value: phone))
+		}
+		if  !(homePhoneTextField.text=="") {
+			let phone=CNPhoneNumber(stringValue: homePhoneTextField.text ?? "")
+			contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelHome, value: phone))
+		}
+		if  !(otherPhoneTextField.text=="") {
+			let phone=CNPhoneNumber(stringValue: otherPhoneTextField.text ?? "")
+			contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelOther, value: phone))
+		}
+	}
+	private func getEmails(contact: CNMutableContact) {
+		if  !(homeEmailTextField.text=="") {
+		let email=NSString(string: homeEmailTextField.text ?? "")
+			contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelHome, value: NSString(string: email)))
+		}
+		if  !(workEmail1TextField.text=="") {
+		let email=NSString(string: workEmail1TextField.text ?? "")
+			contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: email))
+		}
+		if  !(workEmail2TextField.text=="") {
+		let email=NSString(string: workEmail2TextField.text ?? "")
+			contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: email))
+		}
+		if  !(otherEmailTextField.text=="") {
+		let email=NSString(string: otherEmailTextField.text ?? "")
+			contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelOther, value: NSString(string: email)))
+		}
+	}
+	private func getURLs(contact: CNMutableContact) {
+		if  !(urlHomeTextField.text=="") {
+		let url=NSString(string: urlHomeTextField.text ?? "")
+			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelHome, value: NSString(string: url)))
+		}
+		if  !(urlWork1TextField.text=="") {
+		let url=NSString(string: urlWork1TextField.text ?? "")
+			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: url))
+		}
+		if  !(urlWork2TextField.text=="") {
+		let url=NSString(string: urlWork2TextField.text ?? "")
+			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: url))
+		}
+		if  !(otherUrl1TextField.text=="") {
+		let url=NSString(string: otherUrl1TextField.text ?? "")
+			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelOther, value: url))
+		}
+		if  !(otherUrl2TextField.text=="") {
+		let url=NSString(string: otherUrl2TextField.text ?? "")
+			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelOther, value: url))
+		}
+	}
+	private func getAddresses(contact: CNMutableContact) {
+		if !(homeStreetTextField.text=="") || !(homeCityTextField.text=="") ||
+			!(homeStateTextField.text=="") || !(homeZipTextField.text=="") {
+		let address=CNMutablePostalAddress()
+			address.street=homeStreetTextField.text ?? ""
+			address.city=homeCityTextField.text ?? ""
+			address.state=homeStateTextField.text ?? ""
+			address.postalCode=homeZipTextField.text ?? ""
+			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelHome, value: address))
+			}
+		if !(workStreetTextField.text=="") || !(workCityTextField.text=="") ||
+			!(workStateTextField.text=="") || !(workZipTextField.text=="") {
+		let address=CNMutablePostalAddress()
+			address.street=workStreetTextField.text ?? ""
+			address.city=workCityTextField.text ?? ""
+			address.state=workStateTextField.text ?? ""
+			address.postalCode=workZipTextField.text ?? ""
+			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelWork, value: address))
+			}
+		if !(otherStreetTextField.text=="") || !(otherCityTextField.text=="") ||
+			!(otherStateTextField.text=="") || !(otherZipTextField.text=="") {
+		let address=CNMutablePostalAddress()
+			address.street=otherStreetTextField.text ?? ""
+			address.city=otherCityTextField.text ?? ""
+			address.state=otherStateTextField.text ?? ""
+			address.postalCode=otherZipTextField.text ?? ""
+			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelOther, value: address))
+			}
+	}
 	override func viewDidLoad() {
         super.viewDidLoad()
+		if forEditing {
+			navigationItem.leftBarButtonItem?.title="Save"
+		}
 		if let contact=contact {
 			fillWithContact(contact: contact)
 		}

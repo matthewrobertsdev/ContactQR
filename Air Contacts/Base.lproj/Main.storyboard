@@ -72,6 +72,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kf7-s1-hAF">
                                 <rect key="frame" x="156.66666666666666" y="114" width="114.99999999999997" height="30"/>
                                 <state key="normal" title="Edit Contact Info"/>
+                                <connections>
+                                    <action selector="editContactInfo:" destination="SNB-o5-8lY" eventType="touchUpInside" id="EZt-c3-BGJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaX-Z7-bZW">
                                 <rect key="frame" x="148.66666666666666" y="152" width="130.99999999999997" height="30"/>

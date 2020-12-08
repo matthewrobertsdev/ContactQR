@@ -67,6 +67,18 @@ class EditContactCardViewController: UIViewController {
 		chooseColorTableViewController.contactCard=contactCard
 		navigationController?.pushViewController(chooseColorTableViewController, animated: true)
 	}
+	@IBAction func editContactInfo(_ sender: Any) {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		guard let createContactViewController=storyboard.instantiateViewController(withIdentifier:
+																					"CreateContactViewController") as? CreateContactViewController else {
+			print("Failed to instantiate CreateContactViewController")
+			return
+		}
+		createContactViewController.contact=contact
+		createContactViewController.forEditing=true
+		createContactViewController.contactCard=contactCard
+		navigationController?.pushViewController(createContactViewController, animated: true)
+	}
 	/*
     // MARK: - Navigation
 

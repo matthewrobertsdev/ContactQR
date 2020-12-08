@@ -20,4 +20,7 @@ class ContactCard: Codable {
 		uuidString=UUID().uuidString
 		self.color=color
     }
+	func setContact(cnContact: CNContact) {
+		vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
+	}
 }
