@@ -164,7 +164,7 @@ class ContactInfoManipulator {
 				displayString+="First Name:  \(cnContact.givenName)\n\n"
 			}
 		if !(cnContact.familyName=="") {
-			displayString+="Family Name:  \(cnContact.familyName)\n\n"
+			displayString+="Last Name:  \(cnContact.familyName)\n\n"
 			}
 			if !(cnContact.nameSuffix=="") {
 				displayString+="Suffix:  \(cnContact.nameSuffix)\n\n"
@@ -200,7 +200,7 @@ class ContactInfoManipulator {
 					ContactInfoManipulator.makeContactLabel(label: addressLabel)
 				}
 				displayString+="\(addressLabelString) Address:  \(address.value.street as String)\n\n"
-				displayString+="\(address.value.city as String) \(address.value.state)\n\n\(address.value.postalCode)"
+				displayString+="\(address.value.city as String) \(address.value.state)\n\n\(address.value.postalCode)\n\n"
 			}
 		return displayString
 	}

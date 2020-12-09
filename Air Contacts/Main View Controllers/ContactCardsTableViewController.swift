@@ -50,7 +50,7 @@ class ContactCardsTableViewController: UITableViewController {
 		}
 		if let index=index {
 			let indexPath=IndexPath(row: index, section: 0)
-			tableView.reloadRows(at: [indexPath], with: .none)
+			tableView.reloadData()
 			tableView.selectRow(at: indexPath, animated: false, scrollPosition: .middle)
 		}
 	}

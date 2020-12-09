@@ -77,9 +77,15 @@ class CreateContactViewController: UIViewController {
 	private func fillWithContact(contact: CNContact) {
 		firstNameTextField.text=contact.givenName
 		lastNameTextField.text=contact.familyName
+		fillPhoneNumbers(contact: contact)
+		fillEmails(contact: contact)
+		fillUrls(contact: contact)
+		fillPostalAddresses(contact: contact)
+	}
+	private func fillPhoneNumbers(contact: CNContact) {
 		let phoneNumbers=contact.phoneNumbers
 		mobilePhoneTextField.text=phoneNumbers.first(where: {  (labeledNumber) in
-			return labeledNumber.label==CNLabelPhoneNumberMobile
+			return labeledNumber.label==CNLabelPhoneNumberMobile || labeledNumber.label==CNLabelPhoneNumberiPhone
 		})?.value.stringValue
 		let workPhoneNumbers=phoneNumbers.filter({ (labeledNumber) in
 			return labeledNumber.label==CNLabelWork
@@ -94,6 +100,8 @@ class CreateContactViewController: UIViewController {
 		otherPhoneTextField.text=phoneNumbers.first(where: {  (labeledNumber) in
 			return labeledNumber.label==CNLabelOther
 		})?.value.stringValue
+	}
+	private func fillEmails(contact: CNContact) {
 		let emails=contact.emailAddresses
 		homeEmailTextField.text=emails.first(where: {  (labeledNumber) in
 			return labeledNumber.label==CNLabelHome
@@ -101,32 +109,63 @@ class CreateContactViewController: UIViewController {
 		otherEmailTextField.text=emails.first(where: {  (labeledNumber) in
 			return labeledNumber.label==CNLabelOther
 		})?.value.substring(from: 0)
-		let workEmails=phoneNumbers.filter({ (labeledEmail) in
+		let workEmails=emails.filter({ (labeledEmail) in
 			return labeledEmail.label==CNLabelWork
 		})
-		workEmail1TextField.text=workEmails.first?.value.stringValue
-		if workPhoneNumbers.count>1 {
-			workEmail2TextField.text=workEmails[1].value.stringValue
+		workEmail1TextField.text=workEmails.first?.value.substring(from: 0)
+		if emails.count>1 {
+			workEmail2TextField.text=workEmails[1].value.substring(from: 0)
 		}
-		/*
-		@IBOutlet weak var urlHomeTextField: UITextField!
-		@IBOutlet weak var urlWork1TextField: UITextField!
-		@IBOutlet weak var urlWork2TextField: UITextField!
-		@IBOutlet weak var otherUrl1TextField: UITextField!
-		@IBOutlet weak var otherUrl2TextField: UITextField!
-		@IBOutlet weak var homeStreetTextField: UITextField!
-		@IBOutlet weak var homeCityTextField: UITextField!
-		@IBOutlet weak var homeStateTextField: UITextField!
-		@IBOutlet weak var homeZipTextField: UITextField!
-		@IBOutlet weak var workStreetTextField: UITextField!
-		@IBOutlet weak var workStateTextField: UITextField!
-		@IBOutlet weak var workCityTextField: UITextField!
-		@IBOutlet weak var workZipTextField: UITextField!
-		@IBOutlet weak var otherStreetTextField: UITextField!
-		@IBOutlet weak var otherCityTextField: UITextField!
-		@IBOutlet weak var otherStateTextField: UITextField!
-		@IBOutlet weak var otherZipTextField: UITextField!
-		*/
+	}
+	private func fillUrls(contact: CNContact) {
+		let urls=contact.urlAddresses
+		urlHomeTextField.text = urls.first(where: { (labeledUrl) in
+			return labeledUrl.label==CNLabelHome
+		})?.value.substring(from: 0)
+		let workUrls=urls.filter({ (labeledNumber) in
+			return labeledNumber.label==CNLabelWork
+		})
+		urlWork1TextField.text=workUrls.first?.value.substring(from: 0)
+		if workUrls.count>1 {
+			urlWork2TextField.text=workUrls[1].value.substring(from: 0)
+		}
+		let otherUrls=urls.filter({ (labeledNumber) in
+			return labeledNumber.label==CNLabelOther
+		})
+		otherUrl1TextField.text=otherUrls.first?.value.substring(from: 0)
+		if otherUrls.count>1 {
+			otherUrl2TextField.text=otherUrls[1].value.substring(from: 0)
+		}
+	}
+	private func fillPostalAddresses(contact: CNContact) {
+		let addresses=contact.postalAddresses
+		let firstHomeAddress=addresses.first { (address) -> Bool in
+			address.label==CNLabelHome
+		}?.value
+		if let homeAddress=firstHomeAddress {
+			homeStreetTextField.text=homeAddress.street
+			homeCityTextField.text=homeAddress.city
+			homeStateTextField.text=homeAddress.state
+			homeZipTextField.text=homeAddress.postalCode
+		}
+		let firstWorkAddress=addresses.first { (address) -> Bool in
+			address.label==CNLabelWork
+		}?.value
+		if let workAddress=firstWorkAddress {
+			workStreetTextField.text=workAddress.street
+			workCityTextField.text=workAddress.city
+			workStateTextField.text=workAddress.state
+			workZipTextField.text=workAddress.postalCode
+		}
+		let firstOtherAddress=addresses.first { (address) -> Bool in
+			address.label==CNLabelOther
+		}?.value
+		if let otherAddress=firstOtherAddress {
+			otherStreetTextField.text=otherAddress.street
+			otherCityTextField.text=otherAddress.city
+			otherStateTextField.text=otherAddress.state
+			otherZipTextField.text=otherAddress.postalCode
+		}
 	}
 	private func getPhoneNumbers(contact: CNMutableContact) {
 		if  !(mobilePhoneTextField.text=="") {
