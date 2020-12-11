@@ -241,6 +241,14 @@
                             <outlet property="delegate" destination="8w3-e5-v8i" id="zzp-hL-LUj"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="DfT-mP-Ra0"/>
+                        <barButtonItem title="Edit" id="69Q-6u-nq9">
+                            <connections>
+                                <action selector="toggleEditing:" destination="8w3-e5-v8i" id="0OK-Oc-R3b"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Contact Cards" id="Vzi-tw-EHX">
                         <barButtonItem key="leftBarButtonItem" image="person.crop.circle.badge.plus" catalog="system" id="ymM-BI-js4">
                             <connections>
@@ -253,7 +261,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="editButton" destination="69Q-6u-nq9" id="PBG-hY-hGc"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXb-db-Xvt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

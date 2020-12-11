@@ -6,7 +6,8 @@
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 import UIKit
-class ContactCardsTableViewController: UITableViewController, UITableViewDragDelegate {
+class ContactCardsTableViewController: UITableViewController {
+	@IBOutlet weak var editButton: UIBarButtonItem!
 	var selectedCardUUID: String?
 	let colorModel=ColorModel()
     override func viewDidLoad() {
@@ -14,10 +15,14 @@ class ContactCardsTableViewController: UITableViewController, UITableViewDragDel
 		if let splitViewController=splitViewController {
 			splitViewController.primaryBackgroundStyle = .sidebar
 		}
+		self.navigationController?.setToolbarHidden(false, animated: true)
+		stopEditingIfNoContactCards()
+		#if targetEnvironment(macCatalyst)
 		tableView.dragDelegate = self
 		tableView.dragInteractionEnabled = true
+		#endif
 		let notificationCenter=NotificationCenter.default
-		notificationCenter.addObserver(self, selector: #selector(selectNewContact), name: .contactCreated, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(handleNewContact), name: .contactCreated, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(removeContact), name: .contactDeleted, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(reloadWithUUID), name: .contactUpdated, object: nil)
     }
@@ -36,6 +41,11 @@ class ContactCardsTableViewController: UITableViewController, UITableViewDragDel
 		if splitViewController.isCollapsed {
 			tableView.deselectRow(at: selectedIndexPath, animated: false)
 		}
+	}
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		tableView.setEditing(false, animated: true)
+		editButton.title="Edit"
 	}
 	override var canBecomeFirstResponder: Bool {
 		return true
@@ -56,7 +66,7 @@ class ContactCardsTableViewController: UITableViewController, UITableViewDragDel
 			tableView.selectRow(at: indexPath, animated: false, scrollPosition: .middle)
 		}
 	}
-	@objc func selectNewContact() {
+	@objc func handleNewContact() {
 		let lastRowNumber=ContactCardStore.sharedInstance.contactCards.count-1
 		let indexPath=IndexPath(row: lastRowNumber, section: 0)
 		#if targetEnvironment(macCatalyst)
@@ -67,6 +77,8 @@ class ContactCardsTableViewController: UITableViewController, UITableViewDragDel
 		tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
 		selectedCardUUID=ContactCardStore.sharedInstance.contactCards.last?.uuidString
 			showContactCard()
+		tableView.setEditing(false, animated: false)
+		editButton.isEnabled=true
 	}
 	@objc func removeContact(notification: NSNotification) {
 		guard let removalIndex=notification.userInfo?["index"] as? Int else {
@@ -77,6 +89,7 @@ class ContactCardsTableViewController: UITableViewController, UITableViewDragDel
 			animation=UITableView.RowAnimation.none
 		#endif
 		tableView.deleteRows(at: [IndexPath(row: removalIndex, section: 0)], with: animation)
+		stopEditingIfNoContactCards()
 	}
 	func showContactCard() {
 		guard let splitViewController=splitViewController else {
@@ -169,16 +182,29 @@ class ContactCardsTableViewController: UITableViewController, UITableViewDragDel
 			showContactCard()
 		}
 	}
+	override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+		if tableView.isEditing {
+			return true
+		}
+		return false
+	}
+
+	override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+		return .delete
+	}
 	override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-		// Update the model
 		let contactCardToMove = ContactCardStore.sharedInstance.contactCards.remove(at: sourceIndexPath.row)
 		ContactCardStore.sharedInstance.contactCards.insert(contactCardToMove, at: destinationIndexPath.row)
 		ContactCardStore.sharedInstance.saveContacts()
 	}
-	func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-		let dragItem = UIDragItem(itemProvider: NSItemProvider())
-		dragItem.localObject = ContactCardStore.sharedInstance.contactCards[indexPath.row]
-			return [ dragItem ]
+	@IBAction func toggleEditing(_ sender: Any) {
+		if tableView.isEditing {
+			tableView.setEditing(false, animated: true)
+			editButton.title="Edit"
+		} else {
+			tableView.setEditing(true, animated: true)
+			editButton.title="Done"
+		}
 	}
 	override var keyCommands: [UIKeyCommand]? {
 		if AppState.shared.appState==AppStateValue.isModal {
@@ -202,19 +228,23 @@ class ContactCardsTableViewController: UITableViewController, UITableViewDragDel
         return true
     }
     */
-    /*
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle:
 		UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+			ContactCardStore.sharedInstance.contactCards.remove(at: indexPath.row)
+			ContactCardStore.sharedInstance.saveContacts()
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it
-				into the array, and add a new row to the table view
-        }    
+			stopEditingIfNoContactCards()
+        }
     }
-    */
+	func stopEditingIfNoContactCards() {
+		if ContactCardStore.sharedInstance.contactCards.count==0 {
+			tableView.setEditing(false, animated: true)
+			editButton.title="Edit"
+			editButton.isEnabled=false
+		}
+	}
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
@@ -238,3 +268,12 @@ class ContactCardsTableViewController: UITableViewController, UITableViewDragDel
     */
 	//*
 }
+#if targetEnvironment(macCatalyst)
+extension ContactCardsTableViewController: UITableViewDragDelegate {
+	func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+		let dragItem = UIDragItem(itemProvider: NSItemProvider())
+		dragItem.localObject = ContactCardStore.sharedInstance.contactCards[indexPath.row]
+			return [ dragItem ]
+	}
+}
+#endif
