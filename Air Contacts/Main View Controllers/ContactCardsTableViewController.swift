@@ -6,7 +6,7 @@
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 import UIKit
-class ContactCardsTableViewController: UITableViewController {
+class ContactCardsTableViewController: UITableViewController, UITableViewDragDelegate {
 	var selectedCardUUID: String?
 	let colorModel=ColorModel()
     override func viewDidLoad() {
@@ -14,6 +14,8 @@ class ContactCardsTableViewController: UITableViewController {
 		if let splitViewController=splitViewController {
 			splitViewController.primaryBackgroundStyle = .sidebar
 		}
+		tableView.dragDelegate = self
+		tableView.dragInteractionEnabled = true
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(selectNewContact), name: .contactCreated, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(removeContact), name: .contactDeleted, object: nil)
@@ -166,6 +168,17 @@ class ContactCardsTableViewController: UITableViewController {
 			tableView.selectRow(at: IndexPath(row: indexPath.row+1, section: 0), animated: true, scrollPosition: .middle)
 			showContactCard()
 		}
+	}
+	override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+		// Update the model
+		let contactCardToMove = ContactCardStore.sharedInstance.contactCards.remove(at: sourceIndexPath.row)
+		ContactCardStore.sharedInstance.contactCards.insert(contactCardToMove, at: destinationIndexPath.row)
+		ContactCardStore.sharedInstance.saveContacts()
+	}
+	func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+		let dragItem = UIDragItem(itemProvider: NSItemProvider())
+		dragItem.localObject = ContactCardStore.sharedInstance.contactCards[indexPath.row]
+			return [ dragItem ]
 	}
 	override var keyCommands: [UIKeyCommand]? {
 		if AppState.shared.appState==AppStateValue.isModal {
