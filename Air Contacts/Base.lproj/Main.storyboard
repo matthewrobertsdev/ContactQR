@@ -139,41 +139,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcP-BW-EwX">
-                                <rect key="frame" x="0.0" y="128" width="428" height="715"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Info Here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ES0-pi-Nfm">
-                                        <rect key="frame" x="8" y="7.9999999999999982" width="412" height="20.333333333333329"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9fh-p1-mOo">
+                                <rect key="frame" x="0.0" y="116" width="428" height="727"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ES0-pi-Nfm" secondAttribute="trailing" constant="8" id="9gt-pt-iqq"/>
-                                    <constraint firstItem="ES0-pi-Nfm" firstAttribute="leading" secondItem="pcP-BW-EwX" secondAttribute="leading" constant="8" id="XAM-YW-e5y"/>
-                                    <constraint firstItem="ES0-pi-Nfm" firstAttribute="top" secondItem="pcP-BW-EwX" secondAttribute="top" constant="8" id="Z4J-Is-YXS"/>
-                                    <constraint firstAttribute="bottom" secondItem="ES0-pi-Nfm" secondAttribute="bottom" id="wQ7-LJ-rlF"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="VMD-0k-vQr"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="wwU-eL-E8A"/>
-                            </scrollView>
+                                <attributedString key="attributedText"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RpZ-Z8-adj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ES0-pi-Nfm" firstAttribute="leading" secondItem="RpZ-Z8-adj" secondAttribute="leading" constant="8" id="64X-n3-gdz"/>
                             <constraint firstItem="bgk-8b-W0c" firstAttribute="leading" secondItem="RpZ-Z8-adj" secondAttribute="leading" id="9uO-9k-j5q"/>
-                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="ES0-pi-Nfm" secondAttribute="trailing" constant="8" id="LZX-BR-oai"/>
-                            <constraint firstItem="pcP-BW-EwX" firstAttribute="top" secondItem="bgk-8b-W0c" secondAttribute="bottom" constant="20" id="Q8h-Hb-yOL"/>
+                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="9fh-p1-mOo" secondAttribute="trailing" id="BSf-hh-1wQ"/>
+                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="bottom" secondItem="9fh-p1-mOo" secondAttribute="bottom" id="NUL-WB-m7e"/>
                             <constraint firstItem="KuD-EN-eRZ" firstAttribute="centerY" secondItem="RpZ-Z8-adj" secondAttribute="centerY" id="ZFS-RX-QpX"/>
                             <constraint firstItem="KuD-EN-eRZ" firstAttribute="leading" secondItem="RpZ-Z8-adj" secondAttribute="leading" id="ZtY-nB-J2Q"/>
                             <constraint firstItem="KuD-EN-eRZ" firstAttribute="centerX" secondItem="RpZ-Z8-adj" secondAttribute="centerX" id="bcn-eN-ecI"/>
-                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="bottom" secondItem="pcP-BW-EwX" secondAttribute="bottom" id="cil-eJ-ZYU"/>
                             <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="bgk-8b-W0c" secondAttribute="trailing" id="dy2-y7-WG7"/>
-                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="pcP-BW-EwX" secondAttribute="trailing" id="fAR-r5-9zo"/>
-                            <constraint firstItem="pcP-BW-EwX" firstAttribute="leading" secondItem="RpZ-Z8-adj" secondAttribute="leading" id="p4I-b5-rGM"/>
+                            <constraint firstItem="9fh-p1-mOo" firstAttribute="leading" secondItem="RpZ-Z8-adj" secondAttribute="leading" id="lDp-mh-nXu"/>
+                            <constraint firstItem="9fh-p1-mOo" firstAttribute="top" secondItem="bgk-8b-W0c" secondAttribute="bottom" constant="8" symbolic="YES" id="myE-bS-Iwj"/>
                             <constraint firstItem="bgk-8b-W0c" firstAttribute="top" secondItem="RpZ-Z8-adj" secondAttribute="top" constant="20" id="pOy-mm-vcd"/>
                             <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="KuD-EN-eRZ" secondAttribute="trailing" id="pWn-O4-LdF"/>
                         </constraints>
@@ -195,14 +179,13 @@
                     <navigationItem key="navigationItem" title="Title" id="3Zp-II-Wva"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="contactInfoLabel" destination="ES0-pi-Nfm" id="Voh-Yq-ueY"/>
-                        <outlet property="scrollView" destination="pcP-BW-EwX" id="RcN-tI-keH"/>
+                        <outlet property="contactInfoTextView" destination="9fh-p1-mOo" id="IFz-Nm-OuV"/>
                         <outlet property="titleLabel" destination="bgk-8b-W0c" id="ywT-Yn-Xm9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bov-qK-M4u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1127" y="59"/>
+            <point key="canvasLocation" x="-1127.1028037383178" y="58.963282937365015"/>
         </scene>
         <!--Contact Cards-->
         <scene sceneID="ZMn-av-x8s">

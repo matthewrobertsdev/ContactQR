@@ -10,8 +10,7 @@ import Contacts
 class ContactCardViewController: UIViewController, UIActivityItemsConfigurationReading {
 	var itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 	@IBOutlet weak var titleLabel: UILabel!
-	@IBOutlet weak var scrollView: UIScrollView!
-	@IBOutlet weak var contactInfoLabel: UILabel!
+	@IBOutlet weak var contactInfoTextView: UITextView!
 	var contactCard: ContactCard?
 	let colorModel=ColorModel()
 	private var contactDisplayStrings=[String]()
@@ -58,9 +57,11 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	}
 	func showOrHideTableView() {
 		if contactCard==nil {
-			scrollView.isHidden=true
+			titleLabel.isHidden=true
+			contactInfoTextView.isHidden=true
 		} else {
-			scrollView.isHidden=false
+			titleLabel.isHidden=false
+			contactInfoTextView.isHidden=false
 		}
 	}
 	@objc func loadContact() {
@@ -70,7 +71,8 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			#endif
 			enableButtons(enable: false)
 			contactCard=nil
-			scrollView.isHidden=true
+			titleLabel.isHidden=true
+			contactInfoTextView.isHidden=true
 			titleLabel.text=""
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 			return
@@ -80,14 +82,15 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		#if targetEnvironment(macCatalyst)
 		SceneDelegate.enableValidToolbarItems()
 		#endif
-		scrollView.isHidden=false
+		titleLabel.isHidden=false
+		contactInfoTextView.isHidden=false
 		titleLabel.text=activeCard.filename
 		if let color=colorModel.colorsDictionary[activeCard.color] as? UIColor {
 			titleLabel.textColor=color
 		}
 		do {
 			let contact=try ContactDataConverter.createCNContactArray(vCardString: activeCard.vCardString)[0]
-			contactInfoLabel.text=ContactInfoManipulator.makeContactDisplayString(cnContact: contact)
+			contactInfoTextView.attributedText=ContactInfoManipulator.makeContactDisplayString(cnContact: contact)
 			//tableView.reloadData()
 		} catch {
 			print("Error making CNContact from VCard String.")
@@ -118,6 +121,10 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			item.isEnabled=enable
 		}
 	}
+	func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+			UIApplication.shared.open(URL)
+			return false
+		}
     /*
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation

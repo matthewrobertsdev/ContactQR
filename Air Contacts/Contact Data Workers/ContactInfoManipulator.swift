@@ -8,6 +8,7 @@
 
 import Foundation
 import Contacts
+import UIKit
 /*
  Gets fields from CNContact and returns them as an array of String pairs
  with the name of the field and the value for each pair
@@ -152,25 +153,26 @@ class ContactInfoManipulator {
 		}
 		return infoStrings
 	}
-	static func makeContactDisplayString(cnContact: CNContact?) -> String {
-		var displayString=""
+	static func makeContactDisplayString(cnContact: CNContact?) -> NSAttributedString {
+		let displayString=NSMutableAttributedString()
+		var basicString=""
 		guard let cnContact=cnContact else {
-			return ""
+			return NSAttributedString()
 		}
 			if !(cnContact.namePrefix=="") {
-				displayString+="Prefix:  \(cnContact.namePrefix)\n\n"
+				basicString+="Prefix:  \(cnContact.namePrefix)\n\n"
 			}
 			if !(cnContact.givenName=="") {
-				displayString+="First Name:  \(cnContact.givenName)\n\n"
+				basicString+="First Name:  \(cnContact.givenName)\n\n"
 			}
 		if !(cnContact.familyName=="") {
-			displayString+="Last Name:  \(cnContact.familyName)\n\n"
+			basicString+="Last Name:  \(cnContact.familyName)\n\n"
 			}
 			if !(cnContact.nameSuffix=="") {
-				displayString+="Suffix:  \(cnContact.nameSuffix)\n\n"
+				basicString+="Suffix:  \(cnContact.nameSuffix)\n\n"
 			}
 			if !(cnContact.nickname=="") {
-				displayString+="Nickname:  \(cnContact.nickname)\n\n"
+				basicString+="Nickname:  \(cnContact.nickname)\n\n"
 			}
 			for phoneNumber in cnContact.phoneNumbers {
 				var phoneLabelString=""
@@ -178,30 +180,45 @@ class ContactInfoManipulator {
 					phoneLabelString =
 					ContactInfoManipulator.makeContactLabel(label: phoneNumberLabel)
 				}
-				displayString+="\(phoneLabelString) Phone:  \(phoneNumber.value.stringValue)\n\n"
+				basicString+="\(phoneLabelString) Phone:  \(phoneNumber.value.stringValue)\n\n"
 			}
 			for emailAddress in cnContact.emailAddresses {
 				var emailLabelString=""
 				if let emailLabel=emailAddress.label { emailLabelString =
 					ContactInfoManipulator.makeContactLabel(label: emailLabel)
 				}
-				displayString+="\(emailLabelString) Email:  \(emailAddress.value)\n\n"
+				basicString+="\(emailLabelString) Email:  \(emailAddress.value)\n\n"
 			}
+		displayString.append(NSAttributedString(string: basicString))
+		displayString.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: displayString.length))
 			for urlAddress in (cnContact.urlAddresses) {
 				var urlAddressLabelString=""
 				if let urlAddressLabel=urlAddress.label { urlAddressLabelString =
 					ContactInfoManipulator.makeContactLabel(label: urlAddressLabel)
 				}
-				displayString+="\(urlAddressLabelString) URL:  \(urlAddress.value)\n\n"
+				displayString.append(NSAttributedString(string: "\(urlAddressLabelString) URL: "))
+				displayString.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: displayString.length))
+				let urlString=NSMutableAttributedString(string: urlAddress.value as String)
+				urlString.addAttribute(.link, value: urlAddress.value, range: NSRange(location: 0, length: urlString.length))
+				displayString.append(urlString)
+				displayString.append(NSAttributedString(string:"\n\n"))
 			}
+			basicString=""
 			for address in cnContact.postalAddresses {
 				var addressLabelString=""
 				if let addressLabel=address.label { addressLabelString =
 					ContactInfoManipulator.makeContactLabel(label: addressLabel)
 				}
-				displayString+="\(addressLabelString) Address:  \(address.value.street as String)\n\n"
-				displayString+="\(address.value.city as String) \(address.value.state)\n\n\(address.value.postalCode)\n\n"
+				basicString="\(addressLabelString) Address:  \(address.value.street as String)\n\n"
+				basicString+="\(address.value.city as String) \(address.value.state)\n\n\(address.value.postalCode)\n\n"
 			}
+		let addressesString=NSMutableAttributedString(string: basicString)
+		addressesString.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: addressesString.length))
+		displayString.append(addressesString)
+		let paragraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
+			paragraphStyle.alignment = NSTextAlignment.center
+		let fontAttributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.light), NSAttributedString.Key.paragraphStyle : paragraphStyle ]
+		displayString.addAttributes(fontAttributes, range: NSRange(location: 0, length: displayString.length))
 		return displayString
 	}
 }
