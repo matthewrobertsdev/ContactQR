@@ -43,6 +43,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		notificationCenter.addObserver(self, selector: #selector(deleteContact), name: .deleteContact, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(editContact), name: .editContact, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .contactUpdated, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .contactDeleted, object: nil)
     }
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)

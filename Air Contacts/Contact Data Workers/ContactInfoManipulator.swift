@@ -209,8 +209,8 @@ class ContactInfoManipulator {
 				if let addressLabel=address.label { addressLabelString =
 					ContactInfoManipulator.makeContactLabel(label: addressLabel)
 				}
-				basicString="\(addressLabelString) Address:  \(address.value.street as String)\n\n"
-				basicString+="\(address.value.city as String) \(address.value.state)\n\n\(address.value.postalCode)\n\n"
+				basicString+="\(addressLabelString) Address:  \(address.value.street as String)\n"
+				basicString+="\(address.value.city as String) \(address.value.state) \(address.value.postalCode)\n\n"
 			}
 		let addressesString=NSMutableAttributedString(string: basicString)
 		addressesString.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: addressesString.length))

@@ -44,8 +44,7 @@ class ContactCardsTableViewController: UITableViewController {
 	}
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-		tableView.setEditing(false, animated: true)
-		editButton.title="Edit"
+		stopEditing()
 	}
 	override var canBecomeFirstResponder: Bool {
 		return true
@@ -77,7 +76,7 @@ class ContactCardsTableViewController: UITableViewController {
 		tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
 		selectedCardUUID=ContactCardStore.sharedInstance.contactCards.last?.uuidString
 			showContactCard()
-		tableView.setEditing(false, animated: false)
+		stopEditing()
 		editButton.isEnabled=true
 	}
 	@objc func removeContact(notification: NSNotification) {
@@ -199,12 +198,15 @@ class ContactCardsTableViewController: UITableViewController {
 	}
 	@IBAction func toggleEditing(_ sender: Any) {
 		if tableView.isEditing {
-			tableView.setEditing(false, animated: true)
-			editButton.title="Edit"
+			stopEditing()
 		} else {
 			tableView.setEditing(true, animated: true)
 			editButton.title="Done"
 		}
+	}
+	func stopEditing() {
+		tableView.setEditing(false, animated: true)
+		editButton.title="Edit"
 	}
 	override var keyCommands: [UIKeyCommand]? {
 		if AppState.shared.appState==AppStateValue.isModal {
@@ -228,14 +230,21 @@ class ContactCardsTableViewController: UITableViewController {
         return true
     }
     */
-    override func tableView(_ tableView: UITableView, commit editingStyle:
-		UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
+							forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
 			ContactCardStore.sharedInstance.contactCards.remove(at: indexPath.row)
 			ContactCardStore.sharedInstance.saveContacts()
             tableView.deleteRows(at: [indexPath], with: .fade)
 			stopEditingIfNoContactCards()
+			NotificationCenter.default.post(name: .contactDeleted, object: nil)
+			if !ContactCardStore.sharedInstance.contactCards.contains(where: { (contactCard) -> Bool in
+				contactCard.uuidString==ActiveContactCard.shared.contactCard?.uuidString
+			}) {
+				ActiveContactCard.shared.contactCard=nil
+				NotificationCenter.default.post(name: .contactDeleted, object: nil)
+			}
         }
     }
 	func stopEditingIfNoContactCards() {
