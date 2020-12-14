@@ -11,7 +11,7 @@
         <!--Contact QR Code-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="DisplayQRViewController" title="Contact QR Code" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="DisplayQRViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DisplayQRViewController" title="Contact QR Code" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="DisplayQRViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -64,7 +64,7 @@
         <!--Edit Contact Card-->
         <scene sceneID="Uan-p1-fQQ">
             <objects>
-                <viewController storyboardIdentifier="EditContactCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SNB-o5-8lY" customClass="EditContactCardViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditContactCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SNB-o5-8lY" customClass="EditContactCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mva-TH-GgV">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -122,7 +122,7 @@
         <!--Title-->
         <scene sceneID="CCk-fk-rf8">
             <objects>
-                <viewController restorationIdentifier="ContactCardViewController" storyboardIdentifier="ContactCardViewController" id="IJa-nU-fZ3" customClass="ContactCardViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ContactCardViewController" storyboardIdentifier="ContactCardViewController" id="IJa-nU-fZ3" customClass="ContactCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sVZ-bY-6LH">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -139,7 +139,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9fh-p1-mOo">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fh-p1-mOo">
                                 <rect key="frame" x="0.0" y="116" width="428" height="727"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <attributedString key="attributedText"/>
@@ -190,19 +190,19 @@
         <!--Contact Cards-->
         <scene sceneID="ZMn-av-x8s">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="8w3-e5-v8i" customClass="ContactCardsTableViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="8w3-e5-v8i" customClass="ContactCardsTableViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lBD-Qa-6jB">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactCell" rowHeight="52" id="Yzc-79-eXU" customClass="SavedContactCell" customModule="Air_Contacts" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactCell" rowHeight="52" id="Yzc-79-eXU" customClass="SavedContactCell" customModule="Contact_Cards" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="428" height="52"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yzc-79-eXU" id="7cN-MP-4h6">
                                     <rect key="frame" x="0.0" y="0.0" width="428" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NFX-TQ-tAC" customClass="CircularColorView" customModule="Air_Contacts" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NFX-TQ-tAC" customClass="CircularColorView" customModule="Contact_Cards" customModuleProvider="target">
                                             <rect key="frame" x="20" y="17.333333333333336" width="17.666666666666671" height="17.333333333333336"/>
                                             <color key="backgroundColor" systemColor="labelColor"/>
                                             <constraints>
@@ -290,7 +290,7 @@
         <!--Main Split View Controller-->
         <scene sceneID="MLd-qb-Qbu">
             <objects>
-                <splitViewController storyboardIdentifier="MainSplitViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" allowDoubleColumnStyle="YES" id="aYm-LV-jC5" customClass="MainSplitViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="MainSplitViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" allowDoubleColumnStyle="YES" id="aYm-LV-jC5" customClass="MainSplitViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="dYb-Ni-z5G" kind="relationship" relationship="masterViewController" id="h0t-w8-lzG"/>
                         <segue destination="IJa-nU-fZ3" kind="relationship" relationship="detailViewController" id="o8u-zJ-UIm"/>
@@ -303,7 +303,7 @@
         <!--New Card-->
         <scene sceneID="nKg-hX-7nX">
             <objects>
-                <viewController storyboardIdentifier="CreateContactViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="33H-KV-B3q" customClass="CreateContactViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateContactViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="33H-KV-B3q" customClass="CreateContactViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0dw-fN-jnj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="514"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -703,20 +703,20 @@
         <!--Choose Color-->
         <scene sceneID="cTF-Q4-Lej">
             <objects>
-                <tableViewController storyboardIdentifier="ChooseColorTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X3d-WW-BAD" customClass="ChooseColorTableViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ChooseColorTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X3d-WW-BAD" customClass="ChooseColorTableViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BdA-TO-BCu">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" reuseIdentifier="SavedContactCell" focusStyle="custom" rowHeight="52" id="eID-Ct-T6j" customClass="SavedContactCell" customModule="Air_Contacts" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" reuseIdentifier="SavedContactCell" focusStyle="custom" rowHeight="52" id="eID-Ct-T6j" customClass="SavedContactCell" customModule="Contact_Cards" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="428" height="52"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eID-Ct-T6j" id="zb4-ZQ-eJY">
                                     <rect key="frame" x="0.0" y="0.0" width="428" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7FI-CP-mI3" customClass="CircularColorView" customModule="Air_Contacts" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7FI-CP-mI3" customClass="CircularColorView" customModule="Contact_Cards" customModuleProvider="target">
                                             <rect key="frame" x="20" y="17.333333333333336" width="17.666666666666671" height="17.333333333333336"/>
                                             <color key="backgroundColor" systemColor="labelColor"/>
                                             <constraints>
@@ -794,7 +794,7 @@
         <!--Choose Title-->
         <scene sceneID="z3u-UG-EVn">
             <objects>
-                <viewController storyboardIdentifier="SaveContactCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MKm-rN-YVF" customClass="SaveContactCardViewController" customModule="Air_Contacts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SaveContactCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MKm-rN-YVF" customClass="SaveContactCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="auu-rD-u44">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -24,8 +24,8 @@
 		9F9E9AE821BA1690003A6A33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE621BA1690003A6A33 /* Main.storyboard */; };
 		9F9E9AEA21BA1691003A6A33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE921BA1691003A6A33 /* Assets.xcassets */; };
 		9F9E9AED21BA1691003A6A33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AEB21BA1691003A6A33 /* LaunchScreen.storyboard */; };
-		9F9E9AF821BA1691003A6A33 /* AirContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AF721BA1691003A6A33 /* AirContactsTests.swift */; };
-		9F9E9B0321BA1691003A6A33 /* AirContactsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9B0221BA1691003A6A33 /* AirContactsUITests.swift */; };
+		9F9E9AF821BA1691003A6A33 /* ContactCardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AF721BA1691003A6A33 /* ContactCardsTests.swift */; };
+		9F9E9B0321BA1691003A6A33 /* ContactCardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9B0221BA1691003A6A33 /* ContactCardsUITests.swift */; };
 		9FB31897255F954200D31B8B /* ContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB31896255F954200D31B8B /* ContactCardViewController.swift */; };
 		9FB3E45F21C967410011752F /* PickContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E45E21C967410011752F /* PickContactViewController.swift */; };
 		9FB3E46521C96F990011752F /* DisplayQRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E46421C96F990011752F /* DisplayQRModel.swift */; };
@@ -79,25 +79,25 @@
 		9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDataConverter.swift; sourceTree = "<group>"; };
 		9F422690256CD5BF00F1A0FA /* CircularColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularColorView.swift; sourceTree = "<group>"; };
 		9F4ABC7C2570CBEA000A9101 /* ToolBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarDelegate.swift; sourceTree = "<group>"; };
-		9F56C72E253BCB96006D8DE6 /* Air Contacts.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Air Contacts.entitlements"; sourceTree = "<group>"; };
+		9F56C72E253BCB96006D8DE6 /* Contact Cards.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Contact Cards.entitlements"; sourceTree = "<group>"; };
 		9F56C73B253BD2C8006D8DE6 /* TintImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintImages.swift; sourceTree = "<group>"; };
 		9F5C647121D3E10A00832897 /* ContactInfoManipulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoManipulator.swift; sourceTree = "<group>"; };
 		9F7147AA256CCCC600A979B8 /* ContactCardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardStore.swift; sourceTree = "<group>"; };
 		9F7EB966255E10420032563C /* CreateContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateContactViewController.swift; sourceTree = "<group>"; };
 		9F7F42182560F24700199193 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9F98DF69257F3C9900566779 /* EditContactCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactCardViewController.swift; sourceTree = "<group>"; };
-		9F9E9ADF21BA1690003A6A33 /* Air Contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Air Contacts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F9E9ADF21BA1690003A6A33 /* Contact Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Contact Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F9E9AE421BA1690003A6A33 /* DisplayQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayQRViewController.swift; sourceTree = "<group>"; };
 		9F9E9AE721BA1690003A6A33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F9E9AE921BA1691003A6A33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F9E9AEC21BA1691003A6A33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F9E9AEE21BA1691003A6A33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F9E9AF321BA1691003A6A33 /* Air ContactsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Air ContactsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F9E9AF721BA1691003A6A33 /* AirContactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirContactsTests.swift; sourceTree = "<group>"; };
+		9F9E9AF321BA1691003A6A33 /* Contact CardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Contact CardsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F9E9AF721BA1691003A6A33 /* ContactCardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardsTests.swift; sourceTree = "<group>"; };
 		9F9E9AF921BA1691003A6A33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F9E9AFE21BA1691003A6A33 /* Air ContactsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Air ContactsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F9E9B0221BA1691003A6A33 /* AirContactsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirContactsUITests.swift; sourceTree = "<group>"; };
+		9F9E9AFE21BA1691003A6A33 /* Contact CardsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Contact CardsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F9E9B0221BA1691003A6A33 /* ContactCardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardsUITests.swift; sourceTree = "<group>"; };
 		9F9E9B0421BA1691003A6A33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FB31896255F954200D31B8B /* ContactCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardViewController.swift; sourceTree = "<group>"; };
 		9FB3E45E21C967410011752F /* PickContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickContactViewController.swift; sourceTree = "<group>"; };
@@ -221,10 +221,10 @@
 		9F9E9AD621BA1690003A6A33 = {
 			isa = PBXGroup;
 			children = (
-				9F56C72E253BCB96006D8DE6 /* Air Contacts.entitlements */,
-				9F9E9AE121BA1690003A6A33 /* Air Contacts */,
-				9F9E9AF621BA1691003A6A33 /* AirContactsTests */,
-				9F9E9B0121BA1691003A6A33 /* AirContactsUITests */,
+				9F56C72E253BCB96006D8DE6 /* Contact Cards.entitlements */,
+				9F9E9AE121BA1690003A6A33 /* Contact Cards */,
+				9F9E9AF621BA1691003A6A33 /* ContactCardsTests */,
+				9F9E9B0121BA1691003A6A33 /* ContactCardsUITests */,
 				9F9E9AE021BA1690003A6A33 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -232,14 +232,14 @@
 		9F9E9AE021BA1690003A6A33 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9F9E9ADF21BA1690003A6A33 /* Air Contacts.app */,
-				9F9E9AF321BA1691003A6A33 /* Air ContactsTests.xctest */,
-				9F9E9AFE21BA1691003A6A33 /* Air ContactsUITests.xctest */,
+				9F9E9ADF21BA1690003A6A33 /* Contact Cards.app */,
+				9F9E9AF321BA1691003A6A33 /* Contact CardsTests.xctest */,
+				9F9E9AFE21BA1691003A6A33 /* Contact CardsUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9F9E9AE121BA1690003A6A33 /* Air Contacts */ = {
+		9F9E9AE121BA1690003A6A33 /* Contact Cards */ = {
 			isa = PBXGroup;
 			children = (
 				9F1EE641256EE47D004F444B /* AppState.swift */,
@@ -260,25 +260,25 @@
 				9F9E9AE921BA1691003A6A33 /* Assets.xcassets */,
 				9F9E9AEE21BA1691003A6A33 /* Info.plist */,
 			);
-			path = "Air Contacts";
+			path = "Contact Cards";
 			sourceTree = "<group>";
 		};
-		9F9E9AF621BA1691003A6A33 /* AirContactsTests */ = {
+		9F9E9AF621BA1691003A6A33 /* ContactCardsTests */ = {
 			isa = PBXGroup;
 			children = (
-				9F9E9AF721BA1691003A6A33 /* AirContactsTests.swift */,
+				9F9E9AF721BA1691003A6A33 /* ContactCardsTests.swift */,
 				9F9E9AF921BA1691003A6A33 /* Info.plist */,
 			);
-			path = AirContactsTests;
+			path = ContactCardsTests;
 			sourceTree = "<group>";
 		};
-		9F9E9B0121BA1691003A6A33 /* AirContactsUITests */ = {
+		9F9E9B0121BA1691003A6A33 /* ContactCardsUITests */ = {
 			isa = PBXGroup;
 			children = (
-				9F9E9B0221BA1691003A6A33 /* AirContactsUITests.swift */,
+				9F9E9B0221BA1691003A6A33 /* ContactCardsUITests.swift */,
 				9F9E9B0421BA1691003A6A33 /* Info.plist */,
 			);
-			path = AirContactsUITests;
+			path = ContactCardsUITests;
 			sourceTree = "<group>";
 		};
 		9FBFACD722B49D0000730E7B /* Utilities */ = {
@@ -293,9 +293,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9F9E9ADE21BA1690003A6A33 /* Air Contacts */ = {
+		9F9E9ADE21BA1690003A6A33 /* Contact Cards */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F9E9B0721BA1691003A6A33 /* Build configuration list for PBXNativeTarget "Air Contacts" */;
+			buildConfigurationList = 9F9E9B0721BA1691003A6A33 /* Build configuration list for PBXNativeTarget "Contact Cards" */;
 			buildPhases = (
 				9F9E9ADB21BA1690003A6A33 /* Sources */,
 				9F9E9ADC21BA1690003A6A33 /* Frameworks */,
@@ -307,14 +307,14 @@
 			);
 			dependencies = (
 			);
-			name = "Air Contacts";
+			name = "Contact Cards";
 			productName = CardQR;
-			productReference = 9F9E9ADF21BA1690003A6A33 /* Air Contacts.app */;
+			productReference = 9F9E9ADF21BA1690003A6A33 /* Contact Cards.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9F9E9AF221BA1691003A6A33 /* Air ContactsTests */ = {
+		9F9E9AF221BA1691003A6A33 /* Contact CardsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F9E9B0A21BA1691003A6A33 /* Build configuration list for PBXNativeTarget "Air ContactsTests" */;
+			buildConfigurationList = 9F9E9B0A21BA1691003A6A33 /* Build configuration list for PBXNativeTarget "Contact CardsTests" */;
 			buildPhases = (
 				9F9E9AEF21BA1691003A6A33 /* Sources */,
 				9F9E9AF021BA1691003A6A33 /* Frameworks */,
@@ -325,14 +325,14 @@
 			dependencies = (
 				9F9E9AF521BA1691003A6A33 /* PBXTargetDependency */,
 			);
-			name = "Air ContactsTests";
+			name = "Contact CardsTests";
 			productName = CardQRTests;
-			productReference = 9F9E9AF321BA1691003A6A33 /* Air ContactsTests.xctest */;
+			productReference = 9F9E9AF321BA1691003A6A33 /* Contact CardsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9F9E9AFD21BA1691003A6A33 /* Air ContactsUITests */ = {
+		9F9E9AFD21BA1691003A6A33 /* Contact CardsUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F9E9B0D21BA1691003A6A33 /* Build configuration list for PBXNativeTarget "Air ContactsUITests" */;
+			buildConfigurationList = 9F9E9B0D21BA1691003A6A33 /* Build configuration list for PBXNativeTarget "Contact CardsUITests" */;
 			buildPhases = (
 				9F9E9AFA21BA1691003A6A33 /* Sources */,
 				9F9E9AFB21BA1691003A6A33 /* Frameworks */,
@@ -343,9 +343,9 @@
 			dependencies = (
 				9F9E9B0021BA1691003A6A33 /* PBXTargetDependency */,
 			);
-			name = "Air ContactsUITests";
+			name = "Contact CardsUITests";
 			productName = CardQRUITests;
-			productReference = 9F9E9AFE21BA1691003A6A33 /* Air ContactsUITests.xctest */;
+			productReference = 9F9E9AFE21BA1691003A6A33 /* Contact CardsUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -376,7 +376,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9F9E9ADA21BA1690003A6A33 /* Build configuration list for PBXProject "Air Contacts" */;
+			buildConfigurationList = 9F9E9ADA21BA1690003A6A33 /* Build configuration list for PBXProject "Contact Cards" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -389,9 +389,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9F9E9ADE21BA1690003A6A33 /* Air Contacts */,
-				9F9E9AF221BA1691003A6A33 /* Air ContactsTests */,
-				9F9E9AFD21BA1691003A6A33 /* Air ContactsUITests */,
+				9F9E9ADE21BA1690003A6A33 /* Contact Cards */,
+				9F9E9AF221BA1691003A6A33 /* Contact CardsTests */,
+				9F9E9AFD21BA1691003A6A33 /* Contact CardsUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -483,7 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F9E9AF821BA1691003A6A33 /* AirContactsTests.swift in Sources */,
+				9F9E9AF821BA1691003A6A33 /* ContactCardsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,7 +491,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F9E9B0321BA1691003A6A33 /* AirContactsUITests.swift in Sources */,
+				9F9E9B0321BA1691003A6A33 /* ContactCardsUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,12 +500,12 @@
 /* Begin PBXTargetDependency section */
 		9F9E9AF521BA1691003A6A33 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9F9E9ADE21BA1690003A6A33 /* Air Contacts */;
+			target = 9F9E9ADE21BA1690003A6A33 /* Contact Cards */;
 			targetProxy = 9F9E9AF421BA1691003A6A33 /* PBXContainerItemProxy */;
 		};
 		9F9E9B0021BA1691003A6A33 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9F9E9ADE21BA1690003A6A33 /* Air Contacts */;
+			target = 9F9E9ADE21BA1690003A6A33 /* Contact Cards */;
 			targetProxy = 9F9E9AFF21BA1691003A6A33 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -652,11 +652,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Air Contacts.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Contact Cards.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
-				INFOPLIST_FILE = "$(SRCROOT)/Air Contacts/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Contact Cards/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -664,8 +666,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.send.contacts;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
@@ -676,11 +680,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Air Contacts.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Contact Cards.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
-				INFOPLIST_FILE = "$(SRCROOT)/Air Contacts/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Contact Cards/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -688,8 +694,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.send.contacts;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
@@ -713,7 +721,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Air Contacts.app/Air Contacts";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Contact Cards.app/Contact Cards";
 			};
 			name = Debug;
 		};
@@ -734,7 +742,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Air Contacts.app/Air Contacts";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Contact Cards.app/Contact Cards";
 			};
 			name = Release;
 		};
@@ -781,7 +789,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9F9E9ADA21BA1690003A6A33 /* Build configuration list for PBXProject "Air Contacts" */ = {
+		9F9E9ADA21BA1690003A6A33 /* Build configuration list for PBXProject "Contact Cards" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F9E9B0521BA1691003A6A33 /* Debug */,
@@ -790,7 +798,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F9E9B0721BA1691003A6A33 /* Build configuration list for PBXNativeTarget "Air Contacts" */ = {
+		9F9E9B0721BA1691003A6A33 /* Build configuration list for PBXNativeTarget "Contact Cards" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F9E9B0821BA1691003A6A33 /* Debug */,
@@ -799,7 +807,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F9E9B0A21BA1691003A6A33 /* Build configuration list for PBXNativeTarget "Air ContactsTests" */ = {
+		9F9E9B0A21BA1691003A6A33 /* Build configuration list for PBXNativeTarget "Contact CardsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F9E9B0B21BA1691003A6A33 /* Debug */,
@@ -808,7 +816,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F9E9B0D21BA1691003A6A33 /* Build configuration list for PBXNativeTarget "Air ContactsUITests" */ = {
+		9F9E9B0D21BA1691003A6A33 /* Build configuration list for PBXNativeTarget "Contact CardsUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F9E9B0E21BA1691003A6A33 /* Debug */,
