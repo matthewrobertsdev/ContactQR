@@ -20,7 +20,6 @@ class ContactCardsTableViewController: UITableViewController {
 		#if targetEnvironment(macCatalyst)
 		tableView.dragDelegate = self
 		tableView.dragInteractionEnabled = true
-		UIView.setAnimationsEnabled(false)
 		#endif
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(handleNewContact), name: .contactCreated, object: nil)
