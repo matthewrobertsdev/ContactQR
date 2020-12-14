@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9F9E9ADE21BA1690003A6A33"
-               BuildableName = "Contact Cards.app"
-               BlueprintName = "Contact Cards"
-               ReferencedContainer = "container:Contact Cards.xcodeproj">
+               BuildableName = "Air Contacts.app"
+               BlueprintName = "Air Contacts"
+               ReferencedContainer = "container:Air Contacts.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,10 +44,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9F5DD93623AAA82C008722BB"
-            BuildableName = "WatchContact QR.app"
-            BlueprintName = "WatchContact QR"
-            ReferencedContainer = "container:Contact Cards.xcodeproj">
+            BlueprintIdentifier = "9F9E9ADE21BA1690003A6A33"
+            BuildableName = "Air Contacts.app"
+            BlueprintName = "Air Contacts"
+            ReferencedContainer = "container:Air Contacts.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -61,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9F5DD93623AAA82C008722BB"
-            BuildableName = "WatchContact QR.app"
-            BlueprintName = "WatchContact QR"
-            ReferencedContainer = "container:Contact Cards.xcodeproj">
+            BlueprintIdentifier = "9F9E9ADE21BA1690003A6A33"
+            BuildableName = "Air Contacts.app"
+            BlueprintName = "Air Contacts"
+            ReferencedContainer = "container:Air Contacts.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

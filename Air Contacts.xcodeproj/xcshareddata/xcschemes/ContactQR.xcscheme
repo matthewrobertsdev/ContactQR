@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1220"
-   version = "2.0">
+   version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -14,24 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9F5DD93623AAA82C008722BB"
-               BuildableName = "WatchContact QR.app"
-               BlueprintName = "WatchContact QR"
-               ReferencedContainer = "container:Contact Cards.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "9F9E9ADE21BA1690003A6A33"
-               BuildableName = "Contact Cards.app"
-               BlueprintName = "Contact Cards"
-               ReferencedContainer = "container:Contact Cards.xcodeproj">
+               BuildableName = "Air Contacts.app"
+               BlueprintName = "Air Contacts"
+               ReferencedContainer = "container:Air Contacts.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -41,7 +27,36 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9F9E9ADE21BA1690003A6A33"
+            BuildableName = "Air Contacts.app"
+            BlueprintName = "Air Contacts"
+            ReferencedContainer = "container:Air Contacts.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9F9E9AF221BA1691003A6A33"
+               BuildableName = "Air ContactsTests.xctest"
+               BlueprintName = "Air ContactsTests"
+               ReferencedContainer = "container:Air Contacts.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9F9E9AFD21BA1691003A6A33"
+               BuildableName = "Air ContactsUITests.xctest"
+               BlueprintName = "Air ContactsUITests"
+               ReferencedContainer = "container:Air Contacts.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -53,16 +68,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES"
-      launchAutomaticallySubstyle = "8">
+      allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9F5DD93623AAA82C008722BB"
-            BuildableName = "WatchContact QR.app"
-            BlueprintName = "WatchContact QR"
-            ReferencedContainer = "container:Contact Cards.xcodeproj">
+            BlueprintIdentifier = "9F9E9ADE21BA1690003A6A33"
+            BuildableName = "Air Contacts.app"
+            BlueprintName = "Air Contacts"
+            ReferencedContainer = "container:Air Contacts.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -71,16 +85,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES"
-      launchAutomaticallySubstyle = "8">
+      debugDocumentVersioning = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9F5DD93623AAA82C008722BB"
-            BuildableName = "WatchContact QR.app"
-            BlueprintName = "WatchContact QR"
-            ReferencedContainer = "container:Contact Cards.xcodeproj">
+            BlueprintIdentifier = "9F9E9ADE21BA1690003A6A33"
+            BuildableName = "Air Contacts.app"
+            BlueprintName = "Air Contacts"
+            ReferencedContainer = "container:Air Contacts.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

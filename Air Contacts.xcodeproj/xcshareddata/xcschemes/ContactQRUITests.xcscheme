@@ -17,9 +17,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9F9E9AFD21BA1691003A6A33"
-               BuildableName = "Contact CardsUITests.xctest"
-               BlueprintName = "Contact CardsUITests"
-               ReferencedContainer = "container:Contact Cards.xcodeproj">
+               BuildableName = "Air ContactsUITests.xctest"
+               BlueprintName = "Air ContactsUITests"
+               ReferencedContainer = "container:Air Contacts.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
