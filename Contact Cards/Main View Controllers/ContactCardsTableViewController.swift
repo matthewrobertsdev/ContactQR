@@ -284,5 +284,11 @@ extension ContactCardsTableViewController: UITableViewDragDelegate {
 		dragItem.localObject = ContactCardStore.sharedInstance.contactCards[indexPath.row]
 			return [ dragItem ]
 	}
+	func tableView(_ tableView: UITableView, dragSessionWillBegin session: UIDragSession) {
+		UIView.setAnimationsEnabled(false)
+	}
+	func tableView(_ tableView: UITableView, dragSessionDidEnd session: UIDragSession) {
+		UIView.setAnimationsEnabled(true)
+	}
 }
 #endif
