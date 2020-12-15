@@ -9,6 +9,7 @@
 import Foundation
 import Contacts
 import UIKit
+import CoreLocation
 /*
  Gets fields from CNContact and returns them as an array of String pairs
  with the name of the field and the value for each pair
@@ -174,34 +175,32 @@ class ContactInfoManipulator {
 			if !(cnContact.nickname=="") {
 				basicString+="Nickname:  \(cnContact.nickname)\n\n"
 			}
+			displayString.append(NSAttributedString(string: basicString))
+			basicString=""
 			for phoneNumber in cnContact.phoneNumbers {
 				var phoneLabelString=""
 				if let phoneNumberLabel=phoneNumber.label {
 					phoneLabelString =
 					ContactInfoManipulator.makeContactLabel(label: phoneNumberLabel)
 				}
-				basicString+="\(phoneLabelString) Phone:  \(phoneNumber.value.stringValue)\n\n"
+				let linkString=phoneNumber.value.stringValue
+				addLink(stringToAddTo: displayString, label: phoneLabelString+" Phone", linkModifer: "tel://", basicLink: linkString)
 			}
 			for emailAddress in cnContact.emailAddresses {
 				var emailLabelString=""
 				if let emailLabel=emailAddress.label { emailLabelString =
 					ContactInfoManipulator.makeContactLabel(label: emailLabel)
 				}
-				basicString+="\(emailLabelString) Email:  \(emailAddress.value)\n\n"
+				let linkString=emailAddress.value as String
+				addLink(stringToAddTo: displayString, label: emailLabelString+" Email", linkModifer: "mailto:", basicLink: linkString)
 			}
-		displayString.append(NSAttributedString(string: basicString))
-		displayString.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: displayString.length))
 			for urlAddress in (cnContact.urlAddresses) {
 				var urlAddressLabelString=""
 				if let urlAddressLabel=urlAddress.label { urlAddressLabelString =
 					ContactInfoManipulator.makeContactLabel(label: urlAddressLabel)
 				}
-				displayString.append(NSAttributedString(string: "\(urlAddressLabelString) URL: "))
-				displayString.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: displayString.length))
-				let urlString=NSMutableAttributedString(string: urlAddress.value as String)
-				urlString.addAttribute(.link, value: urlAddress.value, range: NSRange(location: 0, length: urlString.length))
-				displayString.append(urlString)
-				displayString.append(NSAttributedString(string:"\n\n"))
+				let linkString=urlAddress.value as String
+				addLink(stringToAddTo: displayString, label: urlAddressLabelString, linkModifer: "", basicLink: linkString)
 			}
 			basicString=""
 			for address in cnContact.postalAddresses {
@@ -209,16 +208,31 @@ class ContactInfoManipulator {
 				if let addressLabel=address.label { addressLabelString =
 					ContactInfoManipulator.makeContactLabel(label: addressLabel)
 				}
-				basicString+="\(addressLabelString) Address:  \(address.value.street as String)\n"
-				basicString+="\(address.value.city as String) \(address.value.state) \(address.value.postalCode)\n\n"
+				displayString.append(NSMutableAttributedString(string: "\(addressLabelString) Address: "))
+				
+				let addressDisplayString=NSMutableAttributedString(string:
+																"\(address.value.street as String)\n \(address.value.city as String) \(address.value.state) \(address.value.postalCode)\n\n")
+				let addressString=NSMutableAttributedString(string:
+																"\(address.value.street as String) \(address.value.city as String) \(address.value.state) \(address.value.postalCode)")
+				
+				let searchAddressString=addressString.mutableString.replacingOccurrences(of: " ", with: "+")
+				addressDisplayString.addAttribute(.link, value: "http://maps.apple.com/?q=\(searchAddressString)", range: NSRange(location: 0, length: addressDisplayString.length))
+				displayString.append(addressDisplayString)
+				
 			}
-		let addressesString=NSMutableAttributedString(string: basicString)
-		addressesString.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: addressesString.length))
-		displayString.append(addressesString)
 		let paragraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
 			paragraphStyle.alignment = NSTextAlignment.center
-		let fontAttributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.light), NSAttributedString.Key.paragraphStyle : paragraphStyle ]
+		let fontAttributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.light),
+							   NSAttributedString.Key.paragraphStyle: paragraphStyle, .foregroundColor: UIColor.label]
+
 		displayString.addAttributes(fontAttributes, range: NSRange(location: 0, length: displayString.length))
 		return displayString
+	}
+	static func addLink(stringToAddTo: NSMutableAttributedString, label: String, linkModifer: String, basicLink: String){
+		stringToAddTo.append(NSAttributedString(string: "\(label): "))
+		let urlString=NSMutableAttributedString(string: basicLink)
+		urlString.addAttribute(.link, value: linkModifer+basicLink, range: NSRange(location: 0, length: urlString.length))
+		stringToAddTo.append(urlString)
+		stringToAddTo.append(NSAttributedString(string: "\n\n"))
 	}
 }
