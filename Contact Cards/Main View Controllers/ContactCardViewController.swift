@@ -20,23 +20,25 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			return
 		}
 		appdelegate.activityItemsConfiguration=self
+		/*
 		let shareBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
 											   style: .plain, target: self, action: #selector(shareContact))
 		let qrCodeBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "qrcode"), style: .plain,
 												target: self, action: #selector(showQRCodeViewController))
+*/
 		#if targetEnvironment(macCatalyst)
 		let docBarButtonItem=UIBarButtonItem(image: UIImage(systemName:
 																"doc.badge.plus"), style: .plain, target: self, action: #selector(exportVCardtoFile))
 		navigationItem.leftBarButtonItems=[docBarButtonItem]
 		#endif
-		navigationItem.rightBarButtonItems=[shareBarButtonItem, qrCodeBarButtonItem]
+		//navigationItem.rightBarButtonItems=[shareBarButtonItem, qrCodeBarButtonItem]
 		navigationItem.title=""
 		navigationItem.largeTitleDisplayMode = .never
 		loadContact()
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .contactChanged, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(exportVCardtoFile), name: .exportAsVCard, object: nil)
-		notificationCenter.addObserver(self, selector: #selector(showQRCodeViewController), name: .showQRCode, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(showQRViewController(_:)), name: .showQRCode, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(createNewContact), name: .createNewContact, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(createContactCardFromContact), name: .createNewContactFromContact, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .modalityChanged, object: nil)
@@ -65,6 +67,36 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			contactInfoTextView.isHidden=false
 		}
 	}
+	@IBAction func showQRViewController(_ sender: Any) {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		guard let displayQRViewController=storyboard.instantiateViewController(withIdentifier: "DisplayQRViewController")
+				as? DisplayQRViewController else {
+			print("Failed to instantiate DisplayQRViewController")
+			return
+		}
+		let navigationController=UINavigationController(rootViewController: displayQRViewController)
+		var animated=true
+		#if targetEnvironment(macCatalyst)
+			animated=false
+		#endif
+		self.present(navigationController, animated: animated)
+	}
+	@IBAction func shareContact(_ sender: Any) {
+		guard let contactCard=contactCard else {
+			return
+		}
+		guard let fileURL=writeTemporaryFile(contactCard: contactCard) else {
+			return
+		}
+			let activityViewController = UIActivityViewController(
+				activityItems: [fileURL],
+				applicationActivities: nil
+			)
+			activityViewController.popoverPresentationController?.barButtonItem=sender as? UIBarButtonItem
+
+			present(activityViewController, animated: true)
+	}
+	
 	@objc func loadContact() {
 		guard let activeCard=ActiveContactCard.shared.contactCard else {
 			#if targetEnvironment(macCatalyst)
@@ -147,36 +179,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		return cell
 	}
 */
-	@objc func showQRCodeViewController() {
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		guard let displayQRViewController=storyboard.instantiateViewController(withIdentifier: "DisplayQRViewController")
-				as? DisplayQRViewController else {
-			print("Failed to instantiate DisplayQRViewController")
-			return
-		}
-		let navigationController=UINavigationController(rootViewController: displayQRViewController)
-		var animated=true
-		#if targetEnvironment(macCatalyst)
-			animated=false
-		#endif
-		self.present(navigationController, animated: animated) {
-		}
-	}
-	@objc func shareContact(sender: Any?) {
-		guard let contactCard=contactCard else {
-			return
-		}
-		guard let fileURL=writeTemporaryFile(contactCard: contactCard) else {
-			return
-		}
-			let activityViewController = UIActivityViewController(
-				activityItems: [fileURL],
-				applicationActivities: nil
-			)
-			activityViewController.popoverPresentationController?.barButtonItem=sender as? UIBarButtonItem
-
-			present(activityViewController, animated: true)
-	}
 	@IBAction func deleteContact(_ sender: Any) {
 		guard let uuidString=contactCard?.uuidString else {
 			print("Error trying to getting UUID to delete with")
@@ -297,7 +299,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	#selector(createContactCardFromContact), discoverabilityTitle: "Create New Card From Contact")
 		]
 		if contactCard != nil {
-			keyCommands.append(UIKeyCommand(title: "Show QR Code", image: nil, action: #selector(showQRCodeViewController),
+			keyCommands.append(UIKeyCommand(title: "Show QR Code", image: nil, action: #selector(showQRViewController(_:)),
 											input: "1", modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Show QR Code",
 											attributes: UIKeyCommand.Attributes(), state: .off))
 		}
