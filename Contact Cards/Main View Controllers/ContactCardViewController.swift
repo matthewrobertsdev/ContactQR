@@ -20,12 +20,11 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			return
 		}
 		appdelegate.activityItemsConfiguration=self
-		/*
+		
 		let shareBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
 											   style: .plain, target: self, action: #selector(shareContact))
 		let qrCodeBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "qrcode"), style: .plain,
-												target: self, action: #selector(showQRCodeViewController))
-*/
+												target: self, action: #selector(showQRViewController(_:)))
 		#if targetEnvironment(macCatalyst)
 		let docBarButtonItem=UIBarButtonItem(image: UIImage(systemName:
 																"doc.badge.plus"), style: .plain, target: self, action: #selector(exportVCardtoFile))
@@ -67,7 +66,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			contactInfoTextView.isHidden=false
 		}
 	}
-	@IBAction func showQRViewController(_ sender: Any) {
+	@objc func showQRViewController(_ sender: Any) {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		guard let displayQRViewController=storyboard.instantiateViewController(withIdentifier: "DisplayQRViewController")
 				as? DisplayQRViewController else {
@@ -81,7 +80,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		#endif
 		self.present(navigationController, animated: animated)
 	}
-	@IBAction func shareContact(_ sender: Any) {
+	@objc func shareContact(_ sender: Any) {
 		guard let contactCard=contactCard else {
 			return
 		}
