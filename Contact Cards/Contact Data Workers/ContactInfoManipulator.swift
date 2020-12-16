@@ -200,7 +200,7 @@ class ContactInfoManipulator {
 					ContactInfoManipulator.makeContactLabel(label: urlAddressLabel)
 				}
 				let linkString=urlAddress.value as String
-				addLink(stringToAddTo: displayString, label: urlAddressLabelString, linkModifer: "", basicLink: linkString)
+				addLink(stringToAddTo: displayString, label: urlAddressLabelString+" URL", linkModifer: "", basicLink: linkString)
 			}
 			basicString=""
 			for address in cnContact.postalAddresses {
@@ -211,14 +211,13 @@ class ContactInfoManipulator {
 				displayString.append(NSMutableAttributedString(string: "\(addressLabelString) Address: "))
 				
 				let addressDisplayString=NSMutableAttributedString(string:
-																"\(address.value.street as String)\n \(address.value.city as String) \(address.value.state) \(address.value.postalCode)\n\n")
+																"\(address.value.street as String)\n \(address.value.city as String) \(address.value.state) \(address.value.postalCode)")
 				let addressString=NSMutableAttributedString(string:
 																"\(address.value.street as String) \(address.value.city as String) \(address.value.state) \(address.value.postalCode)")
-				
 				let searchAddressString=addressString.mutableString.replacingOccurrences(of: " ", with: "+")
 				addressDisplayString.addAttribute(.link, value: "http://maps.apple.com/?q=\(searchAddressString)", range: NSRange(location: 0, length: addressDisplayString.length))
 				displayString.append(addressDisplayString)
-				
+				displayString.append(NSAttributedString(string: "\n\n"))
 			}
 		let paragraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
 			paragraphStyle.alignment = NSTextAlignment.center
