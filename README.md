@@ -1,8 +1,2 @@
 # ContactQR
-An iOS project for sharing contact info with QR codes
-
-
-Currently working, but there are features I want to add.
-
-
-Currently uses Apple's ContactsUI framework for it's interaction with contacts stored in the user's CNContactStore.
+An iOS, iPadOS, and macOS project for having multiple contact cards to share including by QR code.
