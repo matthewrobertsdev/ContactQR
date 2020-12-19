@@ -9,6 +9,7 @@ import UIKit
 class ContactCardsTableViewController: UITableViewController {
 	@IBOutlet weak var editButton: UIBarButtonItem!
 	var selectedCardUUID: String?
+	static let selectedCardUUIDKey="selectedCardUUID"
 	let colorModel=ColorModel()
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -25,6 +26,14 @@ class ContactCardsTableViewController: UITableViewController {
 		notificationCenter.addObserver(self, selector: #selector(handleNewContact), name: .contactCreated, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(removeContact), name: .contactDeleted, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(reloadWithUUID), name: .contactUpdated, object: nil)
+		if let selectedCardUUID=UserDefaults.standard.string(forKey: ContactCardsTableViewController.selectedCardUUIDKey) {
+			self.selectedCardUUID=selectedCardUUID
+			if let index=ContactCardStore.sharedInstance.getIndexOfContactWithUUID(uuid: selectedCardUUID) {
+				tableView.selectRow(at: IndexPath(row: index, section: 0), animated: false, scrollPosition: .middle)
+				showContactCard()
+				SceneDelegate.enableValidToolbarItems()
+			}
+		}
 	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -98,6 +107,9 @@ class ContactCardsTableViewController: UITableViewController {
 			return
 		}
 		ActiveContactCard.shared.contactCard=ContactCardStore.sharedInstance.contactCards[indexPath.row]
+		#if targetEnvironment(macCatalyst)
+		UserDefaults.standard.setValue(selectedCardUUID, forKey: ContactCardsTableViewController.selectedCardUUIDKey)
+		#endif
 		NotificationCenter.default.post(name: .contactChanged, object: nil)
 		splitViewController.show(.secondary)
 	}
@@ -187,7 +199,6 @@ class ContactCardsTableViewController: UITableViewController {
 		}
 		return false
 	}
-	
 	override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
 		return .delete
 	}
@@ -275,7 +286,6 @@ class ContactCardsTableViewController: UITableViewController {
 	// Pass the selected object to the new view controller.
 	}
 	*/
-	//*
 }
 #if targetEnvironment(macCatalyst)
 extension ContactCardsTableViewController: UITableViewDragDelegate {

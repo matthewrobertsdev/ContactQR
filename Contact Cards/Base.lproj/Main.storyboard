@@ -122,7 +122,7 @@
         <!--Title-->
         <scene sceneID="CCk-fk-rf8">
             <objects>
-                <viewController restorationIdentifier="ContactCardViewController" storyboardIdentifier="ContactCardViewController" id="IJa-nU-fZ3" customClass="ContactCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IJa-nU-fZ3" customClass="ContactCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sVZ-bY-6LH">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -190,7 +190,7 @@
         <!--Contact Cards-->
         <scene sceneID="ZMn-av-x8s">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="8w3-e5-v8i" customClass="ContactCardsTableViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ContactCardsTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="8w3-e5-v8i" customClass="ContactCardsTableViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lBD-Qa-6jB">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -273,7 +273,7 @@
         <!--Navigation Controller-->
         <scene sceneID="LvG-zQ-Zm6">
             <objects>
-                <navigationController id="dYb-Ni-z5G" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ContactCardNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dYb-Ni-z5G" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ubA-U4-wKy">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>

@@ -41,6 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 			titlebar.toolbar = SceneDelegate.toolbar
 			titlebar.toolbarStyle = .automatic
 			}
+		windowScene.sizeRestrictions?.minimumSize=CGSize(width: 611, height: 568)
 		#endif
 	}
 
@@ -71,6 +72,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// Called as the scene transitions from the foreground to the background.
 		// Use this method to save data, release shared resources, and store enough scene-specific state information
 		// to restore the scene back to its current state.
+	}
+	func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
+		print("Should save user activity")
+		return scene.userActivity
 	}
 	#if targetEnvironment(macCatalyst)
 	static func enableValidToolbarItems() {

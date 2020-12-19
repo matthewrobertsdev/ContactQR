@@ -28,11 +28,17 @@ class ContactCardStore {
 		}
 	}
 	func removeContactWithUUID(uuid: String) -> Int? {
+		 if let index=getIndexOfContactWithUUID(uuid: uuid){
+			contactCards.remove(at: index)
+			saveContacts()
+			return index
+		}
+		return nil
+	}
+	func getIndexOfContactWithUUID(uuid: String)->Int? {
 		if let index=contactCards.firstIndex(where: { (currentCard) -> Bool in
 			return currentCard.uuidString==uuid
 		}) {
-			contactCards.remove(at: index)
-			saveContacts()
 			return index
 		}
 		return nil

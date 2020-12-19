@@ -42,6 +42,12 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 		guard let contactCardViewController=SceneDelegate.mainsSplitViewController?.viewController(for: .secondary) as? ContactCardViewController else {
 			return nil
 		}
+		var validCardTarget: NSObject=self
+		if let uuid=UserDefaults.standard.string(forKey: ContactCardsTableViewController.selectedCardUUIDKey) {
+			if let _=ContactCardStore.sharedInstance.getIndexOfContactWithUUID(uuid: uuid) {
+				validCardTarget=appDelegate
+			}
+		}
 		var toolbarItem: NSToolbarItem?
 		switch itemIdentifier {
 		case .toggleSidebar:
@@ -52,7 +58,7 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			item.label = "Edit Card"
 			item.toolTip = "Edit Card"
 			item.action = #selector(appDelegate.editContact)
-			item.target = self
+			item.target = validCardTarget
 			item.isBordered=true
 			toolbarItem = item
 		case .deleteCard:
@@ -61,7 +67,7 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			item.label = "Delete Card"
 			item.toolTip = "Delete Card"
 			item.action = #selector(appDelegate.deleteContact)
-			item.target = self
+			item.target = validCardTarget
 			item.isBordered=true
 			toolbarItem = item
 		case .exportCard:
@@ -70,7 +76,7 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			item.label = "Export Card"
 			item.toolTip = "Export Card"
 			item.action = #selector(appDelegate.exportAsVCard)
-			item.target = self
+			item.target = validCardTarget
 			item.isBordered=true
 			toolbarItem = item
 		case .newContactCard:
@@ -97,7 +103,7 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			item.label = "Show QR Code"
 			item.toolTip = "Show QR Code"
 			item.action = #selector(appDelegate.showQRCode)
-			item.target = self
+			item.target = validCardTarget
 			item.isBordered=true
 			toolbarItem = item
 		case .shareCard:

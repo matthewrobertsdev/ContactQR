@@ -20,7 +20,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			return
 		}
 		appdelegate.activityItemsConfiguration=self
-		
 		let shareBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
 											   style: .plain, target: self, action: #selector(shareContact))
 		let qrCodeBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "qrcode"), style: .plain,
@@ -30,7 +29,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 																"doc.badge.plus"), style: .plain, target: self, action: #selector(exportVCardtoFile))
 		navigationItem.leftBarButtonItems=[docBarButtonItem]
 		#endif
-		//navigationItem.rightBarButtonItems=[shareBarButtonItem, qrCodeBarButtonItem]
+		navigationItem.rightBarButtonItems=[shareBarButtonItem, qrCodeBarButtonItem]
 		navigationItem.title=""
 		navigationItem.largeTitleDisplayMode = .never
 		loadContact()
@@ -95,7 +94,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 
 			present(activityViewController, animated: true)
 	}
-	
 	@objc func loadContact() {
 		guard let activeCard=ActiveContactCard.shared.contactCard else {
 			#if targetEnvironment(macCatalyst)
