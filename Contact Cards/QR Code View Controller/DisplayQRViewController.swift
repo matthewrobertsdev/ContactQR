@@ -20,6 +20,7 @@ class DisplayQRViewController: UIViewController {
 		super.viewWillAppear(animated)
 		AppState.shared.appState=AppStateValue.isModal
 		NotificationCenter.default.post(name: .modalityChanged, object: nil)
+		prepareView()
 	}
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
@@ -40,6 +41,10 @@ class DisplayQRViewController: UIViewController {
 	@IBAction func done(_ sender: Any) {
 		dismiss(animated: true)
 	}
+	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+			super.traitCollectionDidChange(previousTraitCollection)
+			prepareView()
+		}
 	override var keyCommands: [UIKeyCommand]? {
 		return [UIKeyCommand(title: "Close", image: nil, action: #selector(done(_:)), input: UIKeyCommand.inputEscape,
 							 modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Close",

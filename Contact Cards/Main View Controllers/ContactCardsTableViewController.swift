@@ -16,7 +16,7 @@ class ContactCardsTableViewController: UITableViewController {
 		if let splitViewController=splitViewController {
 			splitViewController.primaryBackgroundStyle = .sidebar
 		}
-		self.navigationController?.setToolbarHidden(false, animated: true)
+		self.navigationController?.setToolbarHidden(false, animated: false)
 		stopEditingIfNoContactCards()
 		#if targetEnvironment(macCatalyst)
 		tableView.dragDelegate = self
@@ -26,6 +26,7 @@ class ContactCardsTableViewController: UITableViewController {
 		notificationCenter.addObserver(self, selector: #selector(handleNewContact), name: .contactCreated, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(removeContact), name: .contactDeleted, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(reloadWithUUID), name: .contactUpdated, object: nil)
+		#if targetEnvironment(macCatalyst)
 		if let selectedCardUUID=UserDefaults.standard.string(forKey: ContactCardsTableViewController.selectedCardUUIDKey) {
 			self.selectedCardUUID=selectedCardUUID
 			if let index=ContactCardStore.sharedInstance.getIndexOfContactWithUUID(uuid: selectedCardUUID) {
@@ -34,6 +35,7 @@ class ContactCardsTableViewController: UITableViewController {
 				SceneDelegate.enableValidToolbarItems()
 			}
 		}
+		#endif
 	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -230,7 +232,7 @@ class ContactCardsTableViewController: UITableViewController {
 						 attributes: [], state: .on),
 			UIKeyCommand(title: "Next Contact", image: nil, action: #selector(goDownOne), input: UIKeyCommand.inputDownArrow,
 						 modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Next Contact",
-						 attributes: [], state: .on),
+						 attributes: [], state: .on)
 		]
 		return keyCommands
 	}
@@ -289,7 +291,7 @@ class ContactCardsTableViewController: UITableViewController {
 }
 #if targetEnvironment(macCatalyst)
 extension ContactCardsTableViewController: UITableViewDragDelegate {
-	func tableView(_ tableView: UITableView, itemsForBeginning session:
+	func tableView(_ tableView: UITableView, itemsForBeginning session: 
 					UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
 		let dragItem = UIDragItem(itemProvider: NSItemProvider())
 		dragItem.localObject = ContactCardStore.sharedInstance.contactCards[indexPath.row]

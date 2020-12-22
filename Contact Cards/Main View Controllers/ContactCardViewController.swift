@@ -289,12 +289,12 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		if AppState.shared.appState==AppStateValue.isModal {
 			return nil
 		}
-		var keyCommands=[
-			UIKeyCommand(input: "n", modifierFlags: .command, action: #selector(createNewContact),
-	discoverabilityTitle: "Create New Contact"),
-			UIKeyCommand(input: "n", modifierFlags: UIKeyModifierFlags(arrayLiteral: [.command,.shift]), action:
-	#selector(createContactCardFromContact), discoverabilityTitle: "Create New Card From Contact")
-		]
+		var keyCommands=[UIKeyCommand(title: "Create New Contact", image: nil, action: #selector(createNewContact),
+									  input: "n", modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Create New Contact",
+									  attributes: UIKeyCommand.Attributes(), state: .off),
+						 UIKeyCommand(title: "Create New Card From Contact", image: nil, action: #selector(createContactCardFromContact),
+																										input: "n", modifierFlags: UIKeyModifierFlags(arrayLiteral: [.command,.shift]), propertyList: nil, alternates: [], discoverabilityTitle: "Create New Card From Contact",
+													 attributes: UIKeyCommand.Attributes(), state: .off)]
 		if contactCard != nil {
 			keyCommands.append(UIKeyCommand(title: "Show QR Code", image: nil, action: #selector(showQRViewController(_:)),
 											input: "1", modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Show QR Code",
