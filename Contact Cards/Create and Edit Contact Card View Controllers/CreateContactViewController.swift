@@ -12,6 +12,7 @@ import Contacts
 class CreateContactViewController: UIViewController {
 	@IBOutlet weak var firstNameTextField: UITextField!
 	@IBOutlet weak var lastNameTextField: UITextField!
+	
 	@IBOutlet weak var mobilePhoneTextField: UITextField!
 	@IBOutlet weak var workPhone1TextField: UITextField!
 	@IBOutlet weak var workPhone2TextField: UITextField!
