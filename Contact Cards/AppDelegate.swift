@@ -47,9 +47,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		builder.replaceChildren(ofMenu: .help) { _ in
 			[]
 		}
-		let editCardCommand =
-			UICommand(title: "Edit Contact Card", image: nil, action: #selector(editContact),
-										 propertyList: nil, alternates: [], discoverabilityTitle: "Edit Contact Card", attributes: [], state: .off)
+		let editContactInfoCommand =
+			UICommand(title: "Edit Contact Info", image: nil, action: #selector(editContactInfo),
+										 propertyList: nil, alternates: [], discoverabilityTitle: "Edit Contact Info", attributes: [], state: .off)
+		let editColorCommand =
+			UICommand(title: "Change Card Color", image: nil, action: #selector(editColor),
+										 propertyList: nil, alternates: [], discoverabilityTitle: "Change Card Color", attributes: [], state: .off)
+		let editTitleCommand =
+			UICommand(title: "Change Card Title", image: nil, action: #selector(editTitle),
+										 propertyList: nil, alternates: [], discoverabilityTitle: "Change Card Title", attributes: [], state: .off)
+		let editCardCommand = UIMenu(title: "Edit Contact Card", image: nil, identifier: UIMenu.Identifier("editContactCard"),
+									 options: .displayInline, children: [editContactInfoCommand, editColorCommand, editTitleCommand])
 		let deleteCardCommand =
 			UICommand(title: "Delete Contact Card", image: nil, action: #selector(deleteContact),
 										 propertyList: nil, alternates: [], discoverabilityTitle: "Delete Contact Card", attributes: [], state: .off)
@@ -115,7 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			return false
 		}
 		if action==#selector(exportAsVCard) || action==#selector(showQRCode) ||
-			action==#selector(deleteContact) || action==#selector(editContact) {
+			action==#selector(deleteContact) || action==#selector(editContactInfo) || action==#selector(editColor) || action==#selector(editTitle) {
 			guard let contactCardViewController=splitViewController.viewController(for: .secondary)
 					as? ContactCardViewController else {
 				return false
@@ -143,6 +151,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	@objc func editContact() {
 		NotificationCenter.default.post(name: .editContact, object: nil)
+	}
+	@objc func editContactInfo() {
+		NotificationCenter.default.post(name: .editContactInfo, object: nil)
+	}
+	@objc func editColor() {
+		NotificationCenter.default.post(name: .editColor, object: nil)
+	}
+	@objc func editTitle() {
+		NotificationCenter.default.post(name: .editTitle, object: nil)
 	}
 }
 extension Notification.Name {
