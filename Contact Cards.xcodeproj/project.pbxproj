@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F15544325939378006C7A92 /* EditContactAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F15544225939378006C7A92 /* EditContactAlertController.swift */; };
 		9F1EE642256EE47D004F444B /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1EE641256EE47D004F444B /* AppState.swift */; };
 		9F339FF3256E9C9500F31F9F /* ExportContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F339FF2256E9C9500F31F9F /* ExportContactCardViewController.swift */; };
 		9F34C273255CCF1900B9DEA4 /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */; };
@@ -73,6 +74,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9F15544225939378006C7A92 /* EditContactAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactAlertController.swift; sourceTree = "<group>"; };
 		9F1EE641256EE47D004F444B /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		9F339FF2256E9C9500F31F9F /* ExportContactCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportContactCardViewController.swift; sourceTree = "<group>"; };
 		9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				9FEE377C256DBA490089337E /* ChooseColorTableViewController.swift */,
 				9FEC6191256229DE004A03BE /* SaveContactCardViewController.swift */,
 				9F98DF69257F3C9900566779 /* EditContactCardViewController.swift */,
+				9F15544225939378006C7A92 /* EditContactAlertController.swift */,
 			);
 			path = "Create and Edit Contact Card View Controllers";
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				9F5C647221D3E10A00832897 /* ContactInfoManipulator.swift in Sources */,
 				9FEE3787256DBAA50089337E /* Color.swift in Sources */,
 				9FB74C1022B4825C00F34181 /* ContactCardPersistencyManager.swift in Sources */,
+				9F15544325939378006C7A92 /* EditContactAlertController.swift in Sources */,
 				9F7F42192560F24700199193 /* SceneDelegate.swift in Sources */,
 				9F9E9AE521BA1690003A6A33 /* DisplayQRViewController.swift in Sources */,
 				9F339FF3256E9C9500F31F9F /* ExportContactCardViewController.swift in Sources */,

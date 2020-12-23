@@ -309,18 +309,23 @@ class CreateContactViewController: UIViewController {
 		if !(twitterTextField.text=="") {
 		contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: nil, username:
 																											twitterTextField.text ?? "", userIdentifier: nil, service: CNSocialProfileServiceTwitter)))
-			print(contact.socialProfiles)
 		}
 		if !(linkedInTextField.text=="") {
+			var linkedInUrl=linkedInTextField.text ?? ""
+			if !(linkedInUrl.starts(with: "http://")) && !(linkedInUrl.starts(with: "https://")) {
+				linkedInUrl="http://"+linkedInUrl
+			}
 			contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString:
-																												linkedInTextField.text, username: nil, userIdentifier: nil, service: CNSocialProfileServiceLinkedIn)))
+																												linkedInUrl, username: nil, userIdentifier: nil, service: CNSocialProfileServiceLinkedIn)))
 		}
 		if !(facebookTextField.text=="") {
-		contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: facebookTextField.text,
+			var facebookURL=facebookTextField.text ?? ""
+			if !(facebookURL.starts(with: "http://")) && !(facebookURL.starts(with: "https://")) {
+				facebookURL="http://"+facebookURL
+			}
+		contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: facebookURL,
 																										 username: nil, userIdentifier: nil, service: CNSocialProfileServiceFacebook)))
 		}
-		print(contact.socialProfiles)
-		print(contact)
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()
