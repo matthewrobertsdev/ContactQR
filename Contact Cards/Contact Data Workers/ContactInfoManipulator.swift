@@ -244,17 +244,17 @@ class ContactInfoManipulator {
 		if let twitterUsername=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
 			return socialProfile.value.service.lowercased()==CNSocialProfileServiceTwitter.lowercased()
 		})?.value.username {
-			addLink(stringToAddTo: displayString, label: "Twitter Username: ", linkModifer: "https://twitter.com/", basicLink: twitterUsername)
+			addLink(stringToAddTo: displayString, label: "Twitter Username", linkModifer: "https://twitter.com/", basicLink: twitterUsername)
 		}
 		if let linkedInUrlString=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
 			return socialProfile.value.service.lowercased()==CNSocialProfileServiceLinkedIn.lowercased()
 		})?.value.urlString {
-			addLink(stringToAddTo: displayString, label: "LinkedIn URL:", linkModifer: "", basicLink: linkedInUrlString)
+			addLink(stringToAddTo: displayString, label: "LinkedIn URL", linkModifer: "", basicLink: linkedInUrlString)
 		}
 		if let facebookUrlString=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
 			return socialProfile.value.service.lowercased()==CNSocialProfileServiceFacebook.lowercased()
 		})?.value.urlString {
-			addLink(stringToAddTo: displayString, label: "Facebook URL:", linkModifer: "", basicLink: facebookUrlString)
+			addLink(stringToAddTo: displayString, label: "Facebook URL", linkModifer: "", basicLink: facebookUrlString)
 		}
 	}
 	static func addLink(stringToAddTo: NSMutableAttributedString, label: String, linkModifer: String, basicLink: String) {
