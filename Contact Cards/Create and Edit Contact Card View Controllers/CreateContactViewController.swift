@@ -329,6 +329,7 @@ class CreateContactViewController: UIViewController {
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()
+		fieldsScrollView.keyboardDismissMode = .interactive
 		if forEditing {
 			navigationItem.leftBarButtonItem?.title="Save"
 		}

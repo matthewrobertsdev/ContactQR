@@ -22,7 +22,7 @@ class EditContactAlertController: UIAlertController, UIPopoverControllerDelegate
 				NotificationCenter.default.post(name: .editContactInfo, object: nil)
 			}
 		}))
-		addAction(UIAlertAction(title: "Change Card Color", style: .default, handler: { [weak self] _ in
+		addAction(UIAlertAction(title: "Edit Card Color", style: .default, handler: { [weak self] _ in
 			guard let strongSelf=self else {
 				return
 			}
@@ -30,7 +30,7 @@ class EditContactAlertController: UIAlertController, UIPopoverControllerDelegate
 				NotificationCenter.default.post(name: .editColor, object: nil)
 			}
 		}))
-		addAction(UIAlertAction(title: "Change Card Title", style: .default, handler: { [weak self] _ in
+		addAction(UIAlertAction(title: "Edit Card Title", style: .default, handler: { [weak self] _ in
 			guard let strongSelf=self else {
 				return
 			}
