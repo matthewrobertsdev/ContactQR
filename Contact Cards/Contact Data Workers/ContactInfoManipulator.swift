@@ -169,12 +169,24 @@ class ContactInfoManipulator {
 		if !(cnContact.familyName=="") {
 			basicString+="Last Name:  \(cnContact.familyName)\n\n"
 			}
-			if !(cnContact.nameSuffix=="") {
-				basicString+="Suffix:  \(cnContact.nameSuffix)\n\n"
-			}
+		if !(cnContact.namePrefix=="") {
+			basicString+="Prefix:  \(cnContact.namePrefix)\n\n"
+		}
+		if !(cnContact.nameSuffix=="") {
+			basicString+="Suffix:  \(cnContact.nameSuffix)\n\n"
+		}
 			if !(cnContact.nickname=="") {
 				basicString+="Nickname:  \(cnContact.nickname)\n\n"
 			}
+		if !(cnContact.organizationName=="") {
+			basicString+="Company:  \(cnContact.organizationName)\n\n"
+		}
+		if !(cnContact.jobTitle=="") {
+			basicString+="Job Title:  \(cnContact.jobTitle)\n\n"
+		}
+		if !(cnContact.departmentName=="") {
+			basicString+="Department:  \(cnContact.departmentName)\n\n"
+		}
 			displayString.append(NSAttributedString(string: basicString))
 			basicString=""
 			for phoneNumber in cnContact.phoneNumbers {
@@ -194,6 +206,7 @@ class ContactInfoManipulator {
 				let linkString=emailAddress.value as String
 				addLink(stringToAddTo: displayString, label: emailLabelString+" Email", linkModifer: "mailto:", basicLink: linkString)
 			}
+		addSocialProfiles(cnContact: cnContact, displayString: displayString)
 			for urlAddress in (cnContact.urlAddresses) {
 				var urlAddressLabelString=""
 				if let urlAddressLabel=urlAddress.label { urlAddressLabelString =
@@ -227,7 +240,24 @@ class ContactInfoManipulator {
 		displayString.addAttributes(fontAttributes, range: NSRange(location: 0, length: displayString.length))
 		return displayString
 	}
-	static func addLink(stringToAddTo: NSMutableAttributedString, label: String, linkModifer: String, basicLink: String){
+	static func addSocialProfiles(cnContact: CNContact, displayString: NSMutableAttributedString) {
+		if let twitterUsername=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+			return socialProfile.value.service.lowercased()==CNSocialProfileServiceTwitter.lowercased()
+		})?.value.username {
+			addLink(stringToAddTo: displayString, label: "Twitter Username: ", linkModifer: "https://twitter.com/", basicLink: twitterUsername)
+		}
+		if let linkedInUrlString=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+			return socialProfile.value.service.lowercased()==CNSocialProfileServiceLinkedIn.lowercased()
+		})?.value.urlString {
+			addLink(stringToAddTo: displayString, label: "LinkedIn URL:", linkModifer: "", basicLink: linkedInUrlString)
+		}
+		if let facebookUrlString=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+			return socialProfile.value.service.lowercased()==CNSocialProfileServiceFacebook.lowercased()
+		})?.value.urlString {
+			addLink(stringToAddTo: displayString, label: "Facebook URL:", linkModifer: "", basicLink: facebookUrlString)
+		}
+	}
+	static func addLink(stringToAddTo: NSMutableAttributedString, label: String, linkModifer: String, basicLink: String) {
 		stringToAddTo.append(NSAttributedString(string: "\(label): "))
 		let urlString=NSMutableAttributedString(string: basicLink)
 		urlString.addAttribute(.link, value: linkModifer+basicLink, range: NSRange(location: 0, length: urlString.length))

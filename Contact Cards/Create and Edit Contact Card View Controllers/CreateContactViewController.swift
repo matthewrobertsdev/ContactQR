@@ -12,7 +12,12 @@ import Contacts
 class CreateContactViewController: UIViewController {
 	@IBOutlet weak var firstNameTextField: UITextField!
 	@IBOutlet weak var lastNameTextField: UITextField!
-	
+	@IBOutlet weak var prefixTextField: UITextField!
+	@IBOutlet weak var suffixTextField: UITextField!
+	@IBOutlet weak var nicknameTextField: UITextField!
+	@IBOutlet weak var companyTextField: UITextField!
+	@IBOutlet weak var jobTitleTextField: UITextField!
+	@IBOutlet weak var departmentTextField: UITextField!
 	@IBOutlet weak var mobilePhoneTextField: UITextField!
 	@IBOutlet weak var workPhone1TextField: UITextField!
 	@IBOutlet weak var workPhone2TextField: UITextField!
@@ -22,6 +27,9 @@ class CreateContactViewController: UIViewController {
 	@IBOutlet weak var workEmail1TextField: UITextField!
 	@IBOutlet weak var workEmail2TextField: UITextField!
 	@IBOutlet weak var otherEmailTextField: UITextField!
+	@IBOutlet weak var facebookTextField: UITextField!
+	@IBOutlet weak var linkedInTextField: UITextField!
+	@IBOutlet weak var twitterTextField: UITextField!
 	@IBOutlet weak var urlHomeTextField: UITextField!
 	@IBOutlet weak var urlWork1TextField: UITextField!
 	@IBOutlet weak var urlWork2TextField: UITextField!
@@ -54,10 +62,29 @@ class CreateContactViewController: UIViewController {
 		if  !(lastNameTextField.text=="") {
 			contact.familyName=lastNameTextField.text ?? ""
 		}
+		if  !(prefixTextField.text=="") {
+			contact.namePrefix=prefixTextField.text ?? ""
+		}
+		if  !(suffixTextField.text=="") {
+			contact.nameSuffix=suffixTextField.text ?? ""
+		}
+		if  !(nicknameTextField.text=="") {
+			contact.nickname=nicknameTextField.text ?? ""
+		}
+		if  !(companyTextField.text=="") {
+			contact.organizationName=companyTextField.text ?? ""
+		}
+		if  !(jobTitleTextField.text=="") {
+			contact.jobTitle=jobTitleTextField.text ?? ""
+		}
+		if  !(departmentTextField.text=="") {
+			contact.departmentName=departmentTextField.text ?? ""
+		}
 		getPhoneNumbers(contact: contact)
 		getEmails(contact: contact)
 		getURLs(contact: contact)
 		getAddresses(contact: contact)
+		getSocialProfiles(contact: contact)
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		guard let chooseColorTableViewController=storyboard.instantiateViewController(withIdentifier:
 																						"ChooseColorTableViewController")
@@ -78,8 +105,15 @@ class CreateContactViewController: UIViewController {
 	private func fillWithContact(contact: CNContact) {
 		firstNameTextField.text=contact.givenName
 		lastNameTextField.text=contact.familyName
+		prefixTextField.text=contact.namePrefix
+		suffixTextField.text=contact.nameSuffix
+		nicknameTextField.text=contact.nickname
+		companyTextField.text=contact.organizationName
+		jobTitleTextField.text=contact.jobTitle
+		departmentTextField.text=contact.departmentName
 		fillPhoneNumbers(contact: contact)
 		fillEmails(contact: contact)
+		fillSocialProfiles(contact: contact)
 		fillUrls(contact: contact)
 		fillPostalAddresses(contact: contact)
 	}
@@ -117,6 +151,18 @@ class CreateContactViewController: UIViewController {
 		if emails.count>1 {
 			workEmail2TextField.text=workEmails[1].value.substring(from: 0)
 		}
+	}
+	private func fillSocialProfiles(contact: CNContact) {
+		let socialProfiles=contact.socialProfiles
+		twitterTextField.text=socialProfiles.first(where: {  (socialProfile) in
+			return socialProfile.value.service.lowercased()==CNSocialProfileServiceTwitter.lowercased()
+		})?.value.username
+		linkedInTextField.text=socialProfiles.first(where: {  (socialProfile) in
+			return socialProfile.value.service.lowercased()==CNSocialProfileServiceLinkedIn.lowercased()
+		})?.value.urlString
+		facebookTextField.text=socialProfiles.first(where: {  (socialProfile) in
+			return socialProfile.value.service.lowercased()==CNSocialProfileServiceFacebook.lowercased()
+		})?.value.urlString
 	}
 	private func fillUrls(contact: CNContact) {
 		let urls=contact.urlAddresses
@@ -258,6 +304,23 @@ class CreateContactViewController: UIViewController {
 			address.postalCode=otherZipTextField.text ?? ""
 			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelOther, value: address))
 			}
+	}
+	func getSocialProfiles(contact: CNMutableContact) {
+		if !(twitterTextField.text=="") {
+		contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: nil, username:
+																											twitterTextField.text ?? "", userIdentifier: nil, service: CNSocialProfileServiceTwitter)))
+			print(contact.socialProfiles)
+		}
+		if !(linkedInTextField.text=="") {
+			contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString:
+																												linkedInTextField.text, username: nil, userIdentifier: nil, service: CNSocialProfileServiceLinkedIn)))
+		}
+		if !(facebookTextField.text=="") {
+		contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: facebookTextField.text,
+																										 username: nil, userIdentifier: nil, service: CNSocialProfileServiceFacebook)))
+		}
+		print(contact.socialProfiles)
+		print(contact)
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()
