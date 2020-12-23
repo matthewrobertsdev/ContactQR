@@ -193,7 +193,7 @@ class ContactInfoManipulator {
 				var phoneLabelString=""
 				if let phoneNumberLabel=phoneNumber.label {
 					phoneLabelString =
-					ContactInfoManipulator.makeContactLabel(label: phoneNumberLabel)
+					makeContactLabel(label: phoneNumberLabel)
 				}
 				let linkString=phoneNumber.value.stringValue
 				addLink(stringToAddTo: displayString, label: phoneLabelString+" Phone", linkModifer: "tel://", basicLink: linkString)
@@ -201,7 +201,7 @@ class ContactInfoManipulator {
 			for emailAddress in cnContact.emailAddresses {
 				var emailLabelString=""
 				if let emailLabel=emailAddress.label { emailLabelString =
-					ContactInfoManipulator.makeContactLabel(label: emailLabel)
+					makeContactLabel(label: emailLabel)
 				}
 				let linkString=emailAddress.value as String
 				addLink(stringToAddTo: displayString, label: emailLabelString+" Email", linkModifer: "mailto:", basicLink: linkString)
@@ -210,7 +210,7 @@ class ContactInfoManipulator {
 			for urlAddress in (cnContact.urlAddresses) {
 				var urlAddressLabelString=""
 				if let urlAddressLabel=urlAddress.label { urlAddressLabelString =
-					ContactInfoManipulator.makeContactLabel(label: urlAddressLabel)
+					makeContactLabel(label: urlAddressLabel)
 				}
 				let linkString=urlAddress.value as String
 				addLink(stringToAddTo: displayString, label: urlAddressLabelString+" URL", linkModifer: "", basicLink: linkString)
@@ -219,10 +219,9 @@ class ContactInfoManipulator {
 			for address in cnContact.postalAddresses {
 				var addressLabelString=""
 				if let addressLabel=address.label { addressLabelString =
-					ContactInfoManipulator.makeContactLabel(label: addressLabel)
+					makeContactLabel(label: addressLabel)
 				}
 				displayString.append(NSMutableAttributedString(string: "\(addressLabelString) Address: "))
-				
 				let addressDisplayString=NSMutableAttributedString(string:
 																"\(address.value.street as String)\n \(address.value.city as String) \(address.value.state) \(address.value.postalCode)")
 				let addressString=NSMutableAttributedString(string:
@@ -249,12 +248,16 @@ class ContactInfoManipulator {
 		if let linkedInUrlString=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
 			return socialProfile.value.service.lowercased()==CNSocialProfileServiceLinkedIn.lowercased()
 		})?.value.urlString {
-			addLink(stringToAddTo: displayString, label: "LinkedIn URL", linkModifer: "", basicLink: linkedInUrlString)
+			if linkedInUrlString != "" {
+				addLink(stringToAddTo: displayString, label: "LinkedIn URL", linkModifer: "", basicLink: linkedInUrlString)
+			}
 		}
 		if let facebookUrlString=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
 			return socialProfile.value.service.lowercased()==CNSocialProfileServiceFacebook.lowercased()
 		})?.value.urlString {
-			addLink(stringToAddTo: displayString, label: "Facebook URL", linkModifer: "", basicLink: facebookUrlString)
+			if facebookUrlString != "" {
+				addLink(stringToAddTo: displayString, label: "Facebook URL", linkModifer: "", basicLink: facebookUrlString)
+			}
 		}
 	}
 	static func addLink(stringToAddTo: NSMutableAttributedString, label: String, linkModifer: String, basicLink: String) {
