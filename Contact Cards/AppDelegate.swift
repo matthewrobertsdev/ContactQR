@@ -56,13 +56,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let editTitleCommand =
 			UICommand(title: "Change Card Title", image: nil, action: #selector(editTitle),
 										 propertyList: nil, alternates: [], discoverabilityTitle: "Change Card Title", attributes: [], state: .off)
-		let editCardCommand = UIMenu(title: "Edit Contact Card", image: nil, identifier: UIMenu.Identifier("editContactCard"),
+		let editCardMenu = UIMenu(title: "Edit Contact Card", image: nil, identifier: UIMenu.Identifier("editContactCard"),
 									 options: .displayInline, children: [editContactInfoCommand, editColorCommand, editTitleCommand])
 		let deleteCardCommand =
 			UICommand(title: "Delete Contact Card", image: nil, action: #selector(deleteContact),
 										 propertyList: nil, alternates: [], discoverabilityTitle: "Delete Contact Card", attributes: [], state: .off)
 		let editAndDeleteMenu = UIMenu(title: "", image: nil, identifier:
-										UIMenu.Identifier("editAndDeleteMenu"), options: .displayInline, children: [editCardCommand, deleteCardCommand])
+										UIMenu.Identifier("editAndDeleteMenu"), options: .displayInline, children: [editCardMenu, deleteCardCommand])
 		builder.insertChild(editAndDeleteMenu, atStartOfMenu: .edit)
 		let exportAsVCardCommand =
 			UIKeyCommand(title: NSLocalizedString("Export as vCard...", comment: ""),
@@ -160,6 +160,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	@objc func editTitle() {
 		NotificationCenter.default.post(name: .editTitle, object: nil)
+	}
+	@objc func doNothing() {
 	}
 }
 extension Notification.Name {
