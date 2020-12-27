@@ -122,8 +122,13 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			titleLabel.textColor=color
 		}
 		do {
-			let contact=try ContactDataConverter.createCNContactArray(vCardString: activeCard.vCardString)[0]
-			contactInfoTextView.attributedText=ContactInfoManipulator.makeContactDisplayString(cnContact: contact)
+			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: activeCard.vCardString)
+			if contactArray.count==1 {
+				contactInfoTextView.attributedText=ContactInfoManipulator.makeContactDisplayString(cnContact: contactArray[0])
+			} else {
+				contactInfoTextView.attributedText=NSAttributedString(string: "")
+				enableShareButtons(enable: false)
+			}
 			//tableView.reloadData()
 		} catch {
 			print("Error making CNContact from VCard String.")
@@ -138,6 +143,14 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			itemProvidersForActivityItemsConfiguration=[itemProvider]
 		} else {
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
+		}
+	}
+	func enableShareButtons(enable: Bool) {
+		guard let rightBarButtonItems=navigationItem.rightBarButtonItems else {
+			return
+		}
+		for item in rightBarButtonItems {
+			item.isEnabled=enable
 		}
 	}
 	func enableButtons(enable: Bool) {
@@ -226,7 +239,10 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		var filename="Contact"
 		var contact=CNContact()
 		do {
-			contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)[0]
+			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)
+			if contactArray.count==1 {
+				contact=contactArray[0]
+			}
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
@@ -282,9 +298,11 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		createContactViewController.contactCard=contactCard
 		let navigationController=UINavigationController(rootViewController: createContactViewController)
 		do {
-			let contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString ?? "")[0]
-			createContactViewController.contact=contact
-			createContactViewController.contactCard=contactCard
+			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString ?? "")
+			if contactArray.count==1 {
+				createContactViewController.contact=contactArray[0]
+				createContactViewController.contactCard=contactCard
+			}
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
@@ -305,9 +323,11 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		chooseColorTableViewController.contactCard=contactCard
 		let navigationController=UINavigationController(rootViewController: chooseColorTableViewController)
 		do {
-			let contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString ?? "")[0]
-			chooseColorTableViewController.contact=contact
-			chooseColorTableViewController.contactCard=contactCard
+			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString ?? "")
+			if contactArray.count==1 {
+				chooseColorTableViewController.contact=contactArray[0]
+				chooseColorTableViewController.contactCard=contactCard
+			}
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
@@ -328,9 +348,11 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		saveContactCardViewController.contactCard=contactCard
 		let navigationController=UINavigationController(rootViewController: saveContactCardViewController)
 		do {
-			let contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString ?? "")[0]
-			saveContactCardViewController.contact=contact
-			saveContactCardViewController.contactCard=contactCard
+			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString ?? "")
+			if contactArray.count==1 {
+				saveContactCardViewController.contact=contactArray[0]
+				saveContactCardViewController.contactCard=contactCard
+			}
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
@@ -339,9 +361,11 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	@IBAction func editContact(_ sender: Any) {
 		let editContactAlertController=EditContactAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 		do {
-			let contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard?.vCardString ?? "")[0]
-			editContactAlertController.contact=contact
-			editContactAlertController.contactCard=contactCard
+			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard?.vCardString ?? "")
+			if contactArray.count==1 {
+				editContactAlertController.contact=contactArray[0]
+				editContactAlertController.contactCard=contactCard
+			}
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}

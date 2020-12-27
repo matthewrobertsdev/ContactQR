@@ -12,13 +12,16 @@ import Contacts
  */
 class DisplayQRModel {
     private var contact=CNContact()
-    private var qrCode: UIImage!
+    private var qrCode=UIImage()
 	init() {
 		guard let vCardString=ActiveContactCard.shared.contactCard?.vCardString else {
 			return
 		}
 		do {
-			contact=try ContactDataConverter.createCNContactArray(vCardString: vCardString)[0]
+			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: vCardString)
+			if contactArray.count==1 {
+				contact=contactArray[0]
+			}
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}

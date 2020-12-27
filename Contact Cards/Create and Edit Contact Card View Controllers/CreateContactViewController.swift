@@ -332,6 +332,7 @@ class CreateContactViewController: UIViewController {
 		fieldsScrollView.keyboardDismissMode = .interactive
 		if forEditing {
 			navigationItem.leftBarButtonItem?.title="Save"
+			navigationItem.title="Edit Card"
 		}
 		if let contact=contact {
 			fillWithContact(contact: contact)
