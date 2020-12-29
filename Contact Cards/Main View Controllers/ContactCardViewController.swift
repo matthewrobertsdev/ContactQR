@@ -133,15 +133,17 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
+		guard let fileURL=writeTemporaryFile(contactCard: activeCard) else {
+			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
+			contactInfoTextView.attributedText=ContactInfoManipulator.getBadVCardAttributedString()
+			return
+		}
+		guard let itemProvider=NSItemProvider(contentsOf: fileURL) else {
+			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
+			contactInfoTextView.attributedText=ContactInfoManipulator.getBadVCardAttributedString()
+			return
+		}
 		if AppState.shared.appState==AppStateValue.isNotModal {
-			guard let fileURL=writeTemporaryFile(contactCard: activeCard) else {
-				itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
-				return
-			}
-			guard let itemProvider=NSItemProvider(contentsOf: fileURL) else {
-				itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
-				return
-			}
 			itemProvidersForActivityItemsConfiguration=[itemProvider]
 		} else {
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()

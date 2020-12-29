@@ -231,12 +231,7 @@ class ContactInfoManipulator {
 				displayString.append(addressDisplayString)
 				displayString.append(NSAttributedString(string: "\n\n"))
 			}
-		let paragraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
-			paragraphStyle.alignment = NSTextAlignment.center
-		let fontAttributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.light),
-							   NSAttributedString.Key.paragraphStyle: paragraphStyle, .foregroundColor: UIColor.label]
-
-		displayString.addAttributes(fontAttributes, range: NSRange(location: 0, length: displayString.length))
+		addBasicFormatting(displayString: displayString)
 		return displayString
 	}
 	static func addSocialProfiles(cnContact: CNContact, displayString: NSMutableAttributedString) {
@@ -266,5 +261,21 @@ class ContactInfoManipulator {
 		urlString.addAttribute(.link, value: linkModifer+basicLink, range: NSRange(location: 0, length: urlString.length))
 		stringToAddTo.append(urlString)
 		stringToAddTo.append(NSAttributedString(string: "\n\n"))
+	}
+	static func getBadVCardAttributedString() -> NSAttributedString {
+		let badVCardWarning=NSMutableAttributedString(string: "One or more of the data was invalid.  Probably something you "
+											+ "inputted is too long for that kind of contact info.  "
+		+ "Please edit the contact info from the file menu "
+			+ "or the toolbar until it is sharable as a file.")
+		addBasicFormatting(displayString: badVCardWarning)
+		return badVCardWarning
+	}
+	static func addBasicFormatting(displayString: NSMutableAttributedString) {
+		let paragraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
+			paragraphStyle.alignment = NSTextAlignment.center
+		let fontAttributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.light),
+							   NSAttributedString.Key.paragraphStyle: paragraphStyle, .foregroundColor: UIColor.label]
+
+		displayString.addAttributes(fontAttributes, range: NSRange(location: 0, length: displayString.length))
 	}
 }

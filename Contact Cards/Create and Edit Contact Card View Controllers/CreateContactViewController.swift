@@ -256,23 +256,29 @@ class CreateContactViewController: UIViewController {
 	}
 	private func getURLs(contact: CNMutableContact) {
 		if  !(urlHomeTextField.text=="") {
-		let url=NSString(string: urlHomeTextField.text ?? "")
+		var url=NSString(string:
+							urlHomeTextField.text ?? "")
+			url=validateURL(proposedURL: url as String) as NSString
 			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelHome, value: NSString(string: url)))
 		}
 		if  !(urlWork1TextField.text=="") {
-		let url=NSString(string: urlWork1TextField.text ?? "")
+			var url=NSString(string: urlWork1TextField.text ?? "")
+			url=validateURL(proposedURL: url as String) as NSString
 			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: url))
 		}
 		if  !(urlWork2TextField.text=="") {
-		let url=NSString(string: urlWork2TextField.text ?? "")
+			var url=NSString(string: urlWork2TextField.text ?? "")
+			url=validateURL(proposedURL: url as String) as NSString
 			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: url))
 		}
 		if  !(otherUrl1TextField.text=="") {
-		let url=NSString(string: otherUrl1TextField.text ?? "")
+			var url=NSString(string: otherUrl1TextField.text ?? "")
+			url=validateURL(proposedURL: url as String) as NSString
 			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelOther, value: url))
 		}
 		if  !(otherUrl2TextField.text=="") {
-		let url=NSString(string: otherUrl2TextField.text ?? "")
+			var url=NSString(string: otherUrl2TextField.text ?? "")
+			url=validateURL(proposedURL: url as String) as NSString
 			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelOther, value: url))
 		}
 	}
@@ -377,6 +383,13 @@ class CreateContactViewController: UIViewController {
 															keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
 		}
 		fieldsScrollView.scrollIndicatorInsets = fieldsScrollView.contentInset
+	}
+	func validateURL(proposedURL: String) -> String {
+		var validURL=proposedURL
+		if !(proposedURL.starts(with: "http://")) && !(proposedURL.starts(with: "https://")) {
+			validURL="http://"+proposedURL
+		}
+		return validURL
 	}
 	override var keyCommands: [UIKeyCommand]? {
 		return [UIKeyCommand(title: "Close", image: nil, action: #selector(cancel(_:)), input: UIKeyCommand.inputEscape,
