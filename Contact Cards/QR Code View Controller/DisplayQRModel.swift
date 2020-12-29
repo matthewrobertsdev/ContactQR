@@ -26,9 +26,8 @@ class DisplayQRModel {
 			print("Error making CNContact from VCard String.")
 		}
 	}
-    func makeQRCode() -> UIImage {
-		qrCode=ContactDataConverter.cnContactToQR_Code(cnContact: contact)
-        return qrCode
+    func makeQRCode() -> UIImage? {
+		return ContactDataConverter.cnContactToQR_Code(cnContact: contact)
     }
 	func getContactCardTitle() -> String {
 		if let filename=ActiveContactCard.shared.contactCard?.filename {

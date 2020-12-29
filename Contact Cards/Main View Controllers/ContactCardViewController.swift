@@ -135,9 +135,11 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		}
 		if AppState.shared.appState==AppStateValue.isNotModal {
 			guard let fileURL=writeTemporaryFile(contactCard: activeCard) else {
+				itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 				return
 			}
 			guard let itemProvider=NSItemProvider(contentsOf: fileURL) else {
+				itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 				return
 			}
 			itemProvidersForActivityItemsConfiguration=[itemProvider]

@@ -24,7 +24,7 @@ class ContactDataConverter {
         return makeVCardString(vCardData: vCardData)
     }
     //goes from CNContact, to v card Data, to qr code UIImage
-    static func cnContactToQR_Code(cnContact: CNContact) -> UIImage {
+    static func cnContactToQR_Code(cnContact: CNContact) -> UIImage? {
         let vCardData=makeVCardData(cnContact: cnContact)
         let qrCodeImage=makeQRCode(data: vCardData)
         return qrCodeImage
@@ -44,12 +44,12 @@ class ContactDataConverter {
     static func makeVCardString(vCardData: Data) -> String {
         return String(data: vCardData, encoding: .utf8) ?? "Data was nil"
     }
-    static func makeQRCode(string: String) -> UIImage {
+    static func makeQRCode(string: String) -> UIImage? {
         let data = string.data(using: .utf8) ?? Data()
         return makeQRCode(data: data)
     }
     ///goes from v card Data to UIImage
-    static func makeQRCode(data: Data) -> UIImage {
+    static func makeQRCode(data: Data) -> UIImage? {
         if let filter = CIFilter(name: "CIQRCodeGenerator") {
             filter.setValue(data, forKey: "inputMessage")
             let transform = CGAffineTransform(scaleX: 10, y: 10)
@@ -57,11 +57,11 @@ class ContactDataConverter {
                 return UIImage(ciImage: qrCodeImage)
             } else {
                 print("Unable to make qrCodeImage from data with filter")
-                return UIImage()
+                return nil
             }
         } else {
             print("Unable to find CIFilter named CIQRCodeGenerator")
-            return UIImage()
+            return nil
         }
     }
 }
