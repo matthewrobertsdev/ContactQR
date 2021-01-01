@@ -302,7 +302,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		createContactViewController.contactCard=contactCard
 		let navigationController=UINavigationController(rootViewController: createContactViewController)
 		do {
-			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString ?? "")
+			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)
 			if contactArray.count==1 {
 				createContactViewController.contact=contactArray[0]
 				createContactViewController.contactCard=contactCard
@@ -327,7 +327,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		chooseColorTableViewController.contactCard=contactCard
 		let navigationController=UINavigationController(rootViewController: chooseColorTableViewController)
 		do {
-			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString ?? "")
+			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)
 			if contactArray.count==1 {
 				chooseColorTableViewController.contact=contactArray[0]
 				chooseColorTableViewController.contactCard=contactCard
@@ -352,7 +352,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		saveContactCardViewController.contactCard=contactCard
 		let navigationController=UINavigationController(rootViewController: saveContactCardViewController)
 		do {
-			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString ?? "")
+			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)
 			if contactArray.count==1 {
 				saveContactCardViewController.contact=contactArray[0]
 				saveContactCardViewController.contactCard=contactCard

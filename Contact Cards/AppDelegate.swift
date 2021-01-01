@@ -111,11 +111,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let cardMenu = UIMenu(title: "Card", image: nil, identifier:
 								UIMenu.Identifier("cardMenu"), options: [], children: [showQRMenu, shareMenu])
 		builder.insertSibling(cardMenu, beforeMenu: .window)
-		let faqCommand = UICommand(title: "Frequently Asked Questions", image: nil, action:
+		let openFaqCommand = UICommand(title: "Frequently Asked Questions", image: nil, action:
 									#selector(openFAQ), propertyList: nil, alternates: [],
 								   discoverabilityTitle: "Frequently Asked Questions", attributes: [], state: .off)
+		let opneHomepageCommand = UICommand(title: "Homepage", image: nil, action:
+									#selector(openHomepage), propertyList: nil, alternates: [],
+								   discoverabilityTitle: "Homepage", attributes: [], state: .off)
+		let openContactCommand = UICommand(title: "Contact the Developer", image: nil, action:
+									#selector(openContactTheDeveloper), propertyList: nil, alternates: [],
+								   discoverabilityTitle: "Contact the Developer", attributes: [], state: .off)
+		let openPprivacyCommand = UICommand(title: "Privacy Policy", image: nil, action:
+									#selector(openPrivacyPolicy), propertyList: nil, alternates: [],
+								   discoverabilityTitle: "Privacy Policy", attributes: [], state: .off)
 		let websiteMenu = UIMenu(title: "", image: nil, identifier:
-										UIMenu.Identifier("websiteMenu"), options: .displayInline, children: [faqCommand])
+										UIMenu.Identifier("websiteMenu"), options: .displayInline, children:
+											[openFaqCommand, opneHomepageCommand, openContactCommand, openPprivacyCommand])
 		builder.insertChild(websiteMenu, atStartOfMenu: .help)
 	}
 	@objc func exportAsVCard() {
@@ -171,6 +181,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	@objc func openFAQ() {
 		if let url = URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/faq") {
+			UIApplication.shared.open(url)
+		}
+	}
+	@objc func openHomepage() {
+		if let url = URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/") {
+			UIApplication.shared.open(url)
+		}
+	}
+	@objc func openContactTheDeveloper() {
+		if let url = URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/contact") {
+			UIApplication.shared.open(url)
+		}
+	}
+	@objc func openPrivacyPolicy() {
+		if let url = URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/privacy") {
 			UIApplication.shared.open(url)
 		}
 	}
