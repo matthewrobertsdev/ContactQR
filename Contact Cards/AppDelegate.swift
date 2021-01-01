@@ -111,6 +111,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let cardMenu = UIMenu(title: "Card", image: nil, identifier:
 								UIMenu.Identifier("cardMenu"), options: [], children: [showQRMenu, shareMenu])
 		builder.insertSibling(cardMenu, beforeMenu: .window)
+		let faqCommand = UICommand(title: "Frequently Asked Questions", image: nil, action:
+									#selector(openFAQ), propertyList: nil, alternates: [],
+								   discoverabilityTitle: "Frequently Asked Questions", attributes: [], state: .off)
+		let websiteMenu = UIMenu(title: "", image: nil, identifier:
+										UIMenu.Identifier("websiteMenu"), options: .displayInline, children: [faqCommand])
+		builder.insertChild(websiteMenu, atStartOfMenu: .help)
 	}
 	@objc func exportAsVCard() {
 		NotificationCenter.default.post(name: .exportAsVCard, object: self)
@@ -162,6 +168,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		NotificationCenter.default.post(name: .editTitle, object: nil)
 	}
 	@objc func doNothing() {
+	}
+	@objc func openFAQ() {
+		if let url = URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/faq") {
+			UIApplication.shared.open(url)
+		}
 	}
 }
 extension Notification.Name {
