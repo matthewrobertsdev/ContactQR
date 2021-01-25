@@ -103,7 +103,7 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			toolbarItem = item
 		case .newCardFromContact:
 			let item = NSToolbarItem(itemIdentifier: itemIdentifier)
-			item.image = UIImage(systemName: "person.crop.circle.badge.plus")
+			item.image = UIImage(systemName: "person.crop.circle")
 			item.label = "New Card from Contact"
 			item.toolTip = "New Card from Contact"
 			item.action = #selector(appDelegate.newCardFromContact)

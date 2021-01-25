@@ -259,7 +259,7 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Contact Cards" id="Vzi-tw-EHX">
-                        <barButtonItem key="leftBarButtonItem" image="person.crop.circle.badge.plus" catalog="system" id="ymM-BI-js4">
+                        <barButtonItem key="leftBarButtonItem" image="person.crop.circle" catalog="system" id="ymM-BI-js4">
                             <connections>
                                 <action selector="createContactCardFromContact:" destination="8w3-e5-v8i" id="tdm-yN-NgJ"/>
                             </connections>
@@ -558,7 +558,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <variation key="userInterfaceIdiom=mac">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 </variation>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twitter username:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36n-mk-FA8">
@@ -1151,7 +1151,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="113"/>
+        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

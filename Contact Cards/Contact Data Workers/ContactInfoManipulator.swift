@@ -160,18 +160,15 @@ class ContactInfoManipulator {
 		guard let cnContact=cnContact else {
 			return NSAttributedString()
 		}
-			if !(cnContact.namePrefix=="") {
-				basicString+="Prefix:  \(cnContact.namePrefix)\n\n"
-			}
-			if !(cnContact.givenName=="") {
-				basicString+="First Name:  \(cnContact.givenName)\n\n"
-			}
-		if !(cnContact.familyName=="") {
-			basicString+="Last Name:  \(cnContact.familyName)\n\n"
-			}
 		if !(cnContact.namePrefix=="") {
 			basicString+="Prefix:  \(cnContact.namePrefix)\n\n"
 		}
+		if !(cnContact.givenName=="") {
+			basicString+="First Name:  \(cnContact.givenName)\n\n"
+		}
+		if !(cnContact.familyName=="") {
+			basicString+="Last Name:  \(cnContact.familyName)\n\n"
+			}
 		if !(cnContact.nameSuffix=="") {
 			basicString+="Suffix:  \(cnContact.nameSuffix)\n\n"
 		}
