@@ -25,7 +25,7 @@
 		9F9E9AE821BA1690003A6A33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE621BA1690003A6A33 /* Main.storyboard */; };
 		9F9E9AEA21BA1691003A6A33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE921BA1691003A6A33 /* Assets.xcassets */; };
 		9F9E9AED21BA1691003A6A33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AEB21BA1691003A6A33 /* LaunchScreen.storyboard */; };
-		9F9E9AF821BA1691003A6A33 /* AirContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AF721BA1691003A6A33 /* AirContactsTests.swift */; };
+		9F9E9AF821BA1691003A6A33 /* ContactCardsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AF721BA1691003A6A33 /* ContactCardsTest.swift */; };
 		9F9E9B0321BA1691003A6A33 /* AirContactsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9B0221BA1691003A6A33 /* AirContactsUITests.swift */; };
 		9FB31897255F954200D31B8B /* ContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB31896255F954200D31B8B /* ContactCardViewController.swift */; };
 		9FB3E45F21C967410011752F /* PickContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E45E21C967410011752F /* PickContactViewController.swift */; };
@@ -96,7 +96,7 @@
 		9F9E9AEC21BA1691003A6A33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F9E9AEE21BA1691003A6A33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F9E9AF321BA1691003A6A33 /* Contact CardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Contact CardsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F9E9AF721BA1691003A6A33 /* AirContactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirContactsTests.swift; sourceTree = "<group>"; };
+		9F9E9AF721BA1691003A6A33 /* ContactCardsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardsTest.swift; sourceTree = "<group>"; };
 		9F9E9AF921BA1691003A6A33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F9E9AFE21BA1691003A6A33 /* Contact CardsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Contact CardsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9E9B0221BA1691003A6A33 /* AirContactsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirContactsUITests.swift; sourceTree = "<group>"; };
@@ -269,7 +269,7 @@
 		9F9E9AF621BA1691003A6A33 /* ContactCardsTests */ = {
 			isa = PBXGroup;
 			children = (
-				9F9E9AF721BA1691003A6A33 /* AirContactsTests.swift */,
+				9F9E9AF721BA1691003A6A33 /* ContactCardsTest.swift */,
 				9F9E9AF921BA1691003A6A33 /* Info.plist */,
 			);
 			path = ContactCardsTests;
@@ -487,7 +487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F9E9AF821BA1691003A6A33 /* AirContactsTests.swift in Sources */,
+				9F9E9AF821BA1691003A6A33 /* ContactCardsTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,7 +662,7 @@
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "$(SRCROOT)/Contact Cards/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -686,7 +686,7 @@
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "$(SRCROOT)/Contact Cards/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -707,7 +707,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
-				INFOPLIST_FILE = CardQRTests/Info.plist;
+				INFOPLIST_FILE = ContactCardsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -728,7 +728,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
-				INFOPLIST_FILE = CardQRTests/Info.plist;
+				INFOPLIST_FILE = ContactCardsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aYm-LV-jC5">
-    <device id="retina6_7" orientation="portrait" appearance="light"/>
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,23 +13,18 @@
             <objects>
                 <viewController storyboardIdentifier="DisplayQRViewController" title="Contact QR Code" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="DisplayQRViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keo-wg-fIY">
-                                <rect key="frame" x="20" y="100" width="388" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VOF-ut-MjQ">
-                                <rect key="frame" x="91.666666666666686" y="125" width="245" height="245"/>
+                                <rect key="frame" x="37.5" y="81" width="245" height="245"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="245" id="AgX-9O-Iel"/>
                                     <constraint firstAttribute="width" constant="245" id="Xo1-6y-7rV"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact data is invalid or it is too long for a QR code." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haI-uD-3MD">
-                                <rect key="frame" x="91.666666666666686" y="125" width="245" height="48"/>
+                                <rect key="frame" x="37.5" y="81" width="245" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="RKu-mK-nCf"/>
                                     <constraint firstAttribute="width" constant="245" id="qVp-KI-LDI"/>
@@ -42,18 +37,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="keo-wg-fIY" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="6vu-Z3-ybC"/>
-                            <constraint firstItem="VOF-ut-MjQ" firstAttribute="top" secondItem="keo-wg-fIY" secondAttribute="bottom" constant="25" id="9gH-iO-7FZ"/>
+                            <constraint firstItem="haI-uD-3MD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="37" id="7MJ-pw-4kl"/>
                             <constraint firstItem="haI-uD-3MD" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Gh3-dv-tCp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="keo-wg-fIY" secondAttribute="trailing" constant="20" id="cNU-tq-mGh"/>
-                            <constraint firstItem="haI-uD-3MD" firstAttribute="top" secondItem="keo-wg-fIY" secondAttribute="bottom" constant="25" id="iZw-NG-8Rc"/>
+                            <constraint firstItem="VOF-ut-MjQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="37" id="VvX-Dl-jSN"/>
                             <constraint firstItem="VOF-ut-MjQ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="kIJ-tR-vyA"/>
-                            <constraint firstItem="keo-wg-fIY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="sAg-Mj-MCv"/>
-                            <constraint firstItem="keo-wg-fIY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="yLT-fs-S4G"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Contact Card" id="8M4-ND-bPA">
+                    <navigationItem key="navigationItem" title="Contact Card QR Code" id="8M4-ND-bPA">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="lvv-MH-rgg">
                             <connections>
                                 <action selector="done:" destination="BYZ-38-t0r" id="Hfe-Ce-daF"/>
@@ -61,7 +52,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="contactCardTitleLabel" destination="keo-wg-fIY" id="ARL-ze-pID"/>
                         <outlet property="errorLabel" destination="haI-uD-3MD" id="awQ-4z-X02"/>
                         <outlet property="qrImageView" destination="VOF-ut-MjQ" id="rq9-1Y-XWY"/>
                     </connections>
@@ -75,25 +65,25 @@
             <objects>
                 <viewController storyboardIdentifier="EditContactCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SNB-o5-8lY" customClass="EditContactCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mva-TH-GgV">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kf7-s1-hAF">
-                                <rect key="frame" x="156.66666666666666" y="114" width="114.99999999999997" height="30"/>
+                                <rect key="frame" x="102.5" y="70" width="115" height="30"/>
                                 <state key="normal" title="Edit Contact Info"/>
                                 <connections>
                                     <action selector="editContactInfo:" destination="SNB-o5-8lY" eventType="touchUpInside" id="EZt-c3-BGJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaX-Z7-bZW">
-                                <rect key="frame" x="148.66666666666666" y="152" width="130.99999999999997" height="30"/>
+                                <rect key="frame" x="94.5" y="108" width="131" height="30"/>
                                 <state key="normal" title="Change Card Color"/>
                                 <connections>
                                     <action selector="changeCardColor:" destination="SNB-o5-8lY" eventType="touchUpInside" id="ych-sS-NXA"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQI-eC-34P">
-                                <rect key="frame" x="152" y="190" width="124" height="30"/>
+                                <rect key="frame" x="98" y="146" width="124" height="30"/>
                                 <state key="normal" title="Change Card Title"/>
                                 <connections>
                                     <action selector="changeCardTitle:" destination="SNB-o5-8lY" eventType="touchUpInside" id="KKs-sC-T00"/>
@@ -133,23 +123,23 @@
             <objects>
                 <viewController storyboardIdentifier="ContactCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IJa-nU-fZ3" customClass="ContactCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sVZ-bY-6LH">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Contact Card Selected" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuD-EN-eRZ">
-                                <rect key="frame" x="0.0" y="455.33333333333331" width="428" height="20.333333333333314"/>
+                                <rect key="frame" x="0.0" y="227.5" width="320" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgk-8b-W0c">
-                                <rect key="frame" x="0.0" y="108" width="428" height="0.0"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9fh-p1-mOo">
-                                <rect key="frame" x="0.0" y="116" width="428" height="727"/>
+                                <rect key="frame" x="0.0" y="72" width="320" height="359"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -201,18 +191,18 @@
             <objects>
                 <tableViewController storyboardIdentifier="ContactCardsTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="8w3-e5-v8i" customClass="ContactCardsTableViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lBD-Qa-6jB">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactCell" rowHeight="52" id="Yzc-79-eXU" customClass="SavedContactCell" customModule="Contact_Cards" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="428" height="52"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="52"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yzc-79-eXU" id="7cN-MP-4h6">
-                                    <rect key="frame" x="0.0" y="0.0" width="428" height="52"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NFX-TQ-tAC" customClass="CircularColorView" customModule="Contact_Cards" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="17.333333333333336" width="17.666666666666671" height="17.333333333333336"/>
+                                            <rect key="frame" x="20" y="17.5" width="17.5" height="17.5"/>
                                             <color key="backgroundColor" systemColor="labelColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="17.5" id="NKQ-hU-f4Q"/>
@@ -220,7 +210,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ContactCard Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Uv-2Q-nAo">
-                                            <rect key="frame" x="45.666666666666657" y="5" width="367.33333333333337" height="42"/>
+                                            <rect key="frame" x="45.5" y="5" width="259.5" height="42"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="ZQ9-8G-rPT"/>
                                             </constraints>
@@ -285,7 +275,7 @@
                 <navigationController storyboardIdentifier="ContactCardNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dYb-Ni-z5G" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ubA-U4-wKy">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -933,19 +923,19 @@
             <objects>
                 <tableViewController storyboardIdentifier="ChooseColorTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X3d-WW-BAD" customClass="ChooseColorTableViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BdA-TO-BCu">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" reuseIdentifier="SavedContactCell" focusStyle="custom" rowHeight="52" id="eID-Ct-T6j" customClass="SavedContactCell" customModule="Contact_Cards" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="428" height="52"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="52"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eID-Ct-T6j" id="zb4-ZQ-eJY">
-                                    <rect key="frame" x="0.0" y="0.0" width="428" height="52"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7FI-CP-mI3" customClass="CircularColorView" customModule="Contact_Cards" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="17.333333333333336" width="17.666666666666671" height="17.333333333333336"/>
+                                            <rect key="frame" x="20" y="17.5" width="17.5" height="17.5"/>
                                             <color key="backgroundColor" systemColor="labelColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="17.5" id="5GM-hJ-AqC"/>
@@ -953,7 +943,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ContactCard Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Pk-Ap-Qfg">
-                                            <rect key="frame" x="45.666666666666657" y="5" width="367.33333333333337" height="42"/>
+                                            <rect key="frame" x="45.5" y="5" width="259.5" height="42"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="au8-a4-rjL"/>
                                             </constraints>
@@ -1008,7 +998,7 @@
             <objects>
                 <navigationController id="2Yi-6G-Uv1" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GYd-QW-vqf">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1024,20 +1014,20 @@
             <objects>
                 <viewController storyboardIdentifier="SaveContactCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MKm-rN-YVF" customClass="SaveContactCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="auu-rD-u44">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8Se-sp-OuC">
-                                <rect key="frame" x="89" y="110" width="250" height="94.666666666666686"/>
+                                <rect key="frame" x="35" y="66" width="250" height="95"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the Title for Your Card to Be Saved As:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gke-5L-Bvv">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="40.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T2u-y7-Pqe">
-                                        <rect key="frame" x="0.0" y="60.666666666666657" width="250" height="34"/>
+                                        <rect key="frame" x="0.0" y="61" width="250" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -1082,7 +1072,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="8bR-DH-6eJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="P9R-AP-yWz">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1100,7 +1090,7 @@
                 <navigationController storyboardIdentifier="SaveContactCardNavoigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dAX-eH-brL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FxD-h3-l0Y">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1119,7 +1109,7 @@
                     <tabBarItem key="tabBarItem" title="Old" id="M7i-rW-UUq"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cGL-qm-Kgr">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1137,7 +1127,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Prr-80-2lL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="apC-Ip-dc4">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

@@ -55,6 +55,25 @@ class CreateContactViewController: UIViewController {
 		dismiss(animated: true)
 	}
 	@IBAction func createContact(_ sender: Any) {
+		let contact=getContactFromFields()
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		guard let chooseColorTableViewController=storyboard.instantiateViewController(withIdentifier:
+																						"ChooseColorTableViewController")
+				as? ChooseColorTableViewController else {
+			print("Failed to instantiate chooseColorTableViewController")
+			return
+		}
+		chooseColorTableViewController.contact=contact
+		if forEditing {
+			contactCard?.setContact(cnContact: contact)
+			ContactCardStore.sharedInstance.saveContacts()
+			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.uuidString ?? ""])
+			navigationController?.dismiss(animated: true)
+			return
+		}
+		navigationController?.pushViewController(chooseColorTableViewController, animated: true)
+	}
+	public func getContactFromFields() -> CNMutableContact {
 		let contact=CNMutableContact()
 		if  !(firstNameTextField.text=="") {
 			contact.givenName=firstNameTextField.text ?? ""
@@ -85,24 +104,9 @@ class CreateContactViewController: UIViewController {
 		getURLs(contact: contact)
 		getAddresses(contact: contact)
 		getSocialProfiles(contact: contact)
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		guard let chooseColorTableViewController=storyboard.instantiateViewController(withIdentifier:
-																						"ChooseColorTableViewController")
-				as? ChooseColorTableViewController else {
-			print("Failed to instantiate chooseColorTableViewController")
-			return
-		}
-		chooseColorTableViewController.contact=contact
-		if forEditing {
-			contactCard?.setContact(cnContact: contact)
-			ContactCardStore.sharedInstance.saveContacts()
-			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.uuidString ?? ""])
-			navigationController?.dismiss(animated: true)
-			return
-		}
-		navigationController?.pushViewController(chooseColorTableViewController, animated: true)
+		return contact
 	}
-	private func fillWithContact(contact: CNContact) {
+	public func fillWithContact(contact: CNContact) {
 		firstNameTextField.text=contact.givenName
 		lastNameTextField.text=contact.familyName
 		prefixTextField.text=contact.namePrefix

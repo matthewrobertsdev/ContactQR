@@ -8,7 +8,6 @@
 import UIKit
 class DisplayQRViewController: UIViewController {
     @IBOutlet weak var qrImageView: UIImageView!
-	@IBOutlet weak var contactCardTitleLabel: UILabel!
 	@IBOutlet weak var errorLabel: UILabel!
 	let model=DisplayQRModel()
 	let colorModel=ColorModel()
@@ -35,8 +34,6 @@ class DisplayQRViewController: UIViewController {
 		let color=colorModel.colorsDictionary[ActiveContactCard.shared.contactCard?.color ??
 												"Contasting Color"] ?? UIColor.label
 		print(ActiveContactCard.shared.contactCard?.color ?? "default")
-		contactCardTitleLabel.text=model.getContactCardTitle()
-		contactCardTitleLabel.textColor=color
 		if let qrCode=model.makeQRCode() {
 			qrImageView.image=getTintedForeground(image: qrCode, color: color ?? UIColor.label)
 		} else {
