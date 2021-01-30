@@ -97,7 +97,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 
 			present(activityViewController, animated: true)
 	}
-	@objc func loadContact() {
+	@objc public func loadContact() {
 		guard let activeCard=ActiveContactCard.shared.contactCard else {
 			#if targetEnvironment(macCatalyst)
 			SceneDelegate.enableValidToolbarItems()
