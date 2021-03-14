@@ -200,12 +200,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 	}
 }
-extension Notification.Name {
-	static let showQRCode=Notification.Name("show-QR-code")
-	static let exportAsVCard=Notification.Name("export-as-vCard")
-	static let createNewContact=Notification.Name("create-new-contact")
-	static let createNewContactFromContact=Notification.Name("create-new-contact-from-contact")
-	static let deleteContact=Notification.Name("delete-contact")
-	static let editContact=Notification.Name("edit-contact")
-	static let shareContact=Notification.Name("share-contact")
-}

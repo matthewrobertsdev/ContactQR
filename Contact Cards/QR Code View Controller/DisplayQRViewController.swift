@@ -31,6 +31,7 @@ class DisplayQRViewController: UIViewController {
 		return true
 	}
 	func prepareView() {
+		model.setUp(contactCard: ActiveContactCard.shared.contactCard)
 		let color=colorModel.colorsDictionary[ActiveContactCard.shared.contactCard?.color ??
 												"Contasting Color"] ?? UIColor.label
 		print(ActiveContactCard.shared.contactCard?.color ?? "default")

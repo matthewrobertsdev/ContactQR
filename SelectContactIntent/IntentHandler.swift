@@ -12,14 +12,23 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 	}
 	func resolveParameter(for intent: ConfigurationIntent, with completion:
 							@escaping (ContactCardINObjectResolutionResult) -> Void) {
+		/*
 		if let parameter=intent.parameter {
 			completion(ContactCardINObjectResolutionResult.success(with: parameter))
 		}
+*/
 	}
 	func provideParameterOptionsCollection(for intent: ConfigurationIntent, with completion: @escaping
 											(INObjectCollection<ContactCardINObject>?, Error?) -> Void) {
-		let contactCardINObjects=[ContactCardINObject(identifier: "abcd", display: "hello")]
-		let collection = INObjectCollection(items: contactCardINObjects)
-		completion(collection, nil)
+		do {
+			let contactCardINObjects=try ContactCardPersistencyManager.shared.getSavedContacts().map({ (contactCard) -> ContactCardINObject in
+				return ContactCardINObject(identifier: contactCard.uuidString, display: contactCard.filename)
+			})
+			let collection = INObjectCollection(items: contactCardINObjects)
+			completion(collection, nil)
+		} catch {
+			print("Error getting contact cards from group container")
+			completion(INObjectCollection(items: [ContactCardINObject]()), nil)
+		}
 	}
 }

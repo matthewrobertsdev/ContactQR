@@ -423,7 +423,3 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		return keyCommands
 	}
 }
-extension Notification.Name {
-	static let contactDeleted=Notification.Name("contact-deleted")
-	static let modalityChanged=Notification.Name("modality-changed")
-}

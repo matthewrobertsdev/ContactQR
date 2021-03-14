@@ -23,6 +23,21 @@
 		9F4ABC7D2570CBEA000A9101 /* ToolBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4ABC7C2570CBEA000A9101 /* ToolBarDelegate.swift */; };
 		9F56C73C253BD2C8006D8DE6 /* TintImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F56C73B253BD2C8006D8DE6 /* TintImages.swift */; };
 		9F5C647221D3E10A00832897 /* ContactInfoManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5C647121D3E10A00832897 /* ContactInfoManipulator.swift */; };
+		9F659AFF25FEA1500035F02C /* ContactCardPersistencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0F22B4825C00F34181 /* ContactCardPersistencyManager.swift */; };
+		9F659B0525FEA15C0035F02C /* PersistencManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0D22B4783000F34181 /* PersistencManager.swift */; };
+		9F659B0B25FEA17C0035F02C /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0922B4752900F34181 /* ContactCard.swift */; };
+		9F659B1125FEA1860035F02C /* ColorChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE378B256DBB9F0089337E /* ColorChoice.swift */; };
+		9F659B1725FEA19E0035F02C /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */; };
+		9F659B1D25FEA1DB0035F02C /* TintImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F56C73B253BD2C8006D8DE6 /* TintImages.swift */; };
+		9F659B2325FEA1DD0035F02C /* PersistencManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0D22B4783000F34181 /* PersistencManager.swift */; };
+		9F659B2925FEA1F00035F02C /* ContactCardPersistencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0F22B4825C00F34181 /* ContactCardPersistencyManager.swift */; };
+		9F659B2F25FEA1F60035F02C /* DisplayQRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E46421C96F990011752F /* DisplayQRModel.swift */; };
+		9F659B3525FEA1FB0035F02C /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0922B4752900F34181 /* ContactCard.swift */; };
+		9F659B3B25FEA2190035F02C /* ColorChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE378B256DBB9F0089337E /* ColorChoice.swift */; };
+		9F659B4125FEA2390035F02C /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */; };
+		9F659B4825FEA28B0035F02C /* NotificationNameExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F659B4725FEA28B0035F02C /* NotificationNameExtensions.swift */; };
+		9F659B5425FEA29D0035F02C /* NotificationNameExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F659B4725FEA28B0035F02C /* NotificationNameExtensions.swift */; };
+		9F659B5A25FEA2A00035F02C /* NotificationNameExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F659B4725FEA28B0035F02C /* NotificationNameExtensions.swift */; };
 		9F7147AB256CCCC600A979B8 /* ContactCardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7147AA256CCCC600A979B8 /* ContactCardStore.swift */; };
 		9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EB966255E10420032563C /* CreateContactViewController.swift */; };
 		9F7F42192560F24700199193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F42182560F24700199193 /* SceneDelegate.swift */; };
@@ -126,6 +141,7 @@
 		9F56C72E253BCB96006D8DE6 /* Contact Cards.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Contact Cards.entitlements"; sourceTree = "<group>"; };
 		9F56C73B253BD2C8006D8DE6 /* TintImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintImages.swift; sourceTree = "<group>"; };
 		9F5C647121D3E10A00832897 /* ContactInfoManipulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoManipulator.swift; sourceTree = "<group>"; };
+		9F659B4725FEA28B0035F02C /* NotificationNameExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNameExtensions.swift; sourceTree = "<group>"; };
 		9F7147AA256CCCC600A979B8 /* ContactCardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardStore.swift; sourceTree = "<group>"; };
 		9F7EB966255E10420032563C /* CreateContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateContactViewController.swift; sourceTree = "<group>"; };
 		9F7F42182560F24700199193 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -329,6 +345,7 @@
 		9F9E9AE121BA1690003A6A33 /* Contact Cards */ = {
 			isa = PBXGroup;
 			children = (
+				9F659B4725FEA28B0035F02C /* NotificationNameExtensions.swift */,
 				9F1EE641256EE47D004F444B /* AppState.swift */,
 				9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */,
 				9F4ABC7C2570CBEA000A9101 /* ToolBarDelegate.swift */,
@@ -618,6 +635,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F3F6BB325F49B880053C1DF /* IntentHandler.swift in Sources */,
+				9F659B1725FEA19E0035F02C /* ContactDataConverter.swift in Sources */,
+				9F659B0B25FEA17C0035F02C /* ContactCard.swift in Sources */,
+				9F659B0525FEA15C0035F02C /* PersistencManager.swift in Sources */,
+				9F659AFF25FEA1500035F02C /* ContactCardPersistencyManager.swift in Sources */,
+				9F659B1125FEA1860035F02C /* ColorChoice.swift in Sources */,
+				9F659B5A25FEA2A00035F02C /* NotificationNameExtensions.swift in Sources */,
 				9F3F6B2125F49A450053C1DF /* ContactCardQRCode.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -633,6 +656,7 @@
 				9F15544325939378006C7A92 /* EditContactAlertController.swift in Sources */,
 				9F7F42192560F24700199193 /* SceneDelegate.swift in Sources */,
 				9F9E9AE521BA1690003A6A33 /* DisplayQRViewController.swift in Sources */,
+				9F659B4825FEA28B0035F02C /* NotificationNameExtensions.swift in Sources */,
 				9F339FF3256E9C9500F31F9F /* ExportContactCardViewController.swift in Sources */,
 				9F3FDD0121CC376F00D2FBB2 /* ContactDataConverter.swift in Sources */,
 				9FB3E45F21C967410011752F /* PickContactViewController.swift in Sources */,
@@ -679,8 +703,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F659B1D25FEA1DB0035F02C /* TintImages.swift in Sources */,
+				9F659B2325FEA1DD0035F02C /* PersistencManager.swift in Sources */,
 				9F3F6AEE25F499200053C1DF /* ContactCardQRCode.swift in Sources */,
+				9F659B2F25FEA1F60035F02C /* DisplayQRModel.swift in Sources */,
+				9F659B2925FEA1F00035F02C /* ContactCardPersistencyManager.swift in Sources */,
 				9F3F6AE225F498FC0053C1DF /* ContactCardQRCode.intentdefinition in Sources */,
+				9F659B5425FEA29D0035F02C /* NotificationNameExtensions.swift in Sources */,
+				9F659B3B25FEA2190035F02C /* ColorChoice.swift in Sources */,
+				9F659B4125FEA2390035F02C /* ContactDataConverter.swift in Sources */,
+				9F659B3525FEA1FB0035F02C /* ContactCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,9 +766,10 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = SelectContactIntent/SelectContactIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = SelectContactIntent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -757,9 +790,10 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = SelectContactIntent/SelectContactIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = SelectContactIntent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
