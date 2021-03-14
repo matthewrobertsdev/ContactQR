@@ -25,13 +25,13 @@ struct Provider: IntentTimelineProvider {
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
+        for hourOffset in 0 ..< 1 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
             let entry = SimpleEntry(date: entryDate, configuration: configuration)
             entries.append(entry)
         }
 
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+		let timeline = Timeline(entries: entries, policy: .never)
         completion(timeline)
     }
 }
@@ -45,7 +45,10 @@ struct ContactCardQRCodeEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
+		Text("Edit widget to choose a contact card from the app for which to display a QR code.").padding()
+		/*
 		Image(systemName: "pencil").resizable().aspectRatio(contentMode: .fill).padding()
+*/
     }
 }
 
