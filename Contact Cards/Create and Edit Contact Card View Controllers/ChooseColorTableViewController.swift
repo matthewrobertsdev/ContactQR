@@ -7,6 +7,7 @@
 //
 import UIKit
 import Contacts
+import WidgetKit
 class ChooseColorTableViewController: UITableViewController {
 	@IBOutlet weak var nextButton: UIBarButtonItem!
 	let model=ColorModel()
@@ -63,6 +64,20 @@ class ChooseColorTableViewController: UITableViewController {
 		if forEditing {
 			contactCard?.color=model.colors[indexPath.row].name
 			ContactCardStore.sharedInstance.saveContacts()
+			WidgetCenter.shared.getCurrentConfigurations { result in
+				guard case .success(let widgets) = result else { return }
+				
+				// Iterate over the WidgetInfo elements to find one that matches
+				// the character from the push notification.
+				if let widget = widgets.first(
+					where: { widget in
+						let intent = widget.configuration as? ConfigurationIntent
+						return intent?.parameter?.identifier == self.contactCard?.uuidString
+					}
+				) {
+					WidgetCenter.shared.reloadTimelines(ofKind: widget.kind)
+				}
+			}
 			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.uuidString ?? ""])
 			navigationController?.dismiss(animated: true)
 		}

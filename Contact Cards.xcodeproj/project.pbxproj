@@ -67,6 +67,9 @@
 		9FEE3782256DBA990089337E /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3781256DBA990089337E /* ColorModel.swift */; };
 		9FEE3787256DBAA50089337E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3786256DBAA50089337E /* Color.swift */; };
 		9FEE378C256DBB9F0089337E /* ColorChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE378B256DBB9F0089337E /* ColorChoice.swift */; };
+		9FF337FE260155E0007825D7 /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3781256DBA990089337E /* ColorModel.swift */; };
+		9FF33804260155F4007825D7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3786256DBAA50089337E /* Color.swift */; };
+		9FF3380A26015E66007825D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE921BA1691003A6A33 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -603,6 +606,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FF3380A26015E66007825D7 /* Assets.xcassets in Resources */,
 				9FC149A525F34B9700C700B0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -708,10 +712,12 @@
 				9F3F6AEE25F499200053C1DF /* ContactCardQRCode.swift in Sources */,
 				9F659B2F25FEA1F60035F02C /* DisplayQRModel.swift in Sources */,
 				9F659B2925FEA1F00035F02C /* ContactCardPersistencyManager.swift in Sources */,
+				9FF33804260155F4007825D7 /* Color.swift in Sources */,
 				9F3F6AE225F498FC0053C1DF /* ContactCardQRCode.intentdefinition in Sources */,
 				9F659B5425FEA29D0035F02C /* NotificationNameExtensions.swift in Sources */,
 				9F659B3B25FEA2190035F02C /* ColorChoice.swift in Sources */,
 				9F659B4125FEA2390035F02C /* ContactDataConverter.swift in Sources */,
+				9FF337FE260155E0007825D7 /* ColorModel.swift in Sources */,
 				9F659B3525FEA1FB0035F02C /* ContactCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
