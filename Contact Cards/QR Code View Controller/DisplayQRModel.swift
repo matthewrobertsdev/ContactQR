@@ -12,15 +12,19 @@ import Contacts
  */
 class DisplayQRModel {
     private var contact=CNContact()
+	private var contactCard: ContactCard?
     private var qrCode=UIImage()
 	init() {
-		guard let vCardString=ActiveContactCard.shared.contactCard?.vCardString else {
+	}
+	func setUp(contactCard: ContactCard?) {
+		self.contactCard=contactCard
+		guard let vCardString=contactCard?.vCardString else {
 			return
 		}
 		do {
 			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: vCardString)
 			if contactArray.count==1 {
-				contact=contactArray[0]
+				self.contact=contactArray[0]
 			}
 		} catch {
 			print("Error making CNContact from VCard String.")
@@ -30,7 +34,7 @@ class DisplayQRModel {
 		return ContactDataConverter.cnContactToQR_Code(cnContact: contact)
     }
 	func getContactCardTitle() -> String {
-		if let filename=ActiveContactCard.shared.contactCard?.filename {
+		if let filename=self.contactCard?.filename {
 			return filename
 		} else {
 			return ""

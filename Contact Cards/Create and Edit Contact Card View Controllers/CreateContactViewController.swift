@@ -8,6 +8,7 @@
 
 import UIKit
 import Contacts
+import WidgetKit
 
 class CreateContactViewController: UIViewController {
 	@IBOutlet weak var firstNameTextField: UITextField!
@@ -69,6 +70,20 @@ class CreateContactViewController: UIViewController {
 			ContactCardStore.sharedInstance.saveContacts()
 			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.uuidString ?? ""])
 			navigationController?.dismiss(animated: true)
+			WidgetCenter.shared.getCurrentConfigurations { result in
+				guard case .success(let widgets) = result else { return }
+				
+				// Iterate over the WidgetInfo elements to find one that matches
+				// the character from the push notification.
+				if let widget = widgets.first(
+					where: { widget in
+						let intent = widget.configuration as? ConfigurationIntent
+						return intent?.parameter?.identifier == self.contactCard?.uuidString
+					}
+				) {
+					WidgetCenter.shared.reloadTimelines(ofKind: widget.kind)
+				}
+			}
 			return
 		}
 		navigationController?.pushViewController(chooseColorTableViewController, animated: true)
@@ -220,15 +235,15 @@ class CreateContactViewController: UIViewController {
 	}
 	private func getPhoneNumbers(contact: CNMutableContact) {
 		if  !(mobilePhoneTextField.text=="") {
-		let phone=CNPhoneNumber(stringValue: mobilePhoneTextField.text ?? "")
+			let phone=CNPhoneNumber(stringValue: mobilePhoneTextField.text ?? "")
 			contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelPhoneNumberMobile, value: phone))
 		}
 		if  !(workPhone1TextField.text=="") {
-		let phone=CNPhoneNumber(stringValue: workPhone1TextField.text ?? "")
+			let phone=CNPhoneNumber(stringValue: workPhone1TextField.text ?? "")
 			contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelWork, value: phone))
 		}
 		if  !(workPhone2TextField.text=="") {
-		let phone=CNPhoneNumber(stringValue: workPhone2TextField.text ?? "")
+			let phone=CNPhoneNumber(stringValue: workPhone2TextField.text ?? "")
 			contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelWork, value: phone))
 		}
 		if  !(homePhoneTextField.text=="") {
@@ -242,26 +257,26 @@ class CreateContactViewController: UIViewController {
 	}
 	private func getEmails(contact: CNMutableContact) {
 		if  !(homeEmailTextField.text=="") {
-		let email=NSString(string: homeEmailTextField.text ?? "")
+			let email=NSString(string: homeEmailTextField.text ?? "")
 			contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelHome, value: NSString(string: email)))
 		}
 		if  !(workEmail1TextField.text=="") {
-		let email=NSString(string: workEmail1TextField.text ?? "")
+			let email=NSString(string: workEmail1TextField.text ?? "")
 			contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: email))
 		}
 		if  !(workEmail2TextField.text=="") {
-		let email=NSString(string: workEmail2TextField.text ?? "")
+			let email=NSString(string: workEmail2TextField.text ?? "")
 			contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: email))
 		}
 		if  !(otherEmailTextField.text=="") {
-		let email=NSString(string: otherEmailTextField.text ?? "")
+			let email=NSString(string: otherEmailTextField.text ?? "")
 			contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelOther, value: NSString(string: email)))
 		}
 	}
 	private func getURLs(contact: CNMutableContact) {
 		if  !(urlHomeTextField.text=="") {
-		var url=NSString(string:
-							urlHomeTextField.text ?? "")
+			var url=NSString(string:
+								urlHomeTextField.text ?? "")
 			url=validateURL(proposedURL: url as String) as NSString
 			contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelHome, value: NSString(string: url)))
 		}
@@ -289,36 +304,36 @@ class CreateContactViewController: UIViewController {
 	private func getAddresses(contact: CNMutableContact) {
 		if !(homeStreetTextField.text=="") || !(homeCityTextField.text=="") ||
 			!(homeStateTextField.text=="") || !(homeZipTextField.text=="") {
-		let address=CNMutablePostalAddress()
+			let address=CNMutablePostalAddress()
 			address.street=homeStreetTextField.text ?? ""
 			address.city=homeCityTextField.text ?? ""
 			address.state=homeStateTextField.text ?? ""
 			address.postalCode=homeZipTextField.text ?? ""
 			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelHome, value: address))
-			}
+		}
 		if !(workStreetTextField.text=="") || !(workCityTextField.text=="") ||
 			!(workStateTextField.text=="") || !(workZipTextField.text=="") {
-		let address=CNMutablePostalAddress()
+			let address=CNMutablePostalAddress()
 			address.street=workStreetTextField.text ?? ""
 			address.city=workCityTextField.text ?? ""
 			address.state=workStateTextField.text ?? ""
 			address.postalCode=workZipTextField.text ?? ""
 			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelWork, value: address))
-			}
+		}
 		if !(otherStreetTextField.text=="") || !(otherCityTextField.text=="") ||
 			!(otherStateTextField.text=="") || !(otherZipTextField.text=="") {
-		let address=CNMutablePostalAddress()
+			let address=CNMutablePostalAddress()
 			address.street=otherStreetTextField.text ?? ""
 			address.city=otherCityTextField.text ?? ""
 			address.state=otherStateTextField.text ?? ""
 			address.postalCode=otherZipTextField.text ?? ""
 			contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelOther, value: address))
-			}
+		}
 	}
 	func getSocialProfiles(contact: CNMutableContact) {
 		if !(twitterTextField.text=="") {
-		contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: nil, username:
-																											twitterTextField.text ?? "", userIdentifier: nil, service: CNSocialProfileServiceTwitter)))
+			contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: nil, username:
+																												twitterTextField.text ?? "", userIdentifier: nil, service: CNSocialProfileServiceTwitter)))
 		}
 		if !(linkedInTextField.text=="") {
 			var linkedInUrl=linkedInTextField.text ?? ""
@@ -333,12 +348,12 @@ class CreateContactViewController: UIViewController {
 			if !(facebookURL.starts(with: "http://")) && !(facebookURL.starts(with: "https://")) {
 				facebookURL="http://"+facebookURL
 			}
-		contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: facebookURL,
-																										 username: nil, userIdentifier: nil, service: CNSocialProfileServiceFacebook)))
+			contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: facebookURL,
+																											 username: nil, userIdentifier: nil, service: CNSocialProfileServiceFacebook)))
 		}
 	}
 	override func viewDidLoad() {
-        super.viewDidLoad()
+		super.viewDidLoad()
 		fieldsScrollView.keyboardDismissMode = .interactive
 		if forEditing {
 			navigationItem.leftBarButtonItem?.title="Save"
@@ -350,9 +365,9 @@ class CreateContactViewController: UIViewController {
 		let notificationCenter = NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name:
 										UIResponder.keyboardWillHideNotification, object: nil)
-			notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name:
-											UIResponder.keyboardWillChangeFrameNotification, object: nil)
-    }
+		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name:
+										UIResponder.keyboardWillChangeFrameNotification, object: nil)
+	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		AppState.shared.appState=AppStateValue.isModal
@@ -367,13 +382,13 @@ class CreateContactViewController: UIViewController {
 		return true
 	}
 	/*
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	// MARK: - Navigation
+	// In a storyboard-based application, you will often want to do a little preparation before navigation
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+	// Get the new view controller using segue.destination.
+	// Pass the selected object to the new view controller.
+	}
+	*/
 	@objc func adjustForKeyboard(notification: Notification) {
 		guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
 			return

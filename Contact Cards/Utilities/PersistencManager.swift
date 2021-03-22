@@ -7,13 +7,15 @@
 //
 import Foundation
 class PersistenceManager {
+	let groupIdentifier="group.com.apps.celeritas.contact.cards"
     static let shared=PersistenceManager()
 	private let fileManager=FileManager.default
     private init() {
     }
     func saveData(appendingPath: String, data: Data) throws {
-        let path = try fileManager.url(for: .applicationSupportDirectory, in:
-										.userDomainMask, appropriateFor: nil, create: true)
+		guard let path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) else {
+			return
+		}
         let fileURL = path.appendingPathComponent(appendingPath)
         if fileManager.fileExists(atPath: fileURL.absoluteString) {
         } else {
@@ -22,8 +24,9 @@ class PersistenceManager {
         try data.write(to: fileURL, options: .atomic)
     }
     func loadData(appendingPath: String) throws -> Data? {
-		let path = try fileManager.url(for: .applicationSupportDirectory, in:
-										.userDomainMask, appropriateFor: nil, create: false)
+		guard let path = fileManager.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) else {
+			return nil
+		}
         let fileURL = path.appendingPathComponent(appendingPath)
        return try Data(contentsOf: fileURL)
     }

@@ -7,6 +7,7 @@
 //
 import UIKit
 import Contacts
+import WidgetKit
 class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var saveButton: UIBarButtonItem!
 	@IBOutlet weak var titleTextField: UITextField!
@@ -40,6 +41,20 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 		if forEditing {
 			contactCard?.filename=titleTextField.text ?? "No Title Given"
 			ContactCardStore.sharedInstance.saveContacts()
+			WidgetCenter.shared.getCurrentConfigurations { result in
+				guard case .success(let widgets) = result else { return }
+				
+				// Iterate over the WidgetInfo elements to find one that matches
+				// the character from the push notification.
+				if let widget = widgets.first(
+					where: { widget in
+						let intent = widget.configuration as? ConfigurationIntent
+						return intent?.parameter?.identifier == self.contactCard?.uuidString
+					}
+				) {
+					WidgetCenter.shared.reloadTimelines(ofKind: widget.kind)
+				}
+			}
 			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid":self.contactCard?.uuidString ?? ""])
 			navigationController?.dismiss(animated: true)
 		} else {
