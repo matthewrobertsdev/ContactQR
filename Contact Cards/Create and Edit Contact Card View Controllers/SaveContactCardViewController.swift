@@ -8,9 +8,11 @@
 import UIKit
 import Contacts
 import WidgetKit
+import CoreData
 class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var saveButton: UIBarButtonItem!
 	@IBOutlet weak var titleTextField: UITextField!
+	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 	var forEditing=false
 	var contactCard: ContactCard?
 	var contact=CNContact()
@@ -58,9 +60,20 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid":self.contactCard?.uuidString ?? ""])
 			navigationController?.dismiss(animated: true)
 		} else {
-			let contactCard=ContactCard(filename: titleTextField.text ?? "No Title Given", cnContact: contact, color: color)
-			ContactCardStore.sharedInstance.contactCards.append(contactCard)
-			ContactCardStore.sharedInstance.saveContacts()
+			guard let context=self.managedObjectContext else {
+				return
+			}
+			let contactCard = (NSEntityDescription.insertNewObject(forEntityName: ContactCardMO.entityName,
+																			 into: context) as? ContactCardMO)
+			contactCard?.setFields(filename: titleTextField.text ?? "No Title Given", cnContact: contact, color: color)
+			do {
+				try self.managedObjectContext?.save()
+				self.managedObjectContext?.rollback()
+			} catch {
+				print(error.localizedDescription)
+			}
+			//ContactCardStore.sharedInstance.contactCards.append(contactCard)
+			//ContactCardStore.sharedInstance.saveContacts()
 			navigationController?.dismiss(animated: true, completion: {
 			NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: nil)
 			})

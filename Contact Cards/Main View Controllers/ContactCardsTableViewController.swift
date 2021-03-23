@@ -6,11 +6,14 @@
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 import UIKit
-class ContactCardsTableViewController: UITableViewController {
+import CoreData
+class ContactCardsTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 	@IBOutlet weak var editButton: UIBarButtonItem!
+	var fetchedResultsController: NSFetchedResultsController<ContactCardMO>?
 	var selectedCardUUID: String?
 	static let selectedCardUUIDKey="selectedCardUUID"
 	let colorModel=ColorModel()
+	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		if let splitViewController=splitViewController {
@@ -30,7 +33,7 @@ class ContactCardsTableViewController: UITableViewController {
 		if let selectedCardUUID=UserDefaults.standard.string(forKey: ContactCardsTableViewController.selectedCardUUIDKey) {
 			self.selectedCardUUID=selectedCardUUID
 			if let index=ContactCardStore.sharedInstance.getIndexOfContactWithUUID(uuid: selectedCardUUID) {
-				tableView.selectRow(at: IndexPath(row: index, section: 0), animated: false, scrollPosition: .middle)
+				//tableView.selectRow(at: IndexPath(row: index, section: 0), animated: false, scrollPosition: .middle)
 				showContactCard()
 				SceneDelegate.enableValidToolbarItems()
 			}
@@ -43,6 +46,25 @@ class ContactCardsTableViewController: UITableViewController {
 		navigationController?.setNavigationBarHidden(true, animated: animated)
 		navigationController?.setToolbarHidden(true, animated: animated)
 		#endif
+		let contactCardFetchRequest = NSFetchRequest<ContactCardMO>(entityName: "ContactCard")
+				let sortDescriptor = NSSortDescriptor(key: "filename", ascending: false)
+		contactCardFetchRequest.sortDescriptors = [sortDescriptor]
+		
+		guard let context=managedObjectContext else {
+			return
+		}
+
+				self.fetchedResultsController = NSFetchedResultsController<ContactCardMO>(
+					fetchRequest: contactCardFetchRequest,
+					managedObjectContext: context,
+					sectionNameKeyPath: nil,
+					cacheName: nil)
+		self.fetchedResultsController?.delegate = self
+		do {
+			try fetchedResultsController?.performFetch()
+			} catch {
+				print(error.localizedDescription)
+			}
 		guard let selectedIndexPath=tableView.indexPathForSelectedRow else {
 			return
 		}
@@ -117,21 +139,26 @@ class ContactCardsTableViewController: UITableViewController {
 	}
 	// MARK: - Table view data source
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		// #warning Incomplete implementation, return the number of sections
 		return 1
 	}
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		// #warning Incomplete implementation, return the number of rows
-		return ContactCardStore.sharedInstance.contactCards.count
+		if let sections = fetchedResultsController?.sections {
+			let currentSection = sections[section]
+			return currentSection.numberOfObjects
+		}
+		return 0
 	}
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell=tableView.dequeueReusableCell(withIdentifier: "SavedContactCell", for: indexPath)
 				as? SavedContactCell else {
 			return UITableViewCell()
 		}
-		cell.nameLabel.text=ContactCardStore.sharedInstance.contactCards[indexPath.row].filename
-		let colorString=ContactCardStore.sharedInstance.contactCards[indexPath.row].color
-		if let color=colorModel.colorsDictionary[colorString] as? UIColor {
+		guard let contactCard = fetchedResultsController?.object(at: indexPath) else {
+			return UITableViewCell()
+		}
+		cell.nameLabel.text=contactCard.filename
+		let colorString=contactCard.color
+		if let color=colorModel.colorsDictionary[colorString ?? "Contrasting Color"] as? UIColor {
 			cell.circularColorView.backgroundColor=color
 		}
 		return cell
@@ -169,6 +196,69 @@ class ContactCardsTableViewController: UITableViewController {
 		#endif
 		present(navigationController, animated: animated)
 	}
+	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+			self.tableView.beginUpdates()
+		}
+		
+	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		self.tableView.endUpdates()
+	}
+	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+						didChange anObject: Any,
+						at indexPath: IndexPath?,
+						for type: NSFetchedResultsChangeType,
+						newIndexPath: IndexPath?) {
+			switch type {
+			case .insert:
+				if let insertIndexPath = newIndexPath {
+					self.tableView.insertRows(at: [insertIndexPath], with: .fade)
+				}
+			case .delete:
+				if let deleteIndexPath = indexPath {
+					self.tableView.deleteRows(at: [deleteIndexPath], with: .fade)
+				}
+			case .update:
+				if let updateIndexPath = indexPath {
+					guard let cell = self.tableView.cellForRow(at: updateIndexPath) as? SavedContactCell else {
+						return
+					}
+					guard let contactCard = fetchedResultsController?.object(at: updateIndexPath) else {
+						return
+					}
+					cell.nameLabel.text=contactCard.filename
+					let colorString=contactCard.color
+					if let color=colorModel.colorsDictionary[colorString ?? "Contrasting Color"] as? UIColor {
+						cell.circularColorView.backgroundColor=color
+					}
+					
+				}
+			case .move:
+				if let deleteIndexPath = indexPath {
+					self.tableView.deleteRows(at: [deleteIndexPath], with: .fade)
+				}
+				
+				if let insertIndexPath = newIndexPath {
+					self.tableView.insertRows(at: [insertIndexPath], with: .fade)
+				}
+			default:
+				break
+			}
+		}
+	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+						didChange sectionInfo: NSFetchedResultsSectionInfo,
+						atSectionIndex sectionIndex: Int,
+						for type: NSFetchedResultsChangeType) {
+			let sectionIndexSet = NSIndexSet(index: sectionIndex) as IndexSet
+			
+			switch type {
+			case .insert:
+				self.tableView.insertSections(sectionIndexSet, with: .fade)
+			case .delete:
+				self.tableView.deleteSections(sectionIndexSet, with: .fade)
+			default:
+				break
+			}
+		}
 	func selectFirstContact() {
 		if ContactCardStore.sharedInstance.contactCards.count>0 {
 			tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .middle)
