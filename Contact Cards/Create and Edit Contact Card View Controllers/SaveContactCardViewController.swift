@@ -45,7 +45,6 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 			ContactCardStore.sharedInstance.saveContacts()
 			WidgetCenter.shared.getCurrentConfigurations { result in
 				guard case .success(let widgets) = result else { return }
-				
 				// Iterate over the WidgetInfo elements to find one that matches
 				// the character from the push notification.
 				if let widget = widgets.first(
@@ -63,12 +62,18 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 			guard let context=self.managedObjectContext else {
 				return
 			}
-			let contactCard = (NSEntityDescription.insertNewObject(forEntityName: ContactCardMO.entityName,
-																			 into: context) as? ContactCardMO)
-			contactCard?.setFields(filename: titleTextField.text ?? "No Title Given", cnContact: contact, color: color)
+			let contactCard=NSEntityDescription.entity(forEntityName: ContactCardMO.entityName, in: context)
+			guard let card=contactCard else {
+				return
+			}
+			let contactCardRecord=ContactCardMO(entity: card, insertInto: context)
+			//let contactCard: ContactCardMO? = (NSEntityDescription.insertNewObject(forEntityName: ContactCardMO.entityName, into: context) as? ContactCardMO)
+			setFields(contactCardMO: contactCardRecord, filename: titleTextField.text ?? "No Title Given", cnContact: contact, color: color)
+			print("abcd\(contactCardRecord.filename ?? "None Given")")
 			do {
 				try self.managedObjectContext?.save()
 				self.managedObjectContext?.rollback()
+				//ActiveContactCard.shared.contactCard=
 			} catch {
 				print(error.localizedDescription)
 			}

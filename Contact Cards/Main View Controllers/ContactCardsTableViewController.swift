@@ -99,15 +99,6 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		}
 	}
 	@objc func handleNewContact() {
-		let lastRowNumber=ContactCardStore.sharedInstance.contactCards.count-1
-		let indexPath=IndexPath(row: lastRowNumber, section: 0)
-		#if targetEnvironment(macCatalyst)
-		tableView.reloadData()
-		#else
-		tableView.insertRows(at: [indexPath], with: .bottom)
-		#endif
-		tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
-		selectedCardUUID=ContactCardStore.sharedInstance.contactCards.last?.uuidString
 		showContactCard()
 		stopEditing()
 		editButton.isEnabled=true
@@ -130,7 +121,6 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		guard let indexPath=tableView.indexPathForSelectedRow else {
 			return
 		}
-		ActiveContactCard.shared.contactCard=ContactCardStore.sharedInstance.contactCards[indexPath.row]
 		#if targetEnvironment(macCatalyst)
 		UserDefaults.standard.setValue(selectedCardUUID, forKey: ContactCardsTableViewController.selectedCardUUIDKey)
 		#endif
@@ -156,6 +146,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		guard let contactCard = fetchedResultsController?.object(at: indexPath) else {
 			return UITableViewCell()
 		}
+		print("abcd\(contactCard.description)")
 		cell.nameLabel.text=contactCard.filename
 		let colorString=contactCard.color
 		if let color=colorModel.colorsDictionary[colorString ?? "Contrasting Color"] as? UIColor {
@@ -199,7 +190,6 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 			self.tableView.beginUpdates()
 		}
-		
 	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		self.tableView.endUpdates()
 	}
@@ -230,13 +220,11 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 					if let color=colorModel.colorsDictionary[colorString ?? "Contrasting Color"] as? UIColor {
 						cell.circularColorView.backgroundColor=color
 					}
-					
 				}
 			case .move:
 				if let deleteIndexPath = indexPath {
 					self.tableView.deleteRows(at: [deleteIndexPath], with: .fade)
 				}
-				
 				if let insertIndexPath = newIndexPath {
 					self.tableView.insertRows(at: [insertIndexPath], with: .fade)
 				}
@@ -337,9 +325,13 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 							forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
 			// Delete the row from the data source
-			ContactCardStore.sharedInstance.contactCards.remove(at: indexPath.row)
-			ContactCardStore.sharedInstance.saveContacts()
-			tableView.deleteRows(at: [indexPath], with: .fade)
+			//ContactCardStore.sharedInstance.contactCards.remove(at: indexPath.row)
+			//ContactCardStore.sharedInstance.saveContacts()
+			guard let resultsController=fetchedResultsController else {
+				return
+			}
+			let contactCard = resultsController.object(at: indexPath)
+			managedObjectContext?.delete(contactCard)
 			stopEditingIfNoContactCards()
 			NotificationCenter.default.post(name: .contactDeleted, object: nil)
 			if !ContactCardStore.sharedInstance.contactCards.contains(where: { (contactCard) -> Bool in

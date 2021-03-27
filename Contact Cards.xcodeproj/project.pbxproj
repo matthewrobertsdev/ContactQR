@@ -329,7 +329,6 @@
 		9F9E9AD621BA1690003A6A33 = {
 			isa = PBXGroup;
 			children = (
-				9F447AB12608E1540003B2E4 /* ContactCards.xcdatamodeld */,
 				9FC149AC25F34B9700C700B0 /* ContactCardQRCodeExtension.entitlements */,
 				9F56C72E253BCB96006D8DE6 /* Contact Cards.entitlements */,
 				9F9E9AE121BA1690003A6A33 /* Contact Cards */,
@@ -357,6 +356,7 @@
 		9F9E9AE121BA1690003A6A33 /* Contact Cards */ = {
 			isa = PBXGroup;
 			children = (
+				9F447AB12608E1540003B2E4 /* ContactCards.xcdatamodeld */,
 				9F659B4725FEA28B0035F02C /* NotificationNameExtensions.swift */,
 				9F1EE641256EE47D004F444B /* AppState.swift */,
 				9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */,

@@ -12,19 +12,17 @@ import CoreData
 import Contacts
 
 class ContactCardMO: NSManagedObject {
-	@NSManaged var filename: String?
-	@NSManaged var vCardString: String?
-	@NSManaged var color: String?
-	@NSManaged var uuidString: String?
-	func setFields(filename: String, cnContact: CNContact, color: String) {
-		self.filename=filename
-		vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
-		uuidString=UUID().uuidString
-		self.color=color
-	}
-	func setContact(cnContact: CNContact) {
-		vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
-	}
-	
+	@NSManaged public var filename: String
+	@NSManaged public var vCardString: String
+	@NSManaged public var color: String
 	static var entityName: String { return "ContactCard" }
+}
+func setFields(contactCardMO: ContactCardMO, filename: String, cnContact: CNContact, color: String) {
+	contactCardMO.filename=filename
+	let vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
+	//contactCardMO.uuidString=UUID().uuidString
+	contactCardMO.color=color
+}
+func setContact(contactCardMO: ContactCardMO, cnContact: CNContact) {
+	contactCardMO.vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
 }
