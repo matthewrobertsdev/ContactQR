@@ -121,6 +121,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		guard let indexPath=tableView.indexPathForSelectedRow else {
 			return
 		}
+		ActiveContactCard.shared.contactCard=fetchedResultsController?.object(at: indexPath)
 		#if targetEnvironment(macCatalyst)
 		UserDefaults.standard.setValue(selectedCardUUID, forKey: ContactCardsTableViewController.selectedCardUUIDKey)
 		#endif
@@ -167,7 +168,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		guard let splitViewController=splitViewController else {
 			return
 		}
-		let currentUUID=ContactCardStore.sharedInstance.contactCards[indexPath.row].uuidString
+		let currentUUID=fetchedResultsController?.object(at: indexPath).objectID.uriRepresentation().absoluteString
 		if splitViewController.isCollapsed || selectedCardUUID != currentUUID {
 			selectedCardUUID=currentUUID
 			showContactCard()
@@ -334,12 +335,14 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 			managedObjectContext?.delete(contactCard)
 			stopEditingIfNoContactCards()
 			NotificationCenter.default.post(name: .contactDeleted, object: nil)
+			/*
 			if !ContactCardStore.sharedInstance.contactCards.contains(where: { (contactCard) -> Bool in
 				contactCard.uuidString==ActiveContactCard.shared.contactCard?.uuidString
 			}) {
 				ActiveContactCard.shared.contactCard=nil
 				NotificationCenter.default.post(name: .contactDeleted, object: nil)
 			}
+*/
 		}
 	}
 	func stopEditingIfNoContactCards() {

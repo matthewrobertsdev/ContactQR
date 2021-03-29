@@ -51,7 +51,7 @@ class CreateContactViewController: UIViewController {
 	@IBOutlet weak var fieldsScrollView: UIScrollView!
 	var forEditing=false
 	var contact: CNContact?
-	var contactCard: ContactCard?
+	var contactCard: ContactCardMO?
 	@IBAction func cancel(_ sender: Any) {
 		dismiss(animated: true)
 	}
@@ -66,9 +66,12 @@ class CreateContactViewController: UIViewController {
 		}
 		chooseColorTableViewController.contact=contact
 		if forEditing {
-			contactCard?.setContact(cnContact: contact)
+			guard let card=contactCard else {
+				return
+			}
+			setContact(contactCardMO: card, cnContact: contact)
 			ContactCardStore.sharedInstance.saveContacts()
-			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.uuidString ?? ""])
+			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.objectID.uriRepresentation().absoluteString ?? ""])
 			navigationController?.dismiss(animated: true)
 			WidgetCenter.shared.getCurrentConfigurations { result in
 				guard case .success(let widgets) = result else { return }
@@ -77,7 +80,7 @@ class CreateContactViewController: UIViewController {
 				if let widget = widgets.first(
 					where: { widget in
 						let intent = widget.configuration as? ConfigurationIntent
-						return intent?.parameter?.identifier == self.contactCard?.uuidString
+						return intent?.parameter?.identifier == self.contactCard?.objectID.uriRepresentation().absoluteString
 					}
 				) {
 					WidgetCenter.shared.reloadTimelines(ofKind: widget.kind)

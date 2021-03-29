@@ -19,7 +19,7 @@ class ContactCardMO: NSManagedObject {
 }
 func setFields(contactCardMO: ContactCardMO, filename: String, cnContact: CNContact, color: String) {
 	contactCardMO.filename=filename
-	let vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
+	contactCardMO.vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
 	//contactCardMO.uuidString=UUID().uuidString
 	contactCardMO.color=color
 }

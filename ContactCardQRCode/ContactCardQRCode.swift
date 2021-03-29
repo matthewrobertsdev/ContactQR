@@ -29,6 +29,7 @@ struct Provider: IntentTimelineProvider {
 		print("Should be being configured")
 		var qrCode: UIImage?
 		var color: UIColor?
+		/*
 		if let uuid=configuration.parameter?.identifier {
 			do {
 				let contactCards=try ContactCardPersistencyManager.shared.getSavedContacts()
@@ -46,6 +47,7 @@ struct Provider: IntentTimelineProvider {
 				print("Error reading cards in timeline")
 			}
 		}
+*/
 		return SimpleEntry(date: Date(), qrCode: qrCode, color: color)
 	}
 

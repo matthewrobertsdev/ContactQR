@@ -11,7 +11,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	var itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var contactInfoTextView: UITextView!
-	var contactCard: ContactCard?
+	var contactCard: ContactCardMO?
 	let colorModel=ColorModel()
 	private var contactDisplayStrings=[String]()
     override func viewDidLoad() {
@@ -197,7 +197,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	}
 */
 	@IBAction func deleteContact(_ sender: Any) {
-		guard let uuidString=contactCard?.uuidString else {
+		guard let uuidString=contactCard?.objectID.uriRepresentation().absoluteString else {
 			print("Error trying to getting UUID to delete with")
 			return
 		}
@@ -236,7 +236,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		exportContactCardViewController.url=fileURL
 		present(exportContactCardViewController, animated: true)
 	}
-	func writeTemporaryFile(contactCard: ContactCard) -> URL? {
+	func writeTemporaryFile(contactCard: ContactCardMO) -> URL? {
 		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
 				return nil
 			}

@@ -14,7 +14,7 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var titleTextField: UITextField!
 	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 	var forEditing=false
-	var contactCard: ContactCard?
+	var contactCard: ContactCardMO?
 	var contact=CNContact()
 	var color=ColorChoice.contrastingColor.rawValue
     override func viewDidLoad() {
@@ -50,13 +50,13 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 				if let widget = widgets.first(
 					where: { widget in
 						let intent = widget.configuration as? ConfigurationIntent
-						return intent?.parameter?.identifier == self.contactCard?.uuidString
+						return intent?.parameter?.identifier == self.contactCard?.objectID.uriRepresentation().absoluteString
 					}
 				) {
 					WidgetCenter.shared.reloadTimelines(ofKind: widget.kind)
 				}
 			}
-			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid":self.contactCard?.uuidString ?? ""])
+			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid":self.contactCard?.objectID.uriRepresentation().absoluteString ?? ""])
 			navigationController?.dismiss(animated: true)
 		} else {
 			guard let context=self.managedObjectContext else {
