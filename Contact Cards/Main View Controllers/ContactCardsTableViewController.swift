@@ -49,7 +49,6 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		let contactCardFetchRequest = NSFetchRequest<ContactCardMO>(entityName: "ContactCard")
 				let sortDescriptor = NSSortDescriptor(key: "filename", ascending: false)
 		contactCardFetchRequest.sortDescriptors = [sortDescriptor]
-		
 		guard let context=managedObjectContext else {
 			return
 		}

@@ -41,6 +41,9 @@
 		9F659B4825FEA28B0035F02C /* NotificationNameExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F659B4725FEA28B0035F02C /* NotificationNameExtensions.swift */; };
 		9F659B5425FEA29D0035F02C /* NotificationNameExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F659B4725FEA28B0035F02C /* NotificationNameExtensions.swift */; };
 		9F659B5A25FEA2A00035F02C /* NotificationNameExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F659B4725FEA28B0035F02C /* NotificationNameExtensions.swift */; };
+		9F68031C2612DD5400E6166D /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB12608E1540003B2E4 /* ContactCards.xcdatamodeld */; };
+		9F6803222612DD5500E6166D /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB12608E1540003B2E4 /* ContactCards.xcdatamodeld */; };
+		9F6803282612DF2800E6166D /* ContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB92608E54A0003B2E4 /* ContactCardMO.swift */; };
 		9F7147AB256CCCC600A979B8 /* ContactCardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7147AA256CCCC600A979B8 /* ContactCardStore.swift */; };
 		9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EB966255E10420032563C /* CreateContactViewController.swift */; };
 		9F7F42192560F24700199193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F42182560F24700199193 /* SceneDelegate.swift */; };
@@ -649,9 +652,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F6803282612DF2800E6166D /* ContactCardMO.swift in Sources */,
 				9F3F6BB325F49B880053C1DF /* IntentHandler.swift in Sources */,
 				9F659B1725FEA19E0035F02C /* ContactDataConverter.swift in Sources */,
 				9F659B0B25FEA17C0035F02C /* ContactCard.swift in Sources */,
+				9F68031C2612DD5400E6166D /* ContactCards.xcdatamodeld in Sources */,
 				9F659B0525FEA15C0035F02C /* PersistencManager.swift in Sources */,
 				9F659AFF25FEA1500035F02C /* ContactCardPersistencyManager.swift in Sources */,
 				9F659B1125FEA1860035F02C /* ColorChoice.swift in Sources */,
@@ -732,6 +737,7 @@
 				9F659B3B25FEA2190035F02C /* ColorChoice.swift in Sources */,
 				9F659B4125FEA2390035F02C /* ContactDataConverter.swift in Sources */,
 				9FF337FE260155E0007825D7 /* ColorModel.swift in Sources */,
+				9F6803222612DD5500E6166D /* ContactCards.xcdatamodeld in Sources */,
 				9F659B3525FEA1FB0035F02C /* ContactCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
