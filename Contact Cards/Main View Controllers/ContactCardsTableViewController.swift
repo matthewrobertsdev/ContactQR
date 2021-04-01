@@ -16,6 +16,14 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		/*
+		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
+		do {
+		let contactCards = try managedObjectContext?.fetch(fetchRequest)
+		} catch {
+			print("ERROR")
+		}
+*/
 		if let splitViewController=splitViewController {
 			splitViewController.primaryBackgroundStyle = .sidebar
 		}
@@ -29,6 +37,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		notificationCenter.addObserver(self, selector: #selector(handleNewContact), name: .contactCreated, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(removeContact), name: .contactDeleted, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(reloadWithUUID), name: .contactUpdated, object: nil)
+		/*
 		#if targetEnvironment(macCatalyst)
 		if let selectedCardUUID=UserDefaults.standard.string(forKey: ContactCardsTableViewController.selectedCardUUIDKey) {
 			self.selectedCardUUID=selectedCardUUID
@@ -39,6 +48,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 			}
 		}
 		#endif
+*/
 	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -61,8 +71,9 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		self.fetchedResultsController?.delegate = self
 		do {
 			try fetchedResultsController?.performFetch()
+			print("performed fetch")
 			} catch {
-				print(error.localizedDescription)
+				print("error performing fetch \(error.localizedDescription)")
 			}
 		guard let selectedIndexPath=tableView.indexPathForSelectedRow else {
 			return
@@ -134,6 +145,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if let sections = fetchedResultsController?.sections {
 			let currentSection = sections[section]
+			print(currentSection.numberOfObjects)
 			return currentSection.numberOfObjects
 		}
 		return 0
@@ -237,7 +249,6 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 						atSectionIndex sectionIndex: Int,
 						for type: NSFetchedResultsChangeType) {
 			let sectionIndexSet = NSIndexSet(index: sectionIndex) as IndexSet
-			
 			switch type {
 			case .insert:
 				self.tableView.insertSections(sectionIndexSet, with: .fade)
