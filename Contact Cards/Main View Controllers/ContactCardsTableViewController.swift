@@ -384,18 +384,6 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		}
 	}
 	/*
-	// Override to support rearranging the table view.
-	override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-	}
-	*/
-	/*
-	// Override to support conditional rearranging of the table view.
-	override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-	// Return false if you do not want the item to be re-orderable.
-	return true
-	}
-	*/
-	/*
 	// MARK: - Navigation
 	
 	// In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -405,21 +393,3 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 	}
 	*/
 }
-/*
-#if targetEnvironment(macCatalyst)
-extension ContactCardsTableViewController: UITableViewDragDelegate {
-	func tableView(_ tableView: UITableView, itemsForBeginning session: 
-					UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-		let dragItem = UIDragItem(itemProvider: NSItemProvider())
-		dragItem.localObject = ContactCardStore.sharedInstance.contactCards[indexPath.row]
-		return [ dragItem ]
-	}
-	func tableView(_ tableView: UITableView, dragSessionWillBegin session: UIDragSession) {
-		UIView.setAnimationsEnabled(false)
-	}
-	func tableView(_ tableView: UITableView, dragSessionDidEnd session: UIDragSession) {
-		UIView.setAnimationsEnabled(true)
-	}
-}
-#endif
-*/

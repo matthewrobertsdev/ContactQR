@@ -197,8 +197,11 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	}
 */
 	@IBAction func deleteContact(_ sender: Any) {
-		guard let uuidString=contactCard?.objectID.uriRepresentation().absoluteString else {
-			print("Error trying to getting UUID to delete with")
+		guard let objectID=contactCard?.objectID else {
+			print("Error trying to getting object ID to delete with")
+			return
+		}
+		guard let contactCardMO=contactCard else {
 			return
 		}
 		guard let title=contactCard?.filename else {
@@ -215,12 +218,17 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 																		guard let strongSelf=self else {
 																			return
 																		}
-			if let deletedIndex=ContactCardStore.sharedInstance.removeContactWithUUID(uuid: uuidString) {
-				NotificationCenter.default.post(name: .contactDeleted, object: nil, userInfo: ["index": deletedIndex])
+																		let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+																		
+																		managedObjectContext?.delete(contactCardMO)
 				ActiveContactCard.shared.contactCard=nil
 				strongSelf.contactCard=nil
-				strongSelf.loadContact()
-			}
+																		do {
+																			try managedObjectContext?.save()
+																			strongSelf.loadContact()
+																		} catch {
+																			managedObjectContext?.rollback()
+																		}
 		}))
 		self.present(deleteAlert, animated: true, completion: nil)
 	}
