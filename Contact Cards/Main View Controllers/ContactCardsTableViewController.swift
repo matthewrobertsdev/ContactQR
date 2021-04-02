@@ -16,6 +16,9 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		#if targetEnvironment(macCatalyst)
+		
+		#endif
 		/*
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
 		do {
@@ -29,10 +32,12 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		}
 		self.navigationController?.setToolbarHidden(false, animated: false)
 		stopEditingIfNoContactCards()
+		/*
 		#if targetEnvironment(macCatalyst)
 		tableView.dragDelegate = self
 		tableView.dragInteractionEnabled = true
 		#endif
+*/
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(handleNewContact), name: .contactCreated, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(removeContact), name: .contactDeleted, object: nil)
@@ -200,24 +205,30 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		present(navigationController, animated: animated)
 	}
 	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		UIView.setAnimationsEnabled(false)
 			self.tableView.beginUpdates()
 		}
 	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		self.tableView.endUpdates()
+		UIView.setAnimationsEnabled(true)
 	}
 	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
 						didChange anObject: Any,
 						at indexPath: IndexPath?,
 						for type: NSFetchedResultsChangeType,
 						newIndexPath: IndexPath?) {
+		var animation=UITableView.RowAnimation.fade
+		#if targetEnvironment(macCatalyst)
+		animation=UITableView.RowAnimation.none
+		#endif
 			switch type {
 			case .insert:
 				if let insertIndexPath = newIndexPath {
-					self.tableView.insertRows(at: [insertIndexPath], with: .fade)
+					self.tableView.insertRows(at: [insertIndexPath], with: animation)
 				}
 			case .delete:
 				if let deleteIndexPath = indexPath {
-					self.tableView.deleteRows(at: [deleteIndexPath], with: .fade)
+					self.tableView.deleteRows(at: [deleteIndexPath], with: animation)
 				}
 			case .update:
 				if let updateIndexPath = indexPath {
@@ -235,10 +246,10 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 				}
 			case .move:
 				if let deleteIndexPath = indexPath {
-					self.tableView.deleteRows(at: [deleteIndexPath], with: .fade)
+					self.tableView.deleteRows(at: [deleteIndexPath], with: animation)
 				}
 				if let insertIndexPath = newIndexPath {
-					self.tableView.insertRows(at: [insertIndexPath], with: .fade)
+					self.tableView.insertRows(at: [insertIndexPath], with: animation)
 				}
 			default:
 				break
@@ -249,11 +260,15 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 						atSectionIndex sectionIndex: Int,
 						for type: NSFetchedResultsChangeType) {
 			let sectionIndexSet = NSIndexSet(index: sectionIndex) as IndexSet
+		var animation=UITableView.RowAnimation.fade
+		#if targetEnvironment(macCatalyst)
+		animation=UITableView.RowAnimation.none
+		#endif
 			switch type {
 			case .insert:
-				self.tableView.insertSections(sectionIndexSet, with: .fade)
+				self.tableView.insertSections(sectionIndexSet, with: animation)
 			case .delete:
-				self.tableView.deleteSections(sectionIndexSet, with: .fade)
+				self.tableView.deleteSections(sectionIndexSet, with: animation)
 			default:
 				break
 			}
@@ -293,11 +308,13 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 	override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
 		return .delete
 	}
+	/*
 	override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
 		let contactCardToMove = ContactCardStore.sharedInstance.contactCards.remove(at: sourceIndexPath.row)
 		ContactCardStore.sharedInstance.contactCards.insert(contactCardToMove, at: destinationIndexPath.row)
 		ContactCardStore.sharedInstance.saveContacts()
 	}
+*/
 	@IBAction func toggleEditing(_ sender: Any) {
 		if tableView.isEditing {
 			stopEditing()
@@ -384,6 +401,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 	}
 	*/
 }
+/*
 #if targetEnvironment(macCatalyst)
 extension ContactCardsTableViewController: UITableViewDragDelegate {
 	func tableView(_ tableView: UITableView, itemsForBeginning session: 
@@ -400,3 +418,4 @@ extension ContactCardsTableViewController: UITableViewDragDelegate {
 	}
 }
 #endif
+*/
