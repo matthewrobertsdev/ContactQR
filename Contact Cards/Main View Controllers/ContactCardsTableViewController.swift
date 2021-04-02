@@ -205,12 +205,16 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		present(navigationController, animated: animated)
 	}
 	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		#if targetEnvironment(macCatalyst)
 		UIView.setAnimationsEnabled(false)
+		#endif
 			self.tableView.beginUpdates()
 		}
 	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		self.tableView.endUpdates()
+		#if targetEnvironment(macCatalyst)
 		UIView.setAnimationsEnabled(true)
+		#endif
 	}
 	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
 						didChange anObject: Any,
