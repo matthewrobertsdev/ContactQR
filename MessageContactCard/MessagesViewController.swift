@@ -13,7 +13,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 	@IBOutlet weak var tableView: UITableView!
 	var contactCards=[ContactCardMO]()
 	let colorModel=ColorModel()
-	var errorString=""
+	//var errorString=""
 	override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.dataSource=self
@@ -28,7 +28,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 		//container.persistentStoreDescriptions
 		container.loadPersistentStores { (_, error) in
 			print(error.debugDescription)
-			self.errorString=error?.localizedDescription ?? ""
+			//self.errorString=error?.localizedDescription ?? ""
 		}
 		let managedObjectContext=container.viewContext
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
@@ -37,7 +37,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 				contactCards = try managedObjectContext.fetch(fetchRequest)
 			} catch {
 				print("Unable to fetch contact cards")
-				errorString=error.localizedDescription
+				//errorString=error.localizedDescription
 			}
 		tableView.reloadData()
         // Do any additional setup after loading the view.
@@ -81,13 +81,14 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 		return 1
 	}
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 1//contactCards.count
+		return contactCards.count
 	}
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		/*
 		let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
 				cell.textLabel?.text = errorString
 				return cell
-		/*
+		*/
 		guard let cell=tableView.dequeueReusableCell(withIdentifier: "SavedContactCell", for: indexPath)
 				as? SavedContactCell else {
 			return UITableViewCell()
@@ -100,6 +101,5 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 			cell.circularColorView.backgroundColor=color
 		}
 		return cell
-*/
 	}
 }

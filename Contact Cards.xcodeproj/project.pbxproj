@@ -60,6 +60,7 @@
 		9F6803222612DD5500E6166D /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB12608E1540003B2E4 /* ContactCards.xcdatamodeld */; };
 		9F6803282612DF2800E6166D /* ContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB92608E54A0003B2E4 /* ContactCardMO.swift */; };
 		9F7147AB256CCCC600A979B8 /* ContactCardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7147AA256CCCC600A979B8 /* ContactCardStore.swift */; };
+		9F740EE82618AD2F0011DCAF /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB12608E1540003B2E4 /* ContactCards.xcdatamodeld */; };
 		9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EB966255E10420032563C /* CreateContactViewController.swift */; };
 		9F7F42192560F24700199193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F42182560F24700199193 /* SceneDelegate.swift */; };
 		9F8C266C2612821500E37290 /* ContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB92608E54A0003B2E4 /* ContactCardMO.swift */; };
@@ -742,6 +743,7 @@
 				9F24C14926181A7800C9441F /* ContactCardMO.swift in Sources */,
 				9F24C16C26181D1300C9441F /* ColorChoice.swift in Sources */,
 				9F24C15726181BEC00C9441F /* CircularColorView.swift in Sources */,
+				9F740EE82618AD2F0011DCAF /* ContactCards.xcdatamodeld in Sources */,
 				9F24C17326181DEB00C9441F /* ContactDataConverter.swift in Sources */,
 				9F24C12826180DF600C9441F /* MessagesViewController.swift in Sources */,
 				9F24C15026181BE900C9441F /* SavedContactCell.swift in Sources */,
