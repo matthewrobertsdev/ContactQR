@@ -63,7 +63,13 @@ class ChooseColorTableViewController: UITableViewController {
 		}
 		if forEditing {
 			contactCard?.color=model.colors[indexPath.row].name
-			ContactCardStore.sharedInstance.saveContacts()
+			let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+			do {
+				try managedObjectContext?.save()
+			} catch {
+				print("Couldn't save color")
+			}
+			//ContactCardStore.sharedInstance.saveContacts()
 			WidgetCenter.shared.getCurrentConfigurations { result in
 				guard case .success(let widgets) = result else { return }
 				

@@ -70,7 +70,12 @@ class CreateContactViewController: UIViewController {
 				return
 			}
 			setContact(contactCardMO: card, cnContact: contact)
-			ContactCardStore.sharedInstance.saveContacts()
+			let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+			do {
+				try managedObjectContext?.save()
+			} catch {
+				print("Couldn't save color")
+			}
 			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.objectID.uriRepresentation().absoluteString ?? ""])
 			navigationController?.dismiss(animated: true)
 			WidgetCenter.shared.getCurrentConfigurations { result in

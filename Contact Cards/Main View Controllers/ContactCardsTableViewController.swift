@@ -62,7 +62,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		navigationController?.setToolbarHidden(true, animated: animated)
 		#endif
 		let contactCardFetchRequest = NSFetchRequest<ContactCardMO>(entityName: "ContactCard")
-				let sortDescriptor = NSSortDescriptor(key: "filename", ascending: false)
+				let sortDescriptor = NSSortDescriptor(key: "filename", ascending: true)
 		contactCardFetchRequest.sortDescriptors = [sortDescriptor]
 		guard let context=managedObjectContext else {
 			return
