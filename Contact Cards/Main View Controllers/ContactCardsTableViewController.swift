@@ -166,7 +166,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		print("abcd\(contactCard.description)")
 		cell.nameLabel.text=contactCard.filename
 		let colorString=contactCard.color
-		if let color=colorModel.colorsDictionary[colorString ?? "Contrasting Color"] as? UIColor {
+		if let color=colorModel.colorsDictionary[colorString] as? UIColor {
 			cell.circularColorView.backgroundColor=color
 		}
 		return cell

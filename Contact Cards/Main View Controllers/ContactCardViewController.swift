@@ -86,7 +86,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard let contactCard=contactCard else {
 			return
 		}
-		guard let fileURL=writeTemporaryFile(contactCard: contactCard) else {
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard) else {
 			return
 		}
 			let activityViewController = UIActivityViewController(
@@ -133,7 +133,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
-		guard let fileURL=writeTemporaryFile(contactCard: activeCard) else {
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard) else {
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 			contactInfoTextView.attributedText=ContactInfoManipulator.getBadVCardAttributedString()
 			return
@@ -236,42 +236,13 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard let contactCard=contactCard else {
 			return
 		}
-		guard let fileURL=writeTemporaryFile(contactCard: contactCard) else {
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard) else {
 			print("Couldn't write temporary vCard file")
 			return
 		}
 		let exportContactCardViewController = ExportContactCardViewController(forExporting: [fileURL], asCopy: false)
 		exportContactCardViewController.url=fileURL
 		present(exportContactCardViewController, animated: true)
-	}
-	func writeTemporaryFile(contactCard: ContactCardMO) -> URL? {
-		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
-				return nil
-			}
-		var filename="Contact"
-		var contact=CNContact()
-		do {
-			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)
-			if contactArray.count==1 {
-				contact=contactArray[0]
-			}
-		} catch {
-			print("Error making CNContact from VCard String.")
-		}
-		if let name=CNContactFormatter().string(from: contact) {
-			filename=name
-		}
-		let fileURL = directoryURL.appendingPathComponent(filename)
-			.appendingPathExtension("vcf")
-		do {
-		let data = try CNContactVCardSerialization.data(with: [contact])
-
-		try data.write(to: fileURL, options: [.atomicWrite])
-		} catch {
-			print("Error trying to make vCard file")
-			return nil
-		}
-		return fileURL
 	}
 	@objc func createNewContact() {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)

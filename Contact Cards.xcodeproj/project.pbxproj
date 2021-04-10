@@ -24,6 +24,7 @@
 		9F24C17326181DEB00C9441F /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */; };
 		9F339FF3256E9C9500F31F9F /* ExportContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F339FF2256E9C9500F31F9F /* ExportContactCardViewController.swift */; };
 		9F34C273255CCF1900B9DEA4 /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */; };
+		9F38B39A261929F400BBBC9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE921BA1691003A6A33 /* Assets.xcassets */; };
 		9F3F6A5925F494820053C1DF /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3F6A2025F494110053C1DF /* Intents.framework */; };
 		9F3F6A6025F494820053C1DF /* SelectContactIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F3F6A5825F494820053C1DF /* SelectContactIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F3F6AE225F498FC0053C1DF /* ContactCardQRCode.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9FC149A325F34B9600C700B0 /* ContactCardQRCode.intentdefinition */; };
@@ -669,6 +670,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F24C12D26180DF700C9441F /* Assets.xcassets in Resources */,
+				9F38B39A261929F400BBBC9D /* Assets.xcassets in Resources */,
 				9F24C12B26180DF600C9441F /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

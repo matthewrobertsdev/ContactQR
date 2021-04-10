@@ -9,14 +9,32 @@
 import UIKit
 import Messages
 import CoreData
-class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource {
+import Contacts
+class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource, UITableViewDelegate {
 	@IBOutlet weak var tableView: UITableView!
 	var contactCards=[ContactCardMO]()
 	let colorModel=ColorModel()
+	lazy var persistentContainer: NSPersistentCloudKitContainer = {
+		let container=NSPersistentCloudKitContainer(name: "ContactCards")
+		let groupIdentifier="group.com.apps.celeritas.contact.cards"
+		if let fileContainerURL=FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) {
+			let storeURL=fileContainerURL.appendingPathComponent("ContactCards.sqlite")
+			let storeDescription=NSPersistentStoreDescription(url: storeURL)
+			storeDescription.cloudKitContainerOptions=NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.apps.celeritas.ContactCards")
+			container.persistentStoreDescriptions=[storeDescription]
+		}
+		//container.persistentStoreDescriptions
+		container.loadPersistentStores { (_, error) in
+			print(error.debugDescription)
+		}
+		return container
+	}()
 	//var errorString=""
 	override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.dataSource=self
+		tableView.delegate=self
+		/*
 		let container=NSPersistentCloudKitContainer(name: "ContactCards")
 		let groupIdentifier="group.com.apps.celeritas.contact.cards"
 		if let fileContainerURL=FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) {
@@ -30,7 +48,8 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 			print(error.debugDescription)
 			//self.errorString=error?.localizedDescription ?? ""
 		}
-		let managedObjectContext=container.viewContext
+*/
+		let managedObjectContext=persistentContainer.viewContext
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
 			do {
 				// Execute Fetch Request
@@ -93,13 +112,30 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 				as? SavedContactCell else {
 			return UITableViewCell()
 		}
-		let contactCard = contactCards[indexPath.row]
-		print("abcd\(contactCard.description)")
+		do {
+		if let contactCard = try persistentContainer.viewContext.existingObject(with: contactCards[indexPath.row].objectID) as? ContactCardMO {
 		cell.nameLabel.text=contactCard.filename
 		let colorString=contactCard.color
 		if let color=colorModel.colorsDictionary[colorString] as? UIColor {
 			cell.circularColorView.backgroundColor=color
 		}
+		}
+		} catch {
+			print("error loading ContactCardMO from viewContext")
+		}
 		return cell
+	}
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		do {
+			guard let contactCard = try persistentContainer.viewContext.existingObject(with: contactCards[indexPath.row].objectID) as? ContactCardMO else {
+				return
+			}
+			guard let url=ContactDataConverter.writeTemporaryFile(contactCard: contactCard) else {
+				return
+			}
+			self.activeConversation?.insertAttachment(url, withAlternateFilename: nil)
+		} catch {
+			print("error loading ContactCardMO from viewContext")
+		}
 	}
 }
