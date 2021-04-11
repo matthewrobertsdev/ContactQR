@@ -13,7 +13,7 @@ class ChooseColorTableViewController: UITableViewController {
 	let model=ColorModel()
 	var forEditing=false
 	var contact=CNContact()
-	var contactCard: ContactCard?
+	var contactCard: ContactCardMO?
     override func viewDidLoad() {
         super.viewDidLoad()
 		nextButton.isEnabled=false
@@ -63,7 +63,13 @@ class ChooseColorTableViewController: UITableViewController {
 		}
 		if forEditing {
 			contactCard?.color=model.colors[indexPath.row].name
-			ContactCardStore.sharedInstance.saveContacts()
+			let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+			do {
+				try managedObjectContext?.save()
+			} catch {
+				print("Couldn't save color")
+			}
+			//ContactCardStore.sharedInstance.saveContacts()
 			WidgetCenter.shared.getCurrentConfigurations { result in
 				guard case .success(let widgets) = result else { return }
 				
@@ -72,13 +78,13 @@ class ChooseColorTableViewController: UITableViewController {
 				if let widget = widgets.first(
 					where: { widget in
 						let intent = widget.configuration as? ConfigurationIntent
-						return intent?.parameter?.identifier == self.contactCard?.uuidString
+						return intent?.parameter?.identifier == self.contactCard?.objectID.uriRepresentation().absoluteString
 					}
 				) {
 					WidgetCenter.shared.reloadTimelines(ofKind: widget.kind)
 				}
 			}
-			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.uuidString ?? ""])
+			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.objectID.uriRepresentation().absoluteString ?? ""])
 			navigationController?.dismiss(animated: true)
 		}
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)

@@ -64,6 +64,35 @@ class ContactDataConverter {
             return nil
         }
     }
+	static func writeTemporaryFile(contactCard: ContactCardMO) -> URL? {
+		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+				return nil
+			}
+		var filename="Contact"
+		var contact=CNContact()
+		do {
+			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)
+			if contactArray.count==1 {
+				contact=contactArray[0]
+			}
+		} catch {
+			print("Error making CNContact from VCard String.")
+		}
+		if let name=CNContactFormatter().string(from: contact) {
+			filename=name
+		}
+		let fileURL = directoryURL.appendingPathComponent(filename)
+			.appendingPathExtension("vcf")
+		do {
+		let data = try CNContactVCardSerialization.data(with: [contact])
+
+		try data.write(to: fileURL, options: [.atomicWrite])
+		} catch {
+			print("Error trying to make vCard file")
+			return nil
+		}
+		return fileURL
+	}
 }
 enum DataConversionError: Error {
     case dataSerializationError(String)

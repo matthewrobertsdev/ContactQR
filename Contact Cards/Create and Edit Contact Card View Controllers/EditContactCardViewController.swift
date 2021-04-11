@@ -12,7 +12,7 @@ class EditContactCardViewController: UIViewController {
 	@IBOutlet weak var changeColorButton: UIButton!
 	@IBOutlet weak var changeTitleButton: UIButton!
 	var contact=CNContact()
-	var contactCard: ContactCard?
+	var contactCard: ContactCardMO?
 	override func viewDidLoad() {
         super.viewDidLoad()
 		editButton.sizeToFit()

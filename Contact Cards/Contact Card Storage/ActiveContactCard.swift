@@ -17,7 +17,7 @@ class ActiveContactCard {
     //shared is the singleton
     static let shared=ActiveContactCard()
     //stoes a CNContact for use throughout the app
-    var contactCard: ContactCard?
+    var contactCard: ContactCardMO?
     private init() {
     }
 }

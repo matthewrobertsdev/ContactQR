@@ -11,7 +11,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	var itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var contactInfoTextView: UITextView!
-	var contactCard: ContactCard?
+	var contactCard: ContactCardMO?
 	let colorModel=ColorModel()
 	private var contactDisplayStrings=[String]()
     override func viewDidLoad() {
@@ -86,7 +86,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard let contactCard=contactCard else {
 			return
 		}
-		guard let fileURL=writeTemporaryFile(contactCard: contactCard) else {
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard) else {
 			return
 		}
 			let activityViewController = UIActivityViewController(
@@ -133,7 +133,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
-		guard let fileURL=writeTemporaryFile(contactCard: activeCard) else {
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard) else {
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 			contactInfoTextView.attributedText=ContactInfoManipulator.getBadVCardAttributedString()
 			return
@@ -197,8 +197,11 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	}
 */
 	@IBAction func deleteContact(_ sender: Any) {
-		guard let uuidString=contactCard?.uuidString else {
-			print("Error trying to getting UUID to delete with")
+		guard let objectID=contactCard?.objectID else {
+			print("Error trying to getting object ID to delete with")
+			return
+		}
+		guard let contactCardMO=contactCard else {
 			return
 		}
 		guard let title=contactCard?.filename else {
@@ -215,12 +218,17 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 																		guard let strongSelf=self else {
 																			return
 																		}
-			if let deletedIndex=ContactCardStore.sharedInstance.removeContactWithUUID(uuid: uuidString) {
-				NotificationCenter.default.post(name: .contactDeleted, object: nil, userInfo: ["index": deletedIndex])
+																		let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+																		
+																		managedObjectContext?.delete(contactCardMO)
 				ActiveContactCard.shared.contactCard=nil
 				strongSelf.contactCard=nil
-				strongSelf.loadContact()
-			}
+																		do {
+																			try managedObjectContext?.save()
+																			strongSelf.loadContact()
+																		} catch {
+																			managedObjectContext?.rollback()
+																		}
 		}))
 		self.present(deleteAlert, animated: true, completion: nil)
 	}
@@ -228,42 +236,13 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard let contactCard=contactCard else {
 			return
 		}
-		guard let fileURL=writeTemporaryFile(contactCard: contactCard) else {
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard) else {
 			print("Couldn't write temporary vCard file")
 			return
 		}
 		let exportContactCardViewController = ExportContactCardViewController(forExporting: [fileURL], asCopy: false)
 		exportContactCardViewController.url=fileURL
 		present(exportContactCardViewController, animated: true)
-	}
-	func writeTemporaryFile(contactCard: ContactCard) -> URL? {
-		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
-				return nil
-			}
-		var filename="Contact"
-		var contact=CNContact()
-		do {
-			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)
-			if contactArray.count==1 {
-				contact=contactArray[0]
-			}
-		} catch {
-			print("Error making CNContact from VCard String.")
-		}
-		if let name=CNContactFormatter().string(from: contact) {
-			filename=name
-		}
-		let fileURL = directoryURL.appendingPathComponent(filename)
-			.appendingPathExtension("vcf")
-		do {
-		let data = try CNContactVCardSerialization.data(with: [contact])
-
-		try data.write(to: fileURL, options: [.atomicWrite])
-		} catch {
-			print("Error trying to make vCard file")
-			return nil
-		}
-		return fileURL
 	}
 	@objc func createNewContact() {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)

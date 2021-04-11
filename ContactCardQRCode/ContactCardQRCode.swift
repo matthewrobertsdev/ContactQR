@@ -9,7 +9,7 @@
 import WidgetKit
 import SwiftUI
 import Intents
-
+import CoreData
 struct Provider: IntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
 		SimpleEntry(date: Date(), qrCode: nil, color: nil)
@@ -30,6 +30,39 @@ struct Provider: IntentTimelineProvider {
 		var qrCode: UIImage?
 		var color: UIColor?
 		if let uuid=configuration.parameter?.identifier {
+			let container=NSPersistentCloudKitContainer(name: "ContactCards")
+			let groupIdentifier="group.com.apps.celeritas.contact.cards"
+			if let fileContainerURL=FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) {
+				let storeURL=fileContainerURL.appendingPathComponent("ContactCards.sqlite")
+				let storeDescription=NSPersistentStoreDescription(url: storeURL)
+				storeDescription.cloudKitContainerOptions=NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.apps.celeritas.ContactCards")
+				container.persistentStoreDescriptions=[storeDescription]
+			}
+			//container.persistentStoreDescriptions
+			container.loadPersistentStores { (_, error) in
+				print(error.debugDescription)
+			}
+			let managedObjectContext=container.viewContext
+			let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
+				do {
+					// Execute Fetch Request
+					let contactCards = try managedObjectContext.fetch(fetchRequest)
+					if let contactCardMO=contactCards.first(where: { (contactCardMO) -> Bool in
+						return uuid==contactCardMO.objectID.uriRepresentation().absoluteString
+					}) {
+						let model=DisplayQRModel()
+						let colorModel=ColorModel()
+						model.setUp(contactCard: contactCardMO)
+						color=colorModel.colorsDictionary[contactCardMO.color] ?? UIColor.label
+						qrCode=model.makeQRCode()
+						print("Should have made qr code for widget")
+					}
+				} catch {
+					print("Unable to fetch contact cards")
+				}
+		}
+		/*
+		if let uuid=configuration.parameter?.identifier {
 			do {
 				let contactCards=try ContactCardPersistencyManager.shared.getSavedContacts()
 				if let contactCard=contactCards.first(where: { (card) in
@@ -46,6 +79,7 @@ struct Provider: IntentTimelineProvider {
 				print("Error reading cards in timeline")
 			}
 		}
+*/
 		return SimpleEntry(date: Date(), qrCode: qrCode, color: color)
 	}
 

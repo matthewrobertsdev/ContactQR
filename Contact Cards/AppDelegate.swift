@@ -6,6 +6,8 @@
 //  Copyright © 2018 Matt Roberts. All rights reserved.
 //
 import UIKit
+import CoreData
+import ClockKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
@@ -24,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func applicationWillTerminate(_ application: UIApplication) {
 		//ContactCardStore.sharedInstance.saveContacts()
+		saveContext()
     }
 	func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
 		// Called when a new scene session is being created.
@@ -199,4 +202,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			UIApplication.shared.open(url)
 		}
 	}
+	lazy var persistentContainer: NSPersistentCloudKitContainer = {
+		let container=NSPersistentCloudKitContainer(name: "ContactCards")
+		let groupIdentifier="group.com.apps.celeritas.contact.cards"
+		if let fileContainerURL=FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) {
+			let storeURL=fileContainerURL.appendingPathComponent("ContactCards.sqlite")
+			let storeDescription=NSPersistentStoreDescription(url: storeURL)
+			storeDescription.cloudKitContainerOptions=NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.apps.celeritas.ContactCards")
+			container.persistentStoreDescriptions=[storeDescription]
+		}
+		//container.persistentStoreDescriptions
+		container.loadPersistentStores { (_, error) in
+			print(error.debugDescription)
+		}
+		return container
+	}()
+	func saveContext () {
+			let context = persistentContainer.viewContext
+			if context.hasChanges {
+				do {
+					try context.save()
+				} catch {
+					print(error.localizedDescription)
+				}
+			}
+		}
+
 }

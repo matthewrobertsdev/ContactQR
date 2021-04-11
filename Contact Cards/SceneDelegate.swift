@@ -18,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
 		// This delegate does not imply the connecting scene or session are new (see
 		//`application:configurationForConnectingSceneSession` instead).
+		(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext.automaticallyMergesChangesFromParent=true
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		guard let mainSplitViewController=storyboard.instantiateViewController(withIdentifier:
 																					"MainSplitViewController") as? MainSplitViewController else {
@@ -45,7 +46,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		windowScene.sizeRestrictions?.minimumSize=CGSize(width: 611, height: 568)
 		#endif
 	}
-
 	func sceneDidDisconnect(_ scene: UIScene) {
 		// Called as the scene is being released by the system.
 		// This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -73,6 +73,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// Called as the scene transitions from the foreground to the background.
 		// Use this method to save data, release shared resources, and store enough scene-specific state information
 		// to restore the scene back to its current state.
+		(UIApplication.shared.delegate as? AppDelegate)?.saveContext()
 	}
 	func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
 		print("Should save user activity")

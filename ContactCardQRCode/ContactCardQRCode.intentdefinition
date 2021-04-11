@@ -9,7 +9,7 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>88xZPY</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>20D80</string>
+	<string>20D91</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
 	<string>12D4e</string>
 	<key>INIntentDefinitionToolsVersion</key>
@@ -128,7 +128,7 @@
 			<key>INTypeDisplayNameID</key>
 			<string>t4vfX3</string>
 			<key>INTypeLastPropertyTag</key>
-			<integer>100</integer>
+			<integer>101</integer>
 			<key>INTypeName</key>
 			<string>ContactCardINObject</string>
 			<key>INTypeProperties</key>

@@ -11,7 +11,7 @@ import Contacts
 
 class EditContactAlertController: UIAlertController, UIPopoverControllerDelegate {
 	var contact=CNContact()
-	var contactCard: ContactCard?
+	var contactCard: ContactCardMO?
     override func viewDidLoad() {
         super.viewDidLoad()
 		addAction(UIAlertAction(title: "Edit Contact Info", style: .default, handler: { [weak self] _ in

@@ -12,11 +12,11 @@ import Contacts
  */
 class DisplayQRModel {
     private var contact=CNContact()
-	private var contactCard: ContactCard?
+	private var contactCard: ContactCardMO?
     private var qrCode=UIImage()
 	init() {
 	}
-	func setUp(contactCard: ContactCard?) {
+	func setUp(contactCard: ContactCardMO?) {
 		self.contactCard=contactCard
 		guard let vCardString=contactCard?.vCardString else {
 			return
