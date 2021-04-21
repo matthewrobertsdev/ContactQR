@@ -73,6 +73,7 @@
 		9F740EE82618AD2F0011DCAF /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB12608E1540003B2E4 /* ContactCards.xcdatamodeld */; };
 		9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EB966255E10420032563C /* CreateContactViewController.swift */; };
 		9F7F42192560F24700199193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F42182560F24700199193 /* SceneDelegate.swift */; };
+		9F7FE6D8262FD11D00A98E3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F7153E82622ABD700292539 /* Assets.xcassets */; };
 		9F8C266C2612821500E37290 /* ContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB92608E54A0003B2E4 /* ContactCardMO.swift */; };
 		9F98DF6A257F3C9900566779 /* EditContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F98DF69257F3C9900566779 /* EditContactCardViewController.swift */; };
 		9F9E9AE321BA1690003A6A33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */; };
@@ -812,6 +813,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F7153D52622ABD600292539 /* Assets.xcassets in Resources */,
+				9F7FE6D8262FD11D00A98E3F /* Assets.xcassets in Resources */,
 				9F7153D32622ABD500292539 /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
