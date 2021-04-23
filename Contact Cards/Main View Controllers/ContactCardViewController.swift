@@ -9,8 +9,10 @@ import UIKit
 import Contacts
 class ContactCardViewController: UIViewController, UIActivityItemsConfigurationReading {
 	var itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
+	@IBOutlet weak var stackView: UIStackView!
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var contactInfoTextView: UITextView!
+	@IBOutlet weak var macButtonView: UIView!
 	var contactCard: ContactCardMO?
 	let colorModel=ColorModel()
 	private var contactDisplayStrings=[String]()
@@ -54,6 +56,8 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		#if targetEnvironment(macCatalyst)
 			navigationController?.setNavigationBarHidden(true, animated: animated)
 			navigationController?.setToolbarHidden(true, animated: animated)
+		#else
+			stackView.removeArrangedSubview(macButtonView)
 		#endif
 	}
 	override var canBecomeFirstResponder: Bool {

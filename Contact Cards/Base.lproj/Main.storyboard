@@ -3,6 +3,7 @@
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -132,33 +133,59 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgk-8b-W0c">
-                                <rect key="frame" x="0.0" y="108" width="428" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9fh-p1-mOo">
-                                <rect key="frame" x="0.0" y="116" width="428" height="727"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YDY-bh-YGS">
+                                <rect key="frame" x="0.0" y="98" width="428" height="745"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgk-8b-W0c">
+                                        <rect key="frame" x="0.0" y="0.0" width="428" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="IS4-UJ-gpR"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9fh-p1-mOo">
+                                        <rect key="frame" x="0.0" y="53" width="428" height="634"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <attributedString key="attributedText"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cK9-Uc-EW2">
+                                        <rect key="frame" x="0.0" y="695" width="428" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPC-Ml-3bC">
+                                                <rect key="frame" x="173.66666666666666" y="0.0" width="81" height="30"/>
+                                                <state key="normal" title="Copy vCard"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="iPC-Ml-3bC" firstAttribute="centerX" secondItem="cK9-Uc-EW2" secondAttribute="centerX" id="WDL-f7-rRr"/>
+                                            <constraint firstAttribute="height" constant="50" id="yp0-07-IUM"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="bgk-8b-W0c" firstAttribute="top" secondItem="YDY-bh-YGS" secondAttribute="top" id="gNg-O4-jbW"/>
+                                    <constraint firstItem="9fh-p1-mOo" firstAttribute="top" secondItem="bgk-8b-W0c" secondAttribute="bottom" constant="8" symbolic="YES" id="hi9-1i-Wjd"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RpZ-Z8-adj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="bgk-8b-W0c" firstAttribute="leading" secondItem="RpZ-Z8-adj" secondAttribute="leading" id="9uO-9k-j5q"/>
-                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="9fh-p1-mOo" secondAttribute="trailing" id="BSf-hh-1wQ"/>
-                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="bottom" secondItem="9fh-p1-mOo" secondAttribute="bottom" id="NUL-WB-m7e"/>
+                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="bgk-8b-W0c" secondAttribute="trailing" id="D7B-k0-8rj"/>
+                            <constraint firstItem="YDY-bh-YGS" firstAttribute="leading" secondItem="RpZ-Z8-adj" secondAttribute="leading" id="DST-Vm-cQJ"/>
+                            <constraint firstItem="YDY-bh-YGS" firstAttribute="top" secondItem="RpZ-Z8-adj" secondAttribute="top" constant="10" id="O2P-am-ymo"/>
+                            <constraint firstItem="YDY-bh-YGS" firstAttribute="bottom" secondItem="RpZ-Z8-adj" secondAttribute="bottom" id="XVX-pH-tNR"/>
                             <constraint firstItem="KuD-EN-eRZ" firstAttribute="centerY" secondItem="RpZ-Z8-adj" secondAttribute="centerY" id="ZFS-RX-QpX"/>
                             <constraint firstItem="KuD-EN-eRZ" firstAttribute="leading" secondItem="RpZ-Z8-adj" secondAttribute="leading" id="ZtY-nB-J2Q"/>
                             <constraint firstItem="KuD-EN-eRZ" firstAttribute="centerX" secondItem="RpZ-Z8-adj" secondAttribute="centerX" id="bcn-eN-ecI"/>
-                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="bgk-8b-W0c" secondAttribute="trailing" id="dy2-y7-WG7"/>
-                            <constraint firstItem="9fh-p1-mOo" firstAttribute="leading" secondItem="RpZ-Z8-adj" secondAttribute="leading" id="lDp-mh-nXu"/>
-                            <constraint firstItem="9fh-p1-mOo" firstAttribute="top" secondItem="bgk-8b-W0c" secondAttribute="bottom" constant="8" symbolic="YES" id="myE-bS-Iwj"/>
-                            <constraint firstItem="bgk-8b-W0c" firstAttribute="top" secondItem="RpZ-Z8-adj" secondAttribute="top" constant="20" id="pOy-mm-vcd"/>
-                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="KuD-EN-eRZ" secondAttribute="trailing" id="pWn-O4-LdF"/>
+                            <constraint firstItem="bgk-8b-W0c" firstAttribute="leading" secondItem="RpZ-Z8-adj" secondAttribute="leading" id="gFn-zn-qR2"/>
+                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="bottom" secondItem="iPC-Ml-3bC" secondAttribute="bottom" constant="20" id="m6I-Kr-coB"/>
+                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="trailing" secondItem="YDY-bh-YGS" secondAttribute="trailing" id="tm5-do-4X8"/>
+                            <constraint firstItem="RpZ-Z8-adj" firstAttribute="bottom" secondItem="cK9-Uc-EW2" secondAttribute="bottom" id="vMm-c7-oOh"/>
                         </constraints>
                     </view>
                     <toolbarItems>
@@ -168,6 +195,8 @@
                                 <action selector="deleteContact:" destination="IJa-nU-fZ3" id="Gib-3U-BEL"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="hss-MV-N0n"/>
+                        <barButtonItem title="Copy" id="t4W-Tp-4Pg"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="YvY-pd-gf2"/>
                         <barButtonItem title="Edit" id="Zsl-Mo-NRh">
                             <connections>
@@ -179,6 +208,8 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="contactInfoTextView" destination="9fh-p1-mOo" id="IFz-Nm-OuV"/>
+                        <outlet property="macButtonView" destination="cK9-Uc-EW2" id="O9p-3s-RQA"/>
+                        <outlet property="stackView" destination="YDY-bh-YGS" id="nAa-IZ-vX4"/>
                         <outlet property="titleLabel" destination="bgk-8b-W0c" id="ywT-Yn-Xm9"/>
                     </connections>
                 </viewController>
@@ -241,7 +272,14 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
+                        <barButtonItem title="Item" id="2xW-Xo-lKy">
+                            <imageReference key="image" image="mic.circle" catalog="system" renderingMode="template"/>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="DfT-mP-Ra0"/>
+                        <barButtonItem id="lec-rg-7c5">
+                            <imageReference key="image" image="applewatch" catalog="system" renderingMode="template"/>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="dyi-4Z-Am0"/>
                         <barButtonItem title="Edit" id="69Q-6u-nq9">
                             <connections>
                                 <action selector="toggleEditing:" destination="8w3-e5-v8i" id="0OK-Oc-R3b"/>
@@ -263,6 +301,8 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="editButton" destination="69Q-6u-nq9" id="PBG-hY-hGc"/>
+                        <outlet property="siriButton" destination="2xW-Xo-lKy" id="D8A-1q-az6"/>
+                        <outlet property="watchButton" destination="lec-rg-7c5" id="Qd7-o0-OvL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXb-db-Xvt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1141,12 +1181,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="applewatch" catalog="system" width="114" height="128"/>
+        <image name="mic.circle" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

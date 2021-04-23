@@ -9,6 +9,8 @@ import UIKit
 import CoreData
 class ContactCardsTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 	@IBOutlet weak var editButton: UIBarButtonItem!
+	@IBOutlet weak var siriButton: UIBarButtonItem!
+	@IBOutlet weak var watchButton: UIBarButtonItem!
 	var fetchedResultsController: NSFetchedResultsController<ContactCardMO>?
 	var selectedCardUUID: String?
 	static let selectedCardUUIDKey="selectedCardUUID"
@@ -16,9 +18,6 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		#if targetEnvironment(macCatalyst)
-		
-		#endif
 		/*
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
 		do {
@@ -61,6 +60,13 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		navigationController?.setNavigationBarHidden(true, animated: animated)
 		navigationController?.setToolbarHidden(true, animated: animated)
 		#endif
+		if var toolbarItems=toolbarItems {
+			if UIDevice.current.userInterfaceIdiom != UIUserInterfaceIdiom.phone {
+				if toolbarItems.contains(watchButton) {
+					toolbarItems.remove(at: 1)
+				}
+			}
+		}
 		let contactCardFetchRequest = NSFetchRequest<ContactCardMO>(entityName: "ContactCard")
 				let sortDescriptor = NSSortDescriptor(key: "filename", ascending: true)
 		contactCardFetchRequest.sortDescriptors = [sortDescriptor]
