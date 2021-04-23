@@ -127,12 +127,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Contact Card Selected" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuD-EN-eRZ">
-                                <rect key="frame" x="0.0" y="455.33333333333331" width="428" height="20.333333333333314"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YDY-bh-YGS">
                                 <rect key="frame" x="0.0" y="98" width="428" height="745"/>
                                 <subviews>
@@ -171,6 +165,12 @@
                                     <constraint firstItem="9fh-p1-mOo" firstAttribute="top" secondItem="bgk-8b-W0c" secondAttribute="bottom" constant="8" symbolic="YES" id="hi9-1i-Wjd"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Contact Card Selected" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuD-EN-eRZ">
+                                <rect key="frame" x="0.0" y="455.33333333333331" width="428" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RpZ-Z8-adj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -209,6 +209,7 @@
                     <connections>
                         <outlet property="contactInfoTextView" destination="9fh-p1-mOo" id="IFz-Nm-OuV"/>
                         <outlet property="macButtonView" destination="cK9-Uc-EW2" id="O9p-3s-RQA"/>
+                        <outlet property="noCardSelectedLabel" destination="KuD-EN-eRZ" id="oMp-tK-jbR"/>
                         <outlet property="stackView" destination="YDY-bh-YGS" id="nAa-IZ-vX4"/>
                         <outlet property="titleLabel" destination="bgk-8b-W0c" id="ywT-Yn-Xm9"/>
                     </connections>
@@ -272,11 +273,11 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Item" id="2xW-Xo-lKy">
-                            <imageReference key="image" image="mic.circle" catalog="system" renderingMode="template"/>
+                        <barButtonItem title="Siri" id="2xW-Xo-lKy">
+                            <imageReference key="image" image="mic" catalog="system" renderingMode="template"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="DfT-mP-Ra0"/>
-                        <barButtonItem id="lec-rg-7c5">
+                        <barButtonItem title="Watch" id="lec-rg-7c5">
                             <imageReference key="image" image="applewatch" catalog="system" renderingMode="template"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="dyi-4Z-Am0"/>
@@ -1182,7 +1183,7 @@
     </scenes>
     <resources>
         <image name="applewatch" catalog="system" width="114" height="128"/>
-        <image name="mic.circle" catalog="system" width="128" height="121"/>
+        <image name="mic" catalog="system" width="108" height="128"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

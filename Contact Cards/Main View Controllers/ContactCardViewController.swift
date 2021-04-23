@@ -9,6 +9,7 @@ import UIKit
 import Contacts
 class ContactCardViewController: UIViewController, UIActivityItemsConfigurationReading {
 	var itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
+	@IBOutlet weak var noCardSelectedLabel: UILabel!
 	@IBOutlet weak var stackView: UIStackView!
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var contactInfoTextView: UITextView!
@@ -63,15 +64,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	override var canBecomeFirstResponder: Bool {
 		return true
 	}
-	func showOrHideTableView() {
-		if contactCard==nil {
-			titleLabel.isHidden=true
-			contactInfoTextView.isHidden=true
-		} else {
-			titleLabel.isHidden=false
-			contactInfoTextView.isHidden=false
-		}
-	}
 	@objc func showQRViewController(_ sender: Any) {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		guard let displayQRViewController=storyboard.instantiateViewController(withIdentifier: "DisplayQRViewController")
@@ -110,6 +102,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			contactCard=nil
 			titleLabel.isHidden=true
 			contactInfoTextView.isHidden=true
+			noCardSelectedLabel.isHidden=false
 			titleLabel.text=""
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 			return
@@ -121,6 +114,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		#endif
 		titleLabel.isHidden=false
 		contactInfoTextView.isHidden=false
+		noCardSelectedLabel.isHidden=true
 		titleLabel.text=activeCard.filename
 		if let color=colorModel.colorsDictionary[activeCard.color] as? UIColor {
 			titleLabel.textColor=color
