@@ -10,7 +10,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     // MARK: - Complication Configuration
     func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
         let descriptors = [
-			CLKComplicationDescriptor(identifier: "complication", displayName: "QR Code", supportedFamilies: [.circularSmall, .modularSmall, .utilitarianSmall, .extraLarge, .graphicCorner,
+			CLKComplicationDescriptor(identifier: "complication", displayName: "QR Code", supportedFamilies: [.circularSmall, .modularSmall, .extraLarge,
 																											  .graphicCircular, .graphicExtraLarge])
             // Multiple complication support can be added here with more descriptors
         ]
@@ -76,17 +76,28 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 		case .circularSmall:
 			return CLKComplicationTemplateCircularSmallSimpleImage(imageProvider: CLKImageProvider(onePieceImage: UIImage(named: "Circular") ?? UIImage()))
 		case .modularSmall:
-			return CLKComplicationTemplateModularSmallSimpleImage(imageProvider: CLKImageProvider(onePieceImage: UIImage(named: "Modular") ?? UIImage()))
+			return
+				CLKComplicationTemplateModularSmallSimpleImage(imageProvider: CLKImageProvider(onePieceImage: UIImage(named: "Modular") ?? UIImage()))
 		case .utilitarianSmall:
 			return CLKComplicationTemplateUtilitarianSmallSquare(imageProvider: CLKImageProvider(onePieceImage: UIImage(named: "Utilitarian") ?? UIImage()))
 		case .extraLarge:
 			return CLKComplicationTemplateExtraLargeSimpleImage(imageProvider: CLKImageProvider(onePieceImage: UIImage(named: "ExtraLarge") ?? UIImage()))
+			/*
 		case .graphicCorner:
-			return CLKComplicationTemplateGraphicCornerCircularImage(imageProvider: CLKFullColorImageProvider(fullColorImage: UIImage(named: "GraphicCorner") ?? UIImage()))
+			return CLKComplicationTemplateGraphicCornerCircularImage(imageProvider:
+																CLKFullColorImageProvider(fullColorImage: UIImage(named: "GraphicCorner") ?? UIImage(), tintedImageProvider:
+																							CLKImageProvider(onePieceImage: UIImage(named: "GraphicCornerTinted") ?? UIImage(),
+																											 twoPieceImageBackground: UIImage(), twoPieceImageForeground: UIImage(named: "GraphicCornerTinted") ?? UIImage())))
+*/
 		case .graphicCircular:
-			return CLKComplicationTemplateGraphicCircularImage(imageProvider: CLKFullColorImageProvider(fullColorImage: UIImage(named: "GraphicCircular") ?? UIImage()))
+			return CLKComplicationTemplateGraphicCircularImage(imageProvider:
+																CLKFullColorImageProvider(fullColorImage: UIImage(named: "GraphicCircular") ?? UIImage(), tintedImageProvider:
+																							CLKImageProvider(onePieceImage: UIImage(named: "GraphicCircularTinted") ?? UIImage(),
+																											 twoPieceImageBackground: UIImage(), twoPieceImageForeground: UIImage(named: "GraphicCircularTinted") ?? UIImage())))
 		case .graphicExtraLarge:
-			return CLKComplicationTemplateGraphicExtraLargeCircularImage(imageProvider: CLKFullColorImageProvider(fullColorImage: UIImage(named: "GraphicExtraLarge")!))
+			return CLKComplicationTemplateGraphicExtraLargeCircularImage(imageProvider:
+																CLKFullColorImageProvider(fullColorImage: UIImage(named: "GraphicExtraLarge") ?? UIImage(), tintedImageProvider:
+																							CLKImageProvider(onePieceImage: UIImage(named: "GraphicExtraLargeTinted") ?? UIImage())))
 		default:
 			return nil
 		}
