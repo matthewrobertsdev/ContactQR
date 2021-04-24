@@ -84,7 +84,10 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard let contactCard=contactCard else {
 			return
 		}
-		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard) else {
+		guard var directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+				return
+			}
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard, directoryURL: directoryURL) else {
 			return
 		}
 			let activityViewController = UIActivityViewController(
@@ -135,7 +138,10 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
-		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard) else {
+		guard var directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+				return
+			}
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard, directoryURL: directoryURL) else {
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 			contactInfoTextView.attributedText=ContactInfoManipulator.getBadVCardAttributedString()
 			return
@@ -238,7 +244,10 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard let contactCard=contactCard else {
 			return
 		}
-		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard) else {
+		guard var directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+				return
+			}
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard, directoryURL: directoryURL) else {
 			print("Couldn't write temporary vCard file")
 			return
 		}
@@ -394,14 +403,38 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard let activeCard=ActiveContactCard.shared.contactCard else {
 			return
 		}
-		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard) else {
+		guard var directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+				return
+			}
+		
+		directoryURL.appendPathComponent("vCardToCopy")
+		do {
+		try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard, directoryURL: directoryURL) else {
 			return
 		}
-		let pasteBoard=UIPasteboard.general
-		guard let itemProvider=NSItemProvider(contentsOf: fileURL) else {
-			return
+			let pasteBoard=UIPasteboard.general
+			guard let itemProvider=NSItemProvider(contentsOf: fileURL) else {
+				return
+			}
+				pasteBoard.setItemProviders([itemProvider], localOnly: true, expirationDate: nil)
+		} catch {
+			print("Error creating vCarToCopy directory")
 		}
-			pasteBoard.setItemProviders([itemProvider], localOnly: true, expirationDate: nil)
+		/*
+		do {
+			let pasteBoard=UIPasteboard.general
+			let vCard=try Data(contentsOf: fileURL)
+			//kUTTypeVCard as String
+			pasteBoard.setItems([["public.vcard": vCard]], options: [:])
+			//pasteBoard.setData(vCard, forPasteboardType: "public.vcard")
+		} catch {
+			print("Error ")
+		}
+*/
+			
+		//}
+	
 	}
 	override var keyCommands: [UIKeyCommand]? {
 		if AppState.shared.appState==AppStateValue.isModal {

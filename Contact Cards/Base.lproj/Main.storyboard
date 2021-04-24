@@ -198,12 +198,6 @@
                                 <action selector="deleteContact:" destination="IJa-nU-fZ3" id="Gib-3U-BEL"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="hss-MV-N0n"/>
-                        <barButtonItem title="Copy" id="t4W-Tp-4Pg">
-                            <connections>
-                                <action selector="copyVCard:" destination="IJa-nU-fZ3" id="XuW-JX-LWF"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="YvY-pd-gf2"/>
                         <barButtonItem title="Edit" id="Zsl-Mo-NRh">
                             <connections>

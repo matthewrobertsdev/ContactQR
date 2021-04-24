@@ -64,10 +64,7 @@ class ContactDataConverter {
             return nil
         }
     }
-	static func writeTemporaryFile(contactCard: ContactCardMO) -> URL? {
-		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
-				return nil
-			}
+	static func writeTemporaryFile(contactCard: ContactCardMO, directoryURL: URL) -> URL? {
 		var filename="Contact"
 		var contact=CNContact()
 		do {
