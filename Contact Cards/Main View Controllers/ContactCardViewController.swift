@@ -396,10 +396,14 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 */
 	}
 	@IBAction override func copy(_ sender: Any?) {
-		copyVCard(self)
+		if ActiveContactCard.shared.contactCard != nil {
+			copyVCard(self)
+		}
 	}
 	@IBAction func copyVCard(_ sender: Any) {
 		print("Should copy vCard")
+		let pasteBoard=UIPasteboard.general
+		pasteBoard.itemProviders=[]
 		guard let activeCard=ActiveContactCard.shared.contactCard else {
 			return
 		}
@@ -413,13 +417,12 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard, directoryURL: directoryURL) else {
 			return
 		}
-			let pasteBoard=UIPasteboard.general
 			guard let itemProvider=NSItemProvider(contentsOf: fileURL) else {
 				return
 			}
 				pasteBoard.setItemProviders([itemProvider], localOnly: true, expirationDate: nil)
 		} catch {
-			print("Error creating vCarToCopy directory")
+			print("Error creating vCardToCopy directory")
 		}
 		/*
 		do {
