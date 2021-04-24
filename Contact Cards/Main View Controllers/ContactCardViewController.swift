@@ -14,6 +14,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var contactInfoTextView: UITextView!
 	@IBOutlet weak var macButtonView: UIView!
+	@IBOutlet weak var copyButton: UIButton!
 	var contactCard: ContactCardMO?
 	let colorModel=ColorModel()
 	private var contactDisplayStrings=[String]()
@@ -59,6 +60,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			navigationController?.setToolbarHidden(true, animated: animated)
 		#else
 			stackView.removeArrangedSubview(macButtonView)
+			copyButton.isHidden=true
 		#endif
 	}
 	override var canBecomeFirstResponder: Bool {
@@ -102,6 +104,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			contactCard=nil
 			titleLabel.isHidden=true
 			contactInfoTextView.isHidden=true
+			copyButton.isHidden=true
 			noCardSelectedLabel.isHidden=false
 			titleLabel.text=""
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
@@ -114,6 +117,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		#endif
 		titleLabel.isHidden=false
 		contactInfoTextView.isHidden=false
+		copyButton.isHidden=false
 		noCardSelectedLabel.isHidden=true
 		titleLabel.text=activeCard.filename
 		if let color=colorModel.colorsDictionary[activeCard.color] as? UIColor {
@@ -381,6 +385,23 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		#endif
 		present(navigationController, animated: animated)
 */
+	}
+	@IBAction override func copy(_ sender: Any?) {
+		copyVCard(self)
+	}
+	@IBAction func copyVCard(_ sender: Any) {
+		print("Should copy vCard")
+		guard let activeCard=ActiveContactCard.shared.contactCard else {
+			return
+		}
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard) else {
+			return
+		}
+		let pasteBoard=UIPasteboard.general
+		guard let itemProvider=NSItemProvider(contentsOf: fileURL) else {
+			return
+		}
+			pasteBoard.setItemProviders([itemProvider], localOnly: true, expirationDate: nil)
 	}
 	override var keyCommands: [UIKeyCommand]? {
 		if AppState.shared.appState==AppStateValue.isModal {
