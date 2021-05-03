@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aYm-LV-jC5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aYm-LV-jC5">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -229,7 +229,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactCell" rowHeight="52" id="Yzc-79-eXU" customClass="SavedContactCell" customModule="Contact_Cards" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="52"/>
+                                <rect key="frame" x="0.0" y="24.5" width="320" height="52"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yzc-79-eXU" id="7cN-MP-4h6">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
@@ -275,10 +275,17 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="For Siri" id="2xW-Xo-lKy"/>
+                        <barButtonItem title="For Siri" id="2xW-Xo-lKy">
+                            <connections>
+                                <segue destination="NF4-cX-5AG" kind="presentation" id="dcP-qJ-0ZL"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="DfT-mP-Ra0"/>
                         <barButtonItem title="For Watch" id="lec-rg-7c5">
                             <imageReference key="image" image="applewatch" catalog="system" renderingMode="template"/>
+                            <connections>
+                                <segue destination="NF4-cX-5AG" kind="presentation" id="zbT-t2-QT7"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="dyi-4Z-Am0"/>
                         <barButtonItem title="Edit" id="69Q-6u-nq9">
@@ -969,7 +976,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" reuseIdentifier="SavedContactCell" focusStyle="custom" rowHeight="52" id="eID-Ct-T6j" customClass="SavedContactCell" customModule="Contact_Cards" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="52"/>
+                                <rect key="frame" x="0.0" y="24.5" width="320" height="52"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eID-Ct-T6j" id="zb4-ZQ-eJY">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
@@ -1123,7 +1130,95 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IiA-rX-lzc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="90" y="121"/>
+            <point key="canvasLocation" x="88" y="177"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="MgH-1g-HqD">
+            <objects>
+                <viewController id="NF4-cX-5AG" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0XQ-B2-8qC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FIj-e6-Uba">
+                                <rect key="frame" x="0.0" y="20" width="320" height="528"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please choose a card without much contact info as the watch screen for the qr code is small." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyP-se-xnI">
+                                        <rect key="frame" x="35.5" y="0.0" width="249" height="65"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="65" id="Nha-eh-Qs5"/>
+                                            <constraint firstAttribute="width" constant="249" id="ske-Ka-hCd"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4tj-aW-SdA">
+                                        <rect key="frame" x="0.0" y="73" width="320" height="455"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactCell" rowHeight="52" id="nzM-Pq-SpP" customClass="SavedContactCell" customModule="Contact_Cards" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="24.5" width="320" height="52"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nzM-Pq-SpP" id="WMd-zu-sct">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3UA-Ul-H5G" customClass="CircularColorView" customModule="Contact_Cards" customModuleProvider="target">
+                                                            <rect key="frame" x="20" y="17.5" width="17.5" height="17.5"/>
+                                                            <color key="backgroundColor" systemColor="labelColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="17.5" id="LdN-xS-rLV"/>
+                                                                <constraint firstAttribute="height" constant="17.5" id="dzV-dH-ab3"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ContactCard Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxp-gn-Svb">
+                                                            <rect key="frame" x="45.5" y="5" width="259.5" height="42"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="35" id="h0Z-Ps-jDC"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="3UA-Ul-H5G" firstAttribute="leading" secondItem="WMd-zu-sct" secondAttribute="leading" constant="20" symbolic="YES" id="0F2-iv-Dsp"/>
+                                                        <constraint firstItem="dxp-gn-Svb" firstAttribute="top" secondItem="WMd-zu-sct" secondAttribute="top" constant="5" id="8Bj-qf-r7Z"/>
+                                                        <constraint firstAttribute="bottom" secondItem="dxp-gn-Svb" secondAttribute="bottom" constant="5" id="EvH-QX-DqD"/>
+                                                        <constraint firstAttribute="trailing" secondItem="dxp-gn-Svb" secondAttribute="trailing" constant="15" id="I5e-SJ-yEC"/>
+                                                        <constraint firstItem="dxp-gn-Svb" firstAttribute="leading" secondItem="3UA-Ul-H5G" secondAttribute="trailing" constant="8" symbolic="YES" id="JI0-NO-kH8"/>
+                                                        <constraint firstItem="3UA-Ul-H5G" firstAttribute="centerY" secondItem="WMd-zu-sct" secondAttribute="centerY" id="eaM-Tl-Hgu"/>
+                                                        <constraint firstItem="dxp-gn-Svb" firstAttribute="centerY" secondItem="WMd-zu-sct" secondAttribute="centerY" id="ynK-xx-Bna"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="circularColorView" destination="3UA-Ul-H5G" id="LDT-zz-c0M"/>
+                                                    <outlet property="nameLabel" destination="dxp-gn-Svb" id="tMY-hF-POx"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="4tj-aW-SdA" secondAttribute="trailing" id="AzI-BV-jgh"/>
+                                    <constraint firstItem="4tj-aW-SdA" firstAttribute="leading" secondItem="FIj-e6-Uba" secondAttribute="leading" id="qHB-rJ-yxo"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Z6l-Rp-bDe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FIj-e6-Uba" firstAttribute="top" secondItem="Z6l-Rp-bDe" secondAttribute="top" constant="20" id="Yuj-LS-7Ia"/>
+                            <constraint firstItem="FIj-e6-Uba" firstAttribute="leading" secondItem="Z6l-Rp-bDe" secondAttribute="leading" id="pSF-vo-AzA"/>
+                            <constraint firstItem="Z6l-Rp-bDe" firstAttribute="trailing" secondItem="FIj-e6-Uba" secondAttribute="trailing" id="ppX-CZ-UYb"/>
+                            <constraint firstItem="Z6l-Rp-bDe" firstAttribute="bottom" secondItem="FIj-e6-Uba" secondAttribute="bottom" id="yPA-Ys-1cW"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RAt-v0-vY5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="857" y="-520"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FPL-RH-2XU">
@@ -1141,7 +1236,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="riE-dc-ycb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1291" y="-655"/>
+            <point key="canvasLocation" x="1804" y="-670"/>
         </scene>
         <!--Old-->
         <scene sceneID="tJw-2z-2ZK">
@@ -1181,6 +1276,9 @@
             <point key="canvasLocation" x="2020.0934579439252" y="1209.7192224622031"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="dcP-qJ-0ZL"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="applewatch" catalog="system" width="114" height="128"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>

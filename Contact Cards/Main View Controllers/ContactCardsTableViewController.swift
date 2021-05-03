@@ -250,7 +250,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 					}
 					cell.nameLabel.text=contactCard.filename
 					let colorString=contactCard.color
-					if let color=colorModel.colorsDictionary[colorString ?? "Contrasting Color"] as? UIColor {
+					if let color=colorModel.colorsDictionary[colorString] as? UIColor {
 						cell.circularColorView.backgroundColor=color
 					}
 				}

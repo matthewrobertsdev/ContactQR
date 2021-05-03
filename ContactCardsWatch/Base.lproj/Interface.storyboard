@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="18122" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch38"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="17500"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="18022"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--QR Code-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="ContactCardsWatch" customModuleProvider="target"/>
+                <controller title="QR Code" fullScreen="YES" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="ContactCardsWatch" customModuleProvider="target">
+                    <items>
+                        <imageView width="1" height="1" alignment="left" image="GraphicExtraLarge" contentMode="scaleAspectFit" id="kwL-RQ-vYD"/>
+                    </items>
+                    <connections>
+                        <segue destination="c0k-i3-tAh" kind="relationship" relationship="nextPage" id="AQX-wZ-TBu"/>
+                    </connections>
+                </controller>
             </objects>
-            <point key="canvasLocation" x="162" y="345"/>
+            <point key="canvasLocation" x="-166" y="250"/>
+        </scene>
+        <!--Card-->
+        <scene sceneID="Hp8-GT-fFj">
+            <objects>
+                <controller title="Card" fullScreen="YES" id="c0k-i3-tAh">
+                    <connections>
+                        <segue destination="oXj-Gz-Dii" kind="relationship" relationship="nextPage" id="wJI-5e-Qe8"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="52" y="250"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
@@ -44,5 +62,22 @@
             </objects>
             <point key="canvasLocation" x="468" y="345"/>
         </scene>
+        <!--Interface Controller-->
+        <scene sceneID="6tP-lC-zxR">
+            <objects>
+                <controller id="oXj-Gz-Dii">
+                    <items>
+                        <button width="1" alignment="left" title="Reload Card" id="qrG-1h-5UI">
+                            <color key="titleColor" red="0.35539197919999999" green="0.2604061365" blue="0.16468334200000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="backgroundColor" red="0.97611027959999996" green="0.91306519509999995" blue="0.33706825969999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </button>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="268" y="250"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="GraphicExtraLarge" width="103" height="103"/>
+    </resources>
 </document>
