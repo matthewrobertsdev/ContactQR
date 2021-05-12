@@ -9,7 +9,7 @@
         <!--QR Code-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="QR Code" fullScreen="YES" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="ContactCardsWatch" customModuleProvider="target">
+                <controller title="QR Code" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="ContactCardsWatch" customModuleProvider="target">
                     <items>
                         <imageView width="1" height="1" alignment="left" image="GraphicExtraLarge" contentMode="scaleAspectFit" id="kwL-RQ-vYD"/>
                     </items>
@@ -23,7 +23,7 @@
         <!--Card-->
         <scene sceneID="Hp8-GT-fFj">
             <objects>
-                <controller title="Card" fullScreen="YES" id="c0k-i3-tAh">
+                <controller title="Card" id="c0k-i3-tAh">
                     <connections>
                         <segue destination="oXj-Gz-Dii" kind="relationship" relationship="nextPage" id="wJI-5e-Qe8"/>
                     </connections>

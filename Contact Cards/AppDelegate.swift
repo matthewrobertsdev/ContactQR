@@ -8,10 +8,16 @@
 import UIKit
 import CoreData
 import ClockKit
+import WatchConnectivity
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+	var session: WCSession?
 	func applicationDidFinishLaunching(_ application: UIApplication) {
+		if WCSession.isSupported() {
+			session = WCSession.default
+			session?.activate()
+		}
 	}
     func application(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true
