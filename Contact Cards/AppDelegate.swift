@@ -10,12 +10,22 @@ import CoreData
 import ClockKit
 import WatchConnectivity
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
+	func sessionDidBecomeInactive(_ session: WCSession) {
+	}
+	func sessionDidDeactivate(_ session: WCSession) {
+		
+	}
+	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+		print("Session activated")
+	}
     var window: UIWindow?
 	var session: WCSession?
 	func applicationDidFinishLaunching(_ application: UIApplication) {
 		if WCSession.isSupported() {
+			print("Should activate watch session.")
 			session = WCSession.default
+			session?.delegate=self
 			session?.activate()
 		}
 	}

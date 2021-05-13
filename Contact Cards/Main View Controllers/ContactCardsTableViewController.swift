@@ -7,7 +7,9 @@
 //
 import UIKit
 import CoreData
+import WatchConnectivity
 class ContactCardsTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+	
 	@IBOutlet weak var editButton: UIBarButtonItem!
 	@IBOutlet weak var siriButton: UIBarButtonItem!
 	@IBOutlet weak var watchButton: UIBarButtonItem!
@@ -399,9 +401,18 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 			guard let cardChoiceController=navigationController.visibleViewController as? ChooseCardViewController else {
 				return
 			}
+			let model=DisplayQRModel()
+			let colorModel=ColorModel()
 			cardChoiceController.saveClosure={ contactCardMO
 				in
-				let contactCardDictionary=["title":contactCardMO.filename, "color":contactCardMO.color, "vCard":contactCardMO.vCardString]
+				var color=colorModel.colorsDictionary[contactCardMO.color] ?? UIColor.white
+				if color==UIColor.label {
+					color=UIColor.white
+				}
+				model.setUp(contactCard: contactCardMO)
+				let qrCode=getTintedForeground(image: model.makeQRCode() ?? UIImage(), color: color ?? UIColor.white)
+				let data = qrCode.pngData()
+				let contactCardDictionary: [String: Any]=["title":contactCardMO.filename, "color":contactCardMO.color, "vCard":contactCardMO.vCardString, "imageData": data]
 				(UIApplication.shared.delegate as? AppDelegate)?.session?.sendMessage(contactCardDictionary, replyHandler: nil, errorHandler: nil)
 			}
 			print("Should present ChooseCardViewController")

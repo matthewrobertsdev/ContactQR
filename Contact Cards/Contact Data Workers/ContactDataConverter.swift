@@ -6,7 +6,8 @@
 //  Copyright © 2018 Matt Roberts. All rights reserved.
 //
 
-import ContactsUI
+import Contacts
+import UIKit
 /*
  Converts between CNContact, v card Data, String, and QRCode
  */

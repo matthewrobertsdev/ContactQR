@@ -6,14 +6,15 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="18022"/>
     </dependencies>
     <scenes>
-        <!--QR Code-->
+        <!--Contact-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="QR Code" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="ContactCardsWatch" customModuleProvider="target">
+                <controller title="Contact" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="ContactCardsWatch" customModuleProvider="target">
                     <items>
                         <imageView width="1" height="1" alignment="left" image="GraphicExtraLarge" contentMode="scaleAspectFit" id="kwL-RQ-vYD"/>
                     </items>
                     <connections>
+                        <outlet property="image" destination="kwL-RQ-vYD" id="8r5-fS-vxo"/>
                         <segue destination="c0k-i3-tAh" kind="relationship" relationship="nextPage" id="AQX-wZ-TBu"/>
                     </connections>
                 </controller>
