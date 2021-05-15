@@ -19,6 +19,8 @@ class ContactDataConverter {
             throw DataConversionError.dataSerializationError("Couldn't serialize string to data.")
         }
     }
+	#if os(watchOS)
+	#else
     //goes from CNContact, to v card Data, to v card String
     static func cnContactToVCardString(cnContact: CNContact) -> String {
         let vCardData=makeVCardData(cnContact: cnContact)
@@ -49,7 +51,7 @@ class ContactDataConverter {
         let data = string.data(using: .utf8) ?? Data()
         return makeQRCode(data: data)
     }
-    ///goes from v card Data to UIImage
+    //goes from v card Data to UIImage
     static func makeQRCode(data: Data) -> UIImage? {
         if let filter = CIFilter(name: "CIQRCodeGenerator") {
             filter.setValue(data, forKey: "inputMessage")
@@ -91,6 +93,7 @@ class ContactDataConverter {
 		}
 		return fileURL
 	}
+	#endif
 }
 enum DataConversionError: Error {
     case dataSerializationError(String)

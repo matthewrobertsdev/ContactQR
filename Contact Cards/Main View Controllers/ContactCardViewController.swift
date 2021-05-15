@@ -117,10 +117,10 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		enableButtons(enable: true)
 		#if targetEnvironment(macCatalyst)
 		SceneDelegate.enableValidToolbarItems()
+		copyButton.isHidden=false
 		#endif
 		titleLabel.isHidden=false
 		contactInfoTextView.isHidden=false
-		copyButton.isHidden=false
 		noCardSelectedLabel.isHidden=true
 		titleLabel.text=activeCard.filename
 		if let color=colorModel.colorsDictionary[activeCard.color] as? UIColor {
@@ -129,7 +129,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		do {
 			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: activeCard.vCardString)
 			if contactArray.count==1 {
-				contactInfoTextView.attributedText=ContactInfoManipulator.makeContactDisplayString(cnContact: contactArray[0])
+				contactInfoTextView.attributedText=ContactInfoManipulator.makeContactDisplayString(cnContact: contactArray[0], fontSize: CGFloat(18))
 			} else {
 				contactInfoTextView.attributedText=NSAttributedString(string: "")
 				enableShareButtons(enable: false)
@@ -143,12 +143,12 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			}
 		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard, directoryURL: directoryURL) else {
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
-			contactInfoTextView.attributedText=ContactInfoManipulator.getBadVCardAttributedString()
+			contactInfoTextView.attributedText=ContactInfoManipulator.getBadVCardAttributedString(fontSize: CGFloat(18))
 			return
 		}
 		guard let itemProvider=NSItemProvider(contentsOf: fileURL) else {
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
-			contactInfoTextView.attributedText=ContactInfoManipulator.getBadVCardAttributedString()
+			contactInfoTextView.attributedText=ContactInfoManipulator.getBadVCardAttributedString(fontSize: CGFloat(18))
 			return
 		}
 		if AppState.shared.appState==AppStateValue.isNotModal {
@@ -456,4 +456,5 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		}
 		return keyCommands
 	}
+	
 }

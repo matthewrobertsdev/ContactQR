@@ -65,7 +65,7 @@
 		9F7153D32622ABD500292539 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F7153D12622ABD500292539 /* Interface.storyboard */; };
 		9F7153D52622ABD600292539 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F7153D42622ABD600292539 /* Assets.xcassets */; };
 		9F7153DC2622ABD600292539 /* ContactCardsWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F7153DB2622ABD600292539 /* ContactCardsWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		9F7153E12622ABD600292539 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7153E02622ABD600292539 /* InterfaceController.swift */; };
+		9F7153E12622ABD600292539 /* QRInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7153E02622ABD600292539 /* QRInterfaceController.swift */; };
 		9F7153E32622ABD600292539 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7153E22622ABD600292539 /* ExtensionDelegate.swift */; };
 		9F7153E52622ABD600292539 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7153E42622ABD600292539 /* NotificationController.swift */; };
 		9F7153E72622ABD600292539 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7153E62622ABD600292539 /* ComplicationController.swift */; };
@@ -75,6 +75,11 @@
 		9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EB966255E10420032563C /* CreateContactViewController.swift */; };
 		9F7F42192560F24700199193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F42182560F24700199193 /* SceneDelegate.swift */; };
 		9F7FE6D8262FD11D00A98E3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F7153E82622ABD700292539 /* Assets.xcassets */; };
+		9F8852A7264FFA7100260D21 /* WatchContactStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8852A6264FFA7100260D21 /* WatchContactStore.swift */; };
+		9F8852A9264FFDF100260D21 /* CardInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8852A8264FFDF100260D21 /* CardInterfaceController.swift */; };
+		9F8852AA264FFE2F00260D21 /* NotificationNameExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F659B4725FEA28B0035F02C /* NotificationNameExtensions.swift */; };
+		9F8852AB2650001E00260D21 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */; };
+		9F8852AC265000B800260D21 /* ContactInfoManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5C647121D3E10A00832897 /* ContactInfoManipulator.swift */; };
 		9F8C266C2612821500E37290 /* ContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB92608E54A0003B2E4 /* ContactCardMO.swift */; };
 		9F98DF6A257F3C9900566779 /* EditContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F98DF69257F3C9900566779 /* EditContactCardViewController.swift */; };
 		9F9E9AE321BA1690003A6A33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */; };
@@ -231,7 +236,7 @@
 		9F7153D42622ABD600292539 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F7153D62622ABD600292539 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F7153DB2622ABD600292539 /* ContactCardsWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ContactCardsWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F7153E02622ABD600292539 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		9F7153E02622ABD600292539 /* QRInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRInterfaceController.swift; sourceTree = "<group>"; };
 		9F7153E22622ABD600292539 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		9F7153E42622ABD600292539 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		9F7153E62622ABD600292539 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -240,6 +245,8 @@
 		9F7153EB2622ABD700292539 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		9F7EB966255E10420032563C /* CreateContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateContactViewController.swift; sourceTree = "<group>"; };
 		9F7F42182560F24700199193 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		9F8852A6264FFA7100260D21 /* WatchContactStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchContactStore.swift; sourceTree = "<group>"; };
+		9F8852A8264FFDF100260D21 /* CardInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInterfaceController.swift; sourceTree = "<group>"; };
 		9F98DF69257F3C9900566779 /* EditContactCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactCardViewController.swift; sourceTree = "<group>"; };
 		9F9E9ADF21BA1690003A6A33 /* Contact Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Contact Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -463,7 +470,9 @@
 		9F7153DF2622ABD600292539 /* ContactCardsWatch Extension */ = {
 			isa = PBXGroup;
 			children = (
-				9F7153E02622ABD600292539 /* InterfaceController.swift */,
+				9F7153E02622ABD600292539 /* QRInterfaceController.swift */,
+				9F8852A8264FFDF100260D21 /* CardInterfaceController.swift */,
+				9F8852A6264FFA7100260D21 /* WatchContactStore.swift */,
 				9F7153E22622ABD600292539 /* ExtensionDelegate.swift */,
 				9F7153E42622ABD600292539 /* NotificationController.swift */,
 				9F7153E62622ABD600292539 /* ComplicationController.swift */,
@@ -931,9 +940,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F7153E52622ABD600292539 /* NotificationController.swift in Sources */,
+				9F8852A9264FFDF100260D21 /* CardInterfaceController.swift in Sources */,
 				9F7153E72622ABD600292539 /* ComplicationController.swift in Sources */,
+				9F8852AB2650001E00260D21 /* ContactDataConverter.swift in Sources */,
+				9F8852AA264FFE2F00260D21 /* NotificationNameExtensions.swift in Sources */,
+				9F8852AC265000B800260D21 /* ContactInfoManipulator.swift in Sources */,
 				9F7153E32622ABD600292539 /* ExtensionDelegate.swift in Sources */,
-				9F7153E12622ABD600292539 /* InterfaceController.swift in Sources */,
+				9F8852A7264FFA7100260D21 /* WatchContactStore.swift in Sources */,
+				9F7153E12622ABD600292539 /* QRInterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1232,6 +1246,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "ContactCardsWatch Extension/Info.plist";
@@ -1254,6 +1269,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "ContactCardsWatch Extension/Info.plist";

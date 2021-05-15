@@ -9,9 +9,14 @@
         <!--Contact-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="Contact" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="ContactCardsWatch" customModuleProvider="target">
+                <controller title="Contact" id="AgC-eL-Hgc" customClass="QRInterfaceController" customModule="ContactCardsWatch" customModuleProvider="target">
                     <items>
-                        <imageView width="1" height="1" alignment="left" image="GraphicExtraLarge" contentMode="scaleAspectFit" id="kwL-RQ-vYD"/>
+                        <group width="1" alignment="left" layout="vertical" id="lFD-ec-4mE">
+                            <items>
+                                <label width="136" alignment="left" hidden="YES" text="No Card Loaded Yet" textAlignment="center" numberOfLines="0" id="Gnk-WC-hqu"/>
+                                <imageView width="1" height="1" alignment="left" image="GraphicExtraLarge" contentMode="scaleAspectFit" id="kwL-RQ-vYD"/>
+                            </items>
+                        </group>
                     </items>
                     <connections>
                         <outlet property="image" destination="kwL-RQ-vYD" id="8r5-fS-vxo"/>
@@ -24,9 +29,24 @@
         <!--Card-->
         <scene sceneID="Hp8-GT-fFj">
             <objects>
-                <controller title="Card" id="c0k-i3-tAh">
+                <controller title="Card" id="c0k-i3-tAh" customClass="CardInterfaceController" customModule="ContactCardsWatch_Extension">
+                    <items>
+                        <group width="1" alignment="left" layout="vertical" spacing="10" id="ZO6-ML-Kpb">
+                            <items>
+                                <button width="1" alignment="left" title="Load Card" id="qrG-1h-5UI">
+                                    <color key="titleColor" red="0.35539197919999999" green="0.2604061365" blue="0.16468334200000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="backgroundColor" red="0.97611027959999996" green="0.91306519509999995" blue="0.33706825969999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </button>
+                                <label width="1" alignment="left" hidden="YES" text="No Card Loaded Yet" textAlignment="center" numberOfLines="0" id="JVQ-pi-hGq"/>
+                                <label width="1" alignment="left" textAlignment="center" numberOfLines="0" id="BXo-ko-teS"/>
+                                <label width="1" alignment="left" textAlignment="center" numberOfLines="0" id="dAD-Uv-gLY">
+                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                </label>
+                            </items>
+                        </group>
+                    </items>
                     <connections>
-                        <segue destination="oXj-Gz-Dii" kind="relationship" relationship="nextPage" id="wJI-5e-Qe8"/>
+                        <outlet property="cardDetailsLabel" destination="dAD-Uv-gLY" id="roG-gQ-g97"/>
                     </connections>
                 </controller>
             </objects>
@@ -63,21 +83,8 @@
             </objects>
             <point key="canvasLocation" x="468" y="345"/>
         </scene>
-        <!--Interface Controller-->
-        <scene sceneID="6tP-lC-zxR">
-            <objects>
-                <controller id="oXj-Gz-Dii">
-                    <items>
-                        <button width="1" alignment="left" title="Reload Card" id="qrG-1h-5UI">
-                            <color key="titleColor" red="0.35539197919999999" green="0.2604061365" blue="0.16468334200000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <color key="backgroundColor" red="0.97611027959999996" green="0.91306519509999995" blue="0.33706825969999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        </button>
-                    </items>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="268" y="250"/>
-        </scene>
     </scenes>
+    <color key="tintColor" red="0.97611027959999996" green="0.91306519509999995" blue="0.33706825969999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
     <resources>
         <image name="GraphicExtraLarge" width="103" height="103"/>
     </resources>

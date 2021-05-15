@@ -8,7 +8,8 @@
 import WatchKit
 import Foundation
 import WatchConnectivity
-class InterfaceController: WKInterfaceController, WCSessionDelegate {
+class QRInterfaceController: WKInterfaceController, WCSessionDelegate {
+	let model=WatchContactStore.sharedInstance
 	@IBOutlet weak var image: WKInterfaceImage!
 	
     override func awake(withContext context: Any?) {
@@ -29,16 +30,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
 	}
 	func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-		guard let colorString=message["color"] as? String else {
-			return
-		}
-		guard let vCard=message["vCard"] as? String else {
-			return
-		}
-		guard let title=message["title"] as? String else {
-			return
-		}
-		guard let imageData=message["imageData"] as? Data else {
+		model.updateData(message: message)
+		NotificationCenter.default.post(Notification(name: .watchContactUpdated))
+		guard let imageData=model.getImageData() else {
 			return
 		}
 		let qrCode=UIImage(data: imageData) ?? UIImage()
