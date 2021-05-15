@@ -174,7 +174,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		print("abcd\(contactCard.description)")
 		cell.nameLabel.text=contactCard.filename
 		let colorString=contactCard.color
-		if let color=colorModel.colorsDictionary[colorString] as? UIColor {
+		if let color=colorModel.getColorsDictionary()[colorString] as? UIColor {
 			cell.circularColorView.backgroundColor=color
 		}
 		return cell
@@ -252,7 +252,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 					}
 					cell.nameLabel.text=contactCard.filename
 					let colorString=contactCard.color
-					if let color=colorModel.colorsDictionary[colorString] as? UIColor {
+					if let color=colorModel.getColorsDictionary()[colorString] as? UIColor {
 						cell.circularColorView.backgroundColor=color
 					}
 				}
@@ -405,7 +405,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 			let colorModel=ColorModel()
 			cardChoiceController.saveClosure={ contactCardMO
 				in
-				var color=colorModel.colorsDictionary[contactCardMO.color] ?? UIColor.white
+				var color=colorModel.getColorsDictionary()[contactCardMO.color] ?? UIColor.white
 				if color==UIColor.label {
 					color=UIColor.white
 				}

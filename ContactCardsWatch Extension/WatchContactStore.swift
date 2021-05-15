@@ -6,6 +6,7 @@
 //  Copyright © 2021 Matt Roberts. All rights reserved.
 //
 import Foundation
+import WatchKit
 import CoreGraphics
 class WatchContactStore {
 	private var colorString: String?
@@ -13,6 +14,7 @@ class WatchContactStore {
 	private var title: String?
 	private var imageData: Data?
 	private var cardString: NSAttributedString?
+	private let colorModel=ColorModel()
 	static let sharedInstance=WatchContactStore()
 	private init() {
 	}
@@ -45,5 +47,11 @@ class WatchContactStore {
 	}
 	func getCardString() -> NSAttributedString? {
 		return cardString
+	}
+	func getTitle() -> String? {
+		return title
+	}
+	func getColor() -> UIColor? {
+		return colorModel.getColorsDictionary()[colorString ?? "Contrasting Color"] ?? UIColor.white
 	}
 }

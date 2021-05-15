@@ -38,7 +38,9 @@
                                     <color key="backgroundColor" red="0.97611027959999996" green="0.91306519509999995" blue="0.33706825969999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </button>
                                 <label width="1" alignment="left" hidden="YES" text="No Card Loaded Yet" textAlignment="center" numberOfLines="0" id="JVQ-pi-hGq"/>
-                                <label width="1" alignment="left" textAlignment="center" numberOfLines="0" id="BXo-ko-teS"/>
+                                <label width="1" alignment="left" textAlignment="center" numberOfLines="0" id="BXo-ko-teS">
+                                    <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
+                                </label>
                                 <label width="1" alignment="left" textAlignment="center" numberOfLines="0" id="dAD-Uv-gLY">
                                     <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                 </label>
@@ -47,6 +49,7 @@
                     </items>
                     <connections>
                         <outlet property="cardDetailsLabel" destination="dAD-Uv-gLY" id="roG-gQ-g97"/>
+                        <outlet property="cardTitleLabel" destination="BXo-ko-teS" id="EAr-nK-aH6"/>
                     </connections>
                 </controller>
             </objects>

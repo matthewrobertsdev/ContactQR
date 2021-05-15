@@ -72,7 +72,7 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 		print("abcd\(contactCard.description)")
 		cell.nameLabel.text=contactCard.filename
 		let colorString=contactCard.color
-		if let color=colorModel.colorsDictionary[colorString] as? UIColor {
+		if let color=colorModel.getColorsDictionary()[colorString] as? UIColor {
 			cell.circularColorView.backgroundColor=color
 		}
 		return cell
@@ -112,7 +112,7 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 					}
 					cell.nameLabel.text=contactCard.filename
 					let colorString=contactCard.color
-					if let color=colorModel.colorsDictionary[colorString] as? UIColor {
+					if let color=colorModel.getColorsDictionary()[colorString] as? UIColor {
 						cell.circularColorView.backgroundColor=color
 					}
 				}

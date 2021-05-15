@@ -8,6 +8,7 @@
 import WatchKit
 import Foundation
 class CardInterfaceController: WKInterfaceController {
+	@IBOutlet weak var cardTitleLabel: WKInterfaceLabel!
 	@IBOutlet weak var cardDetailsLabel: WKInterfaceLabel!
 	let model=WatchContactStore.sharedInstance
     override func awake(withContext context: Any?) {
@@ -27,6 +28,11 @@ class CardInterfaceController: WKInterfaceController {
 		guard let cardString=model.getCardString() else {
 			return
 		}
+		guard let title=model.getTitle() else {
+			return
+		}
 		cardDetailsLabel.setAttributedText(cardString)
+		cardTitleLabel.setText(title)
+		cardTitleLabel.setTextColor(model.getColor())
 	}
 }

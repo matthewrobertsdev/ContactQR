@@ -53,7 +53,7 @@ struct Provider: IntentTimelineProvider {
 						let model=DisplayQRModel()
 						let colorModel=ColorModel()
 						model.setUp(contactCard: contactCardMO)
-						color=colorModel.colorsDictionary[contactCardMO.color] ?? UIColor.label
+						color=colorModel.getColorsDictionary()[contactCardMO.color] ?? UIColor.label
 						qrCode=model.makeQRCode()
 						print("Should have made qr code for widget")
 					}

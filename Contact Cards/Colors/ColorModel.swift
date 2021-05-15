@@ -7,6 +7,11 @@
 //
 import UIKit
 class ColorModel {
+	#if os(watchOS)
+	let contrastingColor=UIColor.white
+	#else
+	let contrastingColor=UIColor.label
+	#endif
 	let colors=[Color(colorChoice: ColorChoice.contrastingColor),
 				Color(colorChoice: ColorChoice.gray),
 				Color(colorChoice: ColorChoice.red),
@@ -14,7 +19,8 @@ class ColorModel {
 				Color(colorChoice: ColorChoice.green), Color(colorChoice: ColorChoice.blue),
 				Color(colorChoice: ColorChoice.purple), Color(colorChoice: ColorChoice.pink),
 				Color(colorChoice: ColorChoice.brown)]
-	let colorsDictionary=[ColorChoice.contrastingColor.rawValue: UIColor.label,
+	func getColorsDictionary() -> [String: UIColor?] {
+		[ColorChoice.contrastingColor.rawValue: contrastingColor,
 						  ColorChoice.gray.rawValue: UIColor(named: ColorChoice.gray.rawValue),
 						  ColorChoice.red.rawValue: UIColor(named: ColorChoice.red.rawValue),
 						  ColorChoice.orange.rawValue: UIColor(named: ColorChoice.orange.rawValue),
@@ -24,4 +30,5 @@ class ColorModel {
 						  ColorChoice.purple.rawValue: UIColor(named: ColorChoice.purple.rawValue),
 						  ColorChoice.pink.rawValue: UIColor(named: ColorChoice.pink.rawValue),
 						  ColorChoice.brown.rawValue: UIColor(named: ColorChoice.brown.rawValue)]
+	}
 }

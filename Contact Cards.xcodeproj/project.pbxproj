@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F06D3E126500E83000239AB /* ColorChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE378B256DBB9F0089337E /* ColorChoice.swift */; };
+		9F06D3E226500E86000239AB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3786256DBAA50089337E /* Color.swift */; };
+		9F06D3E326500E89000239AB /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3781256DBA990089337E /* ColorModel.swift */; };
+		9F06D3E426501428000239AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE921BA1691003A6A33 /* Assets.xcassets */; };
 		9F15544325939378006C7A92 /* EditContactAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F15544225939378006C7A92 /* EditContactAlertController.swift */; };
 		9F1A3F44264C074300957CA9 /* ChooseCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A3F43264C074300957CA9 /* ChooseCardViewController.swift */; };
 		9F1EE642256EE47D004F444B /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1EE641256EE47D004F444B /* AppState.swift */; };
@@ -842,6 +846,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F06D3E426501428000239AB /* Assets.xcassets in Resources */,
 				9F7153E92622ABD700292539 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -941,13 +946,16 @@
 			files = (
 				9F7153E52622ABD600292539 /* NotificationController.swift in Sources */,
 				9F8852A9264FFDF100260D21 /* CardInterfaceController.swift in Sources */,
+				9F06D3E226500E86000239AB /* Color.swift in Sources */,
 				9F7153E72622ABD600292539 /* ComplicationController.swift in Sources */,
 				9F8852AB2650001E00260D21 /* ContactDataConverter.swift in Sources */,
+				9F06D3E126500E83000239AB /* ColorChoice.swift in Sources */,
 				9F8852AA264FFE2F00260D21 /* NotificationNameExtensions.swift in Sources */,
 				9F8852AC265000B800260D21 /* ContactInfoManipulator.swift in Sources */,
 				9F7153E32622ABD600292539 /* ExtensionDelegate.swift in Sources */,
 				9F8852A7264FFA7100260D21 /* WatchContactStore.swift in Sources */,
 				9F7153E12622ABD600292539 /* QRInterfaceController.swift in Sources */,
+				9F06D3E326500E89000239AB /* ColorModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
