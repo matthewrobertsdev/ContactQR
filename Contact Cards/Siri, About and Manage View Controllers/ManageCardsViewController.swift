@@ -5,21 +5,15 @@
 //  Created by Matt Roberts on 5/17/21.
 //  Copyright © 2021 Matt Roberts. All rights reserved.
 //
-
 import UIKit
-
 class ManageCardsViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
-    
 	@IBAction func done(_ sender: Any) {
 		self.dismiss(animated: true)
 	}
-	
     /*
     // MARK: - Navigation
 
@@ -29,5 +23,4 @@ class ManageCardsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

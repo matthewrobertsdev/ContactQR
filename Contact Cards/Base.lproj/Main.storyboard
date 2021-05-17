@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aYm-LV-jC5">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -14,18 +14,18 @@
             <objects>
                 <viewController storyboardIdentifier="DisplayQRViewController" title="Contact QR Code" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="DisplayQRViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VOF-ut-MjQ">
-                                <rect key="frame" x="37.5" y="81" width="245" height="245"/>
+                                <rect key="frame" x="161.5" y="69" width="245" height="245"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="245" id="AgX-9O-Iel"/>
                                     <constraint firstAttribute="width" constant="245" id="Xo1-6y-7rV"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact data is invalid or it is too long for a QR code." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haI-uD-3MD">
-                                <rect key="frame" x="37.5" y="81" width="245" height="48"/>
+                                <rect key="frame" x="161.5" y="69" width="245" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="RKu-mK-nCf"/>
                                     <constraint firstAttribute="width" constant="245" id="qVp-KI-LDI"/>
@@ -66,25 +66,25 @@
             <objects>
                 <viewController storyboardIdentifier="EditContactCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SNB-o5-8lY" customClass="EditContactCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mva-TH-GgV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kf7-s1-hAF">
-                                <rect key="frame" x="102.5" y="70" width="115" height="30"/>
+                                <rect key="frame" x="226.5" y="58" width="115" height="30"/>
                                 <state key="normal" title="Edit Contact Info"/>
                                 <connections>
                                     <action selector="editContactInfo:" destination="SNB-o5-8lY" eventType="touchUpInside" id="EZt-c3-BGJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaX-Z7-bZW">
-                                <rect key="frame" x="94.5" y="108" width="131" height="30"/>
+                                <rect key="frame" x="218.5" y="96" width="131" height="30"/>
                                 <state key="normal" title="Change Card Color"/>
                                 <connections>
                                     <action selector="changeCardColor:" destination="SNB-o5-8lY" eventType="touchUpInside" id="ych-sS-NXA"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQI-eC-34P">
-                                <rect key="frame" x="98" y="146" width="124" height="30"/>
+                                <rect key="frame" x="222" y="134" width="124" height="30"/>
                                 <state key="normal" title="Change Card Title"/>
                                 <connections>
                                     <action selector="changeCardTitle:" destination="SNB-o5-8lY" eventType="touchUpInside" id="KKs-sC-T00"/>
@@ -124,14 +124,14 @@
             <objects>
                 <viewController storyboardIdentifier="ContactCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IJa-nU-fZ3" customClass="ContactCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sVZ-bY-6LH">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YDY-bh-YGS">
-                                <rect key="frame" x="0.0" y="54" width="320" height="465"/>
+                                <rect key="frame" x="0.0" y="42" width="568" height="246"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgk-8b-W0c">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="568" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="IS4-UJ-gpR"/>
                                         </constraints>
@@ -140,16 +140,16 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9fh-p1-mOo">
-                                        <rect key="frame" x="0.0" y="53" width="320" height="354"/>
+                                        <rect key="frame" x="0.0" y="53" width="568" height="135"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <attributedString key="attributedText"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cK9-Uc-EW2">
-                                        <rect key="frame" x="0.0" y="415" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="196" width="568" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPC-Ml-3bC">
-                                                <rect key="frame" x="119.5" y="0.0" width="81" height="30"/>
+                                                <rect key="frame" x="243.5" y="0.0" width="81" height="30"/>
                                                 <state key="normal" title="Copy vCard"/>
                                                 <connections>
                                                     <action selector="copyVCard:" destination="IJa-nU-fZ3" eventType="touchUpInside" id="DVb-p6-A3T"/>
@@ -169,7 +169,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Contact Card Selected" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuD-EN-eRZ">
-                                <rect key="frame" x="0.0" y="271.5" width="320" height="20.5"/>
+                                <rect key="frame" x="0.0" y="150" width="568" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -225,14 +225,14 @@
             <objects>
                 <tableViewController storyboardIdentifier="ContactCardsTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="8w3-e5-v8i" customClass="ContactCardsTableViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lBD-Qa-6jB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactCell" rowHeight="52" id="Yzc-79-eXU" customClass="SavedContactCell" customModule="Contact_Cards" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.5" width="320" height="52"/>
+                                <rect key="frame" x="0.0" y="24.5" width="568" height="52"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yzc-79-eXU" id="7cN-MP-4h6">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="568" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NFX-TQ-tAC" customClass="CircularColorView" customModule="Contact_Cards" customModuleProvider="target">
@@ -244,7 +244,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ContactCard Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Uv-2Q-nAo">
-                                            <rect key="frame" x="45.5" y="5" width="259.5" height="42"/>
+                                            <rect key="frame" x="45.5" y="5" width="507.5" height="42"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="ZQ9-8G-rPT"/>
                                             </constraints>
@@ -323,52 +323,47 @@
             <objects>
                 <viewController storyboardIdentifier="ManageCardsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="r7Z-1i-89a" customClass="ManageCardsViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dz0-gJ-X2m">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="emG-3K-ouM">
-                                <rect key="frame" x="0.0" y="56" width="320" height="492"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emG-3K-ouM">
+                                <rect key="frame" x="0.0" y="32" width="568" height="288"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6SZ-ef-5J6">
-                                        <rect key="frame" x="47.5" y="20" width="225" height="343"/>
+                                        <rect key="frame" x="20" y="20" width="528" height="241.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rxq-ox-Gxq">
-                                                <rect key="frame" x="36" y="0.0" width="153" height="30"/>
+                                                <rect key="frame" x="187.5" y="0.0" width="153" height="30"/>
                                                 <state key="normal" title="Save Cards as Archive"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNf-qY-8nx">
-                                                <rect key="frame" x="33.5" y="40" width="158" height="30"/>
+                                                <rect key="frame" x="185" y="40" width="158" height="30"/>
                                                 <state key="normal" title="Save Cards as Text File"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOA-5i-BaP">
-                                                <rect key="frame" x="27.5" y="80" width="170" height="30"/>
+                                                <rect key="frame" x="179" y="80" width="170" height="30"/>
                                                 <state key="normal" title="Load Cards from Archive"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcb-uy-h7s">
-                                                <rect key="frame" x="0.0" y="120" width="225" height="183"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="225" id="DR1-tb-cdo"/>
-                                                    <constraint firstAttribute="height" constant="183" id="Dxe-s0-811"/>
-                                                </constraints>
+                                                <rect key="frame" x="0.0" y="120" width="528" height="81.5"/>
                                                 <string key="text">If you want to delete all cards from iCloud, it is recommended that you save your contact cards as an archive first so that you can restore the cards from the archive if you want.  Otherwise, when devices sync, the cards will be lost.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" name="Red"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izi-IT-Rcv">
-                                                <rect key="frame" x="15.5" y="313" width="194" height="30"/>
+                                                <rect key="frame" x="167" y="211.5" width="194" height="30"/>
                                                 <state key="normal" title="Delete All Cards from iCloud"/>
                                             </button>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="225" id="Wdu-mK-WaF"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Lcb-uy-h7s" secondAttribute="trailing" constant="20" id="Yfc-gf-AkP"/>
                                     <constraint firstItem="6SZ-ef-5J6" firstAttribute="centerX" secondItem="emG-3K-ouM" secondAttribute="centerX" id="aSp-YG-QM6"/>
                                     <constraint firstAttribute="bottom" secondItem="6SZ-ef-5J6" secondAttribute="bottom" id="ayC-4F-jTr"/>
                                     <constraint firstItem="6SZ-ef-5J6" firstAttribute="top" secondItem="emG-3K-ouM" secondAttribute="top" constant="20" symbolic="YES" id="uy9-wr-rgX"/>
+                                    <constraint firstItem="Lcb-uy-h7s" firstAttribute="leading" secondItem="emG-3K-ouM" secondAttribute="leading" constant="20" id="zYD-Dg-Bxc"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="CZm-Zz-5ma"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="RhN-T9-q69"/>
@@ -401,7 +396,7 @@
                 <navigationController storyboardIdentifier="ContactCardNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dYb-Ni-z5G" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ubA-U4-wKy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -434,7 +429,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dob-FW-hfJ">
-                                <rect key="frame" x="0.0" y="56" width="320" height="492"/>
+                                <rect key="frame" x="0.0" y="32" width="320" height="516"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="ANh-ce-Scc">
                                         <rect key="frame" x="7" y="7" width="306" height="2527.5"/>
@@ -1049,15 +1044,15 @@
             <objects>
                 <tableViewController storyboardIdentifier="ChooseColorTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X3d-WW-BAD" customClass="ChooseColorTableViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BdA-TO-BCu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" reuseIdentifier="SavedContactCell" focusStyle="custom" rowHeight="52" id="eID-Ct-T6j" customClass="SavedContactCell" customModule="Contact_Cards" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.5" width="320" height="52"/>
+                                <rect key="frame" x="0.0" y="24.5" width="568" height="52"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eID-Ct-T6j" id="zb4-ZQ-eJY">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="568" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7FI-CP-mI3" customClass="CircularColorView" customModule="Contact_Cards" customModuleProvider="target">
@@ -1069,7 +1064,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ContactCard Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Pk-Ap-Qfg">
-                                            <rect key="frame" x="45.5" y="5" width="259.5" height="42"/>
+                                            <rect key="frame" x="45.5" y="5" width="507.5" height="42"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="au8-a4-rjL"/>
                                             </constraints>
@@ -1124,7 +1119,7 @@
             <objects>
                 <navigationController id="2Yi-6G-Uv1" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GYd-QW-vqf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1140,11 +1135,11 @@
             <objects>
                 <viewController storyboardIdentifier="SaveContactCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MKm-rN-YVF" customClass="SaveContactCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="auu-rD-u44">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8Se-sp-OuC">
-                                <rect key="frame" x="35" y="66" width="250" height="95"/>
+                                <rect key="frame" x="159" y="54" width="250" height="95"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the Title for Your Card to Be Saved As:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gke-5L-Bvv">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="41"/>
@@ -1198,7 +1193,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="8bR-DH-6eJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="P9R-AP-yWz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1215,14 +1210,14 @@
             <objects>
                 <viewController storyboardIdentifier="ChooseCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NF4-cX-5AG" customClass="ChooseCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0XQ-B2-8qC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FIj-e6-Uba">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="52" width="568" height="268"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please choose a card without much contact info as the watch screen for the qr code is small." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyP-se-xnI">
-                                        <rect key="frame" x="35.5" y="0.0" width="249" height="65"/>
+                                        <rect key="frame" x="159.5" y="0.0" width="249" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="65" id="Nha-eh-Qs5"/>
                                             <constraint firstAttribute="width" constant="249" id="ske-Ka-hCd"/>
@@ -1232,14 +1227,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4tj-aW-SdA">
-                                        <rect key="frame" x="0.0" y="73" width="320" height="431"/>
+                                        <rect key="frame" x="0.0" y="73" width="568" height="195"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactCell" rowHeight="52" id="nzM-Pq-SpP" customClass="SavedContactCell" customModule="Contact_Cards" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="24.5" width="320" height="52"/>
+                                                <rect key="frame" x="0.0" y="24.5" width="568" height="52"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nzM-Pq-SpP" id="WMd-zu-sct">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="568" height="52"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3UA-Ul-H5G" customClass="CircularColorView" customModule="Contact_Cards" customModuleProvider="target">
@@ -1251,7 +1246,7 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ContactCard Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxp-gn-Svb">
-                                                            <rect key="frame" x="45.5" y="5" width="259.5" height="42"/>
+                                                            <rect key="frame" x="45.5" y="5" width="507.5" height="42"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="35" id="h0Z-Ps-jDC"/>
                                                             </constraints>
@@ -1316,7 +1311,7 @@
                 <navigationController storyboardIdentifier="SaveContactCardNavoigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dAX-eH-brL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FxD-h3-l0Y">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1335,7 +1330,7 @@
                     <tabBarItem key="tabBarItem" title="Old" id="M7i-rW-UUq"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cGL-qm-Kgr">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1353,7 +1348,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Prr-80-2lL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="apC-Ip-dc4">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1370,68 +1365,80 @@
             <objects>
                 <viewController id="hgu-n7-bGh" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g6s-LS-KLm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eet-IM-vzt">
-                                <rect key="frame" x="0.0" y="56" width="326" height="492"/>
+                                <rect key="frame" x="0.0" y="32" width="568" height="288"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QYT-NH-GyK">
-                                        <rect key="frame" x="14" y="11" width="292" height="403.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hq5-wg-dcl">
+                                        <rect key="frame" x="36.5" y="19" width="495" height="243.5"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="oH3-9r-3G6">
-                                                <rect key="frame" x="82" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="CnY-Ej-pip"/>
-                                                    <constraint firstAttribute="width" constant="128" id="HX9-Tg-iJw"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Cards" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2x-yh-oeD">
-                                                <rect key="frame" x="83" y="138" width="126.5" height="24"/>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="20"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQz-bX-HL9">
-                                                <rect key="frame" x="105" y="172" width="82.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eh9-Lq-PjR">
-                                                <rect key="frame" x="0.0" y="202.5" width="292" height="41"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="292" id="q63-EJ-uiK"/>
-                                                </constraints>
-                                                <string key="text">Copyright © 2020-2021 Matt Roberts.
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QYT-NH-GyK">
+                                                <rect key="frame" x="0.0" y="0.0" width="292" height="243.5"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="oH3-9r-3G6">
+                                                        <rect key="frame" x="82" y="0.0" width="128" height="128"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="128" id="CnY-Ej-pip"/>
+                                                            <constraint firstAttribute="width" constant="128" id="HX9-Tg-iJw"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Cards" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2x-yh-oeD">
+                                                        <rect key="frame" x="83" y="138" width="126.5" height="24"/>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQz-bX-HL9">
+                                                        <rect key="frame" x="105" y="172" width="82.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eh9-Lq-PjR">
+                                                        <rect key="frame" x="0.0" y="202.5" width="292" height="41"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="292" id="q63-EJ-uiK"/>
+                                                        </constraints>
+                                                        <string key="text">Copyright © 2020-2021 Matt Roberts.
 All rights reserved.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nuf-BL-OP5">
-                                                <rect key="frame" x="49.5" y="253.5" width="193" height="30"/>
-                                                <state key="normal" title="Frequently Asked Questions"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTZ-en-cEQ">
-                                                <rect key="frame" x="108.5" y="293.5" width="75" height="30"/>
-                                                <state key="normal" title="Homepage"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSK-rP-Glj">
-                                                <rect key="frame" x="68.5" y="333.5" width="155" height="30"/>
-                                                <state key="normal" title="Contact the Developer"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96F-hA-7Ci">
-                                                <rect key="frame" x="98.5" y="373.5" width="95" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <state key="normal" title="Privacy Policy"/>
-                                            </button>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zsm-ig-qLx">
+                                                <rect key="frame" x="302" y="47" width="193" height="150"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nuf-BL-OP5">
+                                                        <rect key="frame" x="0.0" y="0.0" width="193" height="30"/>
+                                                        <state key="normal" title="Frequently Asked Questions"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTZ-en-cEQ">
+                                                        <rect key="frame" x="59" y="40" width="75" height="30"/>
+                                                        <state key="normal" title="Homepage"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSK-rP-Glj">
+                                                        <rect key="frame" x="19" y="80" width="155" height="30"/>
+                                                        <state key="normal" title="Contact the Developer"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96F-hA-7Ci">
+                                                        <rect key="frame" x="49" y="120" width="95" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <state key="normal" title="Privacy Policy"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
+                                        <variation key="heightClass=compact-widthClass=compact" axis="horizontal"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="QYT-NH-GyK" secondAttribute="bottom" id="bhn-fg-Ibr"/>
-                                    <constraint firstItem="QYT-NH-GyK" firstAttribute="top" secondItem="eet-IM-vzt" secondAttribute="top" constant="11" id="la1-mO-lP0"/>
+                                    <constraint firstAttribute="bottom" secondItem="hq5-wg-dcl" secondAttribute="bottom" id="C2y-rp-zPj"/>
+                                    <constraint firstItem="hq5-wg-dcl" firstAttribute="centerX" secondItem="eet-IM-vzt" secondAttribute="centerX" id="Pch-0e-yhN"/>
+                                    <constraint firstItem="hq5-wg-dcl" firstAttribute="top" secondItem="eet-IM-vzt" secondAttribute="top" constant="19" id="YjR-gA-YSg"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="dln-eA-zSS"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="HZX-Ao-NWK"/>
@@ -1441,7 +1448,6 @@ All rights reserved.</string>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="L6v-z3-GxV" firstAttribute="bottom" secondItem="eet-IM-vzt" secondAttribute="bottom" id="02v-3Q-RG1"/>
-                            <constraint firstItem="QYT-NH-GyK" firstAttribute="centerX" secondItem="L6v-z3-GxV" secondAttribute="centerX" id="LJJ-oo-tEf"/>
                             <constraint firstItem="L6v-z3-GxV" firstAttribute="leading" secondItem="eet-IM-vzt" secondAttribute="leading" id="Y34-No-wfr"/>
                             <constraint firstItem="eet-IM-vzt" firstAttribute="trailing" secondItem="L6v-z3-GxV" secondAttribute="trailing" id="khg-rG-gHb"/>
                             <constraint firstItem="L6v-z3-GxV" firstAttribute="top" secondItem="eet-IM-vzt" secondAttribute="top" id="sg3-0s-3TW"/>
@@ -1453,7 +1459,7 @@ All rights reserved.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wuv-M3-J0J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="637.5" y="-1433.4507042253522"/>
+            <point key="canvasLocation" x="636.97183098591552" y="-1434.375"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QAX-Md-X7J">
@@ -1461,7 +1467,7 @@ All rights reserved.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="n9U-Hz-0va" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ajs-1R-e7e">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1479,7 +1485,7 @@ All rights reserved.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WDH-em-Scw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LrK-Jq-rDo">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1497,7 +1503,7 @@ All rights reserved.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1Io-RR-DmA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4dn-ZA-u8j">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
