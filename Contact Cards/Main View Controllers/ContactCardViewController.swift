@@ -51,6 +51,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		notificationCenter.addObserver(self, selector: #selector(editContactInfo), name: .editContactInfo, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(editColor), name: .editColor, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(editTitle), name: .editTitle, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(manageCards), name: .manageCards, object: nil)
     }
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -351,6 +352,18 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			print("Error making CNContact from VCard String.")
 		}
 		present(navigationController, animated: true)
+	}
+	@objc func manageCards() {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		guard let manageCardsViewController=storyboard.instantiateViewController(withIdentifier:
+																						"ManageCardsViewController")
+				as? ManageCardsViewController else {
+			print("Failed to instantiate ManageCardsViewController")
+			return
+		}
+		let navigationController=UINavigationController(rootViewController: manageCardsViewController)
+		self.present(navigationController, animated: true)
+		
 	}
 	@IBAction func editContact(_ sender: Any) {
 		let editContactAlertController=EditContactAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

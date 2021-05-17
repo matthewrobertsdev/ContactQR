@@ -196,6 +196,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 	@objc func editTitle() {
 		NotificationCenter.default.post(name: .editTitle, object: nil)
 	}
+	@objc func manageCards() {
+		NotificationCenter.default.post(name: .manageCards, object: nil)
+	}
 	@objc func doNothing() {
 	}
 	@objc func openFAQ() {
