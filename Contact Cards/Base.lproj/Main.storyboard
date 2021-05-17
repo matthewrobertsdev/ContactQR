@@ -3,7 +3,7 @@
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -277,13 +277,18 @@
                     <toolbarItems>
                         <barButtonItem title="For Siri" id="2xW-Xo-lKy"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="DfT-mP-Ra0"/>
-                        <barButtonItem title="For Watch" id="lec-rg-7c5">
-                            <imageReference key="image" image="applewatch" catalog="system" renderingMode="template"/>
+                        <barButtonItem title="Manage Cards" image="gearshape" catalog="system" id="lec-rg-7c5">
                             <connections>
-                                <segue destination="n9U-Hz-0va" kind="presentation" identifier="WatchChoiceSegue" id="8rn-JN-mDS"/>
+                                <segue destination="WDH-em-Scw" kind="presentation" id="Jl8-zG-zV1"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="dyi-4Z-Am0"/>
+                        <barButtonItem title="About" image="questionmark" catalog="system" id="Zyt-Md-oAk">
+                            <connections>
+                                <segue destination="1Io-RR-DmA" kind="presentation" id="fHf-HF-8sT"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="9BP-bM-tGo"/>
                         <barButtonItem title="Edit" id="69Q-6u-nq9">
                             <connections>
                                 <action selector="toggleEditing:" destination="8w3-e5-v8i" id="0OK-Oc-R3b"/>
@@ -298,7 +303,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="aSk-2u-Brq">
                             <connections>
-                                <segue destination="icA-no-8s3" kind="presentation" id="awB-Dv-FXV"/>
+                                <segue destination="icA-no-8s3" kind="presentation" id="TlI-iS-dDy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -312,6 +317,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXb-db-Xvt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="89.719626168224295" y="-654.42764578833703"/>
+        </scene>
+        <!--Manage Cards-->
+        <scene sceneID="ZtD-5s-WsO">
+            <objects>
+                <viewController id="r7Z-1i-89a" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dz0-gJ-X2m">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAC-Jz-aXx">
+                                <rect key="frame" x="139" y="108" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rxq-ox-Gxq">
+                                <rect key="frame" x="84" y="83" width="153" height="30"/>
+                                <state key="normal" title="Save Cards as Archive"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNf-qY-8nx">
+                                <rect key="frame" x="82" y="137" width="158" height="30"/>
+                                <state key="normal" title="Save Cards as Text File"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOA-5i-BaP">
+                                <rect key="frame" x="76" y="191" width="170" height="30"/>
+                                <state key="normal" title="Load Cards from Archive"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izi-IT-Rcv">
+                                <rect key="frame" x="64" y="460" width="194" height="30"/>
+                                <state key="normal" title="Delete All Cards from iCloud">
+                                    <color key="titleColor" name="Red"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcb-uy-h7s">
+                                <rect key="frame" x="48" y="246" width="225" height="183"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="225" id="DR1-tb-cdo"/>
+                                    <constraint firstAttribute="height" constant="183" id="Dxe-s0-811"/>
+                                </constraints>
+                                <string key="text">If you want to delete all cards from iCloud, it is recommended that you save your contact cards as an archive first so that you can restore the cards from the archive if you want.  Otherwise, when devices sync, the cards will be lost.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="A8y-U4-tAb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rxq-ox-Gxq" firstAttribute="top" secondItem="A8y-U4-tAb" secondAttribute="top" constant="27" id="3oe-hl-XtA"/>
+                            <constraint firstItem="oNf-qY-8nx" firstAttribute="top" secondItem="rxq-ox-Gxq" secondAttribute="bottom" constant="24" id="KiQ-aG-vAo"/>
+                            <constraint firstItem="cOA-5i-BaP" firstAttribute="top" secondItem="oNf-qY-8nx" secondAttribute="bottom" constant="24" id="Oqu-si-DcO"/>
+                            <constraint firstItem="rxq-ox-Gxq" firstAttribute="centerX" secondItem="A8y-U4-tAb" secondAttribute="centerX" id="S5M-de-aeW"/>
+                            <constraint firstItem="Lcb-uy-h7s" firstAttribute="centerX" secondItem="A8y-U4-tAb" secondAttribute="centerX" id="Vj5-3l-enV"/>
+                            <constraint firstItem="cOA-5i-BaP" firstAttribute="centerX" secondItem="A8y-U4-tAb" secondAttribute="centerX" id="jXd-3j-mbc"/>
+                            <constraint firstItem="izi-IT-Rcv" firstAttribute="top" secondItem="Lcb-uy-h7s" secondAttribute="bottom" constant="31" id="kqH-gW-01f"/>
+                            <constraint firstItem="oNf-qY-8nx" firstAttribute="centerX" secondItem="A8y-U4-tAb" secondAttribute="centerX" id="qMA-Js-nfR"/>
+                            <constraint firstItem="Lcb-uy-h7s" firstAttribute="top" secondItem="cOA-5i-BaP" secondAttribute="bottom" constant="25" id="wSW-EF-Axu"/>
+                            <constraint firstItem="izi-IT-Rcv" firstAttribute="centerX" secondItem="A8y-U4-tAb" secondAttribute="centerX" id="zhL-h1-UeG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Manage Cards" id="Qaj-j7-Veg">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="wSz-dv-lnR"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TIO-Fd-Nlz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2017.5" y="-707.74647887323943"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LvG-zQ-Zm6">
@@ -1107,7 +1180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Twt-Pi-6al" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3480" y="-438.38028169014086"/>
+            <point key="canvasLocation" x="4477.5" y="-438.38028169014086"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zwW-wO-6fN">
@@ -1126,18 +1199,18 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IiA-rX-lzc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="88" y="177"/>
+            <point key="canvasLocation" x="1061" y="163"/>
         </scene>
         <!--Choose Card-->
         <scene sceneID="MgH-1g-HqD">
             <objects>
                 <viewController storyboardIdentifier="ChooseCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NF4-cX-5AG" customClass="ChooseCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0XQ-B2-8qC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FIj-e6-Uba">
-                                <rect key="frame" x="0.0" y="76" width="320" height="472"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please choose a card without much contact info as the watch screen for the qr code is small." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyP-se-xnI">
                                         <rect key="frame" x="35.5" y="0.0" width="249" height="65"/>
@@ -1150,7 +1223,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4tj-aW-SdA">
-                                        <rect key="frame" x="0.0" y="73" width="320" height="399"/>
+                                        <rect key="frame" x="0.0" y="73" width="320" height="431"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactCell" rowHeight="52" id="nzM-Pq-SpP" customClass="SavedContactCell" customModule="Contact_Cards" customModuleProvider="target">
@@ -1226,7 +1299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RAt-v0-vY5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2017.5" y="-508.0985915492958"/>
+            <point key="canvasLocation" x="3015" y="-1568.661971830986"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FPL-RH-2XU">
@@ -1244,7 +1317,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="riE-dc-ycb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2801.25" y="-670.77464788732391"/>
+            <point key="canvasLocation" x="3798.75" y="-670.77464788732391"/>
         </scene>
         <!--Old-->
         <scene sceneID="tJw-2z-2ZK">
@@ -1283,13 +1356,99 @@
             </objects>
             <point key="canvasLocation" x="2020.0934579439252" y="1209.7192224622031"/>
         </scene>
+        <!--About Contact Cards-->
+        <scene sceneID="Ix9-4X-6gb">
+            <objects>
+                <viewController id="hgu-n7-bGh" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g6s-LS-KLm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="oH3-9r-3G6">
+                                <rect key="frame" x="96" y="85" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="CnY-Ej-pip"/>
+                                    <constraint firstAttribute="width" constant="128" id="HX9-Tg-iJw"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Cards" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2x-yh-oeD">
+                                <rect key="frame" x="96.5" y="221" width="127" height="24"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQz-bX-HL9">
+                                <rect key="frame" x="118.5" y="253" width="83" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nuf-BL-OP5">
+                                <rect key="frame" x="63.5" y="359" width="193" height="30"/>
+                                <state key="normal" title="Frequently Asked Questions"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTZ-en-cEQ">
+                                <rect key="frame" x="122.5" y="397" width="75" height="30"/>
+                                <state key="normal" title="Homepage"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSK-rP-Glj">
+                                <rect key="frame" x="82.5" y="435" width="155" height="30"/>
+                                <state key="normal" title="Contact the Developer"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96F-hA-7Ci">
+                                <rect key="frame" x="112.5" y="473" width="95" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Privacy Policy"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eh9-Lq-PjR">
+                                <rect key="frame" x="14" y="282" width="292" height="69"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="69" id="fWu-br-d0h"/>
+                                    <constraint firstAttribute="width" constant="292" id="q63-EJ-uiK"/>
+                                </constraints>
+                                <string key="text">Copyright © 2020 -2021 Matt Roberts
+All rights reserved.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="L6v-z3-GxV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="aSK-rP-Glj" firstAttribute="centerX" secondItem="L6v-z3-GxV" secondAttribute="centerX" id="1Qm-cJ-rYc"/>
+                            <constraint firstItem="vTZ-en-cEQ" firstAttribute="centerX" secondItem="L6v-z3-GxV" secondAttribute="centerX" id="6se-Ey-bds"/>
+                            <constraint firstItem="eh9-Lq-PjR" firstAttribute="top" secondItem="iQz-bX-HL9" secondAttribute="bottom" constant="8" symbolic="YES" id="8JN-2T-Rye"/>
+                            <constraint firstItem="oH3-9r-3G6" firstAttribute="top" secondItem="L6v-z3-GxV" secondAttribute="top" constant="29" id="9dA-tn-nxo"/>
+                            <constraint firstItem="eh9-Lq-PjR" firstAttribute="centerX" secondItem="L6v-z3-GxV" secondAttribute="centerX" id="CER-42-eDo"/>
+                            <constraint firstItem="96F-hA-7Ci" firstAttribute="centerX" secondItem="L6v-z3-GxV" secondAttribute="centerX" id="FRi-4v-wS2"/>
+                            <constraint firstItem="iQz-bX-HL9" firstAttribute="centerX" secondItem="L6v-z3-GxV" secondAttribute="centerX" id="Fbb-c8-VgU"/>
+                            <constraint firstItem="96F-hA-7Ci" firstAttribute="top" secondItem="aSK-rP-Glj" secondAttribute="bottom" constant="8" symbolic="YES" id="Gww-mV-pTO"/>
+                            <constraint firstItem="nuf-BL-OP5" firstAttribute="top" secondItem="eh9-Lq-PjR" secondAttribute="bottom" constant="8" symbolic="YES" id="Pn3-Yg-gfY"/>
+                            <constraint firstItem="S2x-yh-oeD" firstAttribute="top" secondItem="oH3-9r-3G6" secondAttribute="bottom" constant="8" symbolic="YES" id="TCE-1g-ErI"/>
+                            <constraint firstItem="nuf-BL-OP5" firstAttribute="centerX" secondItem="L6v-z3-GxV" secondAttribute="centerX" id="TP1-Zj-K5K"/>
+                            <constraint firstItem="iQz-bX-HL9" firstAttribute="top" secondItem="S2x-yh-oeD" secondAttribute="bottom" constant="8" symbolic="YES" id="UtQ-mC-3eI"/>
+                            <constraint firstItem="aSK-rP-Glj" firstAttribute="top" secondItem="vTZ-en-cEQ" secondAttribute="bottom" constant="8" symbolic="YES" id="Vxd-kL-sRA"/>
+                            <constraint firstItem="oH3-9r-3G6" firstAttribute="centerX" secondItem="L6v-z3-GxV" secondAttribute="centerX" id="a9D-SA-Wq6"/>
+                            <constraint firstItem="vTZ-en-cEQ" firstAttribute="top" secondItem="nuf-BL-OP5" secondAttribute="bottom" constant="8" symbolic="YES" id="faj-ox-I6U"/>
+                            <constraint firstItem="S2x-yh-oeD" firstAttribute="centerX" secondItem="L6v-z3-GxV" secondAttribute="centerX" id="niS-nI-mAX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="About Contact Cards" id="Vl4-x4-lqe">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="7M5-ra-jxe"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wuv-M3-J0J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="637.5" y="-1433.4507042253522"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="QAX-Md-X7J">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="n9U-Hz-0va" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ajs-1R-e7e">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1299,12 +1458,53 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Upj-RA-BW7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1020" y="-508.0985915492958"/>
+            <point key="canvasLocation" x="1996.875" y="-1473.5915492957747"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="AeF-Tf-nLs">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WDH-em-Scw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LrK-Jq-rDo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="r7Z-1i-89a" kind="relationship" relationship="rootViewController" id="q9o-41-zlU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y57-rZ-bTR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1059" y="-707"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bdc-ms-4Lj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1Io-RR-DmA" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4dn-ZA-u8j">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hgu-n7-bGh" kind="relationship" relationship="rootViewController" id="s7P-QJ-oRI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xtm-qg-Siv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-360" y="-1433.4507042253522"/>
         </scene>
     </scenes>
     <resources>
-        <image name="applewatch" catalog="system" width="114" height="128"/>
+        <image name="Icon" width="256" height="256"/>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>
+        <image name="questionmark" catalog="system" width="96" height="128"/>
+        <namedColor name="Red">
+            <color red="1" green="0.23100000619888306" blue="0.18799999356269836" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
