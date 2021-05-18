@@ -334,6 +334,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rxq-ox-Gxq">
                                                 <rect key="frame" x="63.5" y="0.0" width="153" height="30"/>
                                                 <state key="normal" title="Save Cards as Archive"/>
+                                                <connections>
+                                                    <action selector="saveContactCardsArchive:" destination="r7Z-1i-89a" eventType="touchUpInside" id="zvw-wz-hGB"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNf-qY-8nx">
                                                 <rect key="frame" x="61" y="40" width="158" height="30"/>

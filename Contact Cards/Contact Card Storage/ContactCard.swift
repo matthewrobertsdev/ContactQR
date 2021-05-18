@@ -9,7 +9,16 @@
 import Foundation
 import Contacts
 
-class ContactCard: Codable {
+struct ContactCard: Codable {
+	var filename=""
+	var vCardString=""
+	var color=""
+	init(filename: String, vCardString: String, color: String) {
+		self.filename=filename
+		self.vCardString=vCardString
+		self.color=color
+	}
+	/*
     var filename=""
     var vCardString=""
 	var color=ColorChoice.contrastingColor.rawValue
@@ -23,4 +32,5 @@ class ContactCard: Codable {
 	func setContact(cnContact: CNContact) {
 		vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
 	}
+*/
 }

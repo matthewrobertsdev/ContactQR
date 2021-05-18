@@ -42,7 +42,7 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 	@IBAction func save(_ sender: Any) {
 		if forEditing {
 			contactCard?.filename=titleTextField.text ?? "No Title Given"
-			ContactCardStore.sharedInstance.saveContacts()
+			//ContactCardStore.sharedInstance.saveContacts()
 			WidgetCenter.shared.getCurrentConfigurations { result in
 				guard case .success(let widgets) = result else { return }
 				// Iterate over the WidgetInfo elements to find one that matches

@@ -21,18 +21,7 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 	}
 	func provideParameterOptionsCollection(for intent: ConfigurationIntent, with completion: @escaping
 											(INObjectCollection<ContactCardINObject>?, Error?) -> Void) {
-		let container=NSPersistentCloudKitContainer(name: "ContactCards")
-		let groupIdentifier="group.com.apps.celeritas.contact.cards"
-		if let fileContainerURL=FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) {
-			let storeURL=fileContainerURL.appendingPathComponent("ContactCards.sqlite")
-			let storeDescription=NSPersistentStoreDescription(url: storeURL)
-			storeDescription.cloudKitContainerOptions=NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.apps.celeritas.ContactCards")
-			container.persistentStoreDescriptions=[storeDescription]
-		}
-		//container.persistentStoreDescriptions
-		container.loadPersistentStores { (_, error) in
-			print(error.debugDescription)
-		}
+		let container=loadPersistentContainer()
 		let managedObjectContext=container.viewContext
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
 			do {

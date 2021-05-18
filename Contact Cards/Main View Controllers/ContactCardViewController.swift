@@ -252,7 +252,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			print("Couldn't write temporary vCard file")
 			return
 		}
-		let exportContactCardViewController = ExportContactCardViewController(forExporting: [fileURL], asCopy: false)
+		let exportContactCardViewController = SaveDocumentViewController(forExporting: [fileURL], asCopy: false)
 		exportContactCardViewController.url=fileURL
 		present(exportContactCardViewController, animated: true)
 	}

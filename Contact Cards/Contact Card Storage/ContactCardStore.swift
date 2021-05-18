@@ -7,7 +7,10 @@
 //
 import Foundation
 import Contacts
+
 class ContactCardStore {
+}
+/*
 	static let sharedInstance=ContactCardStore()
 	var contactCards=[ContactCard]()
 	private init() {
@@ -44,3 +47,4 @@ class ContactCardStore {
 		return nil
 	}
 }
+*/

@@ -93,6 +93,22 @@ class ContactDataConverter {
 		}
 		return fileURL
 	}
+	static func writeArchive(contactCards: [ContactCard], directoryURL: URL, fileExtension: String) -> URL? {
+		let filename="ContactArchive"
+		let fileURL = directoryURL.appendingPathComponent(filename)
+			.appendingPathExtension(fileExtension)
+		do {
+			let encoder=JSONEncoder()
+			encoder.outputFormatting = .prettyPrinted
+			let data: Data=try encoder.encode(contactCards)
+			try data.write(to: fileURL, options: [.atomicWrite])
+		} catch {
+			print("Error trying to make write archive")
+			return nil
+		}
+		print("Successfully wrote .contactcards archive.")
+		return fileURL
+	}
 	#endif
 }
 enum DataConversionError: Error {

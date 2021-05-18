@@ -14,7 +14,7 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 	let colorModel=ColorModel()
 	var fetchedResultsController: NSFetchedResultsController<ContactCardMO>?
 	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-	var saveClosure: (ContactCardMO)-> () = {contactCardMO in }
+	var saveClosure: (ContactCardMO)->() = {contactCardMO in }
 	var forWatch=true
     override func viewDidLoad() {
         super.viewDidLoad()

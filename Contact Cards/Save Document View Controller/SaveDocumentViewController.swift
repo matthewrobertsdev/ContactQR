@@ -6,7 +6,7 @@
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 import UIKit
-class ExportContactCardViewController: UIDocumentPickerViewController, UIDocumentPickerDelegate {
+class SaveDocumentViewController: UIDocumentPickerViewController, UIDocumentPickerDelegate {
 	var url: URL?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +31,7 @@ class ExportContactCardViewController: UIDocumentPickerViewController, UIDocumen
 		let fileManager=FileManager.default
 		try? fileManager.removeItem(at: url)
 		dismiss(animated: true)
+		
 
 	}
     /*

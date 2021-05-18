@@ -45,11 +45,13 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			return nil
 		}
 		var validCardTarget: NSObject=self
+		/*
 		if let uuid=UserDefaults.standard.string(forKey: ContactCardsTableViewController.selectedCardUUIDKey) {
 			if let _=ContactCardStore.sharedInstance.getIndexOfContactWithUUID(uuid: uuid) {
 				validCardTarget=appDelegate
 			}
 		}
+*/
 		var toolbarItem: NSToolbarItem?
 		switch itemIdentifier {
 		case .toggleSidebar:

@@ -41,7 +41,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		let notificationCenter=NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(handleNewContact), name: .contactCreated, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(removeContact), name: .contactDeleted, object: nil)
-		notificationCenter.addObserver(self, selector: #selector(reloadWithUUID), name: .contactUpdated, object: nil)
+		//notificationCenter.addObserver(self, selector: #selector(reloadWithUUID), name: .contactUpdated, object: nil)
 		/*
 		#if targetEnvironment(macCatalyst)
 		if let selectedCardUUID=UserDefaults.standard.string(forKey: ContactCardsTableViewController.selectedCardUUIDKey) {
@@ -97,6 +97,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 	override var canBecomeFirstResponder: Bool {
 		return true
 	}
+	/*
 	@objc func reloadWithUUID(notification: NSNotification) {
 		guard let userInfo = notification.userInfo as? [String: Any] else {
 			return
@@ -113,6 +114,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 			tableView.selectRow(at: indexPath, animated: false, scrollPosition: .middle)
 		}
 	}
+*/
 	@objc func handleNewContact() {
 		showContactCard()
 		stopEditing()
@@ -278,10 +280,13 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 			}
 		}
 	func selectFirstContact() {
-		if ContactCardStore.sharedInstance.contactCards.count>0 {
-			tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .middle)
+		if let sections = fetchedResultsController?.sections {
+			let currentSection = sections[0]
+			if currentSection.numberOfObjects>0 {
+				tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .middle)
+				showContactCard()
+			}
 		}
-		showContactCard()
 	}
 	@objc func goUpOne() {
 		guard let indexPath=tableView.indexPathForSelectedRow else {
@@ -298,9 +303,12 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 			selectFirstContact()
 			return
 		}
-		if indexPath.row<ContactCardStore.sharedInstance.contactCards.count-1 {
-			tableView.selectRow(at: IndexPath(row: indexPath.row+1, section: 0), animated: true, scrollPosition: .middle)
-			showContactCard()
+		if let sections = fetchedResultsController?.sections {
+			let currentSection = sections[0]
+			if indexPath.row<currentSection.numberOfObjects {
+				tableView.selectRow(at: IndexPath(row: indexPath.row+1, section: 0), animated: true, scrollPosition: .middle)
+				showContactCard()
+			}
 		}
 	}
 	override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -377,10 +385,13 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		}
 	}
 	func stopEditingIfNoContactCards() {
-		if ContactCardStore.sharedInstance.contactCards.count==0 {
+		if let sections = fetchedResultsController?.sections {
+			let currentSection = sections[0]
+			if currentSection.numberOfObjects==0 {
 			tableView.setEditing(false, animated: true)
 			editButton.title="Edit"
 			editButton.isEnabled=false
+		}
 		}
 	}
 	// MARK: - Navigation
