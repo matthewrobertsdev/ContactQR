@@ -345,6 +345,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOA-5i-BaP">
                                                 <rect key="frame" x="55" y="80" width="170" height="30"/>
                                                 <state key="normal" title="Load Cards from Archive"/>
+                                                <connections>
+                                                    <action selector="loadContactCardsArchive:" destination="r7Z-1i-89a" eventType="touchUpInside" id="Wfk-D9-V34"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcb-uy-h7s">
                                                 <rect key="frame" x="0.0" y="120" width="280" height="142.5"/>

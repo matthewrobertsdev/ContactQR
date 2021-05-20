@@ -7,6 +7,7 @@
 //
 import UIKit
 import CoreData
+import UniformTypeIdentifiers
 class ManageCardsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,20 +37,31 @@ class ManageCardsViewController: UIViewController {
 						return
 					}
 				#if targetEnvironment(macCatalyst)
-				if let fileURL=ContactDataConverter.writeArchive(contactCards: contactCards, directoryURL: directoryURL, fileExtension: "contactcards") {
+				if let fileURL=ContactDataConverter.writeArchive(contactCards: contactCards, directoryURL: directoryURL, fileExtension: "ccbu") {
 					let exportContactCardViewController = SaveDocumentViewController(forExporting: [fileURL], asCopy: false)
 					exportContactCardViewController.url=fileURL
 					present(exportContactCardViewController, animated: true)
 				}
 					#else
+				/*
 					let doumentsUrl=getDocumentsDirectory()
-					ContactDataConverter.writeArchive(contactCards: contactCards, directoryURL: doumentsUrl, fileExtension: "contactcards")
+					ContactDataConverter.writeArchive(contactCards: contactCards, directoryURL: doumentsUrl, fileExtension: "cca")
+*/
+				if let fileURL=ContactDataConverter.writeArchive(contactCards: contactCards, directoryURL: directoryURL, fileExtension: "ccbu") {
+					let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+					present(activityViewController, animated: true, completion: nil)
+				}
 					#endif
 			} catch {
 				print("Unable to save contact cards")
 				//errorString=error.localizedDescription
 			}
 	}
+	@IBAction func loadContactCardsArchive(_ sender: Any) {
+		let loadDocumentController=LoadDocumentViewController(presentationController: self)
+		loadDocumentController.presentPicker()
+	}
+	
     /*
     // MARK: - Navigation
 
