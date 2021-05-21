@@ -17,12 +17,3 @@ class ContactCardMO: NSManagedObject {
 	@NSManaged public var color: String
 	static var entityName: String { return "ContactCard" }
 }
-func setFields(contactCardMO: ContactCardMO, filename: String, cnContact: CNContact, color: String) {
-	contactCardMO.filename=filename
-	contactCardMO.vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
-	//contactCardMO.uuidString=UUID().uuidString
-	contactCardMO.color=color
-}
-func setContact(contactCardMO: ContactCardMO, cnContact: CNContact) {
-	contactCardMO.vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
-}
