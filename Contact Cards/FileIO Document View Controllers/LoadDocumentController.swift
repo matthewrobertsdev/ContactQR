@@ -7,14 +7,18 @@
 //
 import UIKit
 import UniformTypeIdentifiers
-class LoadDocumentViewController: NSObject, UIDocumentPickerDelegate {
+class LoadDocumentController: NSObject, UIDocumentPickerDelegate {
 	private var pickerViewController: UIDocumentPickerViewController?
 	private weak var presentationController: UIViewController?
-	init(presentationController: UIViewController) {
+	var loadHandler={(url: URL) -> Void in }
+	init(presentationController: UIViewController, forOpeningContentTypes: [UTType]) {
 			super.init()
 			self.presentationController = presentationController
-			self.pickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: [UTType]())
+			self.pickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: forOpeningContentTypes)
+		self.pickerViewController?.allowsMultipleSelection=false
 		self.pickerViewController?.delegate=self
+		AppState.shared.appState=AppStateValue.isModal
+		NotificationCenter.default.post(name: .modalityChanged, object: nil)
 	}
 	func presentPicker() {
 		if let controller=pickerViewController {
@@ -23,10 +27,19 @@ class LoadDocumentViewController: NSObject, UIDocumentPickerDelegate {
 	}
 	func documentPicker(_ controller: UIDocumentPickerViewController,
 						didPickDocumentsAt urls: [URL]) {
+		print("Hello")
 		pickerViewController?.dismiss(animated: true)
+		AppState.shared.appState=AppStateValue.isNotModal
+		NotificationCenter.default.post(name: .modalityChanged, object: nil)
+		if let url=urls.first {
+			loadHandler(url)
+		}
 	}
 	func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+		print("Hello")
 		pickerViewController?.dismiss(animated: true)
+		AppState.shared.appState=AppStateValue.isNotModal
+		NotificationCenter.default.post(name: .modalityChanged, object: nil)
 	}
 	/*
 	// MARK: - Navigation

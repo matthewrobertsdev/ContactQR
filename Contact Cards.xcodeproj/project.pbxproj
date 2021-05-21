@@ -84,7 +84,7 @@
 		9F75D07C26536D8E000EB03D /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0922B4752900F34181 /* ContactCard.swift */; };
 		9F75D07D26536D98000EB03D /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0922B4752900F34181 /* ContactCard.swift */; };
 		9F75D07F265373C0000EB03D /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */; };
-		9F7AAFF52656B75F009D442C /* LoadDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7AAFF42656B75F009D442C /* LoadDocumentViewController.swift */; };
+		9F7AAFF52656B75F009D442C /* LoadDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7AAFF42656B75F009D442C /* LoadDocumentController.swift */; };
 		9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EB966255E10420032563C /* CreateContactViewController.swift */; };
 		9F7F42192560F24700199193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F42182560F24700199193 /* SceneDelegate.swift */; };
 		9F7FE6D8262FD11D00A98E3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F7153E82622ABD700292539 /* Assets.xcassets */; };
@@ -258,7 +258,7 @@
 		9F7153EA2622ABD700292539 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F7153EB2622ABD700292539 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		9F75D0762653664B000EB03D /* LoadPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPersistentContainer.swift; sourceTree = "<group>"; };
-		9F7AAFF42656B75F009D442C /* LoadDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDocumentViewController.swift; sourceTree = "<group>"; };
+		9F7AAFF42656B75F009D442C /* LoadDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDocumentController.swift; sourceTree = "<group>"; };
 		9F7EB966255E10420032563C /* CreateContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateContactViewController.swift; sourceTree = "<group>"; };
 		9F7F42182560F24700199193 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9F8852A6264FFA7100260D21 /* WatchContactStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchContactStore.swift; sourceTree = "<group>"; };
@@ -409,7 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				9F339FF2256E9C9500F31F9F /* SaveDocumentViewController.swift */,
-				9F7AAFF42656B75F009D442C /* LoadDocumentViewController.swift */,
+				9F7AAFF42656B75F009D442C /* LoadDocumentController.swift */,
 			);
 			path = "FileIO Document View Controllers";
 			sourceTree = "<group>";
@@ -1010,7 +1010,7 @@
 				9F1A3F44264C074300957CA9 /* ChooseCardViewController.swift in Sources */,
 				9FCA500B22A75CE90004C20F /* ActiveContactCard.swift in Sources */,
 				9FEC6192256229DE004A03BE /* SaveContactCardViewController.swift in Sources */,
-				9F7AAFF52656B75F009D442C /* LoadDocumentViewController.swift in Sources */,
+				9F7AAFF52656B75F009D442C /* LoadDocumentController.swift in Sources */,
 				9FBD0E86255E36DE00C9C9DA /* ContactCardsTableViewController.swift in Sources */,
 				9FB74C0A22B4752900F34181 /* ContactCard.swift in Sources */,
 				9FEE377D256DBA490089337E /* ChooseColorTableViewController.swift in Sources */,

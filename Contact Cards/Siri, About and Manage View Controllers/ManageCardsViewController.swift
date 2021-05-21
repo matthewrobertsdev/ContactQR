@@ -9,6 +9,8 @@ import UIKit
 import CoreData
 import UniformTypeIdentifiers
 class ManageCardsViewController: UIViewController {
+	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+	var loadDocumentController: LoadDocumentController?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -37,7 +39,7 @@ class ManageCardsViewController: UIViewController {
 						return
 					}
 				#if targetEnvironment(macCatalyst)
-				if let fileURL=ContactDataConverter.writeArchive(contactCards: contactCards, directoryURL: directoryURL, fileExtension: "ccbu") {
+				if let fileURL=ContactDataConverter.writeArchive(contactCards: contactCards, directoryURL: directoryURL, fileExtension: "txt") {
 					let exportContactCardViewController = SaveDocumentViewController(forExporting: [fileURL], asCopy: false)
 					exportContactCardViewController.url=fileURL
 					present(exportContactCardViewController, animated: true)
@@ -47,7 +49,7 @@ class ManageCardsViewController: UIViewController {
 					let doumentsUrl=getDocumentsDirectory()
 					ContactDataConverter.writeArchive(contactCards: contactCards, directoryURL: doumentsUrl, fileExtension: "cca")
 */
-				if let fileURL=ContactDataConverter.writeArchive(contactCards: contactCards, directoryURL: directoryURL, fileExtension: "ccbu") {
+				if let fileURL=ContactDataConverter.writeArchive(contactCards: contactCards, directoryURL: directoryURL, fileExtension: "txt") {
 					let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
 					present(activityViewController, animated: true, completion: nil)
 				}
@@ -58,10 +60,37 @@ class ManageCardsViewController: UIViewController {
 			}
 	}
 	@IBAction func loadContactCardsArchive(_ sender: Any) {
-		let loadDocumentController=LoadDocumentViewController(presentationController: self)
-		loadDocumentController.presentPicker()
+		loadDocumentController=LoadDocumentController(presentationController: self, forOpeningContentTypes: [UTType.text])
+			loadDocumentController?.loadHandler={(url: URL) -> Void in
+				if let contactCards=ContactDataConverter.readArchive(url: url) {
+					for card in contactCards {
+						guard let context=self.managedObjectContext else {
+							return
+						}
+						let contactCardMO=NSEntityDescription.entity(forEntityName: ContactCardMO.entityName, in: context)
+						guard let cardMO=contactCardMO else {
+							return
+						}
+						let contactCardRecord=ContactCardMO(entity: cardMO, insertInto: context)
+						do {
+							let contact=try ContactDataConverter.createCNContactArray(vCardString: card.vCardString)[0]
+							setFields(contactCardMO: contactCardRecord, filename: card.filename, cnContact: contact, color: card.color)
+						} catch {
+							print("Error getting CNContact from vCard")
+						}
+						do {
+							try self.managedObjectContext?.save()
+							self.managedObjectContext?.rollback()
+							//ActiveContactCard.shared.contactCard=
+						} catch {
+							print(error.localizedDescription)
+						}
+					}
+				}
+				return
+			}
+			loadDocumentController?.presentPicker()
 	}
-	
     /*
     // MARK: - Navigation
 

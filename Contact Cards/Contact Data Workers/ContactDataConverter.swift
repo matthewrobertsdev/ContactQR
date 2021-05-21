@@ -120,6 +120,21 @@ class ContactDataConverter {
 			return nil
 		}
 	}
+	static func readArchive(url: URL) -> [ContactCard]? {
+		do {
+			guard url.startAccessingSecurityScopedResource() else {
+							print("Can't access archive")
+							return nil
+					}
+			let decoder=JSONDecoder()
+			let data=try Data(contentsOf: url)
+			defer { url.stopAccessingSecurityScopedResource() }
+			return try decoder.decode([ContactCard].self, from: data)
+		} catch {
+			print("Error trying to decode data")
+			return nil
+		}
+	}
 	#endif
 }
 enum DataConversionError: Error {

@@ -104,17 +104,7 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 				}
 			case .update:
 				if let updateIndexPath = indexPath {
-					guard let cell = self.tableView.cellForRow(at: updateIndexPath) as? SavedContactCell else {
-						return
-					}
-					guard let contactCard = fetchedResultsController?.object(at: updateIndexPath) else {
-						return
-					}
-					cell.nameLabel.text=contactCard.filename
-					let colorString=contactCard.color
-					if let color=colorModel.getColorsDictionary()[colorString] as? UIColor {
-						cell.circularColorView.backgroundColor=color
-					}
+					tableView.reloadRows(at: [updateIndexPath], with: animation)
 				}
 			case .move:
 				if let deleteIndexPath = indexPath {
