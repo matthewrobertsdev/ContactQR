@@ -22,7 +22,7 @@ class CardInterfaceController: WKInterfaceController {
 			cardDetailsLabel.setAttributedText(cardString)
 			cardTitleLabel.setText(contactCard.filename)
 			let colorModel=ColorModel()
-			let color=colorModel.getColorsDictionary()[contactCard.color ?? "Contrasting Color"] ?? UIColor.white
+			let color=colorModel.getColorsDictionary()[contactCard.color] ?? UIColor.white
 			cardTitleLabel.setTextColor(color)
 		} catch {
 			print("Unable to create contact from vCard for watch.")

@@ -40,6 +40,6 @@ class WatchContactStore {
 		return title
 	}
 	func getColor() -> UIColor? {
-		return colorModel.getColorsDictionary()[colorString ?? "Contrasting Color"] ?? UIColor.white
+		return colorModel.getColorsDictionary()[colorString] ?? UIColor.white
 	}
 }
