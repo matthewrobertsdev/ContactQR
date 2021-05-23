@@ -5,16 +5,15 @@
 //  Created by Matt Roberts on 5/21/21.
 //  Copyright © 2021 Matt Roberts. All rights reserved.
 //
-
 import WatchKit
 import CoreData
-
 class ChooseCardController: WKInterfaceController, NSFetchedResultsControllerDelegate {
 	@IBOutlet weak var table: WKInterfaceTable!
 	let colorModel=ColorModel()
 	let container=loadPersistentContainer()
 	var fetchedResultsController: NSFetchedResultsController<ContactCardMO>?
 	override func awake(withContext context: Any?) {
+		container.viewContext.automaticallyMergesChangesFromParent=true
 		// Configure interface objects here.
 		print("Choose Card Controller awoke")
 		NotificationCenter.default.addObserver(self, selector: #selector(loadTable), name: .NSPersistentStoreRemoteChange, object: nil)
@@ -60,6 +59,6 @@ class ChooseCardController: WKInterfaceController, NSFetchedResultsControllerDel
 	override func contextForSegue(withIdentifier segueIdentifier: String,
 					  in table: WKInterfaceTable,
 					  rowIndex: Int) -> Any? {
-		return fetchedResultsController?.object(at:IndexPath(row: rowIndex, section: 0))
+		return fetchedResultsController?.object(at: IndexPath(row: rowIndex, section: 0))
 	}
 }

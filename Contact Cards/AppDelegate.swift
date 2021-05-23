@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 	func sessionDidBecomeInactive(_ session: WCSession) {
 	}
 	func sessionDidDeactivate(_ session: WCSession) {
-		
 	}
 	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
 		print("Session activated")
@@ -22,12 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     var window: UIWindow?
 	var session: WCSession?
 	func applicationDidFinishLaunching(_ application: UIApplication) {
+		/*
 		if WCSession.isSupported() {
 			print("Should activate watch session.")
 			session = WCSession.default
 			session?.delegate=self
 			session?.activate()
 		}
+*/
 	}
     func application(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true

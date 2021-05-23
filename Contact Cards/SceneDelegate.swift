@@ -9,7 +9,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	var window: UIWindow?
 	static var mainsSplitViewController: MainSplitViewController?
 	#if targetEnvironment(macCatalyst)
-		var toolbarDelegate = ToolbarDelegate()
+		weak var toolbarDelegate = ToolbarDelegate()
 		static var toolbar: NSToolbar?
 	#endif
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession,

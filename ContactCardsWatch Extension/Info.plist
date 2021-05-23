@@ -36,6 +36,8 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>WKBackgroundModes</key>
+	<array/>
 	<key>WKExtensionDelegateClassName</key>
 	<string>$(PRODUCT_MODULE_NAME).ExtensionDelegate</string>
 </dict>

@@ -42,21 +42,17 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 		if let completedTemplate=getComplicationTemplate(complication: complication) {
 			let fiveMinutes = 5.0 * 60.0
 				let twentyFourHours = 24.0 * 60.0 * 60.0
-				
 				// Create an array to hold the timeline entries.
 				var entries = [CLKComplicationTimelineEntry]()
-				
 				// Calculate the start and end dates.
 				var current = date.addingTimeInterval(fiveMinutes)
 				let endDate = date.addingTimeInterval(twentyFourHours)
-				
 				// Create a timeline entry for every five minutes from the starting time.
 				// Stop once you reach the limit or the end date.
 				while (current.compare(endDate) == .orderedAscending) && (entries.count < limit) {
 					entries.append(CLKComplicationTimelineEntry(date: current, complicationTemplate: completedTemplate))
 					current = current.addingTimeInterval(fiveMinutes)
 				}
-				
 				handler(entries)
 		} else {
 			handler(nil)
