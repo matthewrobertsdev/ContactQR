@@ -27,6 +27,7 @@
 		9F24C16526181D0F00C9441F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3786256DBAA50089337E /* Color.swift */; };
 		9F24C16C26181D1300C9441F /* ColorChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE378B256DBB9F0089337E /* ColorChoice.swift */; };
 		9F24C17326181DEB00C9441F /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */; };
+		9F2E4740265A0A60001FDA64 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F447AC02608E7130003B2E4 /* CloudKit.framework */; };
 		9F339FF3256E9C9500F31F9F /* SaveDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F339FF2256E9C9500F31F9F /* SaveDocumentViewController.swift */; };
 		9F34C273255CCF1900B9DEA4 /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */; };
 		9F35C55F2653463F005E8C61 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35C55E2653463F005E8C61 /* AboutViewController.swift */; };
@@ -49,7 +50,6 @@
 		9F50B30626582F8D00D8CD54 /* LoadPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F75D0762653664B000EB03D /* LoadPersistentContainer.swift */; };
 		9F50B3082658324D00D8CD54 /* ContactCardMOFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F50B3072658324D00D8CD54 /* ContactCardMOFunctions.swift */; };
 		9F50B309265833BF00D8CD54 /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB12608E1540003B2E4 /* ContactCards.xcdatamodeld */; };
-		9F50B30D265838CE00D8CD54 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F50B30B2658382800D8CD54 /* CloudKit.framework */; };
 		9F50B30E265838D500D8CD54 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F50B30C2658382D00D8CD54 /* CoreData.framework */; };
 		9F50B311265845EF00D8CD54 /* ContactTitleRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F50B310265845EF00D8CD54 /* ContactTitleRowController.swift */; };
 		9F56C73C253BD2C8006D8DE6 /* TintImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F56C73B253BD2C8006D8DE6 /* TintImages.swift */; };
@@ -234,6 +234,7 @@
 		9F24C12C26180DF700C9441F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F24C12E26180DF700C9441F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F24C13B261818D800C9441F /* MessageContactCard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessageContactCard.entitlements; sourceTree = "<group>"; };
+		9F2E473F265A06B6001FDA64 /* ContactCards 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactCards 2.xcdatamodel"; sourceTree = "<group>"; };
 		9F339FF2256E9C9500F31F9F /* SaveDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDocumentViewController.swift; sourceTree = "<group>"; };
 		9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
 		9F35C55E2653463F005E8C61 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -251,7 +252,6 @@
 		9F50B30426582EDF00D8CD54 /* ChooseCardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCardController.swift; sourceTree = "<group>"; };
 		9F50B3072658324D00D8CD54 /* ContactCardMOFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardMOFunctions.swift; sourceTree = "<group>"; };
 		9F50B30A265837F000D8CD54 /* ContactCardsWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ContactCardsWatch.entitlements; sourceTree = "<group>"; };
-		9F50B30B2658382800D8CD54 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS7.4.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		9F50B30C2658382D00D8CD54 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS7.4.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		9F50B30F2658393600D8CD54 /* ContactCardsWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ContactCardsWatch Extension.entitlements"; sourceTree = "<group>"; };
 		9F50B310265845EF00D8CD54 /* ContactTitleRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTitleRowController.swift; sourceTree = "<group>"; };
@@ -341,7 +341,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F50B30D265838CE00D8CD54 /* CloudKit.framework in Frameworks */,
+				9F2E4740265A0A60001FDA64 /* CloudKit.framework in Frameworks */,
 				9F50B30E265838D500D8CD54 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -618,7 +618,6 @@
 			children = (
 				9F50B30C2658382D00D8CD54 /* CoreData.framework */,
 				9F447AC02608E7130003B2E4 /* CloudKit.framework */,
-				9F50B30B2658382800D8CD54 /* CloudKit.framework */,
 				9FC1499C25F34B9600C700B0 /* WidgetKit.framework */,
 				9FC1499E25F34B9600C700B0 /* SwiftUI.framework */,
 				9F3F6A2025F494110053C1DF /* Intents.framework */,
@@ -1748,9 +1747,10 @@
 		9F447AB12608E1540003B2E4 /* ContactCards.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				9F2E473F265A06B6001FDA64 /* ContactCards 2.xcdatamodel */,
 				9F447AB22608E1540003B2E4 /* ContactCards.xcdatamodel */,
 			);
-			currentVersion = 9F447AB22608E1540003B2E4 /* ContactCards.xcdatamodel */;
+			currentVersion = 9F2E473F265A06B6001FDA64 /* ContactCards 2.xcdatamodel */;
 			path = ContactCards.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -57,4 +57,9 @@ class ChooseCardController: WKInterfaceController, NSFetchedResultsControllerDel
 			row.titleLabel.setText(contactCardMO?.filename)
 		}
 	}
+	override func contextForSegue(withIdentifier segueIdentifier: String,
+					  in table: WKInterfaceTable,
+					  rowIndex: Int) -> Any? {
+		return fetchedResultsController?.object(at:IndexPath(row: rowIndex, section: 0))
+	}
 }

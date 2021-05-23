@@ -9,8 +9,11 @@ import WatchKit
 import Foundation
 import WatchConnectivity
 class QRInterfaceController: WKInterfaceController {
-	let model=WatchContactStore.sharedInstance
+	var contactCardMO: ContactCardMO?
+	@IBOutlet weak var showDetailsButton: WKInterfaceButton!
+	//let model=WatchContactStore.sharedInstance
 	@IBOutlet weak var image: WKInterfaceImage!
+	
     override func awake(withContext context: Any?) {
         // Configure interface objects here.
 		/*
@@ -21,6 +24,17 @@ class QRInterfaceController: WKInterfaceController {
 			session.activate()
 		}
 */
+		guard let contactCard=context as? ContactCardMO else {
+			return
+		}
+		contactCardMO=contactCard
+		guard let imageData=contactCard.qrCodeImage else {
+			return
+		}
+		image.setImage(UIImage(data: imageData)?.withRenderingMode(.alwaysTemplate))
+		let colorModel=ColorModel()
+		let color=colorModel.getColorsDictionary()[contactCardMO?.color ?? "Contrasting Color"] ?? UIColor.white
+		image.setTintColor(color)
     }
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
@@ -41,4 +55,7 @@ class QRInterfaceController: WKInterfaceController {
 		image.setImage(qrCode)
 	}
 */
+	override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
+		return contactCardMO
+	}
 }

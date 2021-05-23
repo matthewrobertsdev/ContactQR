@@ -6,10 +6,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="18022"/>
     </dependencies>
     <scenes>
-        <!--Choose Card Controller-->
+        <!--Cards-->
         <scene sceneID="NTD-s2-xXH">
             <objects>
-                <controller id="FuQ-9m-Y9c" customClass="ChooseCardController" customModule="ContactCardsWatch" customModuleProvider="target">
+                <controller title="Cards" id="FuQ-9m-Y9c" customClass="ChooseCardController" customModule="ContactCardsWatch" customModuleProvider="target">
                     <items>
                         <group width="1" alignment="left" layout="vertical" spacing="10" id="5Nz-tO-626">
                             <items>
@@ -50,24 +50,32 @@
             <objects>
                 <controller title="Contact" id="AgC-eL-Hgc" customClass="QRInterfaceController" customModule="ContactCardsWatch" customModuleProvider="target">
                     <items>
-                        <group width="1" alignment="left" layout="vertical" id="lFD-ec-4mE">
+                        <group width="1" alignment="left" layout="vertical" spacing="10" id="lFD-ec-4mE">
                             <items>
-                                <label width="136" alignment="left" hidden="YES" text="No Card Loaded Yet" textAlignment="center" numberOfLines="0" id="Gnk-WC-hqu"/>
-                                <imageView width="1" height="1" alignment="left" contentMode="scaleAspectFit" id="kwL-RQ-vYD"/>
+                                <imageView width="1" alignment="left" contentMode="scaleAspectFit" id="kwL-RQ-vYD"/>
+                                <button width="1" alignment="left" title="Show Details" id="AfQ-bP-kJL">
+                                    <color key="titleColor" red="0.35539197919999999" green="0.2604061365" blue="0.16468334200000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="backgroundColor" red="0.97611027959999996" green="0.91306519509999995" blue="0.33706825969999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <connections>
+                                        <segue destination="c0k-i3-tAh" kind="modal" id="xtD-ok-IK5"/>
+                                    </connections>
+                                </button>
                             </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="10" bottom="10"/>
                         </group>
                     </items>
                     <connections>
                         <outlet property="image" destination="kwL-RQ-vYD" id="8r5-fS-vxo"/>
+                        <outlet property="showDetailsButton" destination="AfQ-bP-kJL" id="4mY-V0-fvS"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="-180" y="234"/>
+            <point key="canvasLocation" x="-116" y="232"/>
         </scene>
-        <!--Card-->
+        <!--Done-->
         <scene sceneID="Hp8-GT-fFj">
             <objects>
-                <controller title="Card" id="c0k-i3-tAh" customClass="CardInterfaceController" customModule="ContactCardsWatch_Extension">
+                <controller title="Done" id="c0k-i3-tAh" customClass="CardInterfaceController" customModule="ContactCardsWatch_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" spacing="10" id="ZO6-ML-Kpb">
                             <items>
@@ -84,7 +92,6 @@
                     <connections>
                         <outlet property="cardDetailsLabel" destination="dAD-Uv-gLY" id="roG-gQ-g97"/>
                         <outlet property="cardTitleLabel" destination="BXo-ko-teS" id="EAr-nK-aH6"/>
-                        <segue destination="AgC-eL-Hgc" kind="relationship" relationship="nextPage" id="Jak-WF-MN7"/>
                     </connections>
                 </controller>
             </objects>
@@ -122,8 +129,5 @@
             <point key="canvasLocation" x="468" y="345"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="kYs-OH-kOo"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.97611027959999996" green="0.91306519509999995" blue="0.33706825969999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

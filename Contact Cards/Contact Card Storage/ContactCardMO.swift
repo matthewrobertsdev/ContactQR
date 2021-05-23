@@ -12,6 +12,7 @@ import CoreData
 import Contacts
 
 class ContactCardMO: NSManagedObject {
+	@NSManaged public var qrCodeImage: Data?
 	@NSManaged public var filename: String
 	@NSManaged public var vCardString: String
 	@NSManaged public var color: String
