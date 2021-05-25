@@ -220,8 +220,9 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		let deleteMessage="Are you sure you want to delete Contact Card with title \"\(title)\"?"
 		let deleteAlert = UIAlertController(title: "Are you sure?",
 											message: deleteMessage, preferredStyle: .alert)
-		deleteAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel",
-																	 comment: "Cancel Delete"), style: .default))
+		let cancelAction=UIAlertAction(title: NSLocalizedString("Cancel",
+															comment: "Cancel Delete"), style: .default)
+		deleteAlert.addAction(cancelAction)
 		deleteAlert.addAction(UIAlertAction(title: NSLocalizedString("Delete",
 																	 comment: "Delete ACtion"), style: .destructive, handler: { [weak self] _ in
 																		guard let strongSelf=self else {
@@ -239,6 +240,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 																			managedObjectContext?.rollback()
 																		}
 		}))
+		deleteAlert.preferredAction=cancelAction
 		self.present(deleteAlert, animated: true, completion: nil)
 	}
 	@objc func exportVCardtoFile() {

@@ -81,7 +81,13 @@ class ManageCardsViewController: UIViewController {
 						do {
 							try self.managedObjectContext?.save()
 							self.managedObjectContext?.rollback()
-							//ActiveContactCard.shared.contactCard=
+							let successAlertViewController=UIAlertController(title: "Contact Cards Loaded", message: "All contact cards were successfully loaded.", preferredStyle: .alert)
+							let gotItAction=UIAlertAction(title: "Got it.", style: .default, handler: { _ in
+								successAlertViewController.dismiss(animated: true)
+							})
+							successAlertViewController.addAction(gotItAction)
+							successAlertViewController.preferredAction=gotItAction
+							self.present(successAlertViewController, animated: true)
 						} catch {
 							print(error.localizedDescription)
 						}

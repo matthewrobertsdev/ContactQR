@@ -20,4 +20,5 @@ extension Notification.Name {
 	static let modalityChanged=Notification.Name("modality-changed")
 	static let watchContactUpdated=Notification.Name("watch-contact-updated")
 	static let manageCards=Notification.Name("manage-cards")
+	static let deleteAllCards=Notification.Name("delete-all-cards")
 }
