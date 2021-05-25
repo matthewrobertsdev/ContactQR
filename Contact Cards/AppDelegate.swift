@@ -64,6 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 		builder.remove(menu: .format)
 		builder.remove(menu: .services)
 		builder.remove(menu: .toolbar)
+		builder.remove(menu: .openRecent)
 		builder.replaceChildren(ofMenu: .help) { _ in
 			[]
 		}

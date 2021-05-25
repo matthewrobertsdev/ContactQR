@@ -378,6 +378,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idQ-yy-J7e">
                                                         <rect key="frame" x="55.333333333333314" y="120" width="164" height="30"/>
                                                         <state key="normal" title="View Cards as Rich Text"/>
+                                                        <connections>
+                                                            <action selector="viewCardsAsRichText:" destination="r7Z-1i-89a" eventType="touchUpInside" id="9MW-Tc-1HB"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ft7-Ph-lij">
                                                         <rect key="frame" x="0.0" y="160" width="275" height="30"/>

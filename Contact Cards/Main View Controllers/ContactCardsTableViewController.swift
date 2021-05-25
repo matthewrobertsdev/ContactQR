@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 import WatchConnectivity
 class ContactCardsTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
-	
 	@IBOutlet weak var editButton: UIBarButtonItem!
 	@IBOutlet weak var siriButton: UIBarButtonItem!
 	var fetchedResultsController: NSFetchedResultsController<ContactCardMO>?
