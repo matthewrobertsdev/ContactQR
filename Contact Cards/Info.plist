@@ -20,7 +20,6 @@
 				<string>com.apps.celeritas.contact.cards.ccbu</string>
 			</array>
 		</dict>
-		<dict/>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
@@ -48,6 +47,8 @@
 	<string>public.app-category.social-networking</string>
 	<key>LSRequiresIPhoneOS</key>
 	<false/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2020-2021 Matt Roberts. All rights reserved.</string>
 	<key>NSUserActivityTypes</key>
@@ -103,6 +104,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UISupportsDocumentBrowser</key>
+	<false/>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
@@ -116,7 +119,8 @@
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>com.apps.celeritas.ContactCards.ccbu</string>
+					<string>CCBU</string>
+					<string>ccbu</string>
 				</array>
 				<key>public.mime-type</key>
 				<array/>

@@ -60,7 +60,7 @@ class ManageCardsViewController: UIViewController {
 			}
 	}
 	@IBAction func loadContactCardsArchive(_ sender: Any) {
-		loadDocumentController=LoadDocumentController(presentationController: self, forOpeningContentTypes: [UTType.text])
+		loadDocumentController=LoadDocumentController(presentationController: self, forOpeningContentTypes:  [UTType.text])
 		loadDocumentController?.loadHandler = {(url: URL) -> Void in
 				if let contactCards=ContactDataConverter.readArchive(url: url) {
 					for card in contactCards {
@@ -97,7 +97,30 @@ class ManageCardsViewController: UIViewController {
 			}
 			loadDocumentController?.presentPicker()
 	}
-	
+	@IBAction func exportToRtfFile(_ sender: Any) {
+		let attributedString=ContactCloudDataDescriber.getAttributedStringDescription(color: UIColor.black)
+		guard var fileURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+				return
+			}
+		do {
+			let data = try attributedString?.fileWrapper (from: NSRange (location: 0, length: attributedString?.length ?? 0), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtfd])
+		//let rtfData=try attributedString?.data(from: NSRange(location: 0, length: attributedString?.length ?? 0), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtfd])
+			
+			fileURL.appendPathComponent("Contact Cards iCloud Data Description")
+			fileURL.appendPathExtension("rtfd")
+			try data?.write(to: fileURL, options: .atomic, originalContentsURL: nil)
+			#if targetEnvironment(macCatalyst)
+			let exportContactCardViewController = SaveDocumentViewController(forExporting: [fileURL], asCopy: false)
+			exportContactCardViewController.url=fileURL
+			present(exportContactCardViewController, animated: true)
+			#else
+			let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+			present(activityViewController, animated: true, completion: nil)
+			#endif
+		} catch {
+			print("Error trying to write rtf file")
+		}
+	}
     /*
     // MARK: - Navigation
 

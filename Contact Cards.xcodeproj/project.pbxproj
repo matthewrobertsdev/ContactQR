@@ -93,6 +93,7 @@
 		9F75D07D26536D98000EB03D /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0922B4752900F34181 /* ContactCard.swift */; };
 		9F75D07F265373C0000EB03D /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */; };
 		9F7AAFF52656B75F009D442C /* LoadDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7AAFF42656B75F009D442C /* LoadDocumentController.swift */; };
+		9F7E6909265E6FF9003381B7 /* ContactCloudDataDescriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7E6908265E6FF9003381B7 /* ContactCloudDataDescriber.swift */; };
 		9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EB966255E10420032563C /* CreateContactViewController.swift */; };
 		9F7F42192560F24700199193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F42182560F24700199193 /* SceneDelegate.swift */; };
 		9F7FE6D8262FD11D00A98E3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F7153E82622ABD700292539 /* Assets.xcassets */; };
@@ -276,6 +277,7 @@
 		9F7153EB2622ABD700292539 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		9F75D0762653664B000EB03D /* LoadPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPersistentContainer.swift; sourceTree = "<group>"; };
 		9F7AAFF42656B75F009D442C /* LoadDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDocumentController.swift; sourceTree = "<group>"; };
+		9F7E6908265E6FF9003381B7 /* ContactCloudDataDescriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCloudDataDescriber.swift; sourceTree = "<group>"; };
 		9F7EB966255E10420032563C /* CreateContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateContactViewController.swift; sourceTree = "<group>"; };
 		9F7F42182560F24700199193 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9F8852A6264FFA7100260D21 /* WatchContactStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchContactStore.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				9F8E6645265AF3DF008D60EB /* DeleteDataViewController.swift */,
 				9F35C55E2653463F005E8C61 /* AboutViewController.swift */,
 				9FABD3BF265DCCCC00546FDD /* CloudDataDescriptionViewController.swift */,
+				9F7E6908265E6FF9003381B7 /* ContactCloudDataDescriber.swift */,
 			);
 			path = "Siri, About and Manage View Controllers";
 			sourceTree = "<group>";
@@ -1058,6 +1061,7 @@
 				9F1EE642256EE47D004F444B /* AppState.swift in Sources */,
 				9F50B3082658324D00D8CD54 /* ContactCardMOFunctions.swift in Sources */,
 				9FBFACDB22B4A30800730E7B /* SavedContactCell.swift in Sources */,
+				9F7E6909265E6FF9003381B7 /* ContactCloudDataDescriber.swift in Sources */,
 				9FB31897255F954200D31B8B /* ContactCardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

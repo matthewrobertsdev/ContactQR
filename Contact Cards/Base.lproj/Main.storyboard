@@ -208,7 +208,7 @@
                                                 <constraint firstAttribute="width" constant="17.5" id="Up1-lX-crE"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ContactCard Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Uv-2Q-nAo">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Card Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Uv-2Q-nAo">
                                             <rect key="frame" x="45.5" y="5" width="314.5" height="42"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="ZQ9-8G-rPT"/>
@@ -314,12 +314,15 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNf-qY-8nx">
-                                                        <rect key="frame" x="41" y="80" width="204" height="30"/>
-                                                        <state key="normal" title="Export Cards as Rich Text File"/>
+                                                        <rect key="frame" x="21.5" y="80" width="243" height="30"/>
+                                                        <state key="normal" title="Export iCloud Data as Rich Text File"/>
+                                                        <connections>
+                                                            <action selector="exportToRtfFile:" destination="r7Z-1i-89a" eventType="touchUpInside" id="hww-WQ-ccK"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idQ-yy-J7e">
-                                                        <rect key="frame" x="61" y="120" width="164" height="30"/>
-                                                        <state key="normal" title="View Cards as Rich Text"/>
+                                                        <rect key="frame" x="43" y="120" width="200" height="30"/>
+                                                        <state key="normal" title="View iCloud Data Description"/>
                                                         <connections>
                                                             <segue destination="XlM-cX-H6Q" kind="presentation" id="Y2J-hD-98G"/>
                                                         </connections>
@@ -334,7 +337,7 @@
                                                 <rect key="frame" x="0.0" y="200" width="355" height="162"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcb-uy-h7s">
-                                                        <rect key="frame" x="140" y="0.0" width="355" height="122"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="122"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="1737" id="kvV-5O-cjZ">
                                                                 <variation key="heightClass=compact" constant="220"/>
@@ -356,7 +359,7 @@
                                                         </variation>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izi-IT-Rcv">
-                                                        <rect key="frame" x="280" y="132" width="75" height="30"/>
+                                                        <rect key="frame" x="74.5" y="132" width="206" height="30"/>
                                                         <state key="normal" title="Delete All Cards from iCloud..."/>
                                                         <connections>
                                                             <segue destination="Ywe-e4-tyO" kind="presentation" id="Xv8-Vk-64M"/>
@@ -369,7 +372,7 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="6SZ-ef-5J6" secondAttribute="trailing" constant="150" id="8y4-60-tB2"/>
+                                    <constraint firstAttribute="trailing" secondItem="6SZ-ef-5J6" secondAttribute="trailing" constant="10" id="8y4-60-tB2"/>
                                     <constraint firstItem="6SZ-ef-5J6" firstAttribute="leading" secondItem="emG-3K-ouM" secondAttribute="leading" constant="10" id="PG4-rg-X88"/>
                                     <constraint firstItem="6SZ-ef-5J6" firstAttribute="centerX" secondItem="emG-3K-ouM" secondAttribute="centerX" id="aSp-YG-QM6"/>
                                     <constraint firstAttribute="bottom" secondItem="6SZ-ef-5J6" secondAttribute="bottom" id="ayC-4F-jTr"/>
@@ -1490,8 +1493,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eet-IM-vzt">
-                                <rect key="frame" x="0.0" y="56" width="568" height="591"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eet-IM-vzt">
+                                <rect key="frame" x="0.0" y="56" width="375" height="591"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hq5-wg-dcl">
                                         <rect key="frame" x="41.5" y="19" width="292" height="403.5"/>
@@ -1566,13 +1569,15 @@ All rights reserved.</string>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <variation key="heightClass=compact-widthClass=regular" axis="horizontal"/>
+                                        <variation key="heightClass=compact" axis="horizontal"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="hq5-wg-dcl" secondAttribute="bottom" id="C2y-rp-zPj"/>
+                                    <constraint firstItem="hq5-wg-dcl" firstAttribute="leading" secondItem="eet-IM-vzt" secondAttribute="leading" constant="41.5" id="LJ3-Dx-UYN"/>
                                     <constraint firstItem="hq5-wg-dcl" firstAttribute="centerX" secondItem="eet-IM-vzt" secondAttribute="centerX" id="Pch-0e-yhN"/>
                                     <constraint firstItem="hq5-wg-dcl" firstAttribute="top" secondItem="eet-IM-vzt" secondAttribute="top" constant="19" id="YjR-gA-YSg"/>
+                                    <constraint firstAttribute="trailing" secondItem="hq5-wg-dcl" secondAttribute="trailing" constant="234.5" id="gBN-Hb-c4e"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="dln-eA-zSS"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="HZX-Ao-NWK"/>
