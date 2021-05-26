@@ -45,10 +45,6 @@ class ManageCardsViewController: UIViewController {
 					present(exportContactCardViewController, animated: true)
 				}
 					#else
-				/*
-					let doumentsUrl=getDocumentsDirectory()
-					ContactDataConverter.writeArchive(contactCards: contactCards, directoryURL: doumentsUrl, fileExtension: "cca")
-*/
 				if let fileURL=ContactDataConverter.writeArchive(contactCards: contactCards, directoryURL: directoryURL, fileExtension: "txt") {
 					let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
 					present(activityViewController, animated: true, completion: nil)
@@ -56,7 +52,6 @@ class ManageCardsViewController: UIViewController {
 					#endif
 			} catch {
 				print("Unable to save contact cards")
-				//errorString=error.localizedDescription
 			}
 	}
 	@IBAction func loadContactCardsArchive(_ sender: Any) {

@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import WatchConnectivity
+import Intents
 class ContactCardsTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 	@IBOutlet weak var editButton: UIBarButtonItem!
 	@IBOutlet weak var siriButton: UIBarButtonItem!
@@ -18,6 +19,9 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		INPreferences.requestSiriAuthorization({status in
+						// Handle errors here
+					})
 		/*
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
 		do {
@@ -67,7 +71,6 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		guard let context=managedObjectContext else {
 			return
 		}
-		
 		self.fetchedResultsController = NSFetchedResultsController<ContactCardMO>(
 			fetchRequest: contactCardFetchRequest,
 			managedObjectContext: context,
