@@ -21,6 +21,6 @@ func setQRCode(contactCardMO: ContactCardMO) {
 	let model=DisplayQRModel()
 	model.setUp(contactCard: contactCardMO)
 	if let qrCode=model.makeQRCode() {
-		contactCardMO.qrCodeImage=getTintedForeground(image: qrCode, color: UIColor.label).withRenderingMode(.alwaysTemplate).pngData()
+		contactCardMO.qrCodeImage=getTintedForeground(image: qrCode, color: UIColor.systemGray).withRenderingMode(.alwaysTemplate).pngData()
 	}
 }

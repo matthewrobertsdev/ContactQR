@@ -97,52 +97,6 @@ class ManageCardsViewController: UIViewController {
 			}
 			loadDocumentController?.presentPicker()
 	}
-	@IBAction func viewCardsAsRichText(_ sender: Any) {
-		let iCloudDataAttributedString=NSMutableAttributedString()
-		iCloudDataAttributedString.append(NSAttributedString(string: "[\n"))
-		let predicate = NSPredicate(value: true)
-			let sort = NSSortDescriptor(key: "filename", ascending: false)
-			let query = CKQuery(recordType: "ContactCard", predicate: predicate)
-			query.sortDescriptors = [sort]
-
-			let operation = CKQueryOperation(query: query)
-		operation.recordFetchedBlock = { record in
-			guard let filename=record["filename"] as? String else {
-				return
-			}
-			guard let color=record["color"] as? String else {
-				return
-			}
-			guard let vCardString=record["vCardString"] as? String else {
-				return
-			}
-			guard let qrCodeImageData=record["qrCodeImage"] as? Data else {
-				return
-			}
-			guard let qrCodeImage=UIImage(data: qrCodeImageData) else {
-				return
-			}
-			let imageAttachment = NSTextAttachment()
-			imageAttachment.image = qrCodeImage
-			iCloudDataAttributedString.append(NSAttributedString(string: "{\n"))
-			iCloudDataAttributedString.append(NSAttributedString(string: "filename: \(filename)\n"))
-			iCloudDataAttributedString.append(NSAttributedString(string: "color: \(color)\n"))
-			iCloudDataAttributedString.append(NSAttributedString(string: "vCardString: \(vCardString)\n"))
-			iCloudDataAttributedString.append(NSAttributedString(string: "qrCodeImage: "))
-			iCloudDataAttributedString.append(NSAttributedString(attachment: imageAttachment))
-			iCloudDataAttributedString.append(NSAttributedString(string: "\n"))
-			iCloudDataAttributedString.append(NSAttributedString(string: "}\n"))
-		}
-		operation.queryCompletionBlock = { [weak self] (cursor, error) in
-			DispatchQueue.main.async {
-				if let _=error {
-					
-				} else {
-					iCloudDataAttributedString.append(NSAttributedString(string: "]\n"))
-				}
-			}
-		}
-	}
 	
     /*
     // MARK: - Navigation
