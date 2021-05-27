@@ -8,10 +8,24 @@
 
 import UIKit
 import Intents
+import IntentsUI
 class SetUpSiriViewController: UIViewController {
-
-    override func viewDidLoad() {
+	@IBOutlet weak var stackView: UIStackView!
+	var shortCutDelegate: ShortcutDelegate?
+	override func viewDidLoad() {
         super.viewDidLoad()
+		let shortCutButton=INUIAddVoiceShortcutButton(style: .automatic)
+		stackView.addArrangedSubview(shortCutButton)
+		shortCutDelegate=ShortcutDelegate(viewController: self)
+		guard let shortCutDelegate=shortCutDelegate else {
+			return
+		}
+		//size width of shortCut button
+		shortCutButton.translatesAutoresizingMaskIntoConstraints=false
+		NSLayoutConstraint.activate([
+			shortCutButton.widthAnchor.constraint(equalToConstant: 300)
+		])
+		shortCutButton.delegate=shortCutDelegate
 		let intent=ShowCardIntent()
 		intent.suggestedInvocationPhrase = "Show contact card."
 		let interaction = INInteraction(intent: intent, response: nil)
@@ -22,18 +36,18 @@ class SetUpSiriViewController: UIViewController {
 						print("\n Donated CreateExpenseIntent")
 					}
 				}
+		shortCutButton.shortcut=INShortcut(intent: intent)
         // Do any additional setup after loading the view.
     }
-    
-
+	@IBAction func done(_ sender: Any) {
+		dismiss(animated: true)
+	}
     /*
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
     */
-
 }

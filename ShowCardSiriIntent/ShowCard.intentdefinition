@@ -62,7 +62,7 @@
 				</array>
 			</dict>
 			<key>INIntentTitle</key>
-			<string>Show Card</string>
+			<string>Show QR Code of Contact Card</string>
 			<key>INIntentTitleID</key>
 			<string>EochPd</string>
 			<key>INIntentType</key>

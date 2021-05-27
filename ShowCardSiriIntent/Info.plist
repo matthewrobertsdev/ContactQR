@@ -27,9 +27,7 @@
 			<key>IntentsRestrictedWhileLocked</key>
 			<array/>
 			<key>IntentsRestrictedWhileProtectedDataUnavailable</key>
-			<array>
-				<string>ShowCardIntent</string>
-			</array>
+			<array/>
 			<key>IntentsSupported</key>
 			<array>
 				<string>ShowCardIntent</string>
