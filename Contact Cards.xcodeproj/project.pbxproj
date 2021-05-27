@@ -123,6 +123,9 @@
 		9F9E9AF821BA1691003A6A33 /* ContactCardsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AF721BA1691003A6A33 /* ContactCardsTest.swift */; };
 		9F9E9B0321BA1691003A6A33 /* AirContactsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9B0221BA1691003A6A33 /* AirContactsUITests.swift */; };
 		9FA3C11326600BB70033DD3B /* ShortcutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA3C11226600BB70033DD3B /* ShortcutDelegate.swift */; };
+		9FA3C114266023840033DD3B /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A336A265EE47200265C4D /* ShowCard.intentdefinition */; };
+		9FA3C116266024480033DD3B /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A335C265EDCB400265C4D /* IntentHandler.swift */; };
+		9FA3C117266024940033DD3B /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A335C265EDCB400265C4D /* IntentHandler.swift */; };
 		9FABD3C0265DCCCC00546FDD /* CloudDataDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FABD3BF265DCCCC00546FDD /* CloudDataDescriptionViewController.swift */; };
 		9FB31897255F954200D31B8B /* ContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB31896255F954200D31B8B /* ContactCardViewController.swift */; };
 		9FB3E45F21C967410011752F /* PickContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E45E21C967410011752F /* PickContactViewController.swift */; };
@@ -130,6 +133,9 @@
 		9FB74C0A22B4752900F34181 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0922B4752900F34181 /* ContactCard.swift */; };
 		9FB74C0E22B4783000F34181 /* PersistencManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0D22B4783000F34181 /* PersistencManager.swift */; };
 		9FB74C1022B4825C00F34181 /* ContactCardPersistencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0F22B4825C00F34181 /* ContactCardPersistencyManager.swift */; };
+		9FBC31732660337400189972 /* ShowCardIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC31722660337400189972 /* ShowCardIntentHandler.swift */; };
+		9FBC3174266033FA00189972 /* ShowCardIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC31722660337400189972 /* ShowCardIntentHandler.swift */; };
+		9FBC3175266033FB00189972 /* ShowCardIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC31722660337400189972 /* ShowCardIntentHandler.swift */; };
 		9FBD0E86255E36DE00C9C9DA /* ContactCardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBD0E85255E36DE00C9C9DA /* ContactCardsTableViewController.swift */; };
 		9FBFACDB22B4A30800730E7B /* SavedContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */; };
 		9FC1499D25F34B9600C700B0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC1499C25F34B9600C700B0 /* WidgetKit.framework */; };
@@ -345,6 +351,7 @@
 		9FB74C0922B4752900F34181 /* ContactCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCard.swift; sourceTree = "<group>"; };
 		9FB74C0D22B4783000F34181 /* PersistencManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistencManager.swift; sourceTree = "<group>"; };
 		9FB74C0F22B4825C00F34181 /* ContactCardPersistencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardPersistencyManager.swift; sourceTree = "<group>"; };
+		9FBC31722660337400189972 /* ShowCardIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardIntentHandler.swift; sourceTree = "<group>"; };
 		9FBD0E85255E36DE00C9C9DA /* ContactCardsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardsTableViewController.swift; sourceTree = "<group>"; };
 		9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedContactCell.swift; sourceTree = "<group>"; };
 		9FC1499A25F34B9600C700B0 /* ContactCardQRCodeExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ContactCardQRCodeExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -468,6 +475,7 @@
 				9F0A3362265EDCB400265C4D /* ShowCardSiriIntent.entitlements */,
 				9F0A336A265EE47200265C4D /* ShowCard.intentdefinition */,
 				9F0A335C265EDCB400265C4D /* IntentHandler.swift */,
+				9FBC31722660337400189972 /* ShowCardIntentHandler.swift */,
 				9F0A335E265EDCB400265C4D /* Info.plist */,
 			);
 			path = ShowCardSiriIntent;
@@ -1111,6 +1119,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F0A3349265ED64F00265C4D /* IntentViewController.swift in Sources */,
+				9FBC3174266033FA00189972 /* ShowCardIntentHandler.swift in Sources */,
+				9FA3C116266024480033DD3B /* IntentHandler.swift in Sources */,
+				9FA3C114266023840033DD3B /* ShowCard.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1118,6 +1129,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FBC31732660337400189972 /* ShowCardIntentHandler.swift in Sources */,
 				9F0A335D265EDCB400265C4D /* IntentHandler.swift in Sources */,
 				9F0A336B265EE47200265C4D /* ShowCard.intentdefinition in Sources */,
 			);
@@ -1192,6 +1204,7 @@
 				9F5C647221D3E10A00832897 /* ContactInfoManipulator.swift in Sources */,
 				9FEE3787256DBAA50089337E /* Color.swift in Sources */,
 				9FB74C1022B4825C00F34181 /* ContactCardPersistencyManager.swift in Sources */,
+				9FA3C117266024940033DD3B /* IntentHandler.swift in Sources */,
 				9FABD3C0265DCCCC00546FDD /* CloudDataDescriptionViewController.swift in Sources */,
 				9F15544325939378006C7A92 /* EditContactAlertController.swift in Sources */,
 				9F75D0772653664B000EB03D /* LoadPersistentContainer.swift in Sources */,
@@ -1222,6 +1235,7 @@
 				9F7AAFF52656B75F009D442C /* LoadDocumentController.swift in Sources */,
 				9FBD0E86255E36DE00C9C9DA /* ContactCardsTableViewController.swift in Sources */,
 				9FB74C0A22B4752900F34181 /* ContactCard.swift in Sources */,
+				9FBC3175266033FB00189972 /* ShowCardIntentHandler.swift in Sources */,
 				9FEE377D256DBA490089337E /* ChooseColorTableViewController.swift in Sources */,
 				9F34C273255CCF1900B9DEA4 /* MainSplitViewController.swift in Sources */,
 				9FEE378C256DBB9F0089337E /* ColorChoice.swift in Sources */,

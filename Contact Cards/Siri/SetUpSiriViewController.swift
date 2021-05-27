@@ -23,11 +23,11 @@ class SetUpSiriViewController: UIViewController {
 		//size width of shortCut button
 		shortCutButton.translatesAutoresizingMaskIntoConstraints=false
 		NSLayoutConstraint.activate([
-			shortCutButton.widthAnchor.constraint(equalToConstant: 300)
+			shortCutButton.widthAnchor.constraint(equalToConstant: 250)
 		])
 		shortCutButton.delegate=shortCutDelegate
 		let intent=ShowCardIntent()
-		intent.suggestedInvocationPhrase = "Show contact card."
+		intent.suggestedInvocationPhrase = "Show card."
 		let interaction = INInteraction(intent: intent, response: nil)
 				interaction.donate { (error) in
 					if let error = error {
