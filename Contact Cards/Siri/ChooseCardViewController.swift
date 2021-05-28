@@ -10,11 +10,11 @@ import CoreData
 class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate {
 	@IBOutlet weak var stackView: UIStackView!
 	@IBOutlet weak var tableView: UITableView!
-	@IBOutlet weak var watchInfoLabel: UILabel!
+	@IBOutlet weak var doneBarButtonItem: UIBarButtonItem!
 	let colorModel=ColorModel()
 	var fetchedResultsController: NSFetchedResultsController<ContactCardMO>?
 	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-	var saveClosure: (ContactCardMO)->() = {contactCardMO in }
+	var saveClosure: (ContactCardMO)->Void = {contactCardMO in }
 	var forWatch=true
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +23,6 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
         // Do any additional setup after loading the view.
     }
 	override func viewWillAppear(_ animated: Bool) {
-		if forWatch==false {
-			stackView.removeArrangedSubview(watchInfoLabel)
-		}
 		let contactCardFetchRequest = NSFetchRequest<ContactCardMO>(entityName: "ContactCard")
 				let sortDescriptor = NSSortDescriptor(key: "filename", ascending: true)
 		contactCardFetchRequest.sortDescriptors = [sortDescriptor]
@@ -134,11 +131,16 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 		}
 	func tableView(_ tableView: UITableView,
 							didSelectRowAt indexPath: IndexPath) {
+		doneBarButtonItem.isEnabled=true
+	}
+	@IBAction func done(_ sender: Any) {
 		guard let controller=fetchedResultsController else {
 			return
 		}
-		saveClosure(controller.object(at: indexPath))
-		navigationController?.dismiss(animated: true)
+		if let indexPath=tableView.indexPathForSelectedRow {
+			saveClosure(controller.object(at: indexPath))
+			navigationController?.dismiss(animated: true)
+		}
 	}
 	/*
     // MARK: - Navigation

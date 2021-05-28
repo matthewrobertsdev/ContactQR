@@ -397,19 +397,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 			guard let cardChoiceController=navigationController.visibleViewController as? ChooseCardViewController else {
 				return
 			}
-			let model=DisplayQRModel()
-			let colorModel=ColorModel()
-			cardChoiceController.saveClosure={ contactCardMO
-				in
-				var color=colorModel.getColorsDictionary()[contactCardMO.color] ?? UIColor.white
-				if color==UIColor.label {
-					color=UIColor.white
-				}
-				model.setUp(contactCard: contactCardMO)
-				let qrCode=getTintedForeground(image: model.makeQRCode() ?? UIImage(), color: color ?? UIColor.white)
-				let data = qrCode.pngData()
-				let contactCardDictionary: [String: Any]=["title":contactCardMO.filename, "color":contactCardMO.color, "vCard":contactCardMO.vCardString, "imageData": data]
-				(UIApplication.shared.delegate as? AppDelegate)?.session?.sendMessage(contactCardDictionary, replyHandler: nil, errorHandler: nil)
+			cardChoiceController.saveClosure={ contactCardMO in
 			}
 			print("Should present ChooseCardViewController")
 		}

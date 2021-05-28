@@ -483,7 +483,6 @@
 		9F1A3F40264C052200957CA9 /* Manage View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9F1A3F43264C074300957CA9 /* ChooseCardViewController.swift */,
 				9F941C742652A886004F8C83 /* ManageCardsViewController.swift */,
 				9F8E6645265AF3DF008D60EB /* DeleteDataViewController.swift */,
 				9FABD3BF265DCCCC00546FDD /* CloudDataDescriptionViewController.swift */,
@@ -514,13 +513,13 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
-		9F339FF1256E9C0E00F31F9F /* FileIO Document View Controllers */ = {
+		9F339FF1256E9C0E00F31F9F /* File IO Document View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				9F339FF2256E9C9500F31F9F /* SaveDocumentViewController.swift */,
 				9F7AAFF42656B75F009D442C /* LoadDocumentController.swift */,
 			);
-			path = "FileIO Document View Controllers";
+			path = "File IO Document View Controllers";
 			sourceTree = "<group>";
 		};
 		9F3EFEF822B36C29001A28E0 /* Create and Edit Contact Card View Controllers */ = {
@@ -659,17 +658,17 @@
 				9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */,
 				9F4ABC7C2570CBEA000A9101 /* ToolBarDelegate.swift */,
 				9F7F42182560F24700199193 /* SceneDelegate.swift */,
-				9FA3C11126600B790033DD3B /* Siri */,
 				9F2CFACD256DF0C1000C57E6 /* Colors */,
 				9F7147A6256CCC3000A979B8 /* Contact Card Storage */,
 				9F6BEA6622A78369008D9745 /* Contact Data Workers */,
 				9FBFACD722B49D0000730E7B /* Utilities */,
-				9FB87B4426618544009879C3 /* About View Controller */,
-				9F1A3F40264C052200957CA9 /* Manage View Controllers */,
 				9F7147BA256CCD5700A979B8 /* Main View Controllers */,
 				9F02577521C98FB3003A5EAA /* QR Code View Controller */,
-				9F339FF1256E9C0E00F31F9F /* FileIO Document View Controllers */,
 				9F3EFEF822B36C29001A28E0 /* Create and Edit Contact Card View Controllers */,
+				9FA3C11126600B790033DD3B /* Siri */,
+				9F339FF1256E9C0E00F31F9F /* File IO Document View Controllers */,
+				9F1A3F40264C052200957CA9 /* Manage View Controllers */,
+				9FB87B4426618544009879C3 /* About View Controller */,
 				9F7147BB256CCDB800A979B8 /* Views */,
 				9F9E9AE621BA1690003A6A33 /* Main.storyboard */,
 				9F9E9AEB21BA1691003A6A33 /* LaunchScreen.storyboard */,
@@ -702,6 +701,7 @@
 			children = (
 				9F0A3368265EE18700265C4D /* SetUpSiriViewController.swift */,
 				9FA3C11226600BB70033DD3B /* ShortcutDelegate.swift */,
+				9F1A3F43264C074300957CA9 /* ChooseCardViewController.swift */,
 			);
 			path = Siri;
 			sourceTree = "<group>";
