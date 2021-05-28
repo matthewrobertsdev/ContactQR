@@ -5,15 +5,11 @@
 //  Created by Matt Roberts on 5/26/21.
 //  Copyright © 2021 Matt Roberts. All rights reserved.
 //
-
 import IntentsUI
-
 // As an example, this extension's Info.plist has been configured to handle interactions for INSendMessageIntent.
 // You will want to replace this or add other intents as appropriate.
 // The intents whose interactions you wish to handle must be declared in the extension's Info.plist.
-
 // You can test this example integration by saying things to Siri like:
-// "Send a message using <myApp>"
 class IntentViewController: UIViewController, INUIHostedViewControlling {
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -108,14 +108,12 @@
 		9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EB966255E10420032563C /* CreateContactViewController.swift */; };
 		9F7F42192560F24700199193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F42182560F24700199193 /* SceneDelegate.swift */; };
 		9F7FE6D8262FD11D00A98E3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F7153E82622ABD700292539 /* Assets.xcassets */; };
-		9F8852A7264FFA7100260D21 /* WatchContactStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8852A6264FFA7100260D21 /* WatchContactStore.swift */; };
 		9F8852A9264FFDF100260D21 /* CardInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8852A8264FFDF100260D21 /* CardInterfaceController.swift */; };
 		9F8852AA264FFE2F00260D21 /* NotificationNameExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F659B4725FEA28B0035F02C /* NotificationNameExtensions.swift */; };
 		9F8852AC265000B800260D21 /* ContactInfoManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5C647121D3E10A00832897 /* ContactInfoManipulator.swift */; };
 		9F8C266C2612821500E37290 /* ContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB92608E54A0003B2E4 /* ContactCardMO.swift */; };
 		9F8E6646265AF3DF008D60EB /* DeleteDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8E6645265AF3DF008D60EB /* DeleteDataViewController.swift */; };
 		9F941C752652A886004F8C83 /* ManageCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F941C742652A886004F8C83 /* ManageCardsViewController.swift */; };
-		9F98DF6A257F3C9900566779 /* EditContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F98DF69257F3C9900566779 /* EditContactCardViewController.swift */; };
 		9F9E9AE321BA1690003A6A33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */; };
 		9F9E9AE521BA1690003A6A33 /* DisplayQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE421BA1690003A6A33 /* DisplayQRViewController.swift */; };
 		9F9E9AE821BA1690003A6A33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE621BA1690003A6A33 /* Main.storyboard */; };
@@ -326,11 +324,9 @@
 		9F7E6908265E6FF9003381B7 /* ContactCloudDataDescriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCloudDataDescriber.swift; sourceTree = "<group>"; };
 		9F7EB966255E10420032563C /* CreateContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateContactViewController.swift; sourceTree = "<group>"; };
 		9F7F42182560F24700199193 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9F8852A6264FFA7100260D21 /* WatchContactStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchContactStore.swift; sourceTree = "<group>"; };
 		9F8852A8264FFDF100260D21 /* CardInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInterfaceController.swift; sourceTree = "<group>"; };
 		9F8E6645265AF3DF008D60EB /* DeleteDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDataViewController.swift; sourceTree = "<group>"; };
 		9F941C742652A886004F8C83 /* ManageCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageCardsViewController.swift; sourceTree = "<group>"; };
-		9F98DF69257F3C9900566779 /* EditContactCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactCardViewController.swift; sourceTree = "<group>"; };
 		9F9E9ADF21BA1690003A6A33 /* Contact Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Contact Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F9E9AE421BA1690003A6A33 /* DisplayQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayQRViewController.swift; sourceTree = "<group>"; };
@@ -484,17 +480,16 @@
 			path = ShowCardSiriIntent;
 			sourceTree = "<group>";
 		};
-		9F1A3F40264C052200957CA9 /* About and Manage View Controllers */ = {
+		9F1A3F40264C052200957CA9 /* Manage View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				9F1A3F43264C074300957CA9 /* ChooseCardViewController.swift */,
 				9F941C742652A886004F8C83 /* ManageCardsViewController.swift */,
 				9F8E6645265AF3DF008D60EB /* DeleteDataViewController.swift */,
-				9F35C55E2653463F005E8C61 /* AboutViewController.swift */,
 				9FABD3BF265DCCCC00546FDD /* CloudDataDescriptionViewController.swift */,
 				9F7E6908265E6FF9003381B7 /* ContactCloudDataDescriber.swift */,
 			);
-			path = "About and Manage View Controllers";
+			path = "Manage View Controllers";
 			sourceTree = "<group>";
 		};
 		9F24C12626180DF600C9441F /* MessageContactCard */ = {
@@ -535,7 +530,6 @@
 				9F7EB966255E10420032563C /* CreateContactViewController.swift */,
 				9FEE377C256DBA490089337E /* ChooseColorTableViewController.swift */,
 				9FEC6191256229DE004A03BE /* SaveContactCardViewController.swift */,
-				9F98DF69257F3C9900566779 /* EditContactCardViewController.swift */,
 				9F15544225939378006C7A92 /* EditContactAlertController.swift */,
 			);
 			path = "Create and Edit Contact Card View Controllers";
@@ -606,12 +600,9 @@
 		9F7153DF2622ABD600292539 /* ContactCardsWatch Extension */ = {
 			isa = PBXGroup;
 			children = (
+				9FB87B45266185DB009879C3 /* Interface Controllers */,
 				9F50B30F2658393600D8CD54 /* ContactCardsWatch Extension.entitlements */,
-				9F7153E02622ABD600292539 /* QRInterfaceController.swift */,
-				9F50B30426582EDF00D8CD54 /* ChooseCardController.swift */,
-				9F8852A8264FFDF100260D21 /* CardInterfaceController.swift */,
 				9F50B310265845EF00D8CD54 /* ContactTitleRowController.swift */,
-				9F8852A6264FFA7100260D21 /* WatchContactStore.swift */,
 				9F7153E22622ABD600292539 /* ExtensionDelegate.swift */,
 				9F7153E42622ABD600292539 /* NotificationController.swift */,
 				9F7153E62622ABD600292539 /* ComplicationController.swift */,
@@ -662,18 +653,19 @@
 		9F9E9AE121BA1690003A6A33 /* Contact Cards */ = {
 			isa = PBXGroup;
 			children = (
-				9FA3C11126600B790033DD3B /* Siri */,
 				9F447AB12608E1540003B2E4 /* ContactCards.xcdatamodeld */,
 				9F659B4725FEA28B0035F02C /* NotificationNameExtensions.swift */,
 				9F1EE641256EE47D004F444B /* AppState.swift */,
 				9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */,
 				9F4ABC7C2570CBEA000A9101 /* ToolBarDelegate.swift */,
 				9F7F42182560F24700199193 /* SceneDelegate.swift */,
+				9FA3C11126600B790033DD3B /* Siri */,
 				9F2CFACD256DF0C1000C57E6 /* Colors */,
 				9F7147A6256CCC3000A979B8 /* Contact Card Storage */,
 				9F6BEA6622A78369008D9745 /* Contact Data Workers */,
 				9FBFACD722B49D0000730E7B /* Utilities */,
-				9F1A3F40264C052200957CA9 /* About and Manage View Controllers */,
+				9FB87B4426618544009879C3 /* About View Controller */,
+				9F1A3F40264C052200957CA9 /* Manage View Controllers */,
 				9F7147BA256CCD5700A979B8 /* Main View Controllers */,
 				9F02577521C98FB3003A5EAA /* QR Code View Controller */,
 				9F339FF1256E9C0E00F31F9F /* FileIO Document View Controllers */,
@@ -712,6 +704,24 @@
 				9FA3C11226600BB70033DD3B /* ShortcutDelegate.swift */,
 			);
 			path = Siri;
+			sourceTree = "<group>";
+		};
+		9FB87B4426618544009879C3 /* About View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9F35C55E2653463F005E8C61 /* AboutViewController.swift */,
+			);
+			path = "About View Controller";
+			sourceTree = "<group>";
+		};
+		9FB87B45266185DB009879C3 /* Interface Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9F7153E02622ABD600292539 /* QRInterfaceController.swift */,
+				9F50B30426582EDF00D8CD54 /* ChooseCardController.swift */,
+				9F8852A8264FFDF100260D21 /* CardInterfaceController.swift */,
+			);
+			path = "Interface Controllers";
 			sourceTree = "<group>";
 		};
 		9FBFACD722B49D0000730E7B /* Utilities */ = {
@@ -1194,7 +1204,6 @@
 				9F8852AC265000B800260D21 /* ContactInfoManipulator.swift in Sources */,
 				9F7153E32622ABD600292539 /* ExtensionDelegate.swift in Sources */,
 				9F50B30626582F8D00D8CD54 /* LoadPersistentContainer.swift in Sources */,
-				9F8852A7264FFA7100260D21 /* WatchContactStore.swift in Sources */,
 				9F7153E12622ABD600292539 /* QRInterfaceController.swift in Sources */,
 				9F06D3E326500E89000239AB /* ColorModel.swift in Sources */,
 			);
@@ -1222,7 +1231,6 @@
 				9F8E6646265AF3DF008D60EB /* DeleteDataViewController.swift in Sources */,
 				9F447AB32608E1540003B2E4 /* ContactCards.xcdatamodeld in Sources */,
 				9FB3E45F21C967410011752F /* PickContactViewController.swift in Sources */,
-				9F98DF6A257F3C9900566779 /* EditContactCardViewController.swift in Sources */,
 				9F0A3369265EE18700265C4D /* SetUpSiriViewController.swift in Sources */,
 				9F3F6B3B25F49AAC0053C1DF /* ContactCardQRCode.intentdefinition in Sources */,
 				9FB3E46521C96F990011752F /* DisplayQRModel.swift in Sources */,
