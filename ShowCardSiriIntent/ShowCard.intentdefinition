@@ -71,7 +71,7 @@
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
-				<integer>1</integer>
+				<integer>3</integer>
 			</dict>
 			<key>INIntentTitle</key>
 			<string>Show QR Code of Contact Card</string>

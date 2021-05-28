@@ -27,6 +27,18 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
         completion(true, parameters, self.desiredSize)
     }
     var desiredSize: CGSize {
-        return CGSize(width: 250, height: 250)
-    }
+		let screenSize=UIScreen.main.bounds
+		var smaller: CGFloat
+		var greater: CGFloat
+		if screenSize.width<screenSize.height {
+			greater=screenSize.height
+		} else {
+			greater=screenSize.width
+		}
+		smaller=greater*(9/20)
+		if 340<smaller {
+			smaller=340
+		}
+		return CGSize(width: 300, height: smaller)
+	}
 }
