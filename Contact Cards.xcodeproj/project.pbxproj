@@ -137,6 +137,7 @@
 		9FBC3175266033FB00189972 /* ShowCardIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC31722660337400189972 /* ShowCardIntentHandler.swift */; };
 		9FBD0E86255E36DE00C9C9DA /* ContactCardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBD0E85255E36DE00C9C9DA /* ContactCardsTableViewController.swift */; };
 		9FBFACDB22B4A30800730E7B /* SavedContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */; };
+		9FC041B12661DCC20076E380 /* DisplaySiriCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC041B02661DCC20076E380 /* DisplaySiriCardViewController.swift */; };
 		9FC1499D25F34B9600C700B0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC1499C25F34B9600C700B0 /* WidgetKit.framework */; };
 		9FC1499F25F34B9600C700B0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC1499E25F34B9600C700B0 /* SwiftUI.framework */; };
 		9FC149A525F34B9700C700B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FC149A425F34B9700C700B0 /* Assets.xcassets */; };
@@ -352,6 +353,7 @@
 		9FBC31722660337400189972 /* ShowCardIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardIntentHandler.swift; sourceTree = "<group>"; };
 		9FBD0E85255E36DE00C9C9DA /* ContactCardsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardsTableViewController.swift; sourceTree = "<group>"; };
 		9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedContactCell.swift; sourceTree = "<group>"; };
+		9FC041B02661DCC20076E380 /* DisplaySiriCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplaySiriCardViewController.swift; sourceTree = "<group>"; };
 		9FC1499A25F34B9600C700B0 /* ContactCardQRCodeExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ContactCardQRCodeExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FC1499C25F34B9600C700B0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		9FC1499E25F34B9600C700B0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -700,6 +702,7 @@
 			isa = PBXGroup;
 			children = (
 				9F0A3368265EE18700265C4D /* SetUpSiriViewController.swift */,
+				9FC041B02661DCC20076E380 /* DisplaySiriCardViewController.swift */,
 				9FA3C11226600BB70033DD3B /* ShortcutDelegate.swift */,
 				9F1A3F43264C074300957CA9 /* ChooseCardViewController.swift */,
 			);
@@ -1252,6 +1255,7 @@
 				9F34C273255CCF1900B9DEA4 /* MainSplitViewController.swift in Sources */,
 				9FEE378C256DBB9F0089337E /* ColorChoice.swift in Sources */,
 				9F35C55F2653463F005E8C61 /* AboutViewController.swift in Sources */,
+				9FC041B12661DCC20076E380 /* DisplaySiriCardViewController.swift in Sources */,
 				9F56C73C253BD2C8006D8DE6 /* TintImages.swift in Sources */,
 				9F9E9AE321BA1690003A6A33 /* AppDelegate.swift in Sources */,
 				9F1EE642256EE47D004F444B /* AppState.swift in Sources */,

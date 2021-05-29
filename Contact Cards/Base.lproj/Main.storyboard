@@ -1647,7 +1647,7 @@ All rights reserved.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zId-7W-zUw">
-                                <rect key="frame" x="37.5" y="97" width="300" height="154.5"/>
+                                <rect key="frame" x="37.5" y="97" width="300" height="192.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ov0-kD-82b">
                                         <rect key="frame" x="76" y="0.0" width="148" height="30"/>
@@ -1697,6 +1697,10 @@ All rights reserved.</string>
                                         <connections>
                                             <segue destination="Bhk-4F-Bzi" kind="presentation" id="HDl-ZZ-Wfr"/>
                                         </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dnl-bc-8ZC">
+                                        <rect key="frame" x="73" y="162.5" width="154" height="30"/>
+                                        <state key="normal" title="Remove Card from Siri"/>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -1802,7 +1806,7 @@ All rights reserved.</string>
         <!--Contact Card for Siri-->
         <scene sceneID="BJf-Nh-Z7J">
             <objects>
-                <viewController id="jNZ-Kt-iiG" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DisplaySiriCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jNZ-Kt-iiG" customClass="DisplaySiriCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AfG-2r-cbn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1865,7 +1869,11 @@ All rights reserved.</string>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Contact Card for Siri" id="MnA-GW-i6A">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="BId-oV-paS"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="BId-oV-paS">
+                            <connections>
+                                <action selector="done:" destination="jNZ-Kt-iiG" id="CjL-uq-CL4"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>

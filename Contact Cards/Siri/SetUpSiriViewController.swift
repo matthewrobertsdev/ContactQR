@@ -15,7 +15,7 @@ class SetUpSiriViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		let shortCutButton=INUIAddVoiceShortcutButton(style: .automatic)
-		stackView.addArrangedSubview(shortCutButton)
+		stackView.insertArrangedSubview(shortCutButton, at: 4)
 		shortCutDelegate=ShortcutDelegate(viewController: self)
 		guard let shortCutDelegate=shortCutDelegate else {
 			return
