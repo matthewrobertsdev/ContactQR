@@ -42,7 +42,7 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 	@IBAction func save(_ sender: Any) {
 		if forEditing {
 			contactCard?.filename=titleTextField.text ?? "No Title Given"
-			ContactCardStore.sharedInstance.saveContacts()
+			//ContactCardStore.sharedInstance.saveContacts()
 			WidgetCenter.shared.getCurrentConfigurations { result in
 				guard case .success(let widgets) = result else { return }
 				// Iterate over the WidgetInfo elements to find one that matches
@@ -69,7 +69,7 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 			let contactCardRecord=ContactCardMO(entity: card, insertInto: context)
 			//let contactCard: ContactCardMO? = (NSEntityDescription.insertNewObject(forEntityName: ContactCardMO.entityName, into: context) as? ContactCardMO)
 			setFields(contactCardMO: contactCardRecord, filename: titleTextField.text ?? "No Title Given", cnContact: contact, color: color)
-			print("abcd\(contactCardRecord.filename ?? "None Given")")
+			print("abcd\(contactCardRecord.filename)")
 			do {
 				try self.managedObjectContext?.save()
 				self.managedObjectContext?.rollback()

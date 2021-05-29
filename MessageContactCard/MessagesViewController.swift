@@ -14,21 +14,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 	@IBOutlet weak var tableView: UITableView!
 	var contactCards=[ContactCardMO]()
 	let colorModel=ColorModel()
-	lazy var persistentContainer: NSPersistentCloudKitContainer = {
-		let container=NSPersistentCloudKitContainer(name: "ContactCards")
-		let groupIdentifier="group.com.apps.celeritas.contact.cards"
-		if let fileContainerURL=FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) {
-			let storeURL=fileContainerURL.appendingPathComponent("ContactCards.sqlite")
-			let storeDescription=NSPersistentStoreDescription(url: storeURL)
-			storeDescription.cloudKitContainerOptions=NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.apps.celeritas.ContactCards")
-			container.persistentStoreDescriptions=[storeDescription]
-		}
-		//container.persistentStoreDescriptions
-		container.loadPersistentStores { (_, error) in
-			print(error.debugDescription)
-		}
-		return container
-	}()
+	lazy var persistentContainer: NSPersistentCloudKitContainer = loadPersistentContainer()
 	//var errorString=""
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +102,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 		if let contactCard = try persistentContainer.viewContext.existingObject(with: contactCards[indexPath.row].objectID) as? ContactCardMO {
 		cell.nameLabel.text=contactCard.filename
 		let colorString=contactCard.color
-		if let color=colorModel.colorsDictionary[colorString] as? UIColor {
+			if let color=colorModel.getColorsDictionary()[colorString] as? UIColor {
 			cell.circularColorView.backgroundColor=color
 		}
 		}
@@ -130,7 +116,10 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 			guard let contactCard = try persistentContainer.viewContext.existingObject(with: contactCards[indexPath.row].objectID) as? ContactCardMO else {
 				return
 			}
-			guard let url=ContactDataConverter.writeTemporaryFile(contactCard: contactCard) else {
+			guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+					return
+				}
+			guard let url=ContactDataConverter.writeTemporaryFile(contactCard: contactCard, directoryURL: directoryURL) else {
 				return
 			}
 			self.activeConversation?.insertAttachment(url, withAlternateFilename: nil)

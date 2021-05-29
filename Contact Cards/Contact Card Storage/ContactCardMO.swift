@@ -12,17 +12,9 @@ import CoreData
 import Contacts
 
 class ContactCardMO: NSManagedObject {
+	@NSManaged public var qrCodeImage: Data?
 	@NSManaged public var filename: String
 	@NSManaged public var vCardString: String
 	@NSManaged public var color: String
 	static var entityName: String { return "ContactCard" }
-}
-func setFields(contactCardMO: ContactCardMO, filename: String, cnContact: CNContact, color: String) {
-	contactCardMO.filename=filename
-	contactCardMO.vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
-	//contactCardMO.uuidString=UUID().uuidString
-	contactCardMO.color=color
-}
-func setContact(contactCardMO: ContactCardMO, cnContact: CNContact) {
-	contactCardMO.vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
 }

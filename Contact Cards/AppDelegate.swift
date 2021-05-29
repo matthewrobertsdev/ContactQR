@@ -8,10 +8,27 @@
 import UIKit
 import CoreData
 import ClockKit
+import WatchConnectivity
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
+	func sessionDidBecomeInactive(_ session: WCSession) {
+	}
+	func sessionDidDeactivate(_ session: WCSession) {
+	}
+	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+		print("Session activated")
+	}
     var window: UIWindow?
+	var session: WCSession?
 	func applicationDidFinishLaunching(_ application: UIApplication) {
+		/*
+		if WCSession.isSupported() {
+			print("Should activate watch session.")
+			session = WCSession.default
+			session?.delegate=self
+			session?.activate()
+		}
+*/
 	}
     func application(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true
@@ -47,6 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		builder.remove(menu: .format)
 		builder.remove(menu: .services)
 		builder.remove(menu: .toolbar)
+		builder.remove(menu: .openRecent)
 		builder.replaceChildren(ofMenu: .help) { _ in
 			[]
 		}
@@ -179,6 +197,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	@objc func editTitle() {
 		NotificationCenter.default.post(name: .editTitle, object: nil)
+	}
+	@objc func manageCards() {
+		NotificationCenter.default.post(name: .manageCards, object: nil)
 	}
 	@objc func doNothing() {
 	}

@@ -154,7 +154,7 @@ class ContactInfoManipulator {
 		}
 		return infoStrings
 	}
-	static func makeContactDisplayString(cnContact: CNContact?) -> NSAttributedString {
+	static func makeContactDisplayString(cnContact: CNContact?, fontSize: CGFloat) -> NSAttributedString {
 		let displayString=NSMutableAttributedString()
 		var basicString=""
 		guard let cnContact=cnContact else {
@@ -228,7 +228,7 @@ class ContactInfoManipulator {
 				displayString.append(addressDisplayString)
 				displayString.append(NSAttributedString(string: "\n\n"))
 			}
-		addBasicFormatting(displayString: displayString)
+		addBasicFormatting(displayString: displayString, fontSize: fontSize)
 		return displayString
 	}
 	static func addSocialProfiles(cnContact: CNContact, displayString: NSMutableAttributedString) {
@@ -259,19 +259,24 @@ class ContactInfoManipulator {
 		stringToAddTo.append(urlString)
 		stringToAddTo.append(NSAttributedString(string: "\n\n"))
 	}
-	static func getBadVCardAttributedString() -> NSAttributedString {
+	static func getBadVCardAttributedString(fontSize: CGFloat) -> NSAttributedString {
 		let badVCardWarning=NSMutableAttributedString(string: "One or more of the data was invalid.  Probably something you "
 											+ "inputted is too long for that kind of contact info.  "
 		+ "Please edit the contact info from the file menu "
 			+ "or the toolbar until it is sharable as a file.")
-		addBasicFormatting(displayString: badVCardWarning)
+		addBasicFormatting(displayString: badVCardWarning, fontSize: fontSize)
 		return badVCardWarning
 	}
-	static func addBasicFormatting(displayString: NSMutableAttributedString) {
+	static func addBasicFormatting(displayString: NSMutableAttributedString, fontSize: CGFloat) {
 		let paragraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
 			paragraphStyle.alignment = NSTextAlignment.center
-		let fontAttributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.light),
-							   NSAttributedString.Key.paragraphStyle: paragraphStyle, .foregroundColor: UIColor.label]
+		var color=UIColor.white
+		#if os(watchOS)
+		#else
+		color=UIColor.label
+		#endif
+		let fontAttributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize, weight: UIFont.Weight.light),
+							   NSAttributedString.Key.paragraphStyle: paragraphStyle, .foregroundColor: color]
 
 		displayString.addAttributes(fontAttributes, range: NSRange(location: 0, length: displayString.length))
 	}

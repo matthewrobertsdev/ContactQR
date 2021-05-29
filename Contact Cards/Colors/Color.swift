@@ -8,13 +8,17 @@
 import UIKit
 struct Color {
 	var name=ColorChoice.contrastingColor.rawValue
-	var color=UIColor.label
+	var color=UIColor.white
 	init(colorChoice: ColorChoice) {
 		name=colorChoice.rawValue
 		if colorChoice==ColorChoice.contrastingColor {
+			#if os(watchOS)
+			color=UIColor.white
+			#else
 			color=UIColor.label
+			#endif
 		} else {
-			color=UIColor(named: colorChoice.rawValue) ?? UIColor.label
+			color=UIColor(named: colorChoice.rawValue) ?? UIColor.white
 		}
 	}
 }

@@ -9,24 +9,26 @@ import UIKit
 #if targetEnvironment(macCatalyst)
 extension NSToolbarItem.Identifier {
 	static let deleteCard = NSToolbarItem.Identifier(
-		"com.apps.celeritas.Air.Contacts.deleteCard")
+		"com.apps.celeritas.ContactCards.deleteCard")
 	static let editContact = NSToolbarItem.Identifier(
-		"com.apps.celeritas.Air.Contacts.editCard")
+		"com.apps.celeritas.ContactCards.editCard")
 	static let exportCard = NSToolbarItem.Identifier(
-		"com.apps.celeritas.Air.Contacts.exportCard")
+		"com.apps.celeritas.ContactCards.exportCard")
 	static let newContactCard = NSToolbarItem.Identifier(
-		"com.apps.celeritas.Air.Contacts.newCard")
+		"com.apps.celeritas.ContactCards.newCard")
 	static let newCardFromContact = NSToolbarItem.Identifier(
-		"com.apps.celeritas.Air.Contacts.newCardFromContact")
+		"com.apps.celeritas.ContactCards.newCardFromContact")
 	static let showQRCode = NSToolbarItem.Identifier(
-		"com.apps.celeritas.Air.Contacts.showQRCode")
+		"com.apps.celeritas.ContactCards.showQRCode")
 	static let shareCard = NSToolbarItem.Identifier(
-		"com.apps.celeritas.Air.Contacts.shareCard")
+		"com.apps.celeritas.AContactCards.shareCard")
+	static let manageCards = NSToolbarItem.Identifier(
+		"com.apps.celeritas.ContactCards.manageCards")
 }
 class ToolbarDelegate: NSObject, NSToolbarDelegate {
 	func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
 		let identifiers: [NSToolbarItem.Identifier] = [
-			.toggleSidebar, .shareCard, .showQRCode, .newCardFromContact, .newContactCard, .exportCard, .editContact, .deleteCard
+			.toggleSidebar, .shareCard, .showQRCode, .newCardFromContact, .newContactCard, .exportCard, .editContact, .deleteCard, .manageCards
 		]
 		return identifiers
 	}
@@ -43,11 +45,13 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			return nil
 		}
 		var validCardTarget: NSObject=self
+		/*
 		if let uuid=UserDefaults.standard.string(forKey: ContactCardsTableViewController.selectedCardUUIDKey) {
 			if let _=ContactCardStore.sharedInstance.getIndexOfContactWithUUID(uuid: uuid) {
 				validCardTarget=appDelegate
 			}
 		}
+*/
 		var toolbarItem: NSToolbarItem?
 		switch itemIdentifier {
 		case .toggleSidebar:
@@ -126,6 +130,15 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			item.label = "Share"
 			item.toolTip = "Share"
 			item.action = #selector(appDelegate.share)
+			item.target = appDelegate
+			item.isBordered=true
+			toolbarItem = item
+		case .manageCards:
+			let item = NSToolbarItem(itemIdentifier: itemIdentifier)
+			item.image = UIImage(systemName: "gearshape")
+			item.label = "Manage Cards"
+			item.toolTip = "Manage Cards"
+			item.action = #selector(appDelegate.manageCards)
 			item.target = appDelegate
 			item.isBordered=true
 			toolbarItem = item

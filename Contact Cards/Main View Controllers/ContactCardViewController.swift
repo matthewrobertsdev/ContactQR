@@ -9,8 +9,12 @@ import UIKit
 import Contacts
 class ContactCardViewController: UIViewController, UIActivityItemsConfigurationReading {
 	var itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
+	@IBOutlet weak var noCardSelectedLabel: UILabel!
+	@IBOutlet weak var stackView: UIStackView!
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var contactInfoTextView: UITextView!
+	@IBOutlet weak var macButtonView: UIView!
+	@IBOutlet weak var copyButton: UIButton!
 	var contactCard: ContactCardMO?
 	let colorModel=ColorModel()
 	private var contactDisplayStrings=[String]()
@@ -47,6 +51,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		notificationCenter.addObserver(self, selector: #selector(editContactInfo), name: .editContactInfo, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(editColor), name: .editColor, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(editTitle), name: .editTitle, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(manageCards), name: .manageCards, object: nil)
     }
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -54,19 +59,13 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		#if targetEnvironment(macCatalyst)
 			navigationController?.setNavigationBarHidden(true, animated: animated)
 			navigationController?.setToolbarHidden(true, animated: animated)
+		#else
+			stackView.removeArrangedSubview(macButtonView)
+			copyButton.isHidden=true
 		#endif
 	}
 	override var canBecomeFirstResponder: Bool {
 		return true
-	}
-	func showOrHideTableView() {
-		if contactCard==nil {
-			titleLabel.isHidden=true
-			contactInfoTextView.isHidden=true
-		} else {
-			titleLabel.isHidden=false
-			contactInfoTextView.isHidden=false
-		}
 	}
 	@objc func showQRViewController(_ sender: Any) {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -86,7 +85,10 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard let contactCard=contactCard else {
 			return
 		}
-		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard) else {
+		guard var directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+				return
+			}
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard, directoryURL: directoryURL) else {
 			return
 		}
 			let activityViewController = UIActivityViewController(
@@ -106,6 +108,8 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			contactCard=nil
 			titleLabel.isHidden=true
 			contactInfoTextView.isHidden=true
+			copyButton.isHidden=true
+			noCardSelectedLabel.isHidden=false
 			titleLabel.text=""
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 			return
@@ -114,17 +118,19 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		enableButtons(enable: true)
 		#if targetEnvironment(macCatalyst)
 		SceneDelegate.enableValidToolbarItems()
+		copyButton.isHidden=false
 		#endif
 		titleLabel.isHidden=false
 		contactInfoTextView.isHidden=false
+		noCardSelectedLabel.isHidden=true
 		titleLabel.text=activeCard.filename
-		if let color=colorModel.colorsDictionary[activeCard.color] as? UIColor {
+		if let color=colorModel.getColorsDictionary()[activeCard.color] as? UIColor {
 			titleLabel.textColor=color
 		}
 		do {
 			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: activeCard.vCardString)
 			if contactArray.count==1 {
-				contactInfoTextView.attributedText=ContactInfoManipulator.makeContactDisplayString(cnContact: contactArray[0])
+				contactInfoTextView.attributedText=ContactInfoManipulator.makeContactDisplayString(cnContact: contactArray[0], fontSize: CGFloat(18))
 			} else {
 				contactInfoTextView.attributedText=NSAttributedString(string: "")
 				enableShareButtons(enable: false)
@@ -133,14 +139,17 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
-		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard) else {
+		guard var directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+				return
+			}
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard, directoryURL: directoryURL) else {
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
-			contactInfoTextView.attributedText=ContactInfoManipulator.getBadVCardAttributedString()
+			contactInfoTextView.attributedText=ContactInfoManipulator.getBadVCardAttributedString(fontSize: CGFloat(18))
 			return
 		}
 		guard let itemProvider=NSItemProvider(contentsOf: fileURL) else {
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
-			contactInfoTextView.attributedText=ContactInfoManipulator.getBadVCardAttributedString()
+			contactInfoTextView.attributedText=ContactInfoManipulator.getBadVCardAttributedString(fontSize: CGFloat(18))
 			return
 		}
 		if AppState.shared.appState==AppStateValue.isNotModal {
@@ -211,8 +220,9 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		let deleteMessage="Are you sure you want to delete Contact Card with title \"\(title)\"?"
 		let deleteAlert = UIAlertController(title: "Are you sure?",
 											message: deleteMessage, preferredStyle: .alert)
-		deleteAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel",
-																	 comment: "Cancel Delete"), style: .default))
+		let cancelAction=UIAlertAction(title: NSLocalizedString("Cancel",
+															comment: "Cancel Delete"), style: .default)
+		deleteAlert.addAction(cancelAction)
 		deleteAlert.addAction(UIAlertAction(title: NSLocalizedString("Delete",
 																	 comment: "Delete ACtion"), style: .destructive, handler: { [weak self] _ in
 																		guard let strongSelf=self else {
@@ -230,17 +240,21 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 																			managedObjectContext?.rollback()
 																		}
 		}))
+		deleteAlert.preferredAction=cancelAction
 		self.present(deleteAlert, animated: true, completion: nil)
 	}
 	@objc func exportVCardtoFile() {
 		guard let contactCard=contactCard else {
 			return
 		}
-		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard) else {
+		guard var directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+				return
+			}
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard, directoryURL: directoryURL) else {
 			print("Couldn't write temporary vCard file")
 			return
 		}
-		let exportContactCardViewController = ExportContactCardViewController(forExporting: [fileURL], asCopy: false)
+		let exportContactCardViewController = SaveDocumentViewController(forExporting: [fileURL], asCopy: false)
 		exportContactCardViewController.url=fileURL
 		present(exportContactCardViewController, animated: true)
 	}
@@ -341,6 +355,18 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		}
 		present(navigationController, animated: true)
 	}
+	@objc func manageCards() {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		guard let manageCardsViewController=storyboard.instantiateViewController(withIdentifier:
+																						"ManageCardsViewController")
+				as? ManageCardsViewController else {
+			print("Failed to instantiate ManageCardsViewController")
+			return
+		}
+		let navigationController=UINavigationController(rootViewController: manageCardsViewController)
+		self.present(navigationController, animated: true)
+		
+	}
 	@IBAction func editContact(_ sender: Any) {
 		let editContactAlertController=EditContactAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 		do {
@@ -384,6 +410,50 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		present(navigationController, animated: animated)
 */
 	}
+	@IBAction override func copy(_ sender: Any?) {
+		if ActiveContactCard.shared.contactCard != nil {
+			copyVCard(self)
+		}
+	}
+	@IBAction func copyVCard(_ sender: Any) {
+		print("Should copy vCard")
+		let pasteBoard=UIPasteboard.general
+		pasteBoard.itemProviders=[]
+		guard let activeCard=ActiveContactCard.shared.contactCard else {
+			return
+		}
+		guard var directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+				return
+			}
+		
+		directoryURL.appendPathComponent("vCardToCopy")
+		do {
+		try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard, directoryURL: directoryURL) else {
+			return
+		}
+			guard let itemProvider=NSItemProvider(contentsOf: fileURL) else {
+				return
+			}
+				pasteBoard.setItemProviders([itemProvider], localOnly: true, expirationDate: nil)
+		} catch {
+			print("Error creating vCardToCopy directory")
+		}
+		/*
+		do {
+			let pasteBoard=UIPasteboard.general
+			let vCard=try Data(contentsOf: fileURL)
+			//kUTTypeVCard as String
+			pasteBoard.setItems([["public.vcard": vCard]], options: [:])
+			//pasteBoard.setData(vCard, forPasteboardType: "public.vcard")
+		} catch {
+			print("Error ")
+		}
+*/
+			
+		//}
+	
+	}
 	override var keyCommands: [UIKeyCommand]? {
 		if AppState.shared.appState==AppStateValue.isModal {
 			return nil
@@ -401,4 +471,5 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		}
 		return keyCommands
 	}
+	
 }

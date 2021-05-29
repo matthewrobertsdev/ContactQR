@@ -6,7 +6,8 @@
 //  Copyright © 2018 Matt Roberts. All rights reserved.
 //
 
-import ContactsUI
+import Contacts
+import UIKit
 /*
  Converts between CNContact, v card Data, String, and QRCode
  */
@@ -18,6 +19,8 @@ class ContactDataConverter {
             throw DataConversionError.dataSerializationError("Couldn't serialize string to data.")
         }
     }
+	#if os(watchOS)
+	#else
     //goes from CNContact, to v card Data, to v card String
     static func cnContactToVCardString(cnContact: CNContact) -> String {
         let vCardData=makeVCardData(cnContact: cnContact)
@@ -48,7 +51,7 @@ class ContactDataConverter {
         let data = string.data(using: .utf8) ?? Data()
         return makeQRCode(data: data)
     }
-    ///goes from v card Data to UIImage
+    //goes from v card Data to UIImage
     static func makeQRCode(data: Data) -> UIImage? {
         if let filter = CIFilter(name: "CIQRCodeGenerator") {
             filter.setValue(data, forKey: "inputMessage")
@@ -64,10 +67,7 @@ class ContactDataConverter {
             return nil
         }
     }
-	static func writeTemporaryFile(contactCard: ContactCardMO) -> URL? {
-		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
-				return nil
-			}
+	static func writeTemporaryFile(contactCard: ContactCardMO, directoryURL: URL) -> URL? {
 		var filename="Contact"
 		var contact=CNContact()
 		do {
@@ -93,6 +93,49 @@ class ContactDataConverter {
 		}
 		return fileURL
 	}
+	static func writeArchive(contactCards: [ContactCard], directoryURL: URL, fileExtension: String) -> URL? {
+		let filename="Contact Cards"
+		let fileURL = directoryURL.appendingPathComponent(filename)
+			.appendingPathExtension(fileExtension)
+			if let data=encodeData(contactCards: contactCards) {
+				do {
+					try data.write(to: fileURL, options: [.atomicWrite])
+				} catch {
+					print("Error trying to make write archive")
+					return nil
+				}
+			} else {
+				return nil
+			}
+		print("Successfully wrote .contactcards archive.")
+		return fileURL
+	}
+	static func encodeData(contactCards: [ContactCard]) -> Data? {
+		do {
+			let encoder=JSONEncoder()
+			encoder.outputFormatting = .prettyPrinted
+			return try encoder.encode(contactCards)
+		} catch {
+			print("Error trying to make write archive")
+			return nil
+		}
+	}
+	static func readArchive(url: URL) -> [ContactCard]? {
+		do {
+			guard url.startAccessingSecurityScopedResource() else {
+							print("Can't access archive")
+							return nil
+					}
+			let decoder=JSONDecoder()
+			let data=try Data(contentsOf: url)
+			defer { url.stopAccessingSecurityScopedResource() }
+			return try decoder.decode([ContactCard].self, from: data)
+		} catch {
+			print("Error trying to decode data")
+			return nil
+		}
+	}
+	#endif
 }
 enum DataConversionError: Error {
     case dataSerializationError(String)
