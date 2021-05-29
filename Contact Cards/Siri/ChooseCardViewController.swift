@@ -14,7 +14,6 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 	let colorModel=ColorModel()
 	var fetchedResultsController: NSFetchedResultsController<ContactCardMO>?
 	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-	var saveClosure: (ContactCardMO) -> Void = {contactCardMO in }
 	var forWatch=true
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,10 +84,10 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 
 	}
 	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-						didChange anObject: Any,
-						at indexPath: IndexPath?,
-						for type: NSFetchedResultsChangeType,
-						newIndexPath: IndexPath?) {
+					didChange anObject: Any,
+					at indexPath: IndexPath?,
+					for type: NSFetchedResultsChangeType,
+					newIndexPath: IndexPath?) {
 		let animation=UITableView.RowAnimation.fade
 			switch type {
 			case .insert:
@@ -115,11 +114,11 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 			}
 		}
 	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-						didChange sectionInfo: NSFetchedResultsSectionInfo,
-						atSectionIndex sectionIndex: Int,
-						for type: NSFetchedResultsChangeType) {
+					didChange sectionInfo: NSFetchedResultsSectionInfo,
+					atSectionIndex sectionIndex: Int,
+					for type: NSFetchedResultsChangeType) {
 			let sectionIndexSet = NSIndexSet(index: sectionIndex) as IndexSet
-		var animation=UITableView.RowAnimation.fade
+		let animation=UITableView.RowAnimation.fade
 			switch type {
 			case .insert:
 				self.tableView.insertSections(sectionIndexSet, with: animation)
@@ -138,7 +137,11 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 			return
 		}
 		if let indexPath=tableView.indexPathForSelectedRow {
-			saveClosure(controller.object(at: indexPath))
+			let contactCardMO=controller.object(at: indexPath)
+			NSUbiquitousKeyValueStore.default.set(contactCardMO.color, forKey: "chosenCardColor")
+			NSUbiquitousKeyValueStore.default.set(contactCardMO.qrCodeImage, forKey: "chosenCardImageData")
+			NSUbiquitousKeyValueStore.default.set(contactCardMO.objectID.uriRepresentation().absoluteString, forKey: "chosenCardObjectID")
+			NSUbiquitousKeyValueStore.default.synchronize()
 			navigationController?.dismiss(animated: true)
 		}
 	}

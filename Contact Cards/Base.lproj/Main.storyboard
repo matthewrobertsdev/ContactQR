@@ -1839,7 +1839,7 @@ All rights reserved.</string>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yWI-kd-n1T">
-                                <rect key="frame" x="90.333333333333314" y="397.33333333333331" width="247.66666666666669" height="50.333333333333314"/>
+                                <rect key="frame" x="90.333333333333329" y="397.33333333333331" width="247.66666666666669" height="50.333333333333314"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Contact Card Chosen For Siri" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lo1-kh-mH6">
                                         <rect key="frame" x="0.0" y="0.0" width="247.66666666666666" height="20.333333333333332"/>

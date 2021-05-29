@@ -390,17 +390,6 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 	// MARK: - Navigation
 	// In a storyboard-based application, you will often want to do a little preparation before navigation
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier=="WatchChoiceSegue" {
-			guard let navigationController=segue.destination as? UINavigationController else {
-				return
-			}
-			guard let cardChoiceController=navigationController.visibleViewController as? ChooseCardViewController else {
-				return
-			}
-			cardChoiceController.saveClosure={ contactCardMO in
-			}
-			print("Should present ChooseCardViewController")
-		}
 		// Get the new view controller using segue.destination.
 		// Pass the selected object to the new view controller.
 	}

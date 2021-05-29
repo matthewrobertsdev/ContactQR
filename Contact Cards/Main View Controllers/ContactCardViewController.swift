@@ -85,7 +85,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard let contactCard=contactCard else {
 			return
 		}
-		guard var directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
 				return
 			}
 		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard, directoryURL: directoryURL) else {
@@ -139,7 +139,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
-		guard var directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
 				return
 			}
 		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard, directoryURL: directoryURL) else {
@@ -206,10 +206,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	}
 */
 	@IBAction func deleteContact(_ sender: Any) {
-		guard let objectID=contactCard?.objectID else {
-			print("Error trying to getting object ID to delete with")
-			return
-		}
 		guard let contactCardMO=contactCard else {
 			return
 		}
@@ -247,7 +243,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard let contactCard=contactCard else {
 			return
 		}
-		guard var directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
 				return
 			}
 		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard, directoryURL: directoryURL) else {

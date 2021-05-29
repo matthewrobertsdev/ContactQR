@@ -24,6 +24,10 @@
 		9F15544325939378006C7A92 /* EditContactAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F15544225939378006C7A92 /* EditContactAlertController.swift */; };
 		9F1A3F44264C074300957CA9 /* ChooseCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A3F43264C074300957CA9 /* ChooseCardViewController.swift */; };
 		9F1C75BD266299BF00BC42FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F6AEBD62660A8B1009B65A8 /* Assets.xcassets */; };
+		9F1C75BF2662A24F00BC42FC /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3781256DBA990089337E /* ColorModel.swift */; };
+		9F1C75C02662A25200BC42FC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3786256DBAA50089337E /* Color.swift */; };
+		9F1C75C12662A25500BC42FC /* ColorChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE378B256DBB9F0089337E /* ColorChoice.swift */; };
+		9F1C75C22662B0C000BC42FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE921BA1691003A6A33 /* Assets.xcassets */; };
 		9F1EE642256EE47D004F444B /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1EE641256EE47D004F444B /* AppState.swift */; };
 		9F24C12526180DF600C9441F /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F24C12426180DF600C9441F /* Messages.framework */; };
 		9F24C12826180DF600C9441F /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F24C12726180DF600C9441F /* MessagesViewController.swift */; };
@@ -1029,6 +1033,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F6AEBD72660A8B1009B65A8 /* Assets.xcassets in Resources */,
+				9F1C75C22662B0C000BC42FC /* Assets.xcassets in Resources */,
 				9F0A334C265ED64F00265C4D /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1138,9 +1143,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F0A3349265ED64F00265C4D /* IntentViewController.swift in Sources */,
+				9F1C75C12662A25500BC42FC /* ColorChoice.swift in Sources */,
 				9FBC3174266033FA00189972 /* ShowCardIntentHandler.swift in Sources */,
 				9FA3C116266024480033DD3B /* IntentHandler.swift in Sources */,
 				9FA3C114266023840033DD3B /* ShowCard.intentdefinition in Sources */,
+				9F1C75BF2662A24F00BC42FC /* ColorModel.swift in Sources */,
+				9F1C75C02662A25200BC42FC /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
