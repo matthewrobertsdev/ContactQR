@@ -23,6 +23,7 @@
 		9F0A336C265EE4A800265C4D /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A336A265EE47200265C4D /* ShowCard.intentdefinition */; };
 		9F15544325939378006C7A92 /* EditContactAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F15544225939378006C7A92 /* EditContactAlertController.swift */; };
 		9F1A3F44264C074300957CA9 /* ChooseCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A3F43264C074300957CA9 /* ChooseCardViewController.swift */; };
+		9F1C75BD266299BF00BC42FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F6AEBD62660A8B1009B65A8 /* Assets.xcassets */; };
 		9F1EE642256EE47D004F444B /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1EE641256EE47D004F444B /* AppState.swift */; };
 		9F24C12526180DF600C9441F /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F24C12426180DF600C9441F /* Messages.framework */; };
 		9F24C12826180DF600C9441F /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F24C12726180DF600C9441F /* MessagesViewController.swift */; };
@@ -1036,6 +1037,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F1C75BD266299BF00BC42FC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
