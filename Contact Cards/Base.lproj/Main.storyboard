@@ -1650,7 +1650,7 @@ All rights reserved.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zId-7W-zUw">
-                                <rect key="frame" x="64" y="97.000000000000014" width="300" height="192.33333333333337"/>
+                                <rect key="frame" x="64" y="97.000000000000014" width="300" height="154.33333333333337"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ov0-kD-82b">
                                         <rect key="frame" x="76" y="0.0" width="148" height="30"/>
@@ -1675,7 +1675,7 @@ All rights reserved.</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bkY-Gb-hGE" customClass="CircularColorView" customModule="Contact_Cards" customModuleProvider="target">
-                                                <rect key="frame" x="8.0000000000000018" y="16.666666666666657" width="17.666666666666671" height="17.333333333333329"/>
+                                                <rect key="frame" x="8.0000000000000018" y="16.333333333333314" width="17.666666666666671" height="17.333333333333329"/>
                                                 <color key="backgroundColor" systemColor="labelColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17.5" id="SSE-rN-24G"/>
@@ -1689,20 +1689,13 @@ All rights reserved.</string>
                                             <constraint firstAttribute="trailing" secondItem="YBw-O3-0tF" secondAttribute="trailing" constant="20" id="HE9-ws-rqn"/>
                                             <constraint firstItem="bkY-Gb-hGE" firstAttribute="leading" secondItem="yUi-H6-gK6" secondAttribute="leading" constant="8" id="OGR-F0-fP6"/>
                                             <constraint firstAttribute="width" constant="300" id="Xb6-wd-iOc"/>
-                                            <constraint firstItem="bkY-Gb-hGE" firstAttribute="top" secondItem="yUi-H6-gK6" secondAttribute="top" constant="16.5" id="aQQ-kK-Icy"/>
                                             <constraint firstAttribute="bottom" secondItem="YBw-O3-0tF" secondAttribute="bottom" constant="10" id="hdw-7r-6AO"/>
                                             <constraint firstItem="YBw-O3-0tF" firstAttribute="top" secondItem="yUi-H6-gK6" secondAttribute="top" constant="10" id="ibQ-ip-5Pb"/>
+                                            <constraint firstItem="bkY-Gb-hGE" firstAttribute="centerY" secondItem="YBw-O3-0tF" secondAttribute="centerY" id="ll5-6h-axc"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pM-Lz-m3N">
-                                        <rect key="frame" x="60" y="124.33333333333334" width="180" height="30"/>
-                                        <state key="normal" title="View Contact Card Details"/>
-                                        <connections>
-                                            <segue destination="Bhk-4F-Bzi" kind="presentation" id="HDl-ZZ-Wfr"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dnl-bc-8ZC">
-                                        <rect key="frame" x="73" y="162.33333333333331" width="154" height="30"/>
+                                        <rect key="frame" x="73" y="124.33333333333334" width="154" height="30"/>
                                         <state key="normal" title="Remove Card from Siri"/>
                                     </button>
                                 </subviews>
@@ -1727,6 +1720,9 @@ All rights reserved.</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cardColorCircle" destination="bkY-Gb-hGE" id="uM3-gm-Xez"/>
+                        <outlet property="cardTitleLabel" destination="YBw-O3-0tF" id="k9Z-7P-DJL"/>
+                        <outlet property="noCardChosenLabel" destination="ZR8-ce-4or" id="zlu-p1-I04"/>
                         <outlet property="stackView" destination="zId-7W-zUw" id="6dW-ZQ-TJH"/>
                     </connections>
                 </viewController>
@@ -1811,11 +1807,11 @@ All rights reserved.</string>
             <objects>
                 <viewController storyboardIdentifier="DisplaySiriCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jNZ-Kt-iiG" customClass="DisplaySiriCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AfG-2r-cbn">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UTl-y2-eqp">
-                                <rect key="frame" x="0.0" y="66" width="428" height="723"/>
+                                <rect key="frame" x="0.0" y="98" width="428" height="745"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDR-C9-ngp">
                                         <rect key="frame" x="0.0" y="0.0" width="428" height="45"/>
@@ -1827,7 +1823,7 @@ All rights reserved.</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qx4-DD-zYI">
-                                        <rect key="frame" x="0.0" y="53" width="428" height="670"/>
+                                        <rect key="frame" x="0.0" y="53" width="428" height="692"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <attributedString key="attributedText"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1839,7 +1835,7 @@ All rights reserved.</string>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yWI-kd-n1T">
-                                <rect key="frame" x="90.333333333333329" y="397.33333333333331" width="247.66666666666669" height="50.333333333333314"/>
+                                <rect key="frame" x="90.333333333333329" y="440.33333333333331" width="247.66666666666669" height="50.333333333333314"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Contact Card Chosen For Siri" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lo1-kh-mH6">
                                         <rect key="frame" x="0.0" y="0.0" width="247.66666666666666" height="20.333333333333332"/>
@@ -1890,7 +1886,7 @@ All rights reserved.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bhk-4F-Bzi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="w5S-aX-uxh">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

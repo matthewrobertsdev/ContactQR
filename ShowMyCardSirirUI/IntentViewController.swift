@@ -16,9 +16,8 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-		if let qrImageData=NSUbiquitousKeyValueStore.default.data(forKey: "chosenCardImageData") {
-			if let colorString=NSUbiquitousKeyValueStore.default.string(forKey: "chosenCardColor") {
-				print("Hello color string \(colorString)")
+		if let qrImageData=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.data(forKey: "chosenCardImageData") {
+			if let colorString=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.string(forKey: "chosenCardColor") {
 				let color=(colorModel.getColorsDictionary()[colorString] ?? UIColor.label) ?? UIColor.label
 				if var qrImage=UIImage(data: qrImageData) {
 					qrImage=qrImage.withTintColor(color)

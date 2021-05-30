@@ -138,10 +138,11 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 		}
 		if let indexPath=tableView.indexPathForSelectedRow {
 			let contactCardMO=controller.object(at: indexPath)
-			NSUbiquitousKeyValueStore.default.set(contactCardMO.color, forKey: "chosenCardColor")
-			NSUbiquitousKeyValueStore.default.set(contactCardMO.qrCodeImage, forKey: "chosenCardImageData")
-			NSUbiquitousKeyValueStore.default.set(contactCardMO.objectID.uriRepresentation().absoluteString, forKey: "chosenCardObjectID")
-			NSUbiquitousKeyValueStore.default.synchronize()
+			UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.set(contactCardMO.color, forKey: "chosenCardColor")
+			UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.set(contactCardMO.qrCodeImage, forKey: "chosenCardImageData")
+			UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.set(contactCardMO.objectID.uriRepresentation().absoluteString, forKey: "chosenCardObjectID")
+			UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.set(contactCardMO.filename, forKey: "chosenCardTitle")
+			NotificationCenter.default.post(name: .siriCardChosen, object: nil)
 			navigationController?.dismiss(animated: true)
 		}
 	}
