@@ -31,8 +31,6 @@ class SaveDocumentViewController: UIDocumentPickerViewController, UIDocumentPick
 		let fileManager=FileManager.default
 		try? fileManager.removeItem(at: url)
 		dismiss(animated: true)
-		
-
 	}
     /*
     // MARK: - Navigation

@@ -11,7 +11,6 @@ import UIKit
 import CoreData
 class ContactCloudDataDescriber {
 	static func getAttributedStringDescription(color: UIColor) -> NSAttributedString? {
-		
 		let iCloudDataAttributedString=NSMutableAttributedString()
 		iCloudDataAttributedString.append(NSAttributedString(string: "[\n"))
 		guard let persistentContainer=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer else {

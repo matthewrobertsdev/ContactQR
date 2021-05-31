@@ -38,7 +38,7 @@ class SetUpSiriViewController: UIViewController {
 					if let error = error {
 						print("\n Error: \(error.localizedDescription))")
 					} else {
-						print("\n Donated CreateExpenseIntent")
+						print("\n Donated ShowCardItent")
 					}
 				}
 		shortCutButton.shortcut=INShortcut(intent: intent)
@@ -49,7 +49,7 @@ class SetUpSiriViewController: UIViewController {
 		prepareView()
 	}
 	@objc func prepareView() {
-		if let _=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.object(forKey: "chosenCardObjectID") as? String {
+		if UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.object(forKey: "chosenCardObjectID") as? String != nil {
 			noCardChosenLabel.text="Chosen Card:"
 			if let colorString=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.object(forKey: "chosenCardColor") as? String {
 			let color=(colorModel.getColorsDictionary()[colorString] ?? UIColor.label) ?? UIColor.label

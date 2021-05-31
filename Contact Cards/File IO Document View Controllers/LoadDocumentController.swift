@@ -10,7 +10,7 @@ import UniformTypeIdentifiers
 class LoadDocumentController: NSObject, UIDocumentPickerDelegate {
 	private var pickerViewController: UIDocumentPickerViewController?
 	private weak var presentationController: UIViewController?
-	var loadHandler={(url: URL) -> Void in }
+	var loadHandler = {(url: URL) -> Void in }
 	init(presentationController: UIViewController, forOpeningContentTypes: [UTType]) {
 			super.init()
 			self.presentationController = presentationController

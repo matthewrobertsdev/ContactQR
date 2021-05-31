@@ -100,7 +100,6 @@ class ManageCardsViewController: UIViewController {
 		do {
 			let data = try attributedString?.fileWrapper (from: NSRange (location: 0, length: attributedString?.length ?? 0), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtfd])
 		//let rtfData=try attributedString?.data(from: NSRange(location: 0, length: attributedString?.length ?? 0), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtfd])
-			
 			fileURL.appendPathComponent("Contact Cards iCloud Data Description")
 			fileURL.appendPathExtension("rtfd")
 			try data?.write(to: fileURL, options: .atomic, originalContentsURL: nil)

@@ -225,7 +225,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 																			return
 																		}
 																		let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-																		
 																		managedObjectContext?.delete(contactCardMO)
 				ActiveContactCard.shared.contactCard=nil
 				strongSelf.contactCard=nil
@@ -361,7 +360,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		}
 		let navigationController=UINavigationController(rootViewController: manageCardsViewController)
 		self.present(navigationController, animated: true)
-		
 	}
 	@IBAction func editContact(_ sender: Any) {
 		let editContactAlertController=EditContactAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -421,7 +419,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard var directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
 				return
 			}
-		
 		directoryURL.appendPathComponent("vCardToCopy")
 		do {
 		try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
@@ -446,17 +443,15 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			print("Error ")
 		}
 */
-			
 		//}
-	
 	}
 	override var keyCommands: [UIKeyCommand]? {
 		if AppState.shared.appState==AppStateValue.isModal {
 			return nil
 		}
 		var keyCommands=[UIKeyCommand(title: "Create New Contact", image: nil, action: #selector(createNewContact),
-									  input: "n", modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Create New Contact",
-									  attributes: UIKeyCommand.Attributes(), state: .off),
+									input: "n", modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Create New Contact",
+									attributes: UIKeyCommand.Attributes(), state: .off),
 						 UIKeyCommand(title: "Create New Card From Contact", image: nil, action: #selector(createContactCardFromContact),
 																										input: "n", modifierFlags: UIKeyModifierFlags(arrayLiteral: [.command,.shift]), propertyList: nil, alternates: [], discoverabilityTitle: "Create New Card From Contact",
 													 attributes: UIKeyCommand.Attributes(), state: .off)]
@@ -467,5 +462,4 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		}
 		return keyCommands
 	}
-	
 }

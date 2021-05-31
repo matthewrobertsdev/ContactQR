@@ -33,7 +33,7 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 				})
 				let collection = INObjectCollection(items: contactCardINObjects)
 				completion(collection, nil)
-			}  catch {
+			} catch {
 				print("Unable to fetch contact cards")
 				completion(INObjectCollection(items: [ContactCardINObject]()), nil)
 			}

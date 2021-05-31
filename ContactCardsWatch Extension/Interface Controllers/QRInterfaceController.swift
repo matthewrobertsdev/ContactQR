@@ -13,7 +13,6 @@ class QRInterfaceController: WKInterfaceController {
 	@IBOutlet weak var showDetailsButton: WKInterfaceButton!
 	//let model=WatchContactStore.sharedInstance
 	@IBOutlet weak var image: WKInterfaceImage!
-	
     override func awake(withContext context: Any?) {
         // Configure interface objects here.
 		/*

@@ -72,7 +72,6 @@ class ChooseColorTableViewController: UITableViewController {
 			//ContactCardStore.sharedInstance.saveContacts()
 			WidgetCenter.shared.getCurrentConfigurations { result in
 				guard case .success(let widgets) = result else { return }
-				
 				// Iterate over the WidgetInfo elements to find one that matches
 				// the character from the push notification.
 				if let widget = widgets.first(
