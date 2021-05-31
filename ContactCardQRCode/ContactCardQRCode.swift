@@ -10,13 +10,20 @@ import WidgetKit
 import SwiftUI
 import Intents
 import CoreData
+enum WidgetMode {
+	case placeholder
+	case contactQRCode
+	case editMessage
+	case empty
+}
 struct Provider: IntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-		SimpleEntry(date: Date(), qrCode: nil, color: nil)
+		SimpleEntry(date: Date(), qrCode: nil, color: nil, widgetMode: WidgetMode.empty)
     }
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context,
 					 completion: @escaping (SimpleEntry) -> Void) {
-		let entry=createEntryFromConfiguration(configuration: configuration)
+		let entry=SimpleEntry(date: Date(), qrCode: ContactDataConverter.makeQRCode(string: "https://matthewrobertsdev.github.io/celeritasapps/#/"),
+							  color: UIColor.systemYellow, widgetMode: WidgetMode.placeholder)
         completion(entry)
     }
     func getTimeline(for configuration: ConfigurationIntent, in context: Context,
@@ -28,6 +35,7 @@ struct Provider: IntentTimelineProvider {
 	func createEntryFromConfiguration(configuration: ConfigurationIntent) -> SimpleEntry {
 		var qrCode: UIImage?
 		var color: UIColor?
+		var widgetMode=WidgetMode.editMessage
 		if let uuid=configuration.parameter?.identifier {
 			let container=loadPersistentContainer()
 			let managedObjectContext=container.viewContext
@@ -44,12 +52,13 @@ struct Provider: IntentTimelineProvider {
 						color=colorModel.getColorsDictionary()[contactCardMO.color] ?? UIColor.label
 						qrCode=model.makeQRCode()
 						print("Should have made qr code for widget")
+						widgetMode=WidgetMode.contactQRCode
 					}
 				} catch {
 					print("Unable to fetch contact cards")
 				}
 		}
-		return SimpleEntry(date: Date(), qrCode: qrCode, color: color)
+		return SimpleEntry(date: Date(), qrCode: qrCode, color: color, widgetMode: widgetMode)
 	}
 
 }
@@ -58,6 +67,7 @@ struct SimpleEntry: TimelineEntry {
     let date: Date
     let qrCode: UIImage?
 	let color: UIColor?
+	let widgetMode: WidgetMode
 }
 
 struct ContactCardQRCodeEntryView: View {
@@ -66,15 +76,20 @@ struct ContactCardQRCodeEntryView: View {
 
 	@ViewBuilder
     var body: some View {
-		if entry.qrCode == nil {
+		if entry.widgetMode==WidgetMode.placeholder {
+			Image(uiImage: getTintedForeground(image: entry.qrCode ?? UIImage(),
+				color: entry.color ?? UIColor.label)).resizable().aspectRatio(contentMode: .fit).padding()
+		} else if entry.widgetMode == WidgetMode.editMessage {
 			Text("Edit widget to choose a contact card from the app for which to display a QR code.").padding()
-		} else if entry.color==UIColor.label {
+		} else if entry.widgetMode==WidgetMode.contactQRCode && entry.color==UIColor.label {
 			Image(uiImage: colorScheme == .dark ? getTintedForeground(image: entry.qrCode ?? UIImage(), color: UIColor.white):
 				getTintedForeground(image: entry.qrCode ?? UIImage(), color:
 						UIColor.black)).resizable().aspectRatio(contentMode: .fit).padding()
-		} else {
+		} else if entry.widgetMode==WidgetMode.contactQRCode{
 			Image(uiImage: getTintedForeground(image: entry.qrCode ?? UIImage(),
 				color: entry.color ?? UIColor.label)).resizable().aspectRatio(contentMode: .fit).padding()
+		} else {
+			EmptyView()
 		}
     }
 }
@@ -94,7 +109,8 @@ struct ContactCardQRCode: Widget {
 
 struct ContactCardQRCodePreviews: PreviewProvider {
     static var previews: some View {
-		ContactCardQRCodeEntryView(entry: SimpleEntry(date: Date(), qrCode: nil, color: nil))
+		ContactCardQRCodeEntryView(entry: SimpleEntry(date: Date(), qrCode: ContactDataConverter.makeQRCode(string: "https://matthewrobertsdev.github.io/celeritasapps/#/"),
+													  color: UIColor.systemYellow, widgetMode: WidgetMode.placeholder))
 			.previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
