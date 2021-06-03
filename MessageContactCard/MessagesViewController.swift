@@ -10,16 +10,23 @@ import UIKit
 import Messages
 import CoreData
 import Contacts
-class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource, UITableViewDelegate {
+class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource,
+							  UITableViewDelegate, NSFilePresenter {
+	var presentedItemURL: URL?
+	var presentedItemOperationQueue=OperationQueue.main
 	@IBOutlet weak var tableView: UITableView!
 	var contactCards=[ContactCardMO]()
 	let colorModel=ColorModel()
 	lazy var persistentContainer: NSPersistentCloudKitContainer = loadPersistentContainer()
+	func presentedItemDidChange() {
+		prepareView()
+	}
 	//var errorString=""
 	override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.dataSource=self
 		tableView.delegate=self
+		NSFileCoordinator.addFilePresenter(self)
 		/*
 		let container=NSPersistentCloudKitContainer(name: "ContactCards")
 		let groupIdentifier="group.com.apps.celeritas.contact.cards"
@@ -35,18 +42,34 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 			//self.errorString=error?.localizedDescription ?? ""
 		}
 */
+		//prepareView()
+		//NotificationCenter.default.addObserver(self, selector: #selector((reloadView)), name: .NSPersistentStoreRemoteChange, object: nil)
+        // Do any additional setup after loading the view.
+		
+    }
+	override func viewWillAppear(_ animated: Bool) {
+		prepareView()
+	}
+	@IBAction func syncWithApp(_ sender: Any) {
+		prepareView()
+	}
+	
+	@objc func prepareView() {
 		let managedObjectContext=persistentContainer.viewContext
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
 			do {
 				// Execute Fetch Request
 				contactCards = try managedObjectContext.fetch(fetchRequest)
+				contactCards.sort { firstCard, secondCard in
+					return firstCard.filename<secondCard.filename
+				}
 			} catch {
 				print("Unable to fetch contact cards")
 				//errorString=error.localizedDescription
 			}
-		tableView.reloadData()
-        // Do any additional setup after loading the view.
-    }
+		print("Bye")
+			tableView.reloadData()
+	}
     // MARK: - Conversation Handling
     override func willBecomeActive(with conversation: MSConversation) {
         // Called when the extension is about to move from the inactive to active state.
@@ -125,6 +148,18 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 			self.activeConversation?.insertAttachment(url, withAlternateFilename: nil)
 		} catch {
 			print("error loading ContactCardMO from viewContext")
+		}
+	}
+}
+extension UserDefaults
+{
+	@objc dynamic var date: String?
+	{
+		get {
+			return string(forKey: "date")
+		}
+		set {
+			set(newValue, forKey: "date")
 		}
 	}
 }

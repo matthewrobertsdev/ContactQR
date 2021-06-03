@@ -13,7 +13,6 @@ import WatchConnectivity
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 	func applicationDidFinishLaunching(_ application: UIApplication) {
-		NSUbiquitousKeyValueStore.default.synchronize()
 	}
     func application(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true
@@ -207,21 +206,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			UIApplication.shared.open(url)
 		}
 	}
-	lazy var persistentContainer: NSPersistentCloudKitContainer = {
-		let container=NSPersistentCloudKitContainer(name: "ContactCards")
-		let groupIdentifier="group.com.apps.celeritas.contact.cards"
-		if let fileContainerURL=FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) {
-			let storeURL=fileContainerURL.appendingPathComponent("ContactCards.sqlite")
-			let storeDescription=NSPersistentStoreDescription(url: storeURL)
-			storeDescription.cloudKitContainerOptions=NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.apps.celeritas.ContactCards")
-			container.persistentStoreDescriptions=[storeDescription]
-		}
-		//container.persistentStoreDescriptions
-		container.loadPersistentStores { (_, error) in
-			print(error.debugDescription)
-		}
-		return container
-	}()
+	lazy var persistentContainer=loadPersistentContainer()
 	func saveContext () {
 			let context = persistentContainer.viewContext
 			if context.hasChanges {
@@ -232,5 +217,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				}
 			}
 		}
-
 }

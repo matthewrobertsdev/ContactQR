@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JgN-7J-eu9">
-                                <rect key="frame" x="0.0" y="44" width="320" height="477"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="426"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactCell" rowHeight="45" id="Hw0-rC-0d5" customClass="SavedContactCell" customModule="MessageContactCard" customModuleProvider="target">
@@ -62,12 +62,21 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOM-uo-Bhv">
+                                <rect key="frame" x="110.5" y="478" width="99" height="30"/>
+                                <state key="normal" title="Sync with App"/>
+                                <connections>
+                                    <action selector="syncWithApp:" destination="ObA-dk-sSI" eventType="touchUpInside" id="MbC-V9-ONA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LDy-ih-0nr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="LDy-ih-0nr" firstAttribute="bottom" secondItem="JgN-7J-eu9" secondAttribute="bottom" constant="7" id="ae4-TX-6bL"/>
+                            <constraint firstItem="UOM-uo-Bhv" firstAttribute="top" secondItem="JgN-7J-eu9" secondAttribute="bottom" constant="8" symbolic="YES" id="O4D-eT-QKd"/>
+                            <constraint firstItem="UOM-uo-Bhv" firstAttribute="centerX" secondItem="LDy-ih-0nr" secondAttribute="centerX" id="OAB-a0-RQx"/>
                             <constraint firstItem="LDy-ih-0nr" firstAttribute="trailing" secondItem="JgN-7J-eu9" secondAttribute="trailing" id="bD4-ir-iB7"/>
+                            <constraint firstItem="LDy-ih-0nr" firstAttribute="bottom" secondItem="UOM-uo-Bhv" secondAttribute="bottom" constant="20" id="dzl-Xz-8fV"/>
                             <constraint firstItem="JgN-7J-eu9" firstAttribute="leading" secondItem="LDy-ih-0nr" secondAttribute="leading" id="gyQ-0k-UHv"/>
                             <constraint firstItem="LDy-ih-0nr" firstAttribute="top" secondItem="JgN-7J-eu9" secondAttribute="top" id="wQc-Kx-Qh4"/>
                         </constraints>

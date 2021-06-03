@@ -19,9 +19,11 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		/*
 		INPreferences.requestSiriAuthorization({status in
 						// Handle errors here
 					})
+*/
 		/*
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
 		do {
@@ -58,6 +60,10 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		}
 		#endif
 		*/
+		notificationCenter.addObserver(self, selector: #selector((printSomething)), name: .NSPersistentStoreRemoteChange, object: nil)
+	}
+	@objc func printSomething() {
+		print("abcdefghij")
 	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -217,6 +223,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 	}
 	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		self.tableView.endUpdates()
+		print("Ended updates")
 		#if targetEnvironment(macCatalyst)
 		UIView.setAnimationsEnabled(true)
 		#endif

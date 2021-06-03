@@ -7,7 +7,8 @@
 //
 import UIKit
 import CoreData
-class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDelegate,
+								UITableViewDataSource, UITableViewDelegate {
 	@IBOutlet weak var stackView: UIStackView!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var doneBarButtonItem: UIBarButtonItem!

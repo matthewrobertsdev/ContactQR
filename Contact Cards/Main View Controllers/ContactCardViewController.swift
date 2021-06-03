@@ -52,7 +52,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		notificationCenter.addObserver(self, selector: #selector(editColor), name: .editColor, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(editTitle), name: .editTitle, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(manageCards), name: .manageCards, object: nil)
-    }
+	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		navigationController?.setToolbarHidden(false, animated: true)
