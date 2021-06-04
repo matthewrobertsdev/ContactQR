@@ -11,11 +11,25 @@ import IntentsUI
 // The intents whose interactions you wish to handle must be declared in the extension's Info.plist.
 // You can test this example integration by saying things to Siri like:
 class IntentViewController: UIViewController, INUIHostedViewControlling {
+	@IBOutlet weak var imageView: UIImageView!
+	let colorModel=ColorModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+		if let qrImageData=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.data(forKey: "chosenCardImageData") {
+			if let colorString=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.string(forKey: "chosenCardColor") {
+				let color=(colorModel.getColorsDictionary()[colorString] ?? UIColor.label) ?? UIColor.label
+				if var qrImage=UIImage(data: qrImageData) {
+					qrImage=qrImage.withTintColor(color)
+					imageView.image=qrImage
+				}
+			}
+		}
     }
-    // MARK: - INUIHostedViewControlling
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(true)
+	}
+	// MARK: - INUIHostedViewControlling
     // Prepare your view controller for the interaction to handle.
     func configureView(for parameters: Set<INParameter>, of interaction: INInteraction, interactiveBehavior: INUIInteractiveBehavior,
 					   context: INUIHostedViewContext, completion: @escaping (Bool, Set<INParameter>, CGSize) -> Void) {

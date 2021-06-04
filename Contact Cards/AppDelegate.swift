@@ -10,25 +10,9 @@ import CoreData
 import ClockKit
 import WatchConnectivity
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
-	func sessionDidBecomeInactive(_ session: WCSession) {
-	}
-	func sessionDidDeactivate(_ session: WCSession) {
-	}
-	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-		print("Session activated")
-	}
+class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-	var session: WCSession?
 	func applicationDidFinishLaunching(_ application: UIApplication) {
-		/*
-		if WCSession.isSupported() {
-			print("Should activate watch session.")
-			session = WCSession.default
-			session?.delegate=self
-			session?.activate()
-		}
-*/
 	}
     func application(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true
@@ -57,7 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 	}
 	override func buildMenu(with builder: UIMenuBuilder) {
 		super.buildMenu(with: builder)
-		print("Hello iPad")
 		guard builder.system == UIMenuSystem.main else {
 			return
 		}
@@ -223,21 +206,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 			UIApplication.shared.open(url)
 		}
 	}
-	lazy var persistentContainer: NSPersistentCloudKitContainer = {
-		let container=NSPersistentCloudKitContainer(name: "ContactCards")
-		let groupIdentifier="group.com.apps.celeritas.contact.cards"
-		if let fileContainerURL=FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) {
-			let storeURL=fileContainerURL.appendingPathComponent("ContactCards.sqlite")
-			let storeDescription=NSPersistentStoreDescription(url: storeURL)
-			storeDescription.cloudKitContainerOptions=NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.apps.celeritas.ContactCards")
-			container.persistentStoreDescriptions=[storeDescription]
-		}
-		//container.persistentStoreDescriptions
-		container.loadPersistentStores { (_, error) in
-			print(error.debugDescription)
-		}
-		return container
-	}()
+	lazy var persistentContainer=loadPersistentContainer()
 	func saveContext () {
 			let context = persistentContainer.viewContext
 			if context.hasChanges {
@@ -248,5 +217,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 				}
 			}
 		}
-
 }

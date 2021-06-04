@@ -52,7 +52,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		notificationCenter.addObserver(self, selector: #selector(editColor), name: .editColor, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(editTitle), name: .editTitle, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(manageCards), name: .manageCards, object: nil)
-    }
+	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		navigationController?.setToolbarHidden(false, animated: true)
@@ -85,7 +85,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard let contactCard=contactCard else {
 			return
 		}
-		guard var directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
 				return
 			}
 		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard, directoryURL: directoryURL) else {
@@ -139,7 +139,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
-		guard var directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
 				return
 			}
 		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard, directoryURL: directoryURL) else {
@@ -206,10 +206,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	}
 */
 	@IBAction func deleteContact(_ sender: Any) {
-		guard let objectID=contactCard?.objectID else {
-			print("Error trying to getting object ID to delete with")
-			return
-		}
 		guard let contactCardMO=contactCard else {
 			return
 		}
@@ -229,7 +225,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 																			return
 																		}
 																		let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-																		
 																		managedObjectContext?.delete(contactCardMO)
 				ActiveContactCard.shared.contactCard=nil
 				strongSelf.contactCard=nil
@@ -247,7 +242,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard let contactCard=contactCard else {
 			return
 		}
-		guard var directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
 				return
 			}
 		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard, directoryURL: directoryURL) else {
@@ -365,7 +360,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		}
 		let navigationController=UINavigationController(rootViewController: manageCardsViewController)
 		self.present(navigationController, animated: true)
-		
 	}
 	@IBAction func editContact(_ sender: Any) {
 		let editContactAlertController=EditContactAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -425,7 +419,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard var directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
 				return
 			}
-		
 		directoryURL.appendPathComponent("vCardToCopy")
 		do {
 		try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
@@ -450,17 +443,15 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			print("Error ")
 		}
 */
-			
 		//}
-	
 	}
 	override var keyCommands: [UIKeyCommand]? {
 		if AppState.shared.appState==AppStateValue.isModal {
 			return nil
 		}
 		var keyCommands=[UIKeyCommand(title: "Create New Contact", image: nil, action: #selector(createNewContact),
-									  input: "n", modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Create New Contact",
-									  attributes: UIKeyCommand.Attributes(), state: .off),
+									input: "n", modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Create New Contact",
+									attributes: UIKeyCommand.Attributes(), state: .off),
 						 UIKeyCommand(title: "Create New Card From Contact", image: nil, action: #selector(createContactCardFromContact),
 																										input: "n", modifierFlags: UIKeyModifierFlags(arrayLiteral: [.command,.shift]), propertyList: nil, alternates: [], discoverabilityTitle: "Create New Card From Contact",
 													 attributes: UIKeyCommand.Attributes(), state: .off)]
@@ -471,5 +462,4 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		}
 		return keyCommands
 	}
-	
 }

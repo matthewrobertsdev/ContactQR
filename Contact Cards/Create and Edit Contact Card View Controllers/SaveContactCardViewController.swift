@@ -56,7 +56,7 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 					WidgetCenter.shared.reloadTimelines(ofKind: widget.kind)
 				}
 			}
-			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid":self.contactCard?.objectID.uriRepresentation().absoluteString ?? ""])
+			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.objectID.uriRepresentation().absoluteString ?? ""])
 			navigationController?.dismiss(animated: true)
 		} else {
 			guard let context=self.managedObjectContext else {

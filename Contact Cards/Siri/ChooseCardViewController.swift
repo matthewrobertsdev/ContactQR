@@ -7,14 +7,14 @@
 //
 import UIKit
 import CoreData
-class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDelegate,
+								UITableViewDataSource, UITableViewDelegate {
 	@IBOutlet weak var stackView: UIStackView!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var doneBarButtonItem: UIBarButtonItem!
 	let colorModel=ColorModel()
 	var fetchedResultsController: NSFetchedResultsController<ContactCardMO>?
 	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-	var saveClosure: (ContactCardMO) -> Void = {contactCardMO in }
 	var forWatch=true
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,10 +85,10 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 
 	}
 	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-						didChange anObject: Any,
-						at indexPath: IndexPath?,
-						for type: NSFetchedResultsChangeType,
-						newIndexPath: IndexPath?) {
+					didChange anObject: Any,
+					at indexPath: IndexPath?,
+					for type: NSFetchedResultsChangeType,
+					newIndexPath: IndexPath?) {
 		let animation=UITableView.RowAnimation.fade
 			switch type {
 			case .insert:
@@ -115,11 +115,11 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 			}
 		}
 	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-						didChange sectionInfo: NSFetchedResultsSectionInfo,
-						atSectionIndex sectionIndex: Int,
-						for type: NSFetchedResultsChangeType) {
+					didChange sectionInfo: NSFetchedResultsSectionInfo,
+					atSectionIndex sectionIndex: Int,
+					for type: NSFetchedResultsChangeType) {
 			let sectionIndexSet = NSIndexSet(index: sectionIndex) as IndexSet
-		var animation=UITableView.RowAnimation.fade
+		let animation=UITableView.RowAnimation.fade
 			switch type {
 			case .insert:
 				self.tableView.insertSections(sectionIndexSet, with: animation)
@@ -138,7 +138,12 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 			return
 		}
 		if let indexPath=tableView.indexPathForSelectedRow {
-			saveClosure(controller.object(at: indexPath))
+			let contactCardMO=controller.object(at: indexPath)
+			UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.set(contactCardMO.color, forKey: "chosenCardColor")
+			UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.set(contactCardMO.qrCodeImage, forKey: "chosenCardImageData")
+			UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.set(contactCardMO.objectID.uriRepresentation().absoluteString, forKey: "chosenCardObjectID")
+			UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.set(contactCardMO.filename, forKey: "chosenCardTitle")
+			NotificationCenter.default.post(name: .siriCardChosen, object: nil)
 			navigationController?.dismiss(animated: true)
 		}
 	}

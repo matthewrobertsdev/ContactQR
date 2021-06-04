@@ -19,22 +19,12 @@
 		<dict>
 			<key>INIntentCategory</key>
 			<string>information</string>
-			<key>INIntentConfigurable</key>
-			<true/>
+			<key>INIntentDefaultImageName</key>
+			<string>Icon</string>
 			<key>INIntentDescription</key>
 			<string>Show QR Code of Contact Card.</string>
 			<key>INIntentDescriptionID</key>
 			<string>aRG2OX</string>
-			<key>INIntentManagedParameterCombinations</key>
-			<dict>
-				<key></key>
-				<dict>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationUpdatesLinked</key>
-					<true/>
-				</dict>
-			</dict>
 			<key>INIntentName</key>
 			<string>ShowCard</string>
 			<key>INIntentParameterCombinations</key>
@@ -43,8 +33,16 @@
 				<dict>
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<true/>
+					<key>INIntentParameterCombinationSubtitle</key>
+					<string>Shows the QR code for a card chosen in the app.</string>
+					<key>INIntentParameterCombinationSubtitleID</key>
+					<string>HbS7EQ</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Show QR Code of Contact Card.</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>BSym5X</string>
 				</dict>
 			</dict>
 			<key>INIntentResponse</key>

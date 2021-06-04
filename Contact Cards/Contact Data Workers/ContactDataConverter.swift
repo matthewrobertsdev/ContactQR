@@ -9,7 +9,7 @@
 import Contacts
 import UIKit
 /*
- Converts between CNContact, v card Data, String, and QRCode
+ Converts between CNContact, vCard Data, String, and QR code
  */
 class ContactDataConverter {
     static func createCNContactArray(vCardString: String)throws ->[CNContact] {
@@ -38,7 +38,7 @@ class ContactDataConverter {
         do {
             try vCardData=CNContactVCardSerialization.data(with: [cnContact])
         } catch {
-            print ("CNConact not serialized./n"+"Error is:/n"+error.localizedDescription)
+            print ("CNConact not serialized./nError is:/n\(error.localizedDescription)")
             return vCardData
         }
         return vCardData

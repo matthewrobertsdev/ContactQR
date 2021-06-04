@@ -7,13 +7,13 @@
 //
 import UIKit
 import IntentsUI
-class ShortcutDelegate: NSObject, INUIAddVoiceShortcutButtonDelegate, INUIAddVoiceShortcutViewControllerDelegate, INUIEditVoiceShortcutViewControllerDelegate {
+class ShortcutDelegate: NSObject, INUIAddVoiceShortcutButtonDelegate,
+						INUIAddVoiceShortcutViewControllerDelegate, INUIEditVoiceShortcutViewControllerDelegate {
 	weak var viewController: UIViewController?
 	init(viewController: UIViewController) {
 		self.viewController = viewController
 	}
-	func present(_ addVoiceShortcutViewController:
-					INUIAddVoiceShortcutViewController, for addVoiceShortcutButton: INUIAddVoiceShortcutButton) {
+	func present(_ addVoiceShortcutViewController: INUIAddVoiceShortcutViewController, for addVoiceShortcutButton: INUIAddVoiceShortcutButton) {
 		print("Should show add shortcut view controller")
 		addVoiceShortcutViewController.delegate = self
 		viewController?.present(addVoiceShortcutViewController, animated: true, completion: nil)
@@ -26,17 +26,18 @@ class ShortcutDelegate: NSObject, INUIAddVoiceShortcutButtonDelegate, INUIAddVoi
 	func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
 		viewController?.dismiss(animated: true, completion: nil)
 	}
-	func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
+	func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController,
+										didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
 		viewController?.dismiss(animated: true, completion: nil)
 	}
-	func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController, didUpdate voiceShortcut: INVoiceShortcut?, error: Error?) {
+	func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController,
+										 didUpdate voiceShortcut: INVoiceShortcut?, error: Error?) {
 		viewController?.dismiss(animated: true, completion: nil)
 	}
-	
-	func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController, didDeleteVoiceShortcutWithIdentifier deletedVoiceShortcutIdentifier: UUID) {
+	func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController,
+										 didDeleteVoiceShortcutWithIdentifier deletedVoiceShortcutIdentifier: UUID) {
 		viewController?.dismiss(animated: true, completion: nil)
 	}
-	
 	func editVoiceShortcutViewControllerDidCancel(_ controller: INUIEditVoiceShortcutViewController) {
 		viewController?.dismiss(animated: true, completion: nil)
 	}
