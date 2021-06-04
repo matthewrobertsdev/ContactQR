@@ -11,13 +11,15 @@ import Messages
 import CoreData
 import Contacts
 class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource,
-							  UITableViewDelegate, NSFilePresenter {
+							  UITableViewDelegate, NSFilePresenter,
+							  NSFetchedResultsControllerDelegate {
 	var presentedItemURL: URL?
 	var presentedItemOperationQueue=OperationQueue.main
 	@IBOutlet weak var tableView: UITableView!
 	var contactCards=[ContactCardMO]()
 	let colorModel=ColorModel()
-	lazy var persistentContainer: NSPersistentCloudKitContainer = loadPersistentContainer()
+	var persistentContainer: NSPersistentCloudKitContainer = loadPersistentContainer()
+	var fetchedResultsController: NSFetchedResultsController<ContactCardMO>?
 	func presentedItemDidChange() {
 		prepareView()
 	}
@@ -45,7 +47,6 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 		//prepareView()
 		//NotificationCenter.default.addObserver(self, selector: #selector((reloadView)), name: .NSPersistentStoreRemoteChange, object: nil)
         // Do any additional setup after loading the view.
-		
     }
 	override func viewWillAppear(_ animated: Bool) {
 		prepareView()
@@ -53,8 +54,26 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 	@IBAction func syncWithApp(_ sender: Any) {
 		prepareView()
 	}
-	
 	@objc func prepareView() {
+		let managedObjectContext=persistentContainer.viewContext
+
+		let contactCardFetchRequest = NSFetchRequest<ContactCardMO>(entityName: "ContactCard")
+				let sortDescriptor = NSSortDescriptor(key: "filename", ascending: true)
+		contactCardFetchRequest.sortDescriptors = [sortDescriptor]
+				self.fetchedResultsController = NSFetchedResultsController<ContactCardMO>(
+					fetchRequest: contactCardFetchRequest,
+					managedObjectContext: managedObjectContext,
+					sectionNameKeyPath: nil,
+					cacheName: nil)
+		self.fetchedResultsController?.delegate = self
+		do {
+			print("try to perform fetch")
+			try fetchedResultsController?.performFetch()
+			print("performed fetch")
+			} catch {
+				print("error performing fetch \(error.localizedDescription)")
+			}
+		/*
 		let managedObjectContext=persistentContainer.viewContext
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
 			do {
@@ -69,6 +88,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 			}
 		print("Bye")
 			tableView.reloadData()
+*/
 	}
     // MARK: - Conversation Handling
     override func willBecomeActive(with conversation: MSConversation) {
@@ -109,7 +129,24 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 		return 1
 	}
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return contactCards.count
+		/*
+		if let count=fetchedResultsController?.fetchedObjects?.count {
+			print("not nil")
+			return count
+		} else {
+			print("is nil")
+			return 0
+		}
+*/
+		if let sections = fetchedResultsController?.sections {
+			let currentSection = sections[section]
+			print(currentSection.numberOfObjects)
+			print("num rows \(currentSection.numberOfObjects)")
+			return currentSection.numberOfObjects
+		}
+		print("num rows 0: sections nil")
+		return 0
+		//return contactCards.count
 	}
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		/*
@@ -117,6 +154,21 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 				cell.textLabel?.text = errorString
 				return cell
 		*/
+		guard let cell=tableView.dequeueReusableCell(withIdentifier: "SavedContactCell", for: indexPath)
+				as? SavedContactCell else {
+			return UITableViewCell()
+		}
+		guard let contactCard = fetchedResultsController?.object(at: indexPath) else {
+			return UITableViewCell()
+		}
+		print("abcd\(contactCard.description)")
+		cell.nameLabel.text=contactCard.filename
+		let colorString=contactCard.color
+		if let color=colorModel.getColorsDictionary()[colorString] as? UIColor {
+			cell.circularColorView.backgroundColor=color
+		}
+		return cell
+		/*
 		guard let cell=tableView.dequeueReusableCell(withIdentifier: "SavedContactCell", for: indexPath)
 				as? SavedContactCell else {
 			return UITableViewCell()
@@ -133,7 +185,60 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 			print("error loading ContactCardMO from viewContext")
 		}
 		return cell
+*/
 	}
+	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+			self.tableView.beginUpdates()
+		}
+	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		self.tableView.endUpdates()
+
+	}
+	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+					didChange anObject: Any,
+					at indexPath: IndexPath?,
+					for type: NSFetchedResultsChangeType,
+					newIndexPath: IndexPath?) {
+		let animation=UITableView.RowAnimation.fade
+			switch type {
+			case .insert:
+				if let insertIndexPath = newIndexPath {
+					self.tableView.insertRows(at: [insertIndexPath], with: animation)
+				}
+			case .delete:
+				if let deleteIndexPath = indexPath {
+					self.tableView.deleteRows(at: [deleteIndexPath], with: animation)
+				}
+			case .update:
+				if let updateIndexPath = indexPath {
+					tableView.reloadRows(at: [updateIndexPath], with: animation)
+				}
+			case .move:
+				if let deleteIndexPath = indexPath {
+					self.tableView.deleteRows(at: [deleteIndexPath], with: animation)
+				}
+				if let insertIndexPath = newIndexPath {
+					self.tableView.insertRows(at: [insertIndexPath], with: animation)
+				}
+			default:
+				break
+			}
+		}
+	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+					didChange sectionInfo: NSFetchedResultsSectionInfo,
+					atSectionIndex sectionIndex: Int,
+					for type: NSFetchedResultsChangeType) {
+			let sectionIndexSet = NSIndexSet(index: sectionIndex) as IndexSet
+		let animation=UITableView.RowAnimation.fade
+			switch type {
+			case .insert:
+				self.tableView.insertSections(sectionIndexSet, with: animation)
+			case .delete:
+				self.tableView.deleteSections(sectionIndexSet, with: animation)
+			default:
+				break
+			}
+		}
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		do {
 			guard let contactCard = try persistentContainer.viewContext.existingObject(with: contactCards[indexPath.row].objectID) as? ContactCardMO else {
@@ -148,18 +253,6 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 			self.activeConversation?.insertAttachment(url, withAlternateFilename: nil)
 		} catch {
 			print("error loading ContactCardMO from viewContext")
-		}
-	}
-}
-extension UserDefaults
-{
-	@objc dynamic var date: String?
-	{
-		get {
-			return string(forKey: "date")
-		}
-		set {
-			set(newValue, forKey: "date")
 		}
 	}
 }

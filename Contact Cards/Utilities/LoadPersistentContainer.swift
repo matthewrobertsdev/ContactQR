@@ -24,7 +24,7 @@ func loadPersistentContainer() -> NSPersistentCloudKitContainer {
 	}
 	//container.persistentStoreDescriptions
 	container.loadPersistentStores { (_, error) in
-		print(error.debugDescription)
+		print("abcd"+error.debugDescription)
 	}
 	return container
 }
