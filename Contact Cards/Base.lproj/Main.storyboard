@@ -1339,11 +1339,47 @@
                                     <constraint firstItem="4tj-aW-SdA" firstAttribute="leading" secondItem="FIj-e6-Uba" secondAttribute="leading" id="qHB-rJ-yxo"/>
                                 </constraints>
                             </stackView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uIZ-Si-vx3">
+                                <rect key="frame" x="0.0" y="56" width="375" height="591"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Contact Cards Created Yet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hkm-9b-K6x">
+                                        <rect key="frame" x="25.5" y="8" width="324" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="k5n-Es-zkA"/>
+                                            <constraint firstAttribute="width" constant="324" id="s07-cG-2NO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create some contact cards before choosing one for Siri." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rt4-bR-vZt">
+                                        <rect key="frame" x="25.5" y="46" width="324" height="58"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="324" id="EDD-jM-9n9"/>
+                                            <constraint firstAttribute="height" constant="58" id="hx7-el-vge"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Hkm-9b-K6x" firstAttribute="top" secondItem="uIZ-Si-vx3" secondAttribute="top" constant="8" id="46z-vA-swT"/>
+                                    <constraint firstItem="Rt4-bR-vZt" firstAttribute="top" secondItem="Hkm-9b-K6x" secondAttribute="bottom" constant="8" symbolic="YES" id="hHa-6r-hy6"/>
+                                    <constraint firstItem="Hkm-9b-K6x" firstAttribute="centerX" secondItem="uIZ-Si-vx3" secondAttribute="centerX" id="r50-RO-nFG"/>
+                                    <constraint firstItem="Rt4-bR-vZt" firstAttribute="centerX" secondItem="uIZ-Si-vx3" secondAttribute="centerX" id="xJY-Rt-YqL"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Z6l-Rp-bDe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="uIZ-Si-vx3" firstAttribute="leading" secondItem="Z6l-Rp-bDe" secondAttribute="leading" id="CrP-JJ-acF"/>
                             <constraint firstItem="FIj-e6-Uba" firstAttribute="top" secondItem="Z6l-Rp-bDe" secondAttribute="top" id="Zm0-49-NdG"/>
+                            <constraint firstItem="Z6l-Rp-bDe" firstAttribute="trailing" secondItem="uIZ-Si-vx3" secondAttribute="trailing" id="jfw-k2-mZ9"/>
+                            <constraint firstItem="uIZ-Si-vx3" firstAttribute="top" secondItem="Z6l-Rp-bDe" secondAttribute="top" id="nP8-Do-6Bx"/>
+                            <constraint firstItem="Z6l-Rp-bDe" firstAttribute="bottom" secondItem="uIZ-Si-vx3" secondAttribute="bottom" id="pPc-ce-7an"/>
                             <constraint firstItem="FIj-e6-Uba" firstAttribute="leading" secondItem="Z6l-Rp-bDe" secondAttribute="leading" id="pSF-vo-AzA"/>
                             <constraint firstItem="Z6l-Rp-bDe" firstAttribute="trailing" secondItem="FIj-e6-Uba" secondAttribute="trailing" id="ppX-CZ-UYb"/>
                             <constraint firstItem="Z6l-Rp-bDe" firstAttribute="bottom" secondItem="FIj-e6-Uba" secondAttribute="bottom" id="yPA-Ys-1cW"/>
@@ -1355,21 +1391,22 @@
                                 <action selector="cancel:" destination="NF4-cX-5AG" id="Fyc-hR-HsR"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" id="nZ4-Mp-PNW">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Save" id="nZ4-Mp-PNW">
                             <connections>
                                 <action selector="done:" destination="NF4-cX-5AG" id="psc-cd-y15"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="doneBarButtonItem" destination="nZ4-Mp-PNW" id="cTT-qf-FMZ"/>
+                        <outlet property="noCardCreatedView" destination="uIZ-Si-vx3" id="7WB-OR-GaX"/>
+                        <outlet property="saveBarButtonItem" destination="nZ4-Mp-PNW" id="cTT-qf-FMZ"/>
                         <outlet property="stackView" destination="FIj-e6-Uba" id="6mw-87-MqQ"/>
                         <outlet property="tableView" destination="4tj-aW-SdA" id="3Ba-BO-NmQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RAt-v0-vY5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-361" y="-2078"/>
+            <point key="canvasLocation" x="-362.39999999999998" y="-2078.4107946026988"/>
         </scene>
         <!--Delete All Cards-->
         <scene sceneID="BYk-Vy-X84">
@@ -1641,7 +1678,7 @@ All rights reserved.</string>
             </objects>
             <point key="canvasLocation" x="1997.5999999999999" y="-707.49625187406298"/>
         </scene>
-        <!--Set-up a Card with Siri-->
+        <!--Set-up a Card wfor Siri-->
         <scene sceneID="oTJ-gs-sAc">
             <objects>
                 <viewController id="8ii-ME-gsR" customClass="SetUpSiriViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
@@ -1653,8 +1690,8 @@ All rights reserved.</string>
                                 <rect key="frame" x="62.5" y="97" width="250" height="154.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ov0-kD-82b">
-                                        <rect key="frame" x="51" y="0.0" width="148" height="30"/>
-                                        <state key="normal" title="Choose Contact Card"/>
+                                        <rect key="frame" x="80" y="0.0" width="90" height="30"/>
+                                        <state key="normal" title="Choose Card"/>
                                         <connections>
                                             <segue destination="n9U-Hz-0va" kind="presentation" id="Px5-ml-4bC"/>
                                         </connections>
@@ -1697,6 +1734,9 @@ All rights reserved.</string>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dnl-bc-8ZC">
                                         <rect key="frame" x="48" y="124.5" width="154" height="30"/>
                                         <state key="normal" title="Remove Card from Siri"/>
+                                        <connections>
+                                            <action selector="removeCard:" destination="8ii-ME-gsR" eventType="touchUpInside" id="MjT-V4-TiP"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -1712,7 +1752,7 @@ All rights reserved.</string>
                             <constraint firstItem="zId-7W-zUw" firstAttribute="top" secondItem="7eK-qy-K4H" secondAttribute="top" constant="41" id="KR0-Vn-KbS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Set-up a Card with Siri" id="pJV-AG-XsR">
+                    <navigationItem key="navigationItem" title="Set-up a Card wfor Siri" id="pJV-AG-XsR">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="sR7-ak-pUK">
                             <connections>
                                 <action selector="done:" destination="8ii-ME-gsR" id="8sp-Qs-riI"/>
@@ -1802,106 +1842,7 @@ All rights reserved.</string>
             </objects>
             <point key="canvasLocation" x="-1127" y="-1311"/>
         </scene>
-        <!--Contact Card for Siri-->
-        <scene sceneID="BJf-Nh-Z7J">
-            <objects>
-                <viewController storyboardIdentifier="DisplaySiriCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jNZ-Kt-iiG" customClass="DisplaySiriCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="AfG-2r-cbn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UTl-y2-eqp">
-                                <rect key="frame" x="0.0" y="54" width="375" height="564"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDR-C9-ngp">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="qch-p5-ypx"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qx4-DD-zYI">
-                                        <rect key="frame" x="0.0" y="53" width="375" height="511"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <attributedString key="attributedText"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="jDR-C9-ngp" firstAttribute="top" secondItem="UTl-y2-eqp" secondAttribute="top" id="8Vu-lq-eel"/>
-                                    <constraint firstItem="qx4-DD-zYI" firstAttribute="top" secondItem="jDR-C9-ngp" secondAttribute="bottom" constant="8" symbolic="YES" id="i1F-Lg-vUl"/>
-                                </constraints>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yWI-kd-n1T">
-                                <rect key="frame" x="63.5" y="306" width="248" height="50.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Contact Card Chosen For Siri" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lo1-kh-mH6">
-                                        <rect key="frame" x="0.0" y="0.0" width="248" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1t-dN-nyN">
-                                        <rect key="frame" x="0.0" y="20.5" width="248" height="30"/>
-                                        <state key="normal" title="Choose Contact Card For Siri"/>
-                                        <connections>
-                                            <segue destination="n9U-Hz-0va" kind="presentation" id="hUZ-Ch-2ZK"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="cIn-Og-3ct"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="UTl-y2-eqp" firstAttribute="top" secondItem="cIn-Og-3ct" secondAttribute="top" constant="10" id="IEk-2Q-I2c"/>
-                            <constraint firstItem="cIn-Og-3ct" firstAttribute="trailing" secondItem="UTl-y2-eqp" secondAttribute="trailing" id="MXt-vA-17G"/>
-                            <constraint firstItem="UTl-y2-eqp" firstAttribute="bottom" secondItem="cIn-Og-3ct" secondAttribute="bottom" id="Olw-nt-QiM"/>
-                            <constraint firstItem="UTl-y2-eqp" firstAttribute="leading" secondItem="cIn-Og-3ct" secondAttribute="leading" id="Omu-VU-9je"/>
-                            <constraint firstItem="yWI-kd-n1T" firstAttribute="centerX" secondItem="cIn-Og-3ct" secondAttribute="centerX" id="Wsi-Vu-T9r"/>
-                            <constraint firstItem="jDR-C9-ngp" firstAttribute="leading" secondItem="cIn-Og-3ct" secondAttribute="leading" id="fFN-zc-6rF"/>
-                            <constraint firstItem="cIn-Og-3ct" firstAttribute="trailing" secondItem="jDR-C9-ngp" secondAttribute="trailing" id="raa-Ce-YzG"/>
-                            <constraint firstItem="yWI-kd-n1T" firstAttribute="centerY" secondItem="cIn-Og-3ct" secondAttribute="centerY" id="stW-St-A3E"/>
-                        </constraints>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Contact Card for Siri" id="MnA-GW-i6A">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="BId-oV-paS">
-                            <connections>
-                                <action selector="done:" destination="jNZ-Kt-iiG" id="CjL-uq-CL4"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LOV-ow-JLL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1663" y="-2078"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="ZmE-80-2Bd">
-            <objects>
-                <navigationController storyboardIdentifier="DisplaySiriCardNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Bhk-4F-Bzi" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="w5S-aX-uxh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="jNZ-Kt-iiG" kind="relationship" relationship="rootViewController" id="Oha-ER-MC1"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eRe-rK-Fa9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="818" y="-2078"/>
-        </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="hUZ-Ch-2ZK"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="Icon" width="256" height="256"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>

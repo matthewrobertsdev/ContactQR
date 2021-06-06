@@ -13,18 +13,18 @@
             <objects>
                 <viewController id="ObA-dk-sSI" customClass="MessagesViewController" customModule="MessageContactCard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zMn-AG-sqS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
+                        <rect key="frame" x="0.0" y="0.0" width="370" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JgN-7J-eu9">
-                                <rect key="frame" x="0.0" y="44" width="320" height="426"/>
+                                <rect key="frame" x="0.0" y="44" width="370" height="484"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedContactCell" rowHeight="45" id="Hw0-rC-0d5" customClass="SavedContactCell" customModule="MessageContactCard" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="370" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hw0-rC-0d5" id="nno-wn-aVk">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OjZ-PT-FfG" customClass="CircularColorView" customModule="MessageContactCard" customModuleProvider="target">
@@ -36,7 +36,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ContactCard Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8QG-H5-ZUO">
-                                                    <rect key="frame" x="45.5" y="5" width="259.5" height="35"/>
+                                                    <rect key="frame" x="45.5" y="5" width="309.5" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="jm7-Dv-lDm"/>
                                                     </constraints>
@@ -62,28 +62,56 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOM-uo-Bhv">
-                                <rect key="frame" x="110.5" y="478" width="99" height="30"/>
-                                <state key="normal" title="Sync with App"/>
-                                <connections>
-                                    <action selector="syncWithApp:" destination="ObA-dk-sSI" eventType="touchUpInside" id="MbC-V9-ONA"/>
-                                </connections>
-                            </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kIY-aZ-Td8">
+                                <rect key="frame" x="0.0" y="44" width="370" height="484"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Contact Cards Created Yet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyQ-ay-KZu">
+                                        <rect key="frame" x="23" y="8" width="324" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="324" id="8Ed-2r-oIL"/>
+                                            <constraint firstAttribute="height" constant="30" id="KLd-VW-Zmu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create some contact cards in the main app before sending any in messages." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aqj-7h-J0E">
+                                        <rect key="frame" x="23" y="46" width="324" height="58"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="58" id="8Sm-zH-UDO"/>
+                                            <constraint firstAttribute="width" constant="324" id="Pfk-R9-oz9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Aqj-7h-J0E" firstAttribute="centerX" secondItem="kIY-aZ-Td8" secondAttribute="centerX" id="eZ7-ca-AU3"/>
+                                    <constraint firstItem="oyQ-ay-KZu" firstAttribute="centerX" secondItem="kIY-aZ-Td8" secondAttribute="centerX" id="gNq-vh-7HT"/>
+                                    <constraint firstItem="oyQ-ay-KZu" firstAttribute="top" secondItem="kIY-aZ-Td8" secondAttribute="top" constant="8" id="otP-TW-IlR"/>
+                                    <constraint firstItem="Aqj-7h-J0E" firstAttribute="top" secondItem="oyQ-ay-KZu" secondAttribute="bottom" constant="8" symbolic="YES" id="t6R-Ns-MsX"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LDy-ih-0nr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="UOM-uo-Bhv" firstAttribute="top" secondItem="JgN-7J-eu9" secondAttribute="bottom" constant="8" symbolic="YES" id="O4D-eT-QKd"/>
-                            <constraint firstItem="UOM-uo-Bhv" firstAttribute="centerX" secondItem="LDy-ih-0nr" secondAttribute="centerX" id="OAB-a0-RQx"/>
+                            <constraint firstItem="kIY-aZ-Td8" firstAttribute="leading" secondItem="LDy-ih-0nr" secondAttribute="leading" id="25b-Eh-8OP"/>
+                            <constraint firstItem="kIY-aZ-Td8" firstAttribute="top" secondItem="LDy-ih-0nr" secondAttribute="top" id="FKV-0j-Zdm"/>
+                            <constraint firstItem="LDy-ih-0nr" firstAttribute="trailing" secondItem="kIY-aZ-Td8" secondAttribute="trailing" id="VEg-w2-PZn"/>
+                            <constraint firstItem="LDy-ih-0nr" firstAttribute="bottom" secondItem="JgN-7J-eu9" secondAttribute="bottom" id="XQL-KE-IZP"/>
                             <constraint firstItem="LDy-ih-0nr" firstAttribute="trailing" secondItem="JgN-7J-eu9" secondAttribute="trailing" id="bD4-ir-iB7"/>
-                            <constraint firstItem="LDy-ih-0nr" firstAttribute="bottom" secondItem="UOM-uo-Bhv" secondAttribute="bottom" constant="20" id="dzl-Xz-8fV"/>
+                            <constraint firstItem="LDy-ih-0nr" firstAttribute="bottom" secondItem="kIY-aZ-Td8" secondAttribute="bottom" id="bD6-Fe-nib"/>
                             <constraint firstItem="JgN-7J-eu9" firstAttribute="leading" secondItem="LDy-ih-0nr" secondAttribute="leading" id="gyQ-0k-UHv"/>
                             <constraint firstItem="LDy-ih-0nr" firstAttribute="top" secondItem="JgN-7J-eu9" secondAttribute="top" id="wQc-Kx-Qh4"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="528"/>
+                    <size key="freeformSize" width="370" height="528"/>
                     <connections>
+                        <outlet property="noCardCreatedView" destination="kIY-aZ-Td8" id="qqX-Cs-U2x"/>
                         <outlet property="tableView" destination="JgN-7J-eu9" id="s3C-aj-EMH"/>
                     </connections>
                 </viewController>

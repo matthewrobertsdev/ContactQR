@@ -11,23 +11,18 @@ import Messages
 import CoreData
 import Contacts
 class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource,
-							  UITableViewDelegate, NSFilePresenter {
-	var presentedItemURL: URL?
-	var presentedItemOperationQueue=OperationQueue.main
+							  UITableViewDelegate {
 	var userDefaults: UserDefaults?
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var noCardCreatedView: UIView!
 	var contactCards=[ContactCardMO]()
 	let colorModel=ColorModel()
 	lazy var persistentContainer: NSPersistentCloudKitContainer = loadPersistentContainer()
-	func presentedItemDidChange() {
-		prepareView()
-	}
 	//var errorString=""
 	override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.dataSource=self
 		tableView.delegate=self
-		NSFileCoordinator.addFilePresenter(self)
 		userDefaults=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")
 		userDefaults?.addObserver(self, forKeyPath: "lastUpdateUUID", options: [.new, .initial], context: nil)
 		/*
@@ -52,9 +47,6 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 	override func viewWillAppear(_ animated: Bool) {
 		prepareView()
 	}
-	@IBAction func syncWithApp(_ sender: Any) {
-		prepareView()
-	}
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		print("value observed")
 		prepareView()
@@ -68,7 +60,13 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 				contactCards.sort { firstCard, secondCard in
 					return firstCard.filename<secondCard.filename
 				}
+				if contactCards.count>0 {
+					noCardCreatedView.isHidden=true
+				} else {
+					noCardCreatedView.isHidden=false
+				}
 			} catch {
+				noCardCreatedView.isHidden=false
 				print("Unable to fetch contact cards")
 				//errorString=error.localizedDescription
 			}

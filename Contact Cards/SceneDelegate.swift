@@ -18,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
 		// This delegate does not imply the connecting scene or session are new (see
 		//`application:configurationForConnectingSceneSession` instead).
+		UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
 		(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext.automaticallyMergesChangesFromParent=true
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		guard let mainSplitViewController=storyboard.instantiateViewController(withIdentifier:

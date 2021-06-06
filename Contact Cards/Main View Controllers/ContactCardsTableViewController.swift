@@ -224,9 +224,6 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		self.tableView.endUpdates()
 		print("Ended updates")
-		let dateFormatter = DateFormatter()
-		dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-		print(dateFormatter.string(from: Date()))
 		UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
 		#if targetEnvironment(macCatalyst)
 		UIView.setAnimationsEnabled(true)
@@ -433,6 +430,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 				})
 				successAlertViewController.addAction(gotItAction)
 				successAlertViewController.preferredAction=gotItAction
+				UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
 				topController.present(successAlertViewController, animated: true)
 			}
 		} catch {

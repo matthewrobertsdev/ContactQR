@@ -77,6 +77,7 @@ class CreateContactViewController: UIViewController {
 				print("Couldn't save color")
 			}
 			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.objectID.uriRepresentation().absoluteString ?? ""])
+			UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
 			navigationController?.dismiss(animated: true)
 			WidgetCenter.shared.getCurrentConfigurations { result in
 				guard case .success(let widgets) = result else { return }

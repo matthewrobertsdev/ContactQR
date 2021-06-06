@@ -66,6 +66,13 @@ class SetUpSiriViewController: UIViewController {
 			cardColorCircle.isHidden=true
 		}
 	}
+	@IBAction func removeCard(_ sender: Any) {
+		UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.set(nil, forKey: "chosenCardColor")
+		UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.set(nil, forKey: "chosenCardImageData")
+		UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.set(nil, forKey: "chosenCardObjectID")
+		UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.set(nil, forKey: "chosenCardTitle")
+		prepareView()
+	}
 	@IBAction func done(_ sender: Any) {
 		dismiss(animated: true)
 	}

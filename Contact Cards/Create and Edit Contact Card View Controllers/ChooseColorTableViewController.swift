@@ -66,6 +66,7 @@ class ChooseColorTableViewController: UITableViewController {
 			let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 			do {
 				try managedObjectContext?.save()
+				UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
 			} catch {
 				print("Couldn't save color")
 			}

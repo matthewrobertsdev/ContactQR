@@ -11,7 +11,8 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 								UITableViewDataSource, UITableViewDelegate {
 	@IBOutlet weak var stackView: UIStackView!
 	@IBOutlet weak var tableView: UITableView!
-	@IBOutlet weak var doneBarButtonItem: UIBarButtonItem!
+	@IBOutlet weak var saveBarButtonItem: UIBarButtonItem!
+	@IBOutlet weak var noCardCreatedView: UIView!
 	let colorModel=ColorModel()
 	var fetchedResultsController: NSFetchedResultsController<ContactCardMO>?
 	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
@@ -38,8 +39,19 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 		self.fetchedResultsController?.delegate = self
 		do {
 			try fetchedResultsController?.performFetch()
+			if let sections = fetchedResultsController?.sections {
+				let numberOfObjects = sections[0].numberOfObjects
+				if numberOfObjects>0 {
+					noCardCreatedView.isHidden=true
+				} else {
+					noCardCreatedView.isHidden=false
+				}
+			} else {
+				noCardCreatedView.isHidden=false
+			}
 			print("performed fetch")
 			} catch {
+				noCardCreatedView.isHidden=false
 				print("error performing fetch \(error.localizedDescription)")
 			}
 	}
@@ -82,7 +94,16 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 		}
 	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		self.tableView.endUpdates()
-
+		if let sections = fetchedResultsController?.sections {
+			let numberOfObjects = sections[0].numberOfObjects
+			if numberOfObjects>0 {
+				noCardCreatedView.isHidden=true
+			} else {
+				noCardCreatedView.isHidden=false
+			}
+		} else {
+			noCardCreatedView.isHidden=false
+		}
 	}
 	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
 					didChange anObject: Any,
@@ -131,7 +152,7 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 		}
 	func tableView(_ tableView: UITableView,
 							didSelectRowAt indexPath: IndexPath) {
-		doneBarButtonItem.isEnabled=true
+		saveBarButtonItem.isEnabled=true
 	}
 	@IBAction func done(_ sender: Any) {
 		guard let controller=fetchedResultsController else {
