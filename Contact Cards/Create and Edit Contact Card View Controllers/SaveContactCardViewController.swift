@@ -73,6 +73,7 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 			do {
 				try self.managedObjectContext?.save()
 				self.managedObjectContext?.rollback()
+				
 				//ActiveContactCard.shared.contactCard=
 			} catch {
 				print(error.localizedDescription)

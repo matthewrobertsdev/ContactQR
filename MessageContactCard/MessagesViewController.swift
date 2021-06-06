@@ -14,6 +14,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 							  UITableViewDelegate, NSFilePresenter {
 	var presentedItemURL: URL?
 	var presentedItemOperationQueue=OperationQueue.main
+	var userDefaults: UserDefaults?
 	@IBOutlet weak var tableView: UITableView!
 	var contactCards=[ContactCardMO]()
 	let colorModel=ColorModel()
@@ -27,6 +28,8 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 		tableView.dataSource=self
 		tableView.delegate=self
 		NSFileCoordinator.addFilePresenter(self)
+		userDefaults=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")
+		userDefaults?.addObserver(self, forKeyPath: "lastUpdateUUID", options: [.new, .initial], context: nil)
 		/*
 		let container=NSPersistentCloudKitContainer(name: "ContactCards")
 		let groupIdentifier="group.com.apps.celeritas.contact.cards"
@@ -45,7 +48,6 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 		//prepareView()
 		//NotificationCenter.default.addObserver(self, selector: #selector((reloadView)), name: .NSPersistentStoreRemoteChange, object: nil)
         // Do any additional setup after loading the view.
-		
     }
 	override func viewWillAppear(_ animated: Bool) {
 		prepareView()
@@ -53,7 +55,10 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 	@IBAction func syncWithApp(_ sender: Any) {
 		prepareView()
 	}
-	
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		print("value observed")
+		prepareView()
+	}
 	@objc func prepareView() {
 		let managedObjectContext=persistentContainer.viewContext
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
