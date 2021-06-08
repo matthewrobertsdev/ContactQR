@@ -28,9 +28,6 @@ class DeleteDataViewController: UIViewController, UITextFieldDelegate {
 	// Pass the selected object to the new view controller.
 	}
 	*/
-	@IBAction func done(_ sender: Any) {
-		dismiss(animated: true)
-	}
 	@IBAction func deleteAll(_ sender: Any) {
 		if confirmationTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() != "delete" {
 			let unconfirmedAlertController=UIAlertController(title: "Not Confirmed", message: "You have not confirmed that you want to delete all cards by typing \"delete\".", preferredStyle: .alert)

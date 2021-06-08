@@ -16,9 +16,6 @@ class CloudDataDescriptionViewController: UIViewController {
 				dataDescriptionTextField.attributedText=iCloudDataAttributedString
 			}
 		}
-	@IBAction func done(_ sender: Any) {
-		dismiss(animated: true)
-	}
 	/*
     // MARK: - Navigation
 
