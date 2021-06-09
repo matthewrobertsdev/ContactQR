@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aYm-LV-jC5">
-    <device id="retina4_7" orientation="portrait" appearance="dark"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -82,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-414.95327102803736" y="1012.7429805615551"/>
+            <point key="canvasLocation" x="581.25" y="1011.9718309859155"/>
         </scene>
         <!--Title-->
         <scene sceneID="CCk-fk-rf8">
@@ -265,12 +265,12 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Contact Cards" id="Vzi-tw-EHX">
-                        <barButtonItem key="leftBarButtonItem" title="Contacts" image="person.crop.circle" catalog="system" id="ymM-BI-js4">
+                        <barButtonItem key="leftBarButtonItem" title="Add Card from Contact" image="person.crop.circle" catalog="system" id="ymM-BI-js4">
                             <connections>
                                 <action selector="createContactCardFromContact:" destination="8w3-e5-v8i" id="tdm-yN-NgJ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="aSk-2u-Brq">
+                        <barButtonItem key="rightBarButtonItem" title="Add Card" id="aSk-2u-Brq">
                             <connections>
                                 <segue destination="icA-no-8s3" kind="presentation" id="TlI-iS-dDy"/>
                             </connections>
@@ -301,52 +301,52 @@
                                         <rect key="frame" x="10" y="20" width="355" height="403"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="G0x-r3-0X6">
-                                                <rect key="frame" x="25" y="0.0" width="305" height="231"/>
+                                                <rect key="frame" x="34.5" y="0.0" width="286" height="231"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="We5-Ln-G6p">
-                                                        <rect key="frame" x="0.0" y="0.0" width="305" height="31"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="We5-Ln-G6p">
+                                                        <rect key="frame" x="25.5" y="0.0" width="235.5" height="31"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Cards Sync with iCloud" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K3R-OR-YWp">
-                                                                <rect key="frame" x="0.0" y="0.0" width="241" height="31"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sync Cards with iCloud" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K3R-OR-YWp">
+                                                                <rect key="frame" x="0.0" y="0.0" width="176.5" height="31"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VtF-LG-wkb">
-                                                                <rect key="frame" x="256" y="0.0" width="51" height="31"/>
+                                                                <rect key="frame" x="186.5" y="0.0" width="51" height="31"/>
                                                             </switch>
                                                         </subviews>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rxq-ox-Gxq">
-                                                        <rect key="frame" x="71" y="41" width="163" height="30"/>
+                                                        <rect key="frame" x="61.5" y="41" width="163" height="30"/>
                                                         <state key="normal" title="Export Cards to Archive"/>
                                                         <connections>
                                                             <action selector="saveContactCardsArchive:" destination="r7Z-1i-89a" eventType="touchUpInside" id="zvw-wz-hGB"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOA-5i-BaP">
-                                                        <rect key="frame" x="67.5" y="81" width="170" height="30"/>
+                                                        <rect key="frame" x="58" y="81" width="170" height="30"/>
                                                         <state key="normal" title="Load Cards from Archive"/>
                                                         <connections>
                                                             <action selector="loadContactCardsArchive:" destination="r7Z-1i-89a" eventType="touchUpInside" id="Wfk-D9-V34"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNf-qY-8nx">
-                                                        <rect key="frame" x="31" y="121" width="243" height="30"/>
+                                                        <rect key="frame" x="21.5" y="121" width="243" height="30"/>
                                                         <state key="normal" title="Export iCloud Data as Rich Text File"/>
                                                         <connections>
                                                             <action selector="exportToRtfFile:" destination="r7Z-1i-89a" eventType="touchUpInside" id="hww-WQ-ccK"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idQ-yy-J7e">
-                                                        <rect key="frame" x="52.5" y="161" width="200" height="30"/>
+                                                        <rect key="frame" x="43" y="161" width="200" height="30"/>
                                                         <state key="normal" title="View iCloud Data Description"/>
                                                         <connections>
                                                             <segue destination="fi0-hG-ctM" kind="show" id="ukL-G1-bJQ"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ft7-Ph-lij">
-                                                        <rect key="frame" x="9.5" y="201" width="286" height="30"/>
+                                                        <rect key="frame" x="0.0" y="201" width="286" height="30"/>
                                                         <state key="normal" title="Restrict or Un-Restrict Access to iCloud..."/>
                                                     </button>
                                                 </subviews>
@@ -431,6 +431,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="syncWithCloudStackView" destination="We5-Ln-G6p" id="Dwt-aS-RUh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TIO-Fd-Nlz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1190,7 +1193,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P65-Kv-rNH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2705" y="811"/>
+            <point key="canvasLocation" x="3701.25" y="810.21126760563379"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SBz-3E-E2U">
@@ -1206,7 +1209,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZuA-jU-9Ai" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1782" y="811"/>
+            <point key="canvasLocation" x="2778.75" y="810.21126760563379"/>
         </scene>
         <!--Choose Title-->
         <scene sceneID="z3u-UG-EVn">
@@ -1262,7 +1265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Twt-Pi-6al" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4670" y="741"/>
+            <point key="canvasLocation" x="5666.25" y="740.49295774647885"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zwW-wO-6fN">
@@ -1503,26 +1506,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="riE-dc-ycb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3649" y="741"/>
-        </scene>
-        <!--Old-->
-        <scene sceneID="tJw-2z-2ZK">
-            <objects>
-                <navigationController storyboardIdentifier="ShowContactQRNavoigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cba-G8-qMB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Old" id="M7i-rW-UUq"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cGL-qm-Kgr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="x4W-p2-Dob"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tML-IQ-PRl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1463" y="993"/>
+            <point key="canvasLocation" x="4646.25" y="740.49295774647885"/>
         </scene>
         <!--About Contact Cards-->
         <scene sceneID="Ix9-4X-6gb">
@@ -1680,7 +1664,7 @@ All rights reserved.</string>
             </objects>
             <point key="canvasLocation" x="1997.5999999999999" y="-707.49625187406298"/>
         </scene>
-        <!--Set-up a Card wfor Siri-->
+        <!--Set-up a Card for Siri-->
         <scene sceneID="oTJ-gs-sAc">
             <objects>
                 <viewController id="8ii-ME-gsR" customClass="SetUpSiriViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
@@ -1754,7 +1738,7 @@ All rights reserved.</string>
                             <constraint firstItem="zId-7W-zUw" firstAttribute="top" secondItem="7eK-qy-K4H" secondAttribute="top" constant="41" id="KR0-Vn-KbS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Set-up a Card wfor Siri" id="pJV-AG-XsR">
+                    <navigationItem key="navigationItem" title="Set-up a Card for Siri" id="pJV-AG-XsR">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="sR7-ak-pUK">
                             <connections>
                                 <action selector="done:" destination="8ii-ME-gsR" id="8sp-Qs-riI"/>
@@ -1807,6 +1791,24 @@ All rights reserved.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qNe-E0-P6I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1127" y="-1311"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="JXn-Tl-cjz">
+            <objects>
+                <navigationController storyboardIdentifier="ShowContactQRNavoigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tFN-34-tpD" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bz2-uG-CEW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="vUA-OM-4VK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pe7-eY-3k6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-416.25" y="1011.9718309859155"/>
         </scene>
     </scenes>
     <resources>

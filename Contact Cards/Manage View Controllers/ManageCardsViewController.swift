@@ -9,11 +9,15 @@ import UIKit
 import CoreData
 import UniformTypeIdentifiers
 class ManageCardsViewController: UIViewController {
+	@IBOutlet weak var syncWithCloudStackView: UIStackView!
 	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 	var loadDocumentController: LoadDocumentController?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+		#if targetEnvironment(macCatalyst)
+		syncWithCloudStackView.addArrangedSubview(syncWithCloudStackView.arrangedSubviews[0])
+		#endif
     }
 	@IBAction func done(_ sender: Any) {
 		self.dismiss(animated: true)
