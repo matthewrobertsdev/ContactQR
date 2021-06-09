@@ -270,7 +270,7 @@
                                 <action selector="createContactCardFromContact:" destination="8w3-e5-v8i" id="tdm-yN-NgJ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add Card" id="aSk-2u-Brq">
+                        <barButtonItem key="rightBarButtonItem" title="Add Card" image="plus" catalog="system" id="aSk-2u-Brq">
                             <connections>
                                 <segue destination="icA-no-8s3" kind="presentation" id="TlI-iS-dDy"/>
                             </connections>
@@ -1815,6 +1815,7 @@ All rights reserved.</string>
         <image name="Icon" width="256" height="256"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="questionmark" catalog="system" width="96" height="128"/>
         <namedColor name="Red">
             <color red="1" green="0.23100000619888306" blue="0.18799999356269836" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
