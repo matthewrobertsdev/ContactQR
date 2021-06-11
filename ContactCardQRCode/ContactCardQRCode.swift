@@ -79,16 +79,16 @@ struct ContactCardQRCodeEntryView: View {
     var body: some View {
 		if entry.widgetMode==WidgetMode.placeholder {
 			Image(uiImage: getTintedForeground(image: entry.qrCode ?? UIImage(),
-				color: entry.color ?? UIColor.label)).resizable().aspectRatio(contentMode: .fit).padding()
+											   color: entry.color ?? UIColor.label)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
 		} else if entry.widgetMode == WidgetMode.editMessage {
 			Text("Edit widget to choose a contact card for a QR code.").padding()
 		} else if entry.widgetMode==WidgetMode.contactQRCode && entry.color==UIColor.label {
 			Image(uiImage: colorScheme == .dark ? getTintedForeground(image: entry.qrCode ?? UIImage(), color: UIColor.white):
 				getTintedForeground(image: entry.qrCode ?? UIImage(), color:
-						UIColor.black)).resizable().aspectRatio(contentMode: .fit).padding()
+										UIColor.black)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
 		} else if entry.widgetMode==WidgetMode.contactQRCode {
 			Image(uiImage: getTintedForeground(image: entry.qrCode ?? UIImage(),
-				color: entry.color ?? UIColor.label)).resizable().aspectRatio(contentMode: .fit).padding()
+											   color: entry.color ?? UIColor.label)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
 		} else {
 			EmptyView()
 		}

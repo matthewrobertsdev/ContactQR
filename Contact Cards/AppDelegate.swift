@@ -187,7 +187,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	@objc func doNothing() {
 	}
 	@objc func openFAQ() {
-		if let url = URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/faq") {
+		if let url = URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/faq/contactcards") {
 			UIApplication.shared.open(url)
 		}
 	}

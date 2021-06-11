@@ -1623,6 +1623,10 @@ All rights reserved.</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="copyrightLabel" destination="eh9-Lq-PjR" id="eP6-LY-7bv"/>
+                        <outlet property="versionAndBuildLabel" destination="iQz-bX-HL9" id="fmp-lg-VoN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wuv-M3-J0J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
