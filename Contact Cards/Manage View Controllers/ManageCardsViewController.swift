@@ -60,6 +60,7 @@ class ManageCardsViewController: UIViewController {
 	}
 	@IBAction func loadContactCardsArchive(_ sender: Any) {
 		loadDocumentController=LoadDocumentController(presentationController: self, forOpeningContentTypes:  [UTType.text])
+		loadDocumentController?.affectsModality=false
 		loadDocumentController?.loadHandler = {(url: URL) -> Void in
 				if let contactCards=ContactDataConverter.readArchive(url: url) {
 					for card in contactCards {
