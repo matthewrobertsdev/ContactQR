@@ -68,6 +68,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let editAndDeleteMenu = UIMenu(title: "", image: nil, identifier:
 										UIMenu.Identifier("editAndDeleteMenu"), options: .displayInline, children: [editCardMenu, deleteCardCommand])
 		builder.insertChild(editAndDeleteMenu, atStartOfMenu: .edit)
+		let manageDataCommand =
+			UICommand(title: "Manage Data...", image: nil, action: #selector(manageCards), propertyList: nil, alternates: [], discoverabilityTitle: "Manage Data...", attributes: [], state: .off)
+		manageDataCommand.discoverabilityTitle = NSLocalizedString("Manage Data...", comment: "")
+		let manageDataMenu = UIMenu(title: "", image: nil, identifier:
+										UIMenu.Identifier("manageData"), options: .displayInline, children: [manageDataCommand])
+		manageDataCommand.discoverabilityTitle = NSLocalizedString("Manage Data...", comment: "")
+		builder.insertChild(manageDataMenu, atStartOfMenu: .file)
 		let exportAsVCardCommand =
 			UIKeyCommand(title: NSLocalizedString("Export as vCard...", comment: ""),
 						 image: nil,
@@ -75,7 +82,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 						 input: "e",
 						 modifierFlags: .command,
 						 propertyList: nil)
-		exportAsVCardCommand.discoverabilityTitle = NSLocalizedString("Export as vCard...", comment: "")
 		let exportAsVCardMenu = UIMenu(title: "", image: nil, identifier:
 										UIMenu.Identifier("exportAsVCard"), options: .displayInline, children: [exportAsVCardCommand])
 		builder.insertChild(exportAsVCardMenu, atStartOfMenu: .file)
@@ -152,7 +158,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				return AppState.shared.appState==AppStateValue.isNotModal
 			}
 			return false
-		} else if action==#selector(createNewContact)||action==#selector(newCardFromContact) {
+		} else if action==#selector(createNewContact)||action==#selector(newCardFromContact)||action==#selector(manageCards){
 			return AppState.shared.appState==AppStateValue.isNotModal
 		} else {
 			return super.canPerformAction(action, withSender: nil)
