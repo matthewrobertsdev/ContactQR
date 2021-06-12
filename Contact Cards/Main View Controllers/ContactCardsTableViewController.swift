@@ -21,6 +21,8 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 	//set-up table view with data
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		//show toolbar
+		self.navigationController?.setToolbarHidden(false, animated: false)
 		//sidebar for mac catalyst and iPad
 		if let splitViewController=splitViewController {
 			splitViewController.primaryBackgroundStyle = .sidebar
@@ -32,6 +34,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		notificationCenter.addObserver(self, selector: #selector(deleteAllCards), name: .deleteAllCards, object: nil)
 		//updates table view on return to app
 		notificationCenter.addObserver(self, selector: #selector(updateContent), name: UIApplication.willEnterForegroundNotification, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(removeContact), name: .contactDeleted, object: nil)
 	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -53,7 +56,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 			tableView.deselectRow(at: selectedIndexPath, animated: false)
 		}
 	}
-	//get tableview and fetched resulst controller up to date
+	//get tableview and fetched result controller up to date
 	@objc func updateContent() {
 		//make fech for all ContactCard entities
 		let contactCardFetchRequest = NSFetchRequest<ContactCardMO>(entityName: "ContactCard")
@@ -73,6 +76,7 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
  		} catch {
 			print("error performing fetch \(error.localizedDescription)")
 		}
+		tableView.reloadData()
 	}
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
@@ -165,22 +169,26 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		#if targetEnvironment(macCatalyst)
 		animation=UITableView.RowAnimation.none
 		#endif
-		guard let changedIndexPath=indexPath else {
-			return
-		}
-		guard let newIndexPath=newIndexPath else {
-			return
-		}
 		switch type {
 		case .insert:
-			self.tableView.insertRows(at: [newIndexPath], with: animation)
+			if let newIndexPath=newIndexPath {
+				self.tableView.insertRows(at: [newIndexPath], with: animation)
+			}
 		case .delete:
-			self.tableView.deleteRows(at: [changedIndexPath], with: animation)
+			if let indexPath=indexPath {
+				self.tableView.deleteRows(at: [indexPath], with: animation)
+			}
 		case .update:
-			tableView.reloadRows(at: [changedIndexPath], with: animation)
+			if let indexPath=indexPath {
+				tableView.reloadRows(at: [indexPath], with: animation)
+			}
 		case .move:
-			self.tableView.deleteRows(at: [changedIndexPath], with: animation)
-			self.tableView.insertRows(at: [newIndexPath], with: animation)
+			if let indexPath=indexPath {
+				self.tableView.deleteRows(at: [indexPath], with: animation)
+			}
+			if let newIndexPath=newIndexPath {
+				self.tableView.insertRows(at: [newIndexPath], with: animation)
+			}
 		default:
 			break
 		}
@@ -203,6 +211,18 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 			break
 		}
 	}
+	@objc func removeContact(notification: NSNotification) {
+		guard let removalIndex=notification.userInfo?["index"] as? Int else {
+			return
+		}
+		var animation=UITableView.RowAnimation.top
+		#if targetEnvironment(macCatalyst)
+		animation=UITableView.RowAnimation.none
+		#endif
+		tableView.deleteRows(at: [IndexPath(row: removalIndex, section: 0)], with: animation)
+		stopEditingIfNoContactCards()
+	}
+
 	func selectFirstContact() {
 		if let sections = fetchedResultsController?.sections {
 			let currentSection = sections[0]
