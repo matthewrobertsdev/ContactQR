@@ -15,7 +15,7 @@ class MainSplitViewController: UISplitViewController, UISplitViewControllerDeleg
 	func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary
 							secondaryViewController: UIViewController,
 							onto primaryViewController: UIViewController) -> Bool {
-	return false
+		return false
 	}
 	func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn
 								proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {

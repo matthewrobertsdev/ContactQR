@@ -168,18 +168,19 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		guard let changedIndexPath=indexPath else {
 			return
 		}
+		guard let newIndexPath=newIndexPath else {
+			return
+		}
 		switch type {
 		case .insert:
-			self.tableView.insertRows(at: [changedIndexPath], with: animation)
+			self.tableView.insertRows(at: [newIndexPath], with: animation)
 		case .delete:
 			self.tableView.deleteRows(at: [changedIndexPath], with: animation)
 		case .update:
 			tableView.reloadRows(at: [changedIndexPath], with: animation)
 		case .move:
 			self.tableView.deleteRows(at: [changedIndexPath], with: animation)
-			if let insertIndexPath = newIndexPath {
-				self.tableView.insertRows(at: [insertIndexPath], with: animation)
-			}
+			self.tableView.insertRows(at: [newIndexPath], with: animation)
 		default:
 			break
 		}
@@ -240,16 +241,10 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		}
 		return false
 	}
-	override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+	override func tableView(_ tableView: UITableView,
+							editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
 		return .delete
 	}
-	/*
-	override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-	let contactCardToMove = ContactCardStore.sharedInstance.contactCards.remove(at: sourceIndexPath.row)
-	ContactCardStore.sharedInstance.contactCards.insert(contactCardToMove, at: destinationIndexPath.row)
-	ContactCardStore.sharedInstance.saveContacts()
-	}
-	*/
 	@IBAction func toggleEditing(_ sender: Any) {
 		if tableView.isEditing {
 			stopEditing()
@@ -277,34 +272,22 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		]
 		return keyCommands
 	}
-	/*
-	// Override to support conditional editing of the table view.
-	override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-	// Return false if you do not want the specified item to be editable.
-	return true
-	}
-	*/
 	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
 							forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
 			// Delete the row from the data source
-			//ContactCardStore.sharedInstance.contactCards.remove(at: indexPath.row)
-			//ContactCardStore.sharedInstance.saveContacts()
 			guard let resultsController=fetchedResultsController else {
 				return
 			}
 			let contactCard = resultsController.object(at: indexPath)
 			managedObjectContext?.delete(contactCard)
+			do {
+			try managedObjectContext?.save()
 			stopEditingIfNoContactCards()
 			NotificationCenter.default.post(name: .contactDeleted, object: nil)
-			/*
-			if !ContactCardStore.sharedInstance.contactCards.contains(where: { (contactCard) -> Bool in
-			contactCard.uuidString==ActiveContactCard.shared.contactCard?.uuidString
-			}) {
-			ActiveContactCard.shared.contactCard=nil
-			NotificationCenter.default.post(name: .contactDeleted, object: nil)
+			} catch {
+				print("Error saving deletion")
 			}
-			*/
 		}
 	}
 	func stopEditingIfNoContactCards() {
@@ -316,12 +299,6 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 				editButton.isEnabled=false
 			}
 		}
-	}
-	// MARK: - Navigation
-	// In a storyboard-based application, you will often want to do a little preparation before navigation
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		// Get the new view controller using segue.destination.
-		// Pass the selected object to the new view controller.
 	}
 	@objc func deleteAllCards() {
 		guard let managedObjectContext=managedObjectContext else {
@@ -357,25 +334,6 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 			}
 		} catch {
 			// Error Handling
-
 		}
-		/*
-		let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "ContactCard")
-		let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-		do {
-			try (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: managedObjectContext)
-		} catch {
-			print("Error trying to delete all cards")
-		}
-*/
-
-		/*
-		let currentSection = sections[0]
-		while currentSection.numberOfObjects>0 {
-			if let managedObject=fetchedResultsController?.object(at: IndexPath(row: 0, section: 0)) {
-				managedObjectContext.delete(managedObject)
-			}
-		}
-*/
 	}
 }
