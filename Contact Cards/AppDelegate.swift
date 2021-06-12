@@ -7,8 +7,6 @@
 //
 import UIKit
 import CoreData
-import ClockKit
-import WatchConnectivity
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
