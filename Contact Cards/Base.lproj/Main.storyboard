@@ -84,10 +84,10 @@
             </objects>
             <point key="canvasLocation" x="581.25" y="1011.9718309859155"/>
         </scene>
-        <!--Title-->
+        <!--Card-->
         <scene sceneID="CCk-fk-rf8">
             <objects>
-                <viewController storyboardIdentifier="ContactCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IJa-nU-fZ3" customClass="ContactCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactCardViewController" title="Card" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IJa-nU-fZ3" customClass="ContactCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sVZ-bY-6LH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -161,6 +161,18 @@
                             <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
                                 <action selector="deleteContact:" destination="IJa-nU-fZ3" id="Gib-3U-BEL"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="hgl-mN-Ot1"/>
+                        <barButtonItem title="QR Code" image="qrcode" catalog="system" id="wvb-hb-ajq">
+                            <connections>
+                                <action selector="showQR_Code:" destination="IJa-nU-fZ3" id="3Fj-MP-Y9V"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="QWD-2C-bCS"/>
+                        <barButtonItem title="Share" image="square.and.arrow.up" catalog="system" id="UHp-w1-EIB">
+                            <connections>
+                                <action selector="share:" destination="IJa-nU-fZ3" id="GRP-Gs-fT7"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="YvY-pd-gf2"/>
@@ -1820,7 +1832,9 @@ All rights reserved.</string>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="qrcode" catalog="system" width="128" height="114"/>
         <image name="questionmark" catalog="system" width="96" height="128"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <namedColor name="Red">
             <color red="1" green="0.23100000619888306" blue="0.18799999356269836" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

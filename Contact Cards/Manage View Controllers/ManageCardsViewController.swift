@@ -104,7 +104,6 @@ class ManageCardsViewController: UIViewController {
 			}
 		do {
 			let data = try attributedString?.fileWrapper (from: NSRange (location: 0, length: attributedString?.length ?? 0), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtfd])
-		//let rtfData=try attributedString?.data(from: NSRange(location: 0, length: attributedString?.length ?? 0), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtfd])
 			fileURL.appendPathComponent("Contact Cards iCloud Data Description")
 			fileURL.appendPathExtension("rtfd")
 			try data?.write(to: fileURL, options: .atomic, originalContentsURL: nil)
@@ -120,15 +119,6 @@ class ManageCardsViewController: UIViewController {
 			print("Error trying to write rtf file")
 		}
 	}
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 	func getDocumentsDirectory() -> URL {
 		let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 		return paths[0]

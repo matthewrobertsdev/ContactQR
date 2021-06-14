@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  CardQR
+//  Contact Cards
 //
 //  Created by Matt Roberts on 12/6/18.
 //  Copyright © 2018 Matt Roberts. All rights reserved.
@@ -36,7 +36,6 @@ class DisplayQRViewController: UIViewController {
 												"Contasting Color"] ?? UIColor.label
 		print(ActiveContactCard.shared.contactCard?.color ?? "default")
 		if let qrCode=model.makeQRCode() {
-			//qrImageView.image=getTintedForeground(image: qrCode, color: color ?? UIColor.label)
 			qrImageView.image=getTintedForeground(image: qrCode, color: UIColor.label).withRenderingMode(.alwaysTemplate)
 			qrImageView.tintColor=color
 		} else {

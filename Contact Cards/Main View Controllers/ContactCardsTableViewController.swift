@@ -1,13 +1,13 @@
 //
 //  ContactCardTableViewController.swift
-//  Air Contacts
+//  Contact Cards
 //
 //  Created by Matt Roberts on 11/12/20.
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 import UIKit
 import CoreData
-class ContactCardsTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class ContactCardsTableViewController: UITableViewController {
 	//for deleting cards
 	@IBOutlet weak var editButton: UIBarButtonItem!
 	//for configuring siri
@@ -145,72 +145,6 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		let navigationController=UINavigationController(rootViewController: createContactViewController)
 		present(navigationController, animated: true)
 	}
-	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-		//disable animations for catalyst--UITableView animations are buggy
-		#if targetEnvironment(macCatalyst)
-		UIView.setAnimationsEnabled(false)
-		#endif
-		self.tableView.beginUpdates()
-	}
-	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-		self.tableView.endUpdates()
-		UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
-		//reanable animations if disabled for catalyst
-		#if targetEnvironment(macCatalyst)
-		UIView.setAnimationsEnabled(true)
-		#endif
-	}
-	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-					didChange anObject: Any,
-					at indexPath: IndexPath?,
-					for type: NSFetchedResultsChangeType,
-					newIndexPath: IndexPath?) {
-		var animation=UITableView.RowAnimation.fade
-		#if targetEnvironment(macCatalyst)
-		animation=UITableView.RowAnimation.none
-		#endif
-		switch type {
-		case .insert:
-			if let newIndexPath=newIndexPath {
-				self.tableView.insertRows(at: [newIndexPath], with: animation)
-			}
-		case .delete:
-			if let indexPath=indexPath {
-				self.tableView.deleteRows(at: [indexPath], with: animation)
-			}
-		case .update:
-			if let indexPath=indexPath {
-				tableView.reloadRows(at: [indexPath], with: animation)
-			}
-		case .move:
-			if let indexPath=indexPath {
-				self.tableView.deleteRows(at: [indexPath], with: animation)
-			}
-			if let newIndexPath=newIndexPath {
-				self.tableView.insertRows(at: [newIndexPath], with: animation)
-			}
-		default:
-			break
-		}
-	}
-	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-					didChange sectionInfo: NSFetchedResultsSectionInfo,
-					atSectionIndex sectionIndex: Int,
-					for type: NSFetchedResultsChangeType) {
-		let sectionIndexSet = NSIndexSet(index: sectionIndex) as IndexSet
-		var animation=UITableView.RowAnimation.fade
-		#if targetEnvironment(macCatalyst)
-		animation=UITableView.RowAnimation.none
-		#endif
-		switch type {
-		case .insert:
-			self.tableView.insertSections(sectionIndexSet, with: animation)
-		case .delete:
-			self.tableView.deleteSections(sectionIndexSet, with: animation)
-		default:
-			break
-		}
-	}
 	@objc func removeContact(notification: NSNotification) {
 		guard let removalIndex=notification.userInfo?["index"] as? Int else {
 			return
@@ -277,21 +211,6 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		tableView.setEditing(false, animated: true)
 		editButton.title="Edit"
 	}
-	override var keyCommands: [UIKeyCommand]? {
-		if AppState.shared.appState==AppStateValue.isModal {
-			return nil
-		}
-		let keyCommands=[
-			UIKeyCommand(title: "Previous Contact", image: nil, action: #selector(goUpOne),
-						 input: UIKeyCommand.inputUpArrow, modifierFlags:
-							.command, propertyList: nil, alternates: [], discoverabilityTitle: "Previous Contact",
-						 attributes: [], state: .on),
-			UIKeyCommand(title: "Next Contact", image: nil, action: #selector(goDownOne), input: UIKeyCommand.inputDownArrow,
-						 modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Next Contact",
-						 attributes: [], state: .on)
-		]
-		return keyCommands
-	}
 	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
 							forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
@@ -355,5 +274,90 @@ class ContactCardsTableViewController: UITableViewController, NSFetchedResultsCo
 		} catch {
 			// Error Handling
 		}
+	}
+}
+extension ContactCardsTableViewController: NSFetchedResultsControllerDelegate {
+	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		//disable animations for catalyst--UITableView animations are buggy
+		#if targetEnvironment(macCatalyst)
+		UIView.setAnimationsEnabled(false)
+		#endif
+		self.tableView.beginUpdates()
+	}
+	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		self.tableView.endUpdates()
+		UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
+		//reanable animations if disabled for catalyst
+		#if targetEnvironment(macCatalyst)
+		UIView.setAnimationsEnabled(true)
+		#endif
+	}
+	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+					didChange anObject: Any,
+					at indexPath: IndexPath?,
+					for type: NSFetchedResultsChangeType,
+					newIndexPath: IndexPath?) {
+		var animation=UITableView.RowAnimation.fade
+		#if targetEnvironment(macCatalyst)
+		animation=UITableView.RowAnimation.none
+		#endif
+		switch type {
+		case .insert:
+			if let newIndexPath=newIndexPath {
+				self.tableView.insertRows(at: [newIndexPath], with: animation)
+			}
+		case .delete:
+			if let indexPath=indexPath {
+				self.tableView.deleteRows(at: [indexPath], with: animation)
+			}
+		case .update:
+			if let indexPath=indexPath {
+				tableView.reloadRows(at: [indexPath], with: animation)
+			}
+		case .move:
+			if let indexPath=indexPath {
+				self.tableView.deleteRows(at: [indexPath], with: animation)
+			}
+			if let newIndexPath=newIndexPath {
+				self.tableView.insertRows(at: [newIndexPath], with: animation)
+			}
+		default:
+			break
+		}
+	}
+	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+					didChange sectionInfo: NSFetchedResultsSectionInfo,
+					atSectionIndex sectionIndex: Int,
+					for type: NSFetchedResultsChangeType) {
+		let sectionIndexSet = NSIndexSet(index: sectionIndex) as IndexSet
+		var animation=UITableView.RowAnimation.fade
+		#if targetEnvironment(macCatalyst)
+		animation=UITableView.RowAnimation.none
+		#endif
+		switch type {
+		case .insert:
+			self.tableView.insertSections(sectionIndexSet, with: animation)
+		case .delete:
+			self.tableView.deleteSections(sectionIndexSet, with: animation)
+		default:
+			break
+		}
+	}
+}
+extension ContactCardsTableViewController {
+	override var keyCommands: [UIKeyCommand]? {
+		if AppState.shared.appState==AppStateValue.isModal {
+			return nil
+		}
+		let keyCommands=[
+			UIKeyCommand(title: "Previous Contact", image: nil, action: #selector(goUpOne),
+						 input: UIKeyCommand.inputUpArrow, modifierFlags:
+							.command, propertyList: nil, alternates: [], discoverabilityTitle: "Previous Contact",
+						 attributes: [], state: .on),
+			UIKeyCommand(title: "Next Contact", image: nil, action: #selector(goDownOne), input: UIKeyCommand.inputDownArrow,
+						 modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Next Contact",
+						 attributes: [], state: .on)
+		]
+		return keyCommands
 	}
 }

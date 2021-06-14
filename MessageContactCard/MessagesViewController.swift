@@ -53,6 +53,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 	}
 	@objc func prepareView() {
 		let managedObjectContext=persistentContainer.viewContext
+		managedObjectContext.automaticallyMergesChangesFromParent=true
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
 			do {
 				// Execute Fetch Request
@@ -71,7 +72,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 				//errorString=error.localizedDescription
 			}
 		print("Bye")
-			tableView.reloadData()
+		tableView.reloadData()
 	}
     // MARK: - Conversation Handling
     override func willBecomeActive(with conversation: MSConversation) {

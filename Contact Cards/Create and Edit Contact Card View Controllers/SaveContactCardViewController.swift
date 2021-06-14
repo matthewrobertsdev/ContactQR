@@ -1,6 +1,6 @@
 //
 //  SaveContactCardViewController.swift
-//  Air Contacts
+//  Contact Cards
 //
 //  Created by Matt Roberts on 11/15/20.
 //  Copyright © 2020 Matt Roberts. All rights reserved.
@@ -67,7 +67,6 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 				return
 			}
 			let contactCardRecord=ContactCardMO(entity: card, insertInto: context)
-			//let contactCard: ContactCardMO? = (NSEntityDescription.insertNewObject(forEntityName: ContactCardMO.entityName, into: context) as? ContactCardMO)
 			setFields(contactCardMO: contactCardRecord, filename: titleTextField.text ?? "No Title Given", cnContact: contact, color: color)
 			UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
 			print("abcd\(contactCardRecord.filename)")
@@ -75,13 +74,9 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 				try self.managedObjectContext?.save()
 				self.managedObjectContext?.rollback()
 				UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
-				
-				//ActiveContactCard.shared.contactCard=
 			} catch {
 				print(error.localizedDescription)
 			}
-			//ContactCardStore.sharedInstance.contactCards.append(contactCard)
-			//ContactCardStore.sharedInstance.saveContacts()
 			navigationController?.dismiss(animated: true, completion: {
 			NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: nil)
 			})

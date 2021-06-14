@@ -1,6 +1,6 @@
 //
 //  ColorModel.swift
-//  Air Contacts
+//  Contact Cards
 //
 //  Created by Matt Roberts on 11/24/20.
 //  Copyright © 2020 Matt Roberts. All rights reserved.
