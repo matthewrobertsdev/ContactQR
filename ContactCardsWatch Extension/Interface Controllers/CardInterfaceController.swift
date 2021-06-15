@@ -12,7 +12,6 @@ class CardInterfaceController: WKInterfaceController {
 	@IBOutlet weak var cardDetailsLabel: WKInterfaceLabel!
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-		//NotificationCenter.default.addObserver(self, selector: #selector(updateUIForContactChanged), name: .watchContactUpdated, object: nil)
 		guard let contactCard=context as? ContactCardMO else {
 			return
 		}
@@ -37,17 +36,4 @@ class CardInterfaceController: WKInterfaceController {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
-	/*
-	@objc func updateUIForContactChanged() {
-		guard let cardString=model.getCardString() else {
-			return
-		}
-		guard let title=model.getTitle() else {
-			return
-		}
-		cardDetailsLabel.setAttributedText(cardString)
-		cardTitleLabel.setText(title)
-		cardTitleLabel.setTextColor(model.getColor())
-	}
-*/
 }

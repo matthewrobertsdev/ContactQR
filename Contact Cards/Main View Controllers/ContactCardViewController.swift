@@ -167,12 +167,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		}
 	}
 	func enableButtons(enable: Bool) {
-		guard let rightBarButtonItems=navigationItem.rightBarButtonItems else {
-			return
-		}
-		for item in rightBarButtonItems {
-			item.isEnabled=enable
-		}
 		guard let toolbarItems=toolbarItems else {
 			return
 		}

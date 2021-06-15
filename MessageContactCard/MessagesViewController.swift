@@ -5,7 +5,6 @@
 //  Created by Matt Roberts on 4/2/21.
 //  Copyright © 2021 Matt Roberts. All rights reserved.
 //
-
 import UIKit
 import Messages
 import CoreData
@@ -18,37 +17,18 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 	var contactCards=[ContactCardMO]()
 	let colorModel=ColorModel()
 	lazy var persistentContainer: NSPersistentCloudKitContainer = loadPersistentContainer()
-	//var errorString=""
 	override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.dataSource=self
 		tableView.delegate=self
 		userDefaults=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")
 		userDefaults?.addObserver(self, forKeyPath: "lastUpdateUUID", options: [.new, .initial], context: nil)
-		/*
-		let container=NSPersistentCloudKitContainer(name: "ContactCards")
-		let groupIdentifier="group.com.apps.celeritas.contact.cards"
-		if let fileContainerURL=FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) {
-			let storeURL=fileContainerURL.appendingPathComponent("ContactCards.sqlite")
-			let storeDescription=NSPersistentStoreDescription(url: storeURL)
-			storeDescription.cloudKitContainerOptions=NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.apps.celeritas.ContactCards")
-			container.persistentStoreDescriptions=[storeDescription]
-		}
-		//container.persistentStoreDescriptions
-		container.loadPersistentStores { (_, error) in
-			print(error.debugDescription)
-			//self.errorString=error?.localizedDescription ?? ""
-		}
-*/
-		//prepareView()
-		//NotificationCenter.default.addObserver(self, selector: #selector((reloadView)), name: .NSPersistentStoreRemoteChange, object: nil)
         // Do any additional setup after loading the view.
     }
 	override func viewWillAppear(_ animated: Bool) {
 		prepareView()
 	}
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		print("value observed")
 		prepareView()
 	}
 	@objc func prepareView() {
@@ -71,7 +51,6 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 				print("Unable to fetch contact cards")
 				//errorString=error.localizedDescription
 			}
-		print("Bye")
 		tableView.reloadData()
 	}
     // MARK: - Conversation Handling
@@ -116,11 +95,6 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 		return contactCards.count
 	}
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		/*
-		let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-				cell.textLabel?.text = errorString
-				return cell
-		*/
 		guard let cell=tableView.dequeueReusableCell(withIdentifier: "SavedContactCell", for: indexPath)
 				as? SavedContactCell else {
 			return UITableViewCell()
@@ -152,18 +126,6 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 			self.activeConversation?.insertAttachment(url, withAlternateFilename: nil)
 		} catch {
 			print("error loading ContactCardMO from viewContext")
-		}
-	}
-}
-extension UserDefaults
-{
-	@objc dynamic var date: String?
-	{
-		get {
-			return string(forKey: "date")
-		}
-		set {
-			set(newValue, forKey: "date")
 		}
 	}
 }
