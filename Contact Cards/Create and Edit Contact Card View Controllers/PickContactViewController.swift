@@ -1,6 +1,6 @@
 //
 //  PickContactDelegate.swift
-//  CardQR
+//  Contact Cards
 //
 //  Created by Matt Roberts on 12/18/18.
 //  Copyright © 2018 Matt Roberts. All rights reserved.

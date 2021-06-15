@@ -13,11 +13,4 @@ class CircularColorView: UIView {
 		layer.borderWidth=1
 		layer.borderColor=UIColor.systemGray2.cgColor
 	}
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
 }

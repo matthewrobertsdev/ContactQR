@@ -1,6 +1,6 @@
 //
 //  DisplayQRModel.swift
-//  CardQR
+//  Contact Cards
 //
 //  Created by Matt Roberts on 12/18/18.
 //  Copyright © 2018 Matt Roberts. All rights reserved.
@@ -8,7 +8,7 @@
 import UIKit
 import Contacts
 /*
- Model for the display qr code view controller
+ Model for the displaying a qr
  */
 class DisplayQRModel {
     private var contact=CNContact()

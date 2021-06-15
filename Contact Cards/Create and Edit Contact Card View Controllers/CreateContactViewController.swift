@@ -1,6 +1,6 @@
 //
 //  CreateContactViewController.swift
-//  ContactQR
+//  Contact Cards
 //
 //  Created by Matt Roberts on 12/17/19.
 //  Copyright © 2019 Matt Roberts. All rights reserved.

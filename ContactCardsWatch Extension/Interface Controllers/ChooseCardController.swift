@@ -15,7 +15,6 @@ class ChooseCardController: WKInterfaceController, NSFetchedResultsControllerDel
 	override func awake(withContext context: Any?) {
 		container.viewContext.automaticallyMergesChangesFromParent=true
 		// Configure interface objects here.
-		print("Choose Card Controller awoke")
 		NotificationCenter.default.addObserver(self, selector: #selector(loadTable), name: .NSPersistentStoreRemoteChange, object: nil)
 	}
 	override func willActivate() {
@@ -23,8 +22,7 @@ class ChooseCardController: WKInterfaceController, NSFetchedResultsControllerDel
 				let sortDescriptor = NSSortDescriptor(key: "filename", ascending: true)
 		contactCardFetchRequest.sortDescriptors = [sortDescriptor]
 		let context=container.viewContext
-
-				self.fetchedResultsController = NSFetchedResultsController<ContactCardMO>(
+		self.fetchedResultsController = NSFetchedResultsController<ContactCardMO>(
 					fetchRequest: contactCardFetchRequest,
 					managedObjectContext: context,
 					sectionNameKeyPath: nil,
@@ -33,7 +31,6 @@ class ChooseCardController: WKInterfaceController, NSFetchedResultsControllerDel
 		do {
 			try fetchedResultsController?.performFetch()
 			loadTable()
-			print("performed fetch")
 			} catch {
 				print("error performing fetch \(error.localizedDescription)")
 			}

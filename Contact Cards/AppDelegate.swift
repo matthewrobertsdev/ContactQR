@@ -1,14 +1,12 @@
 //
 //  AppDelegate.swift
-//  CardQR
+//  Contact Cards
 //
 //  Created by Matt Roberts on 12/6/18.
 //  Copyright © 2018 Matt Roberts. All rights reserved.
 //
 import UIKit
 import CoreData
-import ClockKit
-import WatchConnectivity
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
@@ -39,6 +37,95 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
 		// Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 	}
+	lazy var persistentContainer=loadPersistentContainer()
+	func saveContext () {
+			let context = persistentContainer.viewContext
+			if context.hasChanges {
+				do {
+					try context.save()
+				} catch {
+					print(error.localizedDescription)
+				}
+			}
+		}
+}
+extension AppDelegate {
+	override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+		guard let splitViewController = SceneDelegate.mainsSplitViewController else {
+			return false
+		}
+		if action==#selector(exportAsVCard) || action==#selector(showQRCode) ||
+			action==#selector(deleteContact) || action==#selector(editContactInfo) || action==#selector(editColor) || action==#selector(editTitle) {
+			guard let contactCardViewController=splitViewController.viewController(for: .secondary)
+					as? ContactCardViewController else {
+				return false
+			}
+			if contactCardViewController.contactCard != nil {
+				return AppState.shared.appState==AppStateValue.isNotModal
+			}
+			return false
+		} else if action==#selector(createNewContact)||action==#selector(newCardFromContact)||action==#selector(manageCards){
+			return AppState.shared.appState==AppStateValue.isNotModal
+		} else {
+			return super.canPerformAction(action, withSender: nil)
+		}
+	}
+}
+extension AppDelegate {
+	@objc func exportAsVCard() {
+		NotificationCenter.default.post(name: .exportAsVCard, object: self)
+	}
+	@objc func showQRCode() {
+		NotificationCenter.default.post(name: .showQRCode, object: self)
+	}
+	@objc func share() {
+	}
+	@objc func createNewContact() {
+		NotificationCenter.default.post(name: .createNewContact, object: nil)
+	}
+	@objc func newCardFromContact() {
+		NotificationCenter.default.post(name: .createNewContactFromContact, object: nil)
+	}
+	@objc func deleteContact() {
+		NotificationCenter.default.post(name: .deleteContact, object: nil)
+	}
+	@objc func editContact() {
+		NotificationCenter.default.post(name: .editContact, object: nil)
+	}
+	@objc func editContactInfo() {
+		NotificationCenter.default.post(name: .editContactInfo, object: nil)
+	}
+	@objc func editColor() {
+		NotificationCenter.default.post(name: .editColor, object: nil)
+	}
+	@objc func editTitle() {
+		NotificationCenter.default.post(name: .editTitle, object: nil)
+	}
+	@objc func manageCards() {
+		NotificationCenter.default.post(name: .manageCards, object: nil)
+	}
+	@objc func openFAQ() {
+		if let url = URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/faq/contactcards") {
+			UIApplication.shared.open(url)
+		}
+	}
+	@objc func openHomepage() {
+		if let url = URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/") {
+			UIApplication.shared.open(url)
+		}
+	}
+	@objc func openContactTheDeveloper() {
+		if let url = URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/contact") {
+			UIApplication.shared.open(url)
+		}
+	}
+	@objc func openPrivacyPolicy() {
+		if let url = URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/privacy") {
+			UIApplication.shared.open(url)
+		}
+	}
+}
+extension AppDelegate {
 	override func buildMenu(with builder: UIMenuBuilder) {
 		super.buildMenu(with: builder)
 		guard builder.system == UIMenuSystem.main else {
@@ -138,89 +225,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 											[openFaqCommand, opneHomepageCommand, openContactCommand, openPprivacyCommand])
 		builder.insertChild(websiteMenu, atStartOfMenu: .help)
 	}
-	@objc func exportAsVCard() {
-		NotificationCenter.default.post(name: .exportAsVCard, object: self)
-	}
-	@objc func showQRCode() {
-		NotificationCenter.default.post(name: .showQRCode, object: self)
-	}
-	override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-		guard let splitViewController = SceneDelegate.mainsSplitViewController else {
-			return false
-		}
-		if action==#selector(exportAsVCard) || action==#selector(showQRCode) ||
-			action==#selector(deleteContact) || action==#selector(editContactInfo) || action==#selector(editColor) || action==#selector(editTitle) {
-			guard let contactCardViewController=splitViewController.viewController(for: .secondary)
-					as? ContactCardViewController else {
-				return false
-			}
-			if contactCardViewController.contactCard != nil {
-				return AppState.shared.appState==AppStateValue.isNotModal
-			}
-			return false
-		} else if action==#selector(createNewContact)||action==#selector(newCardFromContact)||action==#selector(manageCards){
-			return AppState.shared.appState==AppStateValue.isNotModal
-		} else {
-			return super.canPerformAction(action, withSender: nil)
-		}
-	}
-	@objc func share() {
-	}
-	@objc func createNewContact() {
-		NotificationCenter.default.post(name: .createNewContact, object: nil)
-	}
-	@objc func newCardFromContact() {
-		NotificationCenter.default.post(name: .createNewContactFromContact, object: nil)
-	}
-	@objc func deleteContact() {
-		NotificationCenter.default.post(name: .deleteContact, object: nil)
-	}
-	@objc func editContact() {
-		NotificationCenter.default.post(name: .editContact, object: nil)
-	}
-	@objc func editContactInfo() {
-		NotificationCenter.default.post(name: .editContactInfo, object: nil)
-	}
-	@objc func editColor() {
-		NotificationCenter.default.post(name: .editColor, object: nil)
-	}
-	@objc func editTitle() {
-		NotificationCenter.default.post(name: .editTitle, object: nil)
-	}
-	@objc func manageCards() {
-		NotificationCenter.default.post(name: .manageCards, object: nil)
-	}
-	@objc func doNothing() {
-	}
-	@objc func openFAQ() {
-		if let url = URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/faq/contactcards") {
-			UIApplication.shared.open(url)
-		}
-	}
-	@objc func openHomepage() {
-		if let url = URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/") {
-			UIApplication.shared.open(url)
-		}
-	}
-	@objc func openContactTheDeveloper() {
-		if let url = URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/contact") {
-			UIApplication.shared.open(url)
-		}
-	}
-	@objc func openPrivacyPolicy() {
-		if let url = URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/privacy") {
-			UIApplication.shared.open(url)
-		}
-	}
-	lazy var persistentContainer=loadPersistentContainer()
-	func saveContext () {
-			let context = persistentContainer.viewContext
-			if context.hasChanges {
-				do {
-					try context.save()
-				} catch {
-					print(error.localizedDescription)
-				}
-			}
-		}
 }

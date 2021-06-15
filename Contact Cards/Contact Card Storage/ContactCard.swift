@@ -1,6 +1,6 @@
 //
 //  SavedContact.swift
-//  ContactExchange
+//  Contact Cards
 //
 //  Created by Matt Roberts on 6/14/19.
 //  Copyright © 2019 Matt Roberts. All rights reserved.
@@ -18,19 +18,4 @@ struct ContactCard: Codable {
 		self.vCardString=vCardString
 		self.color=color
 	}
-	/*
-    var filename=""
-    var vCardString=""
-	var color=ColorChoice.contrastingColor.rawValue
-	var uuidString: String?
-	init(filename: String, cnContact: CNContact, color: String) {
-		self.filename=filename
-        vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
-		uuidString=UUID().uuidString
-		self.color=color
-    }
-	func setContact(cnContact: CNContact) {
-		vCardString=ContactDataConverter.cnContactToVCardString(cnContact: cnContact)
-	}
-*/
 }

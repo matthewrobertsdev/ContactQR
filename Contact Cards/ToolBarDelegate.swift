@@ -1,6 +1,6 @@
 //
 //  ToolBarDelegate.swift
-//  Air Contacts
+//  Contact Cards
 //
 //  Created by Matt Roberts on 11/27/20.
 //  Copyright © 2020 Matt Roberts. All rights reserved.
@@ -45,13 +45,6 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			return nil
 		}
 		var validCardTarget: NSObject=self
-		/*
-		if let uuid=UserDefaults.standard.string(forKey: ContactCardsTableViewController.selectedCardUUIDKey) {
-			if let _=ContactCardStore.sharedInstance.getIndexOfContactWithUUID(uuid: uuid) {
-				validCardTarget=appDelegate
-			}
-		}
-*/
 		var toolbarItem: NSToolbarItem?
 		switch itemIdentifier {
 		case .toggleSidebar:
@@ -72,8 +65,6 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			item.image = UIImage(systemName: "pencil")
 			item.label = "Edit Card"
 			item.toolTip = "Edit Card"
-			//item.action = #selector(appDelegate.doNothing)
-			//item.target = validCardTarget
 			item.itemMenu=editCardMenu
 			item.isBordered=true
 			item.showsIndicator=false

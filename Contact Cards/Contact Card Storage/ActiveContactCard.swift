@@ -1,6 +1,6 @@
 //
 //  ActiveContact.swift
-//  CardQR
+//  Contact Cards
 //
 //  Created by Matt Roberts on 6/4/19.
 //  Copyright © 2019 Matt Roberts. All rights reserved.
@@ -20,11 +20,4 @@ class ActiveContactCard {
     var contactCard: ContactCardMO?
     private init() {
     }
-}
-/*
- Post this WHENEVER ActiveContact.shared.activeContact changes
- */
-extension Notification.Name {
-    //Reference as .contactChanged when type inference is possible
-    static let contactChanged=Notification.Name("contact-changed")
 }

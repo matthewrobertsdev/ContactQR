@@ -1,6 +1,6 @@
 //
 //  ExportContactCardViewController.swift
-//  Air Contacts
+//  Contact Cards
 //
 //  Created by Matt Roberts on 11/25/20.
 //  Copyright © 2020 Matt Roberts. All rights reserved.
@@ -32,12 +32,4 @@ class SaveDocumentViewController: UIDocumentPickerViewController, UIDocumentPick
 		try? fileManager.removeItem(at: url)
 		dismiss(animated: true)
 	}
-    /*
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }

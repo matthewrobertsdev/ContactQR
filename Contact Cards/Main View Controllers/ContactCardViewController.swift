@@ -1,6 +1,6 @@
 //
 //  ContactCardViewController.swift
-//  Air Contacts
+//  Contact Cards
 //
 //  Created by Matt Roberts on 11/13/20.
 //  Copyright © 2020 Matt Roberts. All rights reserved.
@@ -20,21 +20,23 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	private var contactDisplayStrings=[String]()
     override func viewDidLoad() {
         super.viewDidLoad()
-		guard let appdelegate=UIApplication.shared.delegate as? AppDelegate else {
+		guard let appDelegate=UIApplication.shared.delegate as? AppDelegate else {
 			return
 		}
-		appdelegate.activityItemsConfiguration=self
+		appDelegate.activityItemsConfiguration=self
+		/*
 		let shareBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
 											   style: .plain, target: self, action: #selector(shareContact))
 		let qrCodeBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "qrcode"), style: .plain,
 												target: self, action: #selector(showQRViewController(_:)))
+*/
 		#if targetEnvironment(macCatalyst)
 		let docBarButtonItem=UIBarButtonItem(image: UIImage(systemName:
 																"doc.badge.plus"), style: .plain, target: self, action: #selector(exportVCardtoFile))
 		navigationItem.leftBarButtonItems=[docBarButtonItem]
 		#endif
-		navigationItem.rightBarButtonItems=[shareBarButtonItem, qrCodeBarButtonItem]
-		navigationItem.title=""
+		//navigationItem.rightBarButtonItems=[shareBarButtonItem, qrCodeBarButtonItem]
+		navigationItem.title="Card"
 		navigationItem.largeTitleDisplayMode = .never
 		loadContact()
 		let notificationCenter=NotificationCenter.default
@@ -42,7 +44,8 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		notificationCenter.addObserver(self, selector: #selector(exportVCardtoFile), name: .exportAsVCard, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(showQRViewController(_:)), name: .showQRCode, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(createNewContact), name: .createNewContact, object: nil)
-		notificationCenter.addObserver(self, selector: #selector(createContactCardFromContact), name: .createNewContactFromContact, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(createContactCardFromContact),
+									   name: .createNewContactFromContact, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .modalityChanged, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(deleteContact), name: .deleteContact, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(editContact), name: .editContact, object: nil)
@@ -66,6 +69,12 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 	}
 	override var canBecomeFirstResponder: Bool {
 		return true
+	}
+	@IBAction func showQR_Code(_ sender: Any) {
+		showQRViewController(sender)
+	}
+	@IBAction func share(_ sender: Any) {
+		shareContact(share)
 	}
 	@objc func showQRViewController(_ sender: Any) {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -133,9 +142,8 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 				contactInfoTextView.attributedText=ContactInfoManipulator.makeContactDisplayString(cnContact: contactArray[0], fontSize: CGFloat(18))
 			} else {
 				contactInfoTextView.attributedText=NSAttributedString(string: "")
-				enableShareButtons(enable: false)
+				enableButtons(enable: false)
 			}
-			//tableView.reloadData()
 		} catch {
 			print("Error making CNContact from VCard String.")
 		}
@@ -158,21 +166,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 		}
 	}
-	func enableShareButtons(enable: Bool) {
-		guard let rightBarButtonItems=navigationItem.rightBarButtonItems else {
-			return
-		}
-		for item in rightBarButtonItems {
-			item.isEnabled=enable
-		}
-	}
 	func enableButtons(enable: Bool) {
-		guard let rightBarButtonItems=navigationItem.rightBarButtonItems else {
-			return
-		}
-		for item in rightBarButtonItems {
-			item.isEnabled=enable
-		}
 		guard let toolbarItems=toolbarItems else {
 			return
 		}
@@ -184,27 +178,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			UIApplication.shared.open(URL)
 			return false
 		}
-    /*
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-	/*
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return contactDisplayStrings.count
-	}
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell=tableView.dequeueReusableCell(withIdentifier: "ContactInfoTableViewCell") as?
-			ContactInfoTableViewCell else {
-			return UITableViewCell()
-		}
-		cell.infoLabel.text=contactDisplayStrings[indexPath.row]
-		return cell
-	}
-*/
 	@IBAction func deleteContact(_ sender: Any) {
 		guard let contactCardMO=contactCard else {
 			return
@@ -382,27 +355,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		#endif
 		present(editContactAlertController, animated: true) {
 		}
-		/*
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		guard let editContactCardViewController=storyboard.instantiateViewController(withIdentifier:
-																					"EditContactCardViewController") as? EditContactCardViewController else {
-			print("Failed to instantiate EditContactCardViewController")
-			return
-		}
-		do {
-			let contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard?.vCardString ?? "")[0]
-			editContactCardViewController.contact=contact
-			editContactCardViewController.contactCard=contactCard
-		} catch {
-			print("Error making CNContact from VCard String.")
-		}
-		let navigationController=UINavigationController(rootViewController: editContactCardViewController)
-		var animated=true
-		#if targetEnvironment(macCatalyst)
-			animated=false
-		#endif
-		present(navigationController, animated: animated)
-*/
 	}
 	@IBAction override func copy(_ sender: Any?) {
 		if ActiveContactCard.shared.contactCard != nil {
@@ -410,7 +362,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		}
 	}
 	@IBAction func copyVCard(_ sender: Any) {
-		print("Should copy vCard")
 		let pasteBoard=UIPasteboard.general
 		pasteBoard.itemProviders=[]
 		guard let activeCard=ActiveContactCard.shared.contactCard else {
@@ -432,19 +383,10 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		} catch {
 			print("Error creating vCardToCopy directory")
 		}
-		/*
-		do {
-			let pasteBoard=UIPasteboard.general
-			let vCard=try Data(contentsOf: fileURL)
-			//kUTTypeVCard as String
-			pasteBoard.setItems([["public.vcard": vCard]], options: [:])
-			//pasteBoard.setData(vCard, forPasteboardType: "public.vcard")
-		} catch {
-			print("Error ")
-		}
-*/
-		//}
 	}
+}
+
+extension ContactCardViewController {
 	override var keyCommands: [UIKeyCommand]? {
 		if AppState.shared.appState==AppStateValue.isModal {
 			return nil
