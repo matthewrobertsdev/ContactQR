@@ -23,6 +23,14 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 		tableView.delegate=self
 		userDefaults=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")
 		userDefaults?.addObserver(self, forKeyPath: "lastUpdateUUID", options: [.new, .initial], context: nil)
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+			[weak self] in
+			guard let strongSelf=self else {
+				return
+			}
+			strongSelf.persistentContainer = loadPersistentContainer()
+			strongSelf.prepareView()
+		}
         // Do any additional setup after loading the view.
     }
 	override func viewWillAppear(_ animated: Bool) {

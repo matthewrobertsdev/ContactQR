@@ -78,6 +78,7 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 				print(error.localizedDescription)
 			}
 			navigationController?.dismiss(animated: true, completion: {
+			ActiveContactCard.shared.contactCard=contactCardRecord
 			NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: nil)
 			})
 		}

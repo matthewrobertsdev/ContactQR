@@ -86,9 +86,16 @@ class ContactCardsTableViewController: UITableViewController {
 		return true
 	}
 	@objc func handleNewContact() {
-		showContactCard()
+		guard let splitViewController=splitViewController else {
+			return
+		}
+		if let indexPath=tableView.indexPathForSelectedRow {
+			tableView.deselectRow(at: indexPath, animated: true)
+		}
 		stopEditing()
 		editButton.isEnabled=true
+		NotificationCenter.default.post(name: .contactChanged, object: nil)
+		splitViewController.show(.secondary)
 	}
 	func showContactCard() {
 		guard let splitViewController=splitViewController else {
@@ -183,7 +190,7 @@ class ContactCardsTableViewController: UITableViewController {
 		}
 		if let sections = fetchedResultsController?.sections {
 			let currentSection = sections[0]
-			if indexPath.row<currentSection.numberOfObjects {
+			if indexPath.row<currentSection.numberOfObjects-1 {
 				tableView.selectRow(at: IndexPath(row: indexPath.row+1, section: 0), animated: true, scrollPosition: .middle)
 				showContactCard()
 			}

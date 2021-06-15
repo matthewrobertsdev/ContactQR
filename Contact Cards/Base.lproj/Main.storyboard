@@ -277,7 +277,7 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Contact Cards" id="Vzi-tw-EHX">
-                        <barButtonItem key="leftBarButtonItem" title="Add Card from Contact" image="person.crop.circle" catalog="system" id="ymM-BI-js4">
+                        <barButtonItem key="leftBarButtonItem" title="Add Card from Contact" image="person.crop.square" catalog="system" id="ymM-BI-js4">
                             <connections>
                                 <action selector="createContactCardFromContact:" destination="8w3-e5-v8i" id="tdm-yN-NgJ"/>
                             </connections>
@@ -1830,7 +1830,7 @@ All rights reserved.</string>
     <resources>
         <image name="Icon" width="256" height="256"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
+        <image name="person.crop.square" catalog="system" width="128" height="114"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="qrcode" catalog="system" width="128" height="114"/>
         <image name="questionmark" catalog="system" width="96" height="128"/>

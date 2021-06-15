@@ -24,22 +24,21 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			return
 		}
 		appDelegate.activityItemsConfiguration=self
-		/*
-		let shareBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
-											   style: .plain, target: self, action: #selector(shareContact))
-		let qrCodeBarButtonItem=UIBarButtonItem(image: UIImage(systemName: "qrcode"), style: .plain,
-												target: self, action: #selector(showQRViewController(_:)))
-*/
+		let newCardFromContactButton=UIBarButtonItem(image: UIImage(systemName: "person.crop.square"),
+											   style: .plain, target: self, action: #selector(createContactCardFromContact))
+		let newCardButton=UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain,
+												target: self, action: #selector(createNewContact))
 		#if targetEnvironment(macCatalyst)
 		let docBarButtonItem=UIBarButtonItem(image: UIImage(systemName:
 																"doc.badge.plus"), style: .plain, target: self, action: #selector(exportVCardtoFile))
 		navigationItem.leftBarButtonItems=[docBarButtonItem]
 		#endif
-		//navigationItem.rightBarButtonItems=[shareBarButtonItem, qrCodeBarButtonItem]
+		navigationItem.rightBarButtonItems=[newCardButton, newCardFromContactButton]
 		navigationItem.title="Card"
 		navigationItem.largeTitleDisplayMode = .never
 		loadContact()
 		let notificationCenter=NotificationCenter.default
+		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .contactCreated, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .contactChanged, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(exportVCardtoFile), name: .exportAsVCard, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(showQRViewController(_:)), name: .showQRCode, object: nil)
