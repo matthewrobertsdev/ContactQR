@@ -92,6 +92,11 @@ class ContactCardsTableViewController: UITableViewController {
 		if let indexPath=tableView.indexPathForSelectedRow {
 			tableView.deselectRow(at: indexPath, animated: true)
 		}
+		if let contactCard=ActiveContactCard.shared.contactCard {
+			if let row=fetchedResultsController?.fetchedObjects?.firstIndex(of: contactCard) {
+				tableView.selectRow(at: IndexPath(row: row, section: 0), animated: true, scrollPosition: .middle)
+			}
+		}
 		stopEditing()
 		editButton.isEnabled=true
 		NotificationCenter.default.post(name: .contactChanged, object: nil)

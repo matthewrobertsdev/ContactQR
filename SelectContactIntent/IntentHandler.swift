@@ -21,7 +21,10 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
 		do {
 			// Execute Fetch Request
-			let contactCards = try managedObjectContext.fetch(fetchRequest)
+			var contactCards = try managedObjectContext.fetch(fetchRequest)
+			contactCards.sort { firstCard, secondCard in
+				firstCard.filename<secondCard.filename
+			}
 			let contactCardINObjects=contactCards.map({(contactCard: ContactCardMO) -> ContactCardINObject in
 				return ContactCardINObject(identifier: contactCard.objectID.uriRepresentation().absoluteString, display: contactCard.filename)
 			})

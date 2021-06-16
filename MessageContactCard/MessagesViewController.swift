@@ -36,7 +36,8 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 	override func viewWillAppear(_ animated: Bool) {
 		prepareView()
 	}
-	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?,
+							   context: UnsafeMutableRawPointer?) {
 		prepareView()
 	}
 	@objc func prepareView() {
