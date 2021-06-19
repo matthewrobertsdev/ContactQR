@@ -298,6 +298,21 @@ extension ContactCardsTableViewController: NSFetchedResultsControllerDelegate {
 	}
 	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		self.tableView.endUpdates()
+		if let activeContactCard=ActiveContactCard.shared.contactCard {
+			if let contactCard=fetchedResultsController?.fetchedObjects?.first(where: { contactCard in
+				contactCard.objectID==activeContactCard.objectID
+			}) {
+				ActiveContactCard.shared.contactCard=contactCard
+				NotificationCenter.default.post(name: .contactUpdated, object: nil)
+			} else {
+				ActiveContactCard.shared.contactCard=nil
+			}
+		}
+		if let contactCards=fetchedResultsController?.fetchedObjects {
+			for contactCard in contactCards {
+				updateWidget(contactCard: contactCard)
+			}
+		}
 		UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
 		//reanable animations if disabled for catalyst
 		#if targetEnvironment(macCatalyst)

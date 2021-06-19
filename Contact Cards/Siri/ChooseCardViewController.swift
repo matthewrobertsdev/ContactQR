@@ -94,6 +94,21 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 		}
 	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		self.tableView.endUpdates()
+		if let activeContactCard=ActiveContactCard.shared.contactCard {
+			if let contactCard=fetchedResultsController?.fetchedObjects?.first(where: { contactCard in
+				contactCard.objectID==activeContactCard.objectID
+			}) {
+				ActiveContactCard.shared.contactCard=contactCard
+				NotificationCenter.default.post(name: .contactUpdated, object: nil)
+			} else {
+				ActiveContactCard.shared.contactCard=nil
+			}
+		}
+		if let contactCards=fetchedResultsController?.fetchedObjects {
+			for contactCard in contactCards {
+				updateWidget(contactCard: contactCard)
+			}
+		}
 		if let sections = fetchedResultsController?.sections {
 			let numberOfObjects = sections[0].numberOfObjects
 			if numberOfObjects>0 {

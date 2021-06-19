@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F039307267D9DF500B9B461 /* UpdateCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F039306267D9DF500B9B461 /* UpdateCards.swift */; };
 		9F06D3E126500E83000239AB /* ColorChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE378B256DBB9F0089337E /* ColorChoice.swift */; };
 		9F06D3E226500E86000239AB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3786256DBAA50089337E /* Color.swift */; };
 		9F06D3E326500E89000239AB /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3781256DBA990089337E /* ColorModel.swift */; };
@@ -255,6 +256,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9F039306267D9DF500B9B461 /* UpdateCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UpdateCards.swift; path = ../../../../../../UpdateCards.swift; sourceTree = "<group>"; };
 		9F0A3345265ED64F00265C4D /* ShowMyCardSirirUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShowMyCardSirirUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F0A3348265ED64F00265C4D /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
 		9F0A334B265ED64F00265C4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -717,6 +719,7 @@
 			isa = PBXGroup;
 			children = (
 				9F56C73B253BD2C8006D8DE6 /* TintImages.swift */,
+				9F039306267D9DF500B9B461 /* UpdateCards.swift */,
 				9F75D0762653664B000EB03D /* LoadPersistentContainer.swift */,
 			);
 			path = Utilities;
@@ -1237,6 +1240,7 @@
 				9F1A3F44264C074300957CA9 /* ChooseCardViewController.swift in Sources */,
 				9FCA500B22A75CE90004C20F /* ActiveContactCard.swift in Sources */,
 				9FEC6192256229DE004A03BE /* SaveContactCardViewController.swift in Sources */,
+				9F039307267D9DF500B9B461 /* UpdateCards.swift in Sources */,
 				9F7AAFF52656B75F009D442C /* LoadDocumentController.swift in Sources */,
 				9FBD0E86255E36DE00C9C9DA /* ContactCardsTableViewController.swift in Sources */,
 				9FB74C0A22B4752900F34181 /* ContactCard.swift in Sources */,

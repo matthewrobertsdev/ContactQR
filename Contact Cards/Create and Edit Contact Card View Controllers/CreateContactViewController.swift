@@ -79,20 +79,7 @@ class CreateContactViewController: UIViewController {
 			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.objectID.uriRepresentation().absoluteString ?? ""])
 			UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
 			navigationController?.dismiss(animated: true)
-			WidgetCenter.shared.getCurrentConfigurations { result in
-				guard case .success(let widgets) = result else { return }
-				// Iterate over the WidgetInfo elements to find one that matches
-				// the character from the push notification.
-				if let widget = widgets.first(
-					where: { widget in
-						let intent = widget.configuration as? ConfigurationIntent
-						return intent?.parameter?.identifier == self.contactCard?.objectID.uriRepresentation().absoluteString
-					}
-				) {
-					WidgetCenter.shared.reloadTimelines(ofKind: widget.kind)
-				}
-			}
-			return
+			updateWidget(contactCard: self.contactCard)
 		}
 		navigationController?.pushViewController(chooseColorTableViewController, animated: true)
 	}
