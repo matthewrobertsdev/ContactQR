@@ -119,6 +119,7 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 		} else {
 			noCardCreatedView.isHidden=false
 		}
+		UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
 	}
 	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
 					didChange anObject: Any,

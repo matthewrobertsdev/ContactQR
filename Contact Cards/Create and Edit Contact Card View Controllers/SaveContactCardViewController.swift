@@ -56,12 +56,10 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 			}
 			let contactCardRecord=ContactCardMO(entity: card, insertInto: context)
 			setFields(contactCardMO: contactCardRecord, filename: titleTextField.text ?? "No Title Given", cnContact: contact, color: color)
-			UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
 			print("abcd\(contactCardRecord.filename)")
 			do {
 				try self.managedObjectContext?.save()
 				self.managedObjectContext?.rollback()
-				UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
 			} catch {
 				print(error.localizedDescription)
 			}
