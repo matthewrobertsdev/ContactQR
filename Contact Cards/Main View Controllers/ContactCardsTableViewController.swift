@@ -288,6 +288,7 @@ class ContactCardsTableViewController: UITableViewController {
 		}
 	}
 }
+//MARK: FRCDelegate
 extension ContactCardsTableViewController: NSFetchedResultsControllerDelegate {
 	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		//disable animations for catalyst--UITableView animations are buggy
@@ -303,10 +304,10 @@ extension ContactCardsTableViewController: NSFetchedResultsControllerDelegate {
 				contactCard.objectID==activeContactCard.objectID
 			}) {
 				ActiveContactCard.shared.contactCard=contactCard
-				NotificationCenter.default.post(name: .contactUpdated, object: nil)
 			} else {
 				ActiveContactCard.shared.contactCard=nil
 			}
+			NotificationCenter.default.post(name: .contactUpdated, object: nil)
 		}
 		if let contactCards=fetchedResultsController?.fetchedObjects {
 			for contactCard in contactCards {
@@ -371,6 +372,7 @@ extension ContactCardsTableViewController: NSFetchedResultsControllerDelegate {
 		}
 	}
 }
+//MARK: Key Coomands
 extension ContactCardsTableViewController {
 	override var keyCommands: [UIKeyCommand]? {
 		if AppState.shared.appState==AppStateValue.isModal {

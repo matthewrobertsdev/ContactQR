@@ -74,7 +74,6 @@ struct SimpleEntry: TimelineEntry {
 struct ContactCardQRCodeEntryView: View {
 	@Environment(\.colorScheme) var colorScheme
     var entry: Provider.Entry
-
 	@ViewBuilder
     var body: some View {
 		if entry.widgetMode==WidgetMode.placeholder {

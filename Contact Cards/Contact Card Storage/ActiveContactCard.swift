@@ -6,7 +6,6 @@
 //  Copyright © 2019 Matt Roberts. All rights reserved.
 //
 import Foundation
-import Contacts
 /*
  Singleton for holding the active contact (the one to
  be used thgroughout the app).  See below for extension of

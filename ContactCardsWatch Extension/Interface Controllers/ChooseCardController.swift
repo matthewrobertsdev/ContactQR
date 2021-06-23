@@ -10,36 +10,27 @@ import CoreData
 class ChooseCardController: WKInterfaceController, NSFetchedResultsControllerDelegate {
 	@IBOutlet weak var table: WKInterfaceTable!
 	let colorModel=ColorModel()
-	let container=loadPersistentContainer()
-	var fetchedResultsController: NSFetchedResultsController<ContactCardMO>?
 	override func awake(withContext context: Any?) {
-		container.viewContext.automaticallyMergesChangesFromParent=true
 		// Configure interface objects here.
-		NotificationCenter.default.addObserver(self, selector: #selector(loadTable), name: .NSPersistentStoreRemoteChange, object: nil)
 	}
 	override func willActivate() {
-		let contactCardFetchRequest = NSFetchRequest<ContactCardMO>(entityName: "ContactCard")
-				let sortDescriptor = NSSortDescriptor(key: "filename", ascending: true)
-		contactCardFetchRequest.sortDescriptors = [sortDescriptor]
-		let context=container.viewContext
-		self.fetchedResultsController = NSFetchedResultsController<ContactCardMO>(
-					fetchRequest: contactCardFetchRequest,
-					managedObjectContext: context,
-					sectionNameKeyPath: nil,
-					cacheName: nil)
-		self.fetchedResultsController?.delegate = self
-		do {
-			try fetchedResultsController?.performFetch()
-			loadTable()
-			} catch {
-				print("error performing fetch \(error.localizedDescription)")
+		super.willActivate()
+		NotificationCenter.default.addObserver(self, selector: #selector(loadTable), name: .NSPersistentStoreRemoteChange, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(loadTable), name: .contactChanged, object: nil)
+		ContactCardStore.shared.loadCards {
+			[weak self] in
+			guard let strongSelf=self else {
+				return
 			}
+			strongSelf.loadTable()
+		}
 	}
 	override func didDeactivate() {
+		super.didDeactivate()
 		// This method is called when watch view controller is no longer visible
 	}
 	@objc func loadTable() {
-		guard let sections = fetchedResultsController?.sections else {
+		guard let sections = ContactCardStore.shared.fetchedResultsController?.sections else {
 			return
 		}
 		let currentSection = sections[0]
@@ -48,7 +39,7 @@ class ChooseCardController: WKInterfaceController, NSFetchedResultsControllerDel
 			guard let row = table.rowController(at: index) as? ContactTitleRowController else {
 				continue
 			}
-			let contactCardMO=fetchedResultsController?.object(at: IndexPath(row: index, section: 0))
+			let contactCardMO=ContactCardStore.shared.fetchedResultsController?.object(at: IndexPath(row: index, section: 0))
 			row.titleLabel.setTextColor(colorModel.getColorsDictionary()[contactCardMO?.color ?? "Contrasting Color"] ?? UIColor.black)
 			row.titleLabel.setText(contactCardMO?.filename)
 		}
@@ -56,6 +47,10 @@ class ChooseCardController: WKInterfaceController, NSFetchedResultsControllerDel
 	override func contextForSegue(withIdentifier segueIdentifier: String,
 					  in table: WKInterfaceTable,
 					  rowIndex: Int) -> Any? {
-		return fetchedResultsController?.object(at: IndexPath(row: rowIndex, section: 0))
+		ActiveContactCard.shared.contactCard=ContactCardStore.shared.fetchedResultsController?.object(at: IndexPath(row: rowIndex, section: 0))
+		return nil
 	}
+}
+extension Notification.Name {
+	static let contactChanged=Notification.Name("contact-changed")
 }

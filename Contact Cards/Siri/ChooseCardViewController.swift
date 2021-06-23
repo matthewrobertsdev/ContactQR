@@ -99,10 +99,10 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 				contactCard.objectID==activeContactCard.objectID
 			}) {
 				ActiveContactCard.shared.contactCard=contactCard
-				NotificationCenter.default.post(name: .contactUpdated, object: nil)
 			} else {
 				ActiveContactCard.shared.contactCard=nil
 			}
+			NotificationCenter.default.post(name: .contactUpdated, object: nil)
 		}
 		if let contactCards=fetchedResultsController?.fetchedObjects {
 			for contactCard in contactCards {

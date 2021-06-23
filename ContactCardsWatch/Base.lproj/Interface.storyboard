@@ -53,6 +53,7 @@
                         <group width="1" alignment="left" layout="vertical" spacing="10" id="lFD-ec-4mE">
                             <items>
                                 <imageView width="1" alignment="left" contentMode="scaleAspectFit" id="kwL-RQ-vYD"/>
+                                <label width="1" alignment="left" text="Card Deleted" textAlignment="center" id="hfc-iE-H7U"/>
                                 <button width="1" alignment="left" title="Show Details" id="AfQ-bP-kJL">
                                     <color key="titleColor" red="0.35539197919999999" green="0.2604061365" blue="0.16468334200000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <color key="backgroundColor" red="0.97611027959999996" green="0.91306519509999995" blue="0.33706825969999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -65,6 +66,7 @@
                         </group>
                     </items>
                     <connections>
+                        <outlet property="contactDeletedLabel" destination="hfc-iE-H7U" id="5pL-iD-KZ7"/>
                         <outlet property="image" destination="kwL-RQ-vYD" id="8r5-fS-vxo"/>
                         <outlet property="showDetailsButton" destination="AfQ-bP-kJL" id="4mY-V0-fvS"/>
                     </connections>
@@ -79,7 +81,7 @@
                     <items>
                         <group width="1" alignment="left" layout="vertical" spacing="10" id="ZO6-ML-Kpb">
                             <items>
-                                <label width="1" alignment="left" hidden="YES" text="No Card Loaded Yet" textAlignment="center" numberOfLines="0" id="JVQ-pi-hGq"/>
+                                <label alignment="left" hidden="YES" text="Card Deleted" textAlignment="center" numberOfLines="0" id="JVQ-pi-hGq"/>
                                 <label width="1" alignment="left" textAlignment="center" numberOfLines="0" id="BXo-ko-teS">
                                     <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
                                 </label>
@@ -90,6 +92,7 @@
                         </group>
                     </items>
                     <connections>
+                        <outlet property="cardDeletedLabel" destination="JVQ-pi-hGq" id="Idh-1f-G6O"/>
                         <outlet property="cardDetailsLabel" destination="dAD-Uv-gLY" id="roG-gQ-g97"/>
                         <outlet property="cardTitleLabel" destination="BXo-ko-teS" id="EAr-nK-aH6"/>
                     </connections>
