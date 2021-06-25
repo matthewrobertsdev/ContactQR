@@ -45,16 +45,6 @@ class ContactCardsTableViewController: UITableViewController {
 		#endif
 		//get tableview and fetched resulst controller up to date
 		updateContent()
-		//deselect if it is collapsed on reapppear
-		guard let selectedIndexPath=tableView.indexPathForSelectedRow else {
-			return
-		}
-		guard let splitViewController=splitViewController else {
-			return
-		}
-		if splitViewController.isCollapsed {
-			tableView.deselectRow(at: selectedIndexPath, animated: false)
-		}
 	}
 	//get tableview and fetched result controller up to date
 	@objc func updateContent() {
@@ -77,10 +67,23 @@ class ContactCardsTableViewController: UITableViewController {
 			print("error performing fetch \(error.localizedDescription)")
 		}
 		tableView.reloadData()
+		handleSelection()
+	}
+	func handleSelection() {
 		if let selectedContactCard=ActiveContactCard.shared.contactCard {
 			if let row=fetchedResultsController?.fetchedObjects?.firstIndex(of: selectedContactCard) {
 				tableView.selectRow(at: IndexPath(row: row, section: 0), animated: true, scrollPosition: .middle)
 			}
+		}
+		//deselect if it is collapsed on reapppear
+		guard let selectedIndexPath=tableView.indexPathForSelectedRow else {
+			return
+		}
+		guard let splitViewController=splitViewController else {
+			return
+		}
+		if splitViewController.isCollapsed {
+			tableView.deselectRow(at: selectedIndexPath, animated: false)
 		}
 	}
 	override func viewWillDisappear(_ animated: Bool) {
@@ -293,7 +296,7 @@ class ContactCardsTableViewController: UITableViewController {
 		}
 	}
 }
-//MARK: FRCDelegate
+// MARK: FRCDelegate
 extension ContactCardsTableViewController: NSFetchedResultsControllerDelegate {
 	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		//disable animations for catalyst--UITableView animations are buggy
@@ -324,6 +327,7 @@ extension ContactCardsTableViewController: NSFetchedResultsControllerDelegate {
 			})
 			updateSiriCard(contactCard: siriCard)
 		}
+		handleSelection()
 		UserDefaults(suiteName: appGroupKey)?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
 		//reanable animations if disabled for catalyst
 		#if targetEnvironment(macCatalyst)
@@ -382,7 +386,7 @@ extension ContactCardsTableViewController: NSFetchedResultsControllerDelegate {
 		}
 	}
 }
-//MARK: Key Coomands
+// MARK: Key Coomands
 extension ContactCardsTableViewController {
 	override var keyCommands: [UIKeyCommand]? {
 		if AppState.shared.appState==AppStateValue.isModal {

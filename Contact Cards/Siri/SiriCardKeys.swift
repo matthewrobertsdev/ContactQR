@@ -7,8 +7,8 @@
 //
 import Foundation
 enum SiriCardKeys: String {
-	case chosenCardColor="chosenCardColor"
-	case chosenCardImageData="chosenCardImageData"
-	case chosenCardObjectID="chosenCardObjectID"
-	case chosenCardTitle="chosenCardTitle"
+	case chosenCardColor
+	case chosenCardImageData
+	case chosenCardObjectID
+	case chosenCardTitle
 }
