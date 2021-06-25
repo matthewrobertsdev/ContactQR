@@ -11,6 +11,10 @@
             <objects>
                 <controller title="Cards" id="FuQ-9m-Y9c" customClass="ChooseCardController" customModule="ContactCardsWatch" customModuleProvider="target">
                     <items>
+                        <label width="1" alignment="left" numberOfLines="0" id="ts7-OF-GbL">
+                            <string key="text">No cards loaded from the cloud yet.  Have you enabled iCloud on a device with internet and added at least 1 card?  If so, give the watch some time with internet and check back later.</string>
+                            <fontDescription key="font" type="system" pointSize="14"/>
+                        </label>
                         <group width="1" alignment="left" layout="vertical" spacing="10" id="5Nz-tO-626">
                             <items>
                                 <label width="1" alignment="left" text="Choose card without much info for small screen:" numberOfLines="0" id="1aX-1Z-6jP">
@@ -39,6 +43,8 @@
                         </group>
                     </items>
                     <connections>
+                        <outlet property="chooseCardLabel" destination="1aX-1Z-6jP" id="nUK-jN-WCN"/>
+                        <outlet property="noCardsLabel" destination="ts7-OF-GbL" id="AHV-rt-Xjl"/>
                         <outlet property="table" destination="5jZ-Qy-1go" id="4VL-z8-4FP"/>
                     </connections>
                 </controller>

@@ -47,6 +47,7 @@
 		9F34C273255CCF1900B9DEA4 /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */; };
 		9F35C55F2653463F005E8C61 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35C55E2653463F005E8C61 /* AboutViewController.swift */; };
 		9F38B39A261929F400BBBC9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE921BA1691003A6A33 /* Assets.xcassets */; };
+		9F397A7226858AC900BB954B /* SiriCardKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F397A7126858AC900BB954B /* SiriCardKeys.swift */; };
 		9F3F6A5925F494820053C1DF /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3F6A2025F494110053C1DF /* Intents.framework */; };
 		9F3F6A6025F494820053C1DF /* SelectContactIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F3F6A5825F494820053C1DF /* SelectContactIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F3F6AE225F498FC0053C1DF /* ContactCardQRCode.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9FC149A325F34B9600C700B0 /* ContactCardQRCode.intentdefinition */; };
@@ -283,6 +284,7 @@
 		9F339FF2256E9C9500F31F9F /* SaveDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDocumentViewController.swift; sourceTree = "<group>"; };
 		9F34C272255CCF1900B9DEA4 /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
 		9F35C55E2653463F005E8C61 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		9F397A7126858AC900BB954B /* SiriCardKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriCardKeys.swift; sourceTree = "<group>"; };
 		9F3F6A2025F494110053C1DF /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		9F3F6A2B25F494110053C1DF /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		9F3F6A5825F494820053C1DF /* SelectContactIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SelectContactIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -696,6 +698,7 @@
 				9F0A3368265EE18700265C4D /* SetUpSiriViewController.swift */,
 				9FA3C11226600BB70033DD3B /* ShortcutDelegate.swift */,
 				9F1A3F43264C074300957CA9 /* ChooseCardViewController.swift */,
+				9F397A7126858AC900BB954B /* SiriCardKeys.swift */,
 			);
 			path = Siri;
 			sourceTree = "<group>";
@@ -1250,6 +1253,7 @@
 				9FB74C0A22B4752900F34181 /* ContactCard.swift in Sources */,
 				9FBC3175266033FB00189972 /* ShowCardIntentHandler.swift in Sources */,
 				9FEE377D256DBA490089337E /* ChooseColorTableViewController.swift in Sources */,
+				9F397A7226858AC900BB954B /* SiriCardKeys.swift in Sources */,
 				9F34C273255CCF1900B9DEA4 /* MainSplitViewController.swift in Sources */,
 				9FEE378C256DBB9F0089337E /* ColorChoice.swift in Sources */,
 				9F35C55F2653463F005E8C61 /* AboutViewController.swift in Sources */,

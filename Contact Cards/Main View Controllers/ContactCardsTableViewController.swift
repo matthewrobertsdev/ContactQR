@@ -77,6 +77,11 @@ class ContactCardsTableViewController: UITableViewController {
 			print("error performing fetch \(error.localizedDescription)")
 		}
 		tableView.reloadData()
+		if let selectedContactCard=ActiveContactCard.shared.contactCard {
+			if let row=fetchedResultsController?.fetchedObjects?.firstIndex(of: selectedContactCard) {
+				tableView.selectRow(at: IndexPath(row: row, section: 0), animated: true, scrollPosition: .middle)
+			}
+		}
 	}
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
@@ -313,8 +318,13 @@ extension ContactCardsTableViewController: NSFetchedResultsControllerDelegate {
 			for contactCard in contactCards {
 				updateWidget(contactCard: contactCard)
 			}
+			let userDefaults=UserDefaults(suiteName: appGroupKey)
+			let siriCard=contactCards.first(where: { contactCard in
+				contactCard.objectID.uriRepresentation().absoluteURL.absoluteString==userDefaults?.string(forKey: SiriCardKeys.chosenCardObjectID.rawValue)
+			})
+			updateSiriCard(contactCard: siriCard)
 		}
-		UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
+		UserDefaults(suiteName: appGroupKey)?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
 		//reanable animations if disabled for catalyst
 		#if targetEnvironment(macCatalyst)
 		UIView.setAnimationsEnabled(true)

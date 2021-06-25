@@ -48,14 +48,14 @@ class SetUpSiriViewController: UIViewController {
 		prepareView()
 	}
 	@objc func prepareView() {
-		if UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.object(forKey: "chosenCardObjectID") as? String != nil {
+		if UserDefaults(suiteName: appGroupKey)?.object(forKey: SiriCardKeys.chosenCardObjectID.rawValue) as? String != nil {
 			noCardChosenLabel.text="Chosen Card:"
-			if let colorString=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.object(forKey: "chosenCardColor") as? String {
+			if let colorString=UserDefaults(suiteName: appGroupKey)?.object(forKey: SiriCardKeys.chosenCardColor.rawValue) as? String {
 			let color=(colorModel.getColorsDictionary()[colorString] ?? UIColor.label) ?? UIColor.label
 				cardColorCircle.isHidden=false
 				cardColorCircle.backgroundColor=color
 			}
-			if let cardTitle=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.object(forKey: "chosenCardTitle") as? String {
+			if let cardTitle=UserDefaults(suiteName: appGroupKey)?.object(forKey: SiriCardKeys.chosenCardTitle.rawValue) as? String {
 				cardTitleLabel.isHidden=false
 				cardTitleLabel.text=cardTitle
 			}
@@ -66,10 +66,7 @@ class SetUpSiriViewController: UIViewController {
 		}
 	}
 	@IBAction func removeCard(_ sender: Any) {
-		UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.set(nil, forKey: "chosenCardColor")
-		UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.set(nil, forKey: "chosenCardImageData")
-		UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.set(nil, forKey: "chosenCardObjectID")
-		UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.set(nil, forKey: "chosenCardTitle")
+		updateSiriCard(contactCard: nil)
 		prepareView()
 	}
 	@IBAction func done(_ sender: Any) {

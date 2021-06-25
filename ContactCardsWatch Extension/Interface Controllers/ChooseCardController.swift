@@ -8,6 +8,8 @@
 import WatchKit
 import CoreData
 class ChooseCardController: WKInterfaceController, NSFetchedResultsControllerDelegate {
+	@IBOutlet weak var noCardsLabel: WKInterfaceLabel!
+	@IBOutlet weak var chooseCardLabel: WKInterfaceLabel!
 	@IBOutlet weak var table: WKInterfaceTable!
 	let colorModel=ColorModel()
 	override func awake(withContext context: Any?) {
@@ -31,9 +33,18 @@ class ChooseCardController: WKInterfaceController, NSFetchedResultsControllerDel
 	}
 	@objc func loadTable() {
 		guard let sections = ContactCardStore.shared.fetchedResultsController?.sections else {
+			noCardsLabel.setHidden(false)
+			chooseCardLabel.setHidden(true)
 			return
 		}
 		let currentSection = sections[0]
+		if currentSection.numberOfObjects>0 {
+			noCardsLabel.setHidden(true)
+			chooseCardLabel.setHidden(false)
+		} else {
+			noCardsLabel.setHidden(false)
+			chooseCardLabel.setHidden(true)
+		}
 		table.setNumberOfRows(currentSection.numberOfObjects, withRowType: "ContactTitleRow")
 		for index in 0..<currentSection.numberOfObjects {
 			guard let row = table.rowController(at: index) as? ContactTitleRowController else {

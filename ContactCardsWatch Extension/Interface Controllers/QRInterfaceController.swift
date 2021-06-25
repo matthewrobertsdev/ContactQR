@@ -40,15 +40,16 @@ class QRInterfaceController: WKInterfaceController {
 	}
     override func willActivate() {
 		super.willActivate()
+        // This method is called when watch view controller is about to be visible to user
+		NotificationCenter.default.addObserver(self, selector: #selector(updateScreen), name: .NSPersistentStoreRemoteChange, object: nil)
+		updateScreen()
+    }
+	@objc func updateScreen() {
 		updateContact()
 		loadView()
-        // This method is called when watch view controller is about to be visible to user
-    }
+	}
     override func didDeactivate() {
 		super.didDeactivate()
         // This method is called when watch view controller is no longer visible
     }
-	override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
-		return contactCardMO
-	}
 }
