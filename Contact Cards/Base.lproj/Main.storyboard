@@ -326,6 +326,9 @@
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VtF-LG-wkb">
                                                                 <rect key="frame" x="186.5" y="0.0" width="51" height="31"/>
+                                                                <connections>
+                                                                    <action selector="toggleSync:" destination="r7Z-1i-89a" eventType="valueChanged" id="1Bh-6z-Pr9"/>
+                                                                </connections>
                                                             </switch>
                                                         </subviews>
                                                     </stackView>
@@ -444,6 +447,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="syncSwitch" destination="VtF-LG-wkb" id="wAr-aK-qXE"/>
                         <outlet property="syncWithCloudStackView" destination="We5-Ln-G6p" id="Dwt-aS-RUh"/>
                     </connections>
                 </viewController>

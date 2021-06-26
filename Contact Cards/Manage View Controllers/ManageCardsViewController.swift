@@ -10,6 +10,7 @@ import CoreData
 import UniformTypeIdentifiers
 class ManageCardsViewController: UIViewController {
 	@IBOutlet weak var syncWithCloudStackView: UIStackView!
+	@IBOutlet weak var syncSwitch: UISwitch!
 	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 	var loadDocumentController: LoadDocumentController?
     override func viewDidLoad() {
@@ -18,6 +19,7 @@ class ManageCardsViewController: UIViewController {
 		#if targetEnvironment(macCatalyst)
 		syncWithCloudStackView.addArrangedSubview(syncWithCloudStackView.arrangedSubviews[0])
 		#endif
+		setSyncSwitchUI()
     }
 	@IBAction func done(_ sender: Any) {
 		self.dismiss(animated: true)
@@ -122,5 +124,36 @@ class ManageCardsViewController: UIViewController {
 	func getDocumentsDirectory() -> URL {
 		let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 		return paths[0]
+	}
+	@IBAction func toggleSync(_ sender: Any) {
+		if UserDefaults.standard.bool(forKey: "iCloudSync") {
+			toggleSync(sync: false)
+			let syncMessage="Sync is now disabled.  Your data will remain in iCloud unless you turn on sync, delete the data, and then turn sync off again."
+			let syncAlertController=UIAlertController(title: "Sync with iCloud Is Now Off", message: syncMessage, preferredStyle: .alert)
+			let confirmationAction=UIAlertAction(title: "Got it", style: .default)
+			syncAlertController.addAction(confirmationAction)
+			syncAlertController.preferredAction=confirmationAction
+			present(syncAlertController, animated: true)
+		} else {
+			toggleSync(sync: true)
+			let syncMessage="Your contact cards created with this app will now sync with iCloud."
+			let syncAlertController=UIAlertController(title: "Sync with iCloud Is Now On", message: syncMessage, preferredStyle: .alert)
+			let confirmationAction=UIAlertAction(title: "Got it", style: .default)
+			syncAlertController.addAction(confirmationAction)
+			syncAlertController.preferredAction=confirmationAction
+			present(syncAlertController, animated: true)
+		}
+		setSyncSwitchUI()
+	}
+	func toggleSync(sync: Bool) {
+		UserDefaults.standard.setValue(sync, forKey: "iCloudSync")
+		(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer()
+	}
+	func setSyncSwitchUI() {
+		if UserDefaults.standard.bool(forKey: "iCloudSync") {
+			syncSwitch.isOn=true
+		} else {
+			syncSwitch.isOn=false
+		}
 	}
 }
