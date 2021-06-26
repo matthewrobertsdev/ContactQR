@@ -12,6 +12,11 @@ import CoreData
 class ContactCloudDataDescriber {
 	static func getAttributedStringDescription(color: UIColor) -> NSAttributedString? {
 		let iCloudDataAttributedString=NSMutableAttributedString()
+		iCloudDataAttributedString.append(NSAttributedString(string: "If you have sync with "))
+		iCloudDataAttributedString.append(NSAttributedString(string: "iCloud on for this app and have given it adequate time for it to sync over the "))
+		iCloudDataAttributedString.append(NSAttributedString(string: "internet, this description should accurately represent your data in iCloud for the "))
+		iCloudDataAttributedString.append(NSAttributedString(string: "Contact Cards app.\n\n\n"))
+		let headerLength=iCloudDataAttributedString.length
 		iCloudDataAttributedString.append(NSAttributedString(string: "[\n"))
 		guard let persistentContainer=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer else {
 			return nil
@@ -47,11 +52,16 @@ class ContactCloudDataDescriber {
 			return nil
 		}
 		iCloudDataAttributedString.append(NSAttributedString(string: "]\n"))
-		let paragraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
-		paragraphStyle.alignment = NSTextAlignment.left
-		let fontAttributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: CGFloat(18), weight: UIFont.Weight.light),
-							   NSAttributedString.Key.paragraphStyle: paragraphStyle, .foregroundColor: color]
-		iCloudDataAttributedString.addAttributes(fontAttributes, range: NSRange(location: 0, length: iCloudDataAttributedString.length))
+		let headerParagraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
+		headerParagraphStyle.alignment = NSTextAlignment.center
+		let headerAttributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: CGFloat(18), weight: UIFont.Weight.light),
+								 NSAttributedString.Key.paragraphStyle: headerParagraphStyle, .foregroundColor: UIColor.systemBlue]
+		let bodyParagraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
+		bodyParagraphStyle.alignment = NSTextAlignment.left
+		let bodyAttributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: CGFloat(18), weight: UIFont.Weight.light),
+							   NSAttributedString.Key.paragraphStyle: bodyParagraphStyle, .foregroundColor: UIColor.label]
+		iCloudDataAttributedString.addAttributes(headerAttributes, range: NSRange(location: 0, length: headerLength))
+		iCloudDataAttributedString.addAttributes(bodyAttributes, range: NSRange(location: headerLength-1, length: iCloudDataAttributedString.length-headerLength))
 		return iCloudDataAttributedString
 	}
 	static func resized(image: UIImage, toWidth width: CGFloat, isOpaque: Bool = true) -> UIImage? {
