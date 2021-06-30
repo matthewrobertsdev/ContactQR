@@ -59,7 +59,7 @@ class ContactCloudDataDescriber {
 		let bodyParagraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
 		bodyParagraphStyle.alignment = NSTextAlignment.left
 		let bodyAttributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: CGFloat(18), weight: UIFont.Weight.light),
-							   NSAttributedString.Key.paragraphStyle: bodyParagraphStyle, .foregroundColor: UIColor.label]
+							   NSAttributedString.Key.paragraphStyle: bodyParagraphStyle, .foregroundColor: color]
 		iCloudDataAttributedString.addAttributes(headerAttributes, range: NSRange(location: 0, length: headerLength))
 		iCloudDataAttributedString.addAttributes(bodyAttributes, range: NSRange(location: headerLength-1, length: iCloudDataAttributedString.length-headerLength))
 		return iCloudDataAttributedString

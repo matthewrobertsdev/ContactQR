@@ -303,7 +303,7 @@
             <objects>
                 <viewController storyboardIdentifier="ManageCardsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="r7Z-1i-89a" customClass="ManageCardsViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dz0-gJ-X2m">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emG-3K-ouM">
@@ -350,7 +350,7 @@
                                                         <rect key="frame" x="21.5" y="121" width="243" height="30"/>
                                                         <state key="normal" title="Export iCloud Data as Rich Text File"/>
                                                         <connections>
-                                                            <action selector="exportToRtfFile:" destination="r7Z-1i-89a" eventType="touchUpInside" id="hww-WQ-ccK"/>
+                                                            <action selector="exportToRtfdFile:" destination="r7Z-1i-89a" eventType="touchUpInside" id="hww-WQ-ccK"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idQ-yy-J7e">
@@ -460,7 +460,7 @@
             <objects>
                 <viewController storyboardIdentifier="CloudDataDescriptionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fi0-hG-ctM" customClass="CloudDataDescriptionViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bYk-Hh-8PW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kDP-35-LAo">
@@ -494,7 +494,6 @@
                 <navigationController storyboardIdentifier="ContactCardNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dYb-Ni-z5G" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ubA-U4-wKy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -523,7 +522,7 @@
             <objects>
                 <viewController storyboardIdentifier="CreateContactViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="33H-KV-B3q" customClass="CreateContactViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0dw-fN-jnj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dob-FW-hfJ">
@@ -1216,7 +1215,6 @@
             <objects>
                 <navigationController storyboardIdentifier="ChooseColorNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2Yi-6G-Uv1" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GYd-QW-vqf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1290,7 +1288,6 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="8bR-DH-6eJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="P9R-AP-yWz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1307,7 +1304,7 @@
             <objects>
                 <viewController storyboardIdentifier="ChooseCardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NF4-cX-5AG" customClass="ChooseCardViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0XQ-B2-8qC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FIj-e6-Uba">
@@ -1440,7 +1437,7 @@
             <objects>
                 <viewController storyboardIdentifier="DeleteDataViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5Ke-P2-E2y" customClass="DeleteDataViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ipk-v7-37h">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="Ra8-iV-aRc">
@@ -1512,7 +1509,6 @@
                 <navigationController storyboardIdentifier="SaveContactCardNavoigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dAX-eH-brL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FxD-h3-l0Y">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1529,7 +1525,7 @@
             <objects>
                 <viewController storyboardIdentifier="AboutViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hgu-n7-bGh" customClass="AboutViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g6s-LS-KLm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eet-IM-vzt">
@@ -1654,7 +1650,6 @@ All rights reserved.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="n9U-Hz-0va" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ajs-1R-e7e">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1672,7 +1667,6 @@ All rights reserved.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WDH-em-Scw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LrK-Jq-rDo">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1689,7 +1683,7 @@ All rights reserved.</string>
             <objects>
                 <viewController id="8ii-ME-gsR" customClass="SetUpSiriViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hs4-fx-KlP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zId-7W-zUw">
@@ -1782,7 +1776,6 @@ All rights reserved.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1Io-RR-DmA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4dn-ZA-u8j">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1800,7 +1793,6 @@ All rights reserved.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VlK-HQ-YY6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xhg-Ye-Wfa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1818,7 +1810,6 @@ All rights reserved.</string>
                 <navigationController storyboardIdentifier="ShowContactQRNavoigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tFN-34-tpD" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bz2-uG-CEW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

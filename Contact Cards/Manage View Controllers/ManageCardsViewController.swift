@@ -99,8 +99,8 @@ class ManageCardsViewController: UIViewController {
 			}
 			loadDocumentController?.presentPicker()
 	}
-	@IBAction func exportToRtfFile(_ sender: Any) {
-		let attributedString=ContactCloudDataDescriber.getAttributedStringDescription(color: UIColor.black)
+	@IBAction func exportToRtfdFile(_ sender: Any) {
+		let attributedString=ContactCloudDataDescriber.getAttributedStringDescription(color: UIColor.systemBlue)
 		guard var fileURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
 				return
 			}

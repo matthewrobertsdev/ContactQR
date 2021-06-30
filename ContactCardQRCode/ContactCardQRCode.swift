@@ -89,7 +89,7 @@ struct ContactCardQRCodeEntryView: View {
 			Image(uiImage: getTintedForeground(image: entry.qrCode ?? UIImage(),
 											   color: entry.color ?? UIColor.label)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
 		} else {
-			EmptyView()
+			Text("Error loading widget.  Sorry, it was a bug.  Please restart the device to refresh it with the system and fix it.").padding()
 		}
     }
 }
@@ -97,7 +97,6 @@ struct ContactCardQRCodeEntryView: View {
 @main
 struct ContactCardQRCode: Widget {
     let kind: String = "ContactCardQRCode"
-
 	var body: some WidgetConfiguration {
 		IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
 			ContactCardQRCodeEntryView(entry: entry)

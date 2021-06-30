@@ -14,10 +14,13 @@ func loadPersistentContainer() -> NSPersistentCloudKitContainer {
 		let storeURL=fileContainerURL.appendingPathComponent("ContactCards.sqlite")
 		let storeDescription=NSPersistentStoreDescription(url: storeURL)
 		storeDescription.cloudKitContainerOptions=NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.apps.celeritas.ContactCards")
+		#if os(watchOS)
+		#else
 		if !UserDefaults.standard.bool(forKey: "iCloudSync") {
 			storeDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
 			storeDescription.cloudKitContainerOptions=nil
 		}
+		#endif
 		container.persistentStoreDescriptions=[storeDescription]
 	}
 	container.loadPersistentStores { (_, error) in

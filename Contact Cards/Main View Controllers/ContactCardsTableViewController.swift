@@ -34,7 +34,6 @@ class ContactCardsTableViewController: UITableViewController {
 		notificationCenter.addObserver(self, selector: #selector(deleteAllCards), name: .deleteAllCards, object: nil)
 		//updates table view on return to app
 		notificationCenter.addObserver(self, selector: #selector(updateContent), name: UIApplication.willEnterForegroundNotification, object: nil)
-		notificationCenter.addObserver(self, selector: #selector(removeContact), name: .contactDeleted, object: nil)
 		if !UserDefaults.standard.bool(forKey: "hasAskedToSync") {
 			let syncMessage="Do you want to sync contact cards created with this app with iCloud?  You can change this setting with the \"Manage Data\" button that looks like a gear."
 			let syncAlertController=UIAlertController(title: "Sync contact cards with iCloud?", message: syncMessage, preferredStyle: .alert)
@@ -180,18 +179,6 @@ class ContactCardsTableViewController: UITableViewController {
 		let navigationController=UINavigationController(rootViewController: createContactViewController)
 		present(navigationController, animated: true)
 	}
-	@objc func removeContact(notification: NSNotification) {
-		guard let removalIndex=notification.userInfo?["index"] as? Int else {
-			return
-		}
-		var animation=UITableView.RowAnimation.top
-		#if targetEnvironment(macCatalyst)
-		animation=UITableView.RowAnimation.none
-		#endif
-		tableView.deleteRows(at: [IndexPath(row: removalIndex, section: 0)], with: animation)
-		stopEditingIfNoContactCards()
-	}
-
 	func selectFirstContact() {
 		if let sections = fetchedResultsController?.sections {
 			let currentSection = sections[0]
@@ -332,10 +319,8 @@ extension ContactCardsTableViewController: NSFetchedResultsControllerDelegate {
 			}
 			NotificationCenter.default.post(name: .contactUpdated, object: nil)
 		}
+		updateAllWidgets()
 		if let contactCards=fetchedResultsController?.fetchedObjects {
-			for contactCard in contactCards {
-				updateWidget(contactCard: contactCard)
-			}
 			let userDefaults=UserDefaults(suiteName: appGroupKey)
 			let siriCard=contactCards.first(where: { contactCard in
 				contactCard.objectID.uriRepresentation().absoluteURL.absoluteString==userDefaults?.string(forKey: SiriCardKeys.chosenCardObjectID.rawValue)
