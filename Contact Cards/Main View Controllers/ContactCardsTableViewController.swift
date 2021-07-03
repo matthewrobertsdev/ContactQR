@@ -309,16 +309,16 @@ extension ContactCardsTableViewController: NSFetchedResultsControllerDelegate {
 	}
 	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		self.tableView.endUpdates()
+		do {
+			try managedObjectContext?.save()
+		} catch {
+			print("Error saving iCloud changes")
+		}
 		if let fetchedResultsController=fetchedResultsController {
 			updateCards(fetchedResultsController: fetchedResultsController)
 		}
 		handleSelection()
 		UserDefaults(suiteName: appGroupKey)?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
-		do {
-			try managedObjectContext?.save()
-		} catch {
-			print("Error saving deletion")
-		}
 		//reanable animations if disabled for catalyst
 		#if targetEnvironment(macCatalyst)
 		UIView.setAnimationsEnabled(true)
