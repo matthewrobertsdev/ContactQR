@@ -43,6 +43,13 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 		if forEditing {
 			contactCard?.filename=titleTextField.text ?? "No Title Given"
 			ActiveContactCard.shared.contactCard=contactCard
+			do {
+				try managedObjectContext?.save()
+				UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
+			} catch {
+				present(localErrorSavingAlertController(), animated: true)
+				print("Couldn't save color")
+			}
 			updateWidget(contactCard: contactCard)
 			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.objectID.uriRepresentation().absoluteString ?? ""])
 			navigationController?.dismiss(animated: true)
@@ -56,11 +63,11 @@ class SaveContactCardViewController: UIViewController, UITextFieldDelegate {
 			}
 			let contactCardRecord=ContactCardMO(entity: card, insertInto: context)
 			setFields(contactCardMO: contactCardRecord, filename: titleTextField.text ?? "No Title Given", cnContact: contact, color: color)
-			print("abcd\(contactCardRecord.filename)")
 			do {
 				try self.managedObjectContext?.save()
 				self.managedObjectContext?.rollback()
 			} catch {
+				present(localErrorSavingAlertController(), animated: true)
 				print(error.localizedDescription)
 			}
 			navigationController?.dismiss(animated: true, completion: {

@@ -64,6 +64,7 @@ class ChooseColorTableViewController: UITableViewController {
 				try managedObjectContext?.save()
 				UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
 			} catch {
+				present(localErrorSavingAlertController(), animated: true)
 				print("Couldn't save color")
 			}
 			updateWidget(contactCard: self.contactCard)

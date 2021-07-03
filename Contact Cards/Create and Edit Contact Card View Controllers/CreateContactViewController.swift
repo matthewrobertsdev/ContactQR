@@ -74,6 +74,7 @@ class CreateContactViewController: UIViewController {
 			do {
 				try managedObjectContext?.save()
 			} catch {
+				present(localErrorSavingAlertController(), animated: true)
 				print("Couldn't save color")
 			}
 			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.objectID.uriRepresentation().absoluteString ?? ""])

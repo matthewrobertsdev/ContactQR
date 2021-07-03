@@ -309,26 +309,16 @@ extension ContactCardsTableViewController: NSFetchedResultsControllerDelegate {
 	}
 	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		self.tableView.endUpdates()
-		if let activeContactCard=ActiveContactCard.shared.contactCard {
-			if let contactCard=fetchedResultsController?.fetchedObjects?.first(where: { contactCard in
-				contactCard.objectID==activeContactCard.objectID
-			}) {
-				ActiveContactCard.shared.contactCard=contactCard
-			} else {
-				ActiveContactCard.shared.contactCard=nil
-			}
-			NotificationCenter.default.post(name: .contactUpdated, object: nil)
-		}
-		updateAllWidgets()
-		if let contactCards=fetchedResultsController?.fetchedObjects {
-			let userDefaults=UserDefaults(suiteName: appGroupKey)
-			let siriCard=contactCards.first(where: { contactCard in
-				contactCard.objectID.uriRepresentation().absoluteURL.absoluteString==userDefaults?.string(forKey: SiriCardKeys.chosenCardObjectID.rawValue)
-			})
-			updateSiriCard(contactCard: siriCard)
+		if let fetchedResultsController=fetchedResultsController {
+			updateCards(fetchedResultsController: fetchedResultsController)
 		}
 		handleSelection()
 		UserDefaults(suiteName: appGroupKey)?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
+		do {
+			try managedObjectContext?.save()
+		} catch {
+			print("Error saving deletion")
+		}
 		//reanable animations if disabled for catalyst
 		#if targetEnvironment(macCatalyst)
 		UIView.setAnimationsEnabled(true)
