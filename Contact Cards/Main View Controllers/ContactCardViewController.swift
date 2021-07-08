@@ -104,6 +104,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 				applicationActivities: nil
 			)
 			activityViewController.popoverPresentationController?.barButtonItem=sender as? UIBarButtonItem
+		activityViewController.popoverPresentationController?.sourceView=navigationController?.toolbar
 
 			present(activityViewController, animated: true)
 	}

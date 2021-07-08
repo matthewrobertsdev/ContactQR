@@ -11,6 +11,8 @@ import UniformTypeIdentifiers
 class ManageCardsViewController: UIViewController {
 	@IBOutlet weak var syncWithCloudStackView: UIStackView!
 	@IBOutlet weak var syncSwitch: UISwitch!
+	@IBOutlet weak var exportButton: UIButton!
+	@IBOutlet weak var exportAsRtfdButton: UIButton!
 	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 	var loadDocumentController: LoadDocumentController?
     override func viewDidLoad() {
@@ -53,6 +55,7 @@ class ManageCardsViewController: UIViewController {
 					#else
 				if let fileURL=ContactDataConverter.writeArchive(contactCards: contactCards, directoryURL: directoryURL, fileExtension: "txt") {
 					let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+					activityViewController.popoverPresentationController?.sourceView=exportButton
 					present(activityViewController, animated: true, completion: nil)
 				}
 					#endif
@@ -115,6 +118,7 @@ class ManageCardsViewController: UIViewController {
 			present(exportContactCardViewController, animated: true)
 			#else
 			let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+			activityViewController.popoverPresentationController?.sourceView=exportAsRtfdButton
 			present(activityViewController, animated: true, completion: nil)
 			#endif
 		} catch {
