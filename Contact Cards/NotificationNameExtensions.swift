@@ -20,6 +20,7 @@ extension Notification.Name {
 	static let manageCards=Notification.Name("manage-cards")
 	static let deleteAllCards=Notification.Name("delete-all-cards")
 	static let siriCardChosen=Notification.Name("siri-card-chosen")
+	static let cardsLoaded=Notification.Name("cards-loaded")
 	/*
 	 Post this WHENEVER ActiveContact.shared.activeContact changes
 	 */

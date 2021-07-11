@@ -94,6 +94,7 @@ class ManageCardsViewController: UIViewController {
 							successAlertViewController.addAction(gotItAction)
 							successAlertViewController.preferredAction=gotItAction
 							self.present(successAlertViewController, animated: true)
+							NotificationCenter.default.post(name: .cardsLoaded, object: nil)
 						} catch {
 							print(error.localizedDescription)
 						}

@@ -34,6 +34,7 @@ class ContactCardsTableViewController: UITableViewController {
 		notificationCenter.addObserver(self, selector: #selector(deleteAllCards), name: .deleteAllCards, object: nil)
 		//updates table view on return to app
 		notificationCenter.addObserver(self, selector: #selector(updateContent), name: UIApplication.willEnterForegroundNotification, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(updateContent), name: .cardsLoaded, object: nil)
 		let keyValueStore=NSUbiquitousKeyValueStore.default
 		if !keyValueStore.bool(forKey: "hasAskedToSync") {
 			let syncMessage="Do you want to sync contact cards created with this app with iCloud?  You can change this setting with the \"Manage Data\" button that looks like a gear."
