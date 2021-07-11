@@ -245,12 +245,13 @@ class ContactCardsTableViewController: UITableViewController {
 			}
 			let contactCard = resultsController.object(at: indexPath)
 			managedObjectContext?.delete(contactCard)
-			do {
-			try managedObjectContext?.save()
 			stopEditingIfNoContactCards()
 			NotificationCenter.default.post(name: .contactDeleted, object: nil)
+			do {
+			try managedObjectContext?.save()
 			} catch {
 				print("Error saving deletion")
+				present(localErrorSavingAlertController(), animated: true)
 			}
 		}
 	}

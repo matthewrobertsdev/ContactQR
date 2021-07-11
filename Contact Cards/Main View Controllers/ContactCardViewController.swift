@@ -201,11 +201,12 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 																		managedObjectContext?.delete(contactCardMO)
 				ActiveContactCard.shared.contactCard=nil
 				strongSelf.contactCard=nil
+																		strongSelf.loadContact()
 																		do {
 																			try managedObjectContext?.save()
-																			strongSelf.loadContact()
 																		} catch {
 																			managedObjectContext?.rollback()
+																			strongSelf.present(localErrorSavingAlertController(), animated: true)
 																		}
 		}))
 		deleteAlert.preferredAction=cancelAction
