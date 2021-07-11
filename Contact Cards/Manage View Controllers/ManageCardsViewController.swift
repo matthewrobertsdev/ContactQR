@@ -22,6 +22,7 @@ class ManageCardsViewController: UIViewController {
 		syncWithCloudStackView.addArrangedSubview(syncWithCloudStackView.arrangedSubviews[0])
 		#endif
 		setSyncSwitchUI()
+		NotificationCenter.default.addObserver(self, selector: #selector(setSyncSwitchUI), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
     }
 	@IBAction func done(_ sender: Any) {
 		self.dismiss(animated: true)
@@ -130,9 +131,10 @@ class ManageCardsViewController: UIViewController {
 		return paths[0]
 	}
 	@IBAction func toggleSync(_ sender: Any) {
-		if UserDefaults.standard.bool(forKey: "iCloudSync") {
+		let keyValueStore=NSUbiquitousKeyValueStore.default
+		if keyValueStore.bool(forKey: "iCloudSync") {
 			toggleSync(sync: false)
-			let syncMessage="Sync is now disabled for cards created or modified on this device.  Your data will remain in iCloud unless you turn on sync, delete the data, and then turn sync off again."
+			let syncMessage="Sync is now disabled for cards created with this app.  Your data will remain in iCloud unless you turn on sync, delete the data, and then turn sync off again."
 			let syncAlertController=UIAlertController(title: "Sync with iCloud Is Now Off", message: syncMessage, preferredStyle: .alert)
 			let confirmationAction=UIAlertAction(title: "Got it", style: .default)
 			syncAlertController.addAction(confirmationAction)
@@ -140,7 +142,7 @@ class ManageCardsViewController: UIViewController {
 			present(syncAlertController, animated: true)
 		} else {
 			toggleSync(sync: true)
-			let syncMessage="Your contact cards created with this app on this device will now sync with iCloud."
+			let syncMessage="Your contact cards created with this app will now sync with iCloud."
 			let syncAlertController=UIAlertController(title: "Sync with iCloud Is Now On", message: syncMessage, preferredStyle: .alert)
 			let confirmationAction=UIAlertAction(title: "Got it", style: .default)
 			syncAlertController.addAction(confirmationAction)
@@ -150,11 +152,14 @@ class ManageCardsViewController: UIViewController {
 		setSyncSwitchUI()
 	}
 	func toggleSync(sync: Bool) {
-		UserDefaults.standard.setValue(sync, forKey: "iCloudSync")
+		let keyValueStore=NSUbiquitousKeyValueStore.default
+		keyValueStore.set(sync, forKey: "iCloudSync")
+		keyValueStore.synchronize()
 		(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer()
 	}
-	func setSyncSwitchUI() {
-		if UserDefaults.standard.bool(forKey: "iCloudSync") {
+	@objc func setSyncSwitchUI() {
+		let keyValueStore=NSUbiquitousKeyValueStore.default
+		if keyValueStore.bool(forKey: "iCloudSync") {
 			syncSwitch.isOn=true
 		} else {
 			syncSwitch.isOn=false

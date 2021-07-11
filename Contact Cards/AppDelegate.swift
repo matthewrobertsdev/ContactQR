@@ -11,6 +11,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 	func applicationDidFinishLaunching(_ application: UIApplication) {
+		NotificationCenter.default.addObserver(self, selector: #selector(updateForSyncChange), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
 	}
     func application(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true
@@ -38,6 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 	}
 	lazy var persistentContainer=loadPersistentContainer()
+	@objc func updateForSyncChange() {
+		persistentContainer=loadPersistentContainer()
+	}
 	func saveContext () {
 			let context = persistentContainer.viewContext
 			if context.hasChanges {

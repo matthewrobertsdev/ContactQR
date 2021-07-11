@@ -31,6 +31,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 			strongSelf.persistentContainer = loadPersistentContainer()
 			strongSelf.prepareView()
 		}
+		NotificationCenter.default.addObserver(self, selector: #selector(updateForSyncChange), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
         // Do any additional setup after loading the view.
     }
 	override func viewWillAppear(_ animated: Bool) {
@@ -136,5 +137,8 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 		} catch {
 			print("error loading ContactCardMO from viewContext")
 		}
+	}
+	@objc func updateForSyncChange() {
+		persistentContainer=loadPersistentContainer()
 	}
 }

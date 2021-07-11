@@ -16,7 +16,8 @@ func loadPersistentContainer() -> NSPersistentCloudKitContainer {
 		storeDescription.cloudKitContainerOptions=NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.apps.celeritas.ContactCards")
 		#if os(watchOS)
 		#else
-		if !UserDefaults.standard.bool(forKey: "iCloudSync") {
+		let keyValueStore=NSUbiquitousKeyValueStore.default
+		if !keyValueStore.bool(forKey: "iCloudSync") {
 			storeDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
 			storeDescription.cloudKitContainerOptions=nil
 		}

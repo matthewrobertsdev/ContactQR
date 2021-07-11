@@ -35,5 +35,4 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 			completion(INObjectCollection(items: [ContactCardINObject]()), nil)
 		}
 	}
-	
 }

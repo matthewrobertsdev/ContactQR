@@ -34,18 +34,21 @@ class ContactCardsTableViewController: UITableViewController {
 		notificationCenter.addObserver(self, selector: #selector(deleteAllCards), name: .deleteAllCards, object: nil)
 		//updates table view on return to app
 		notificationCenter.addObserver(self, selector: #selector(updateContent), name: UIApplication.willEnterForegroundNotification, object: nil)
-		if !UserDefaults.standard.bool(forKey: "hasAskedToSync") {
+		let keyValueStore=NSUbiquitousKeyValueStore.default
+		if !keyValueStore.bool(forKey: "hasAskedToSync") {
 			let syncMessage="Do you want to sync contact cards created with this app with iCloud?  You can change this setting with the \"Manage Data\" button that looks like a gear."
 			let syncAlertController=UIAlertController(title: "Sync contact cards with iCloud?", message: syncMessage, preferredStyle: .alert)
 			syncAlertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { alertAction in
-				UserDefaults.standard.setValue(true, forKey: "iCloudSync")
+				keyValueStore.set(true, forKey: "iCloudSync")
+				keyValueStore.synchronize()
 				(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer()
-				UserDefaults.standard.setValue(true, forKey: "hasAskedToSync")
+				keyValueStore.set(true, forKey: "hasAskedToSync")
 			}))
 			syncAlertController.addAction(UIAlertAction(title: "No", style: .default, handler: { alertAction in
-				UserDefaults.standard.setValue(false, forKey: "iCloudSync")
+				keyValueStore.set(false, forKey: "iCloudSync")
+				keyValueStore.synchronize()
 				(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer()
-				UserDefaults.standard.setValue(true, forKey: "hasAskedToSync")
+				keyValueStore.set(true, forKey: "hasAskedToSync")
 			}))
 			present(syncAlertController, animated: true)
 		}
