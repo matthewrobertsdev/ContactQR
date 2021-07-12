@@ -363,6 +363,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ft7-Ph-lij">
                                                         <rect key="frame" x="0.0" y="201" width="286" height="30"/>
                                                         <state key="normal" title="Restrict or Un-Restrict Access to iCloud..."/>
+                                                        <connections>
+                                                            <segue destination="Yf6-Yz-YJm" kind="show" id="YKu-DE-DXU"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -1453,7 +1456,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fm5-A9-lGS">
                                                 <rect key="frame" x="1" y="0.0" width="333" height="101.5"/>
-                                                <string key="text">Once you delete cards from iCloud, you will not be able to get them back.  Confirm deleting by typing the word "delete" below and then delete the cards by tapping the "Delete All Cards From iCloud" button.</string>
+                                                <string key="text">Once you delete cards from iCloud, you will not be able to get them back.  Confirm deleting by typing the word "delete" below and then delete the cards by using the "Delete All Cards From iCloud" button.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" systemColor="systemRedColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1506,7 +1509,141 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BNi-8G-MT6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4065" y="-709"/>
+            <point key="canvasLocation" x="4078" y="-1033"/>
+        </scene>
+        <!--Manage iCloud Access-->
+        <scene sceneID="b9R-HF-hlT">
+            <objects>
+                <viewController id="Yf6-Yz-YJm" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fDX-qL-e4t">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CmM-jL-gt3">
+                                <rect key="frame" x="10" y="76" width="355" height="300"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9Pa-iV-E6b">
+                                        <rect key="frame" x="8.5" y="0.0" width="338" height="145"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you want to restrict access to iCloud, type &quot;restrict&quot; below and then use the restrict button below." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O61-5D-bK0">
+                                                <rect key="frame" x="0.0" y="0.0" width="338" height="61"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="411.5" id="Nxc-QX-TTO">
+                                                        <variation key="heightClass=compact" constant="250"/>
+                                                    </constraint>
+                                                    <constraint firstAttribute="width" constant="411.5" id="RQH-F6-Nxm">
+                                                        <variation key="heightClass=compact" constant="250"/>
+                                                    </constraint>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Red"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="Nxc-QX-TTO"/>
+                                                        <exclude reference="RQH-F6-Nxm"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=compact">
+                                                    <mask key="constraints">
+                                                        <exclude reference="Nxc-QX-TTO"/>
+                                                        <include reference="RQH-F6-Nxm"/>
+                                                    </mask>
+                                                </variation>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="szy-kH-Xs0">
+                                                <rect key="frame" x="69" y="71" width="200" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="200" id="IIn-2q-nUK"/>
+                                                </constraints>
+                                                <color key="textColor" systemColor="systemRedColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4DQ-ix-F1c">
+                                                <rect key="frame" x="142.5" y="115" width="53" height="30"/>
+                                                <state key="normal" title="Restrict"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BWl-Vh-V4J">
+                                        <rect key="frame" x="0.0" y="155" width="355" height="145"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you are trying to un-restrict access to iCloud, type &quot;un-restrict&quot; below and then use the unrestrict button below." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvg-SS-VUh">
+                                                <rect key="frame" x="0.0" y="0.0" width="355" height="61"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="285" id="tb8-us-WMQ">
+                                                        <variation key="heightClass=compact" constant="250"/>
+                                                    </constraint>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="Green"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="tb8-us-WMQ"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=compact">
+                                                    <mask key="constraints">
+                                                        <include reference="tb8-us-WMQ"/>
+                                                    </mask>
+                                                </variation>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yy3-Yv-2VN">
+                                                <rect key="frame" x="77.5" y="71" width="200" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="200" id="AKi-zZ-lp0"/>
+                                                </constraints>
+                                                <color key="textColor" systemColor="systemRedColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEP-Lf-wRg">
+                                                <rect key="frame" x="137.5" y="115" width="80" height="30"/>
+                                                <state key="normal" title="Un-Restrict"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <variation key="heightClass=compact" axis="horizontal" distribution="fillProportionally"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kh5-3F-Y6Z"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kh5-3F-Y6Z" firstAttribute="trailing" secondItem="O61-5D-bK0" secondAttribute="trailing" constant="18.5" id="GdV-sv-aTn"/>
+                            <constraint firstItem="CmM-jL-gt3" firstAttribute="leading" secondItem="kh5-3F-Y6Z" secondAttribute="leading" constant="10" id="Juj-oA-o2L"/>
+                            <constraint firstItem="bvg-SS-VUh" firstAttribute="leading" secondItem="kh5-3F-Y6Z" secondAttribute="leading" constant="13.5" id="TAn-sn-ym8">
+                                <variation key="heightClass=regular" constant="10"/>
+                            </constraint>
+                            <constraint firstItem="O61-5D-bK0" firstAttribute="leading" secondItem="kh5-3F-Y6Z" secondAttribute="leading" constant="18.5" id="eQv-6a-ePC"/>
+                            <constraint firstItem="CmM-jL-gt3" firstAttribute="top" secondItem="kh5-3F-Y6Z" secondAttribute="top" constant="20" id="nPH-AQ-gTm"/>
+                            <constraint firstItem="CmM-jL-gt3" firstAttribute="trailing" secondItem="kh5-3F-Y6Z" secondAttribute="trailing" constant="-10" id="oU3-2Y-u86"/>
+                            <constraint firstItem="kh5-3F-Y6Z" firstAttribute="trailing" secondItem="bvg-SS-VUh" secondAttribute="trailing" constant="10" id="qp2-A9-iUx"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="GdV-sv-aTn"/>
+                                <exclude reference="qp2-A9-iUx"/>
+                                <exclude reference="eQv-6a-ePC"/>
+                                <exclude reference="TAn-sn-ym8"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="constraints">
+                                <include reference="GdV-sv-aTn"/>
+                                <include reference="qp2-A9-iUx"/>
+                                <include reference="eQv-6a-ePC"/>
+                                <include reference="TAn-sn-ym8"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Manage iCloud Access" id="hXk-Z5-FjJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qTl-Bd-X5S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3757.5999999999999" y="-621.13943028485767"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FPL-RH-2XU">
@@ -1841,6 +1978,9 @@ All rights reserved.</string>
         <image name="qrcode" catalog="system" width="128" height="114"/>
         <image name="questionmark" catalog="system" width="96" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <namedColor name="Green">
+            <color red="0.15700000524520874" green="0.80400002002716064" blue="0.25499999523162842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Red">
             <color red="1" green="0.23100000619888306" blue="0.18799999356269836" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

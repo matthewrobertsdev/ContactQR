@@ -281,6 +281,7 @@ class ContactCardsTableViewController: UITableViewController {
 			for item in items {
 				managedObjectContext.delete(item)
 			}
+			updateContent()
 			// Save Changes
 			try managedObjectContext.save()
 			let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
