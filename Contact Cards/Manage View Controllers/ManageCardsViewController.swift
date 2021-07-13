@@ -17,6 +17,7 @@ class ManageCardsViewController: UIViewController {
 	var loadDocumentController: LoadDocumentController?
     override func viewDidLoad() {
         super.viewDidLoad()
+		AppState.shared.appState = .isModal
         // Do any additional setup after loading the view.
 		#if targetEnvironment(macCatalyst)
 		syncWithCloudStackView.addArrangedSubview(syncWithCloudStackView.arrangedSubviews[0])
@@ -156,7 +157,7 @@ class ManageCardsViewController: UIViewController {
 		let keyValueStore=NSUbiquitousKeyValueStore.default
 		keyValueStore.set(sync, forKey: "iCloudSync")
 		keyValueStore.synchronize()
-		(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer()
+		//(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer()
 	}
 	@objc func setSyncSwitchUI() {
 		let keyValueStore=NSUbiquitousKeyValueStore.default
@@ -165,5 +166,8 @@ class ManageCardsViewController: UIViewController {
 		} else {
 			syncSwitch.isOn=false
 		}
+	}
+	override func viewWillDisappear(_ animated: Bool) {
+		AppState.shared.appState = .isNotModal
 	}
 }
