@@ -6,7 +6,8 @@
 //  Copyright © 2021 Matt Roberts. All rights reserved.
 //
 import UIKit
-// MARK: FetchedResulstControllerDelegate
+import CoreData
+// MARK: FRC Delegate
 extension ContactCardsTableViewController: NSFetchedResultsControllerDelegate {
 	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		//disable animations for catalyst--UITableView animations are buggy

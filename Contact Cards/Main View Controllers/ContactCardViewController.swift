@@ -358,7 +358,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		present(editContactAlertController, animated: true) {
 		}
 	}
-	@IBAction override func copy(_ sender: Any?) {
+	override func copy(_ sender: Any?) {
 		if ActiveContactCard.shared.contactCard != nil {
 			copyVCard(self)
 		}

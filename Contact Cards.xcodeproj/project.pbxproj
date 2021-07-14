@@ -149,6 +149,7 @@
 		9FED3510269F659000EFFA48 /* CardsKeyCommandsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED350F269F659000EFFA48 /* CardsKeyCommandsExtension.swift */; };
 		9FED3512269F661000EFFA48 /* CardsFetchedResultsControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED3511269F661000EFFA48 /* CardsFetchedResultsControllerExtension.swift */; };
 		9FED3514269F667300EFFA48 /* CardsTableViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED3513269F667300EFFA48 /* CardsTableViewControllerExtension.swift */; };
+		9FED3518269F780A00EFFA48 /* CannotLoadCardsAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED3517269F780A00EFFA48 /* CannotLoadCardsAlertController.swift */; };
 		9FEE377D256DBA490089337E /* ChooseColorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE377C256DBA490089337E /* ChooseColorTableViewController.swift */; };
 		9FEE3782256DBA990089337E /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3781256DBA990089337E /* ColorModel.swift */; };
 		9FEE3787256DBAA50089337E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3786256DBAA50089337E /* Color.swift */; };
@@ -374,6 +375,7 @@
 		9FED350F269F659000EFFA48 /* CardsKeyCommandsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsKeyCommandsExtension.swift; sourceTree = "<group>"; };
 		9FED3511269F661000EFFA48 /* CardsFetchedResultsControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsFetchedResultsControllerExtension.swift; sourceTree = "<group>"; };
 		9FED3513269F667300EFFA48 /* CardsTableViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsTableViewControllerExtension.swift; sourceTree = "<group>"; };
+		9FED3517269F780A00EFFA48 /* CannotLoadCardsAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CannotLoadCardsAlertController.swift; path = ../../../../../../CannotLoadCardsAlertController.swift; sourceTree = "<group>"; };
 		9FEE377C256DBA490089337E /* ChooseColorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseColorTableViewController.swift; sourceTree = "<group>"; };
 		9FEE3781256DBA990089337E /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
 		9FEE3786256DBAA50089337E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -743,6 +745,7 @@
 				9F75D0762653664B000EB03D /* LoadPersistentContainer.swift */,
 				9FC3B3B4268FF73F0078C6CA /* ErrorSavingAlertControllers.swift */,
 				9F744D61269F3FDD00394BD6 /* CannotEditAlertControllers.swift */,
+				9FED3517269F780A00EFFA48 /* CannotLoadCardsAlertController.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1278,6 +1281,7 @@
 				9F3F6B3B25F49AAC0053C1DF /* ContactCardQRCode.intentdefinition in Sources */,
 				9FB3E46521C96F990011752F /* DisplayQRModel.swift in Sources */,
 				9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */,
+				9FED3518269F780A00EFFA48 /* CannotLoadCardsAlertController.swift in Sources */,
 				9FEE3782256DBA990089337E /* ColorModel.swift in Sources */,
 				9F4ABC7D2570CBEA000A9101 /* ToolBarDelegate.swift in Sources */,
 				9F422691256CD5BF00F1A0FA /* CircularColorView.swift in Sources */,
@@ -1440,6 +1444,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShowMyCardSirirUI/ShowMyCardSirirUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ShowMyCardSirirUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -1448,6 +1453,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowMyCardSirirUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1462,6 +1468,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShowMyCardSirirUI/ShowMyCardSirirUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ShowMyCardSirirUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -1470,6 +1477,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowMyCardSirirUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1484,6 +1492,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShowCardSiriIntent/ShowCardSiriIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ShowCardSiriIntent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -1492,6 +1501,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1506,6 +1516,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShowCardSiriIntent/ShowCardSiriIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ShowCardSiriIntent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -1514,6 +1525,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1529,6 +1541,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_ENTITLEMENTS = MessageContactCard/MessageContactCard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = MessageContactCard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1553,6 +1566,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_ENTITLEMENTS = MessageContactCard/MessageContactCard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = MessageContactCard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;

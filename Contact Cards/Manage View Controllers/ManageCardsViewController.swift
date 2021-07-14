@@ -68,10 +68,13 @@ class ManageCardsViewController: UIViewController {
 	@IBAction func loadContactCardsArchive(_ sender: Any) {
 		loadDocumentController=LoadDocumentController(presentationController: self, forOpeningContentTypes:  [UTType.text])
 		loadDocumentController?.affectsModality=false
-		loadDocumentController?.loadHandler = {(url: URL) -> Void in
+		loadDocumentController?.loadHandler = { [weak self] (url: URL) -> Void in
+			guard let strongSelf=self else {
+				return
+			}
 				if let contactCards=ContactDataConverter.readArchive(url: url) {
 					for card in contactCards {
-						guard let context=self.managedObjectContext else {
+						guard let context=strongSelf.managedObjectContext else {
 							return
 						}
 						let contactCardMO=NSEntityDescription.entity(forEntityName: ContactCardMO.entityName, in: context)
@@ -86,20 +89,22 @@ class ManageCardsViewController: UIViewController {
 							print("Error getting CNContact from vCard")
 						}
 						do {
-							try self.managedObjectContext?.save()
-							self.managedObjectContext?.rollback()
+							try strongSelf.managedObjectContext?.save()
+							strongSelf.managedObjectContext?.rollback()
 							let successAlertViewController=UIAlertController(title: "Contact Cards Loaded", message: "All contact cards were successfully loaded.", preferredStyle: .alert)
 							let gotItAction=UIAlertAction(title: "Got it.", style: .default, handler: { _ in
 								successAlertViewController.dismiss(animated: true)
 							})
 							successAlertViewController.addAction(gotItAction)
 							successAlertViewController.preferredAction=gotItAction
-							self.present(successAlertViewController, animated: true)
+							strongSelf.present(successAlertViewController, animated: true)
 							NotificationCenter.default.post(name: .cardsLoaded, object: nil)
 						} catch {
 							print(error.localizedDescription)
 						}
 					}
+				} else {
+					strongSelf.present(cannotLoadCardsAlertController(), animated: true)
 				}
 				return
 			}
