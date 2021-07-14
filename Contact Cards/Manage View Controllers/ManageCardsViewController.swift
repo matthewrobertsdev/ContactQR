@@ -111,15 +111,28 @@ class ManageCardsViewController: UIViewController {
 			loadDocumentController?.presentPicker()
 	}
 	@IBAction func exportToRtfdFile(_ sender: Any) {
-		let attributedString=ContactCloudDataDescriber.getAttributedStringDescription(color: UIColor.systemBlue)
+		let fullString=NSMutableAttributedString()
+		fullString.append(NSAttributedString(string: "If you had sync with "))
+		fullString.append(NSAttributedString(string: "iCloud on for the Contact Cards app and had given it adequate time for it to sync over the "))
+		fullString.append(NSAttributedString(string: "internet when you saved this rich text document, this document should accurately represent that which was your data in iCloud for the "))
+		fullString.append(NSAttributedString(string: "app at the time you saved this document.\n\n\n"))
+		let headerParagraphStyle = NSMutableParagraphStyle()
+		headerParagraphStyle.alignment = NSTextAlignment.center
+		let headerAttributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: CGFloat(18), weight: UIFont.Weight.light),
+								 NSAttributedString.Key.paragraphStyle: headerParagraphStyle, .foregroundColor: UIColor.systemBlue]
+		fullString.addAttributes(headerAttributes, range: NSRange(location: 0, length: fullString.length))
+		guard let attributedString=ContactCloudDataDescriber.getAttributedStringDescription(color: UIColor.systemBlue) else {
+			return
+		}
+		fullString.append(attributedString)
 		guard var fileURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
 				return
 			}
 		do {
-			let data = try attributedString?.fileWrapper (from: NSRange (location: 0, length: attributedString?.length ?? 0), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtfd])
+			let data = try fullString.fileWrapper (from: NSRange (location: 0, length: fullString.length), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtfd])
 			fileURL.appendPathComponent("Contact Cards iCloud Data Description")
 			fileURL.appendPathExtension("rtfd")
-			try data?.write(to: fileURL, options: .atomic, originalContentsURL: nil)
+			try data.write(to: fileURL, options: .atomic, originalContentsURL: nil)
 			#if targetEnvironment(macCatalyst)
 			let exportContactCardViewController = SaveDocumentViewController(forExporting: [fileURL], asCopy: false)
 			exportContactCardViewController.url=fileURL
