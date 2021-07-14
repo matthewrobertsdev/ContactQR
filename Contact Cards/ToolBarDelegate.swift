@@ -42,7 +42,7 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 		guard let contactCardViewController=SceneDelegate.mainsSplitViewController?.viewController(for: .secondary) as? ContactCardViewController else {
 			return nil
 		}
-		var validCardTarget: NSObject=self
+		let validCardTarget: NSObject=self
 		var toolbarItem: NSToolbarItem?
 		switch itemIdentifier {
 		case .toggleSidebar:

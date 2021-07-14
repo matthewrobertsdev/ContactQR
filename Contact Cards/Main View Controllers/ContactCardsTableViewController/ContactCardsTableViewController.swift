@@ -139,39 +139,8 @@ class ContactCardsTableViewController: UITableViewController {
 		NotificationCenter.default.post(name: .contactChanged, object: nil)
 		splitViewController.show(.secondary)
 	}
-	// MARK: - Table view data source
-	override func numberOfSections(in tableView: UITableView) -> Int {
-		return 1
-	}
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if let sections = fetchedResultsController?.sections {
-			let currentSection = sections[section]
-			return currentSection.numberOfObjects
-		}
-		return 0
-	}
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell=tableView.dequeueReusableCell(withIdentifier: "SavedContactCell", for: indexPath)
-				as? SavedContactCell else {
-			return UITableViewCell()
-		}
-		guard let contactCard = fetchedResultsController?.object(at: indexPath) else {
-			return UITableViewCell()
-		}
-		cell.nameLabel.text=contactCard.filename
-		let colorString=contactCard.color
-		if let color=colorModel.getColorsDictionary()[colorString] as? UIColor {
-			cell.circularColorView.backgroundColor=color
-		}
-		return cell
-	}
 	@IBAction func createContactCardFromContact(_ sender: Any) {
 		self.present(PickContactViewController(), animated: true)
-	}
-	override func tableView(_ tableView: UITableView,
-							didSelectRowAt indexPath: IndexPath) {
-		ActiveContactCard.shared.contactCard=fetchedResultsController?.object(at: indexPath)
-		showContactCard()
 	}
 	@objc func createNewContact() {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -215,16 +184,6 @@ class ContactCardsTableViewController: UITableViewController {
 			}
 		}
 	}
-	override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-		if tableView.isEditing {
-			return true
-		}
-		return false
-	}
-	override func tableView(_ tableView: UITableView,
-							editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-		return .delete
-	}
 	@IBAction func toggleEditing(_ sender: Any) {
 		if tableView.isEditing {
 			stopEditing()
@@ -236,25 +195,6 @@ class ContactCardsTableViewController: UITableViewController {
 	func stopEditing() {
 		tableView.setEditing(false, animated: true)
 		editButton.title="Edit"
-	}
-	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
-							forRowAt indexPath: IndexPath) {
-		if editingStyle == .delete {
-			// Delete the row from the data source
-			guard let resultsController=fetchedResultsController else {
-				return
-			}
-			let contactCard = resultsController.object(at: indexPath)
-			managedObjectContext?.delete(contactCard)
-			stopEditingIfNoContactCards()
-			NotificationCenter.default.post(name: .contactDeleted, object: nil)
-			do {
-			try managedObjectContext?.save()
-			} catch {
-				print("Error saving deletion")
-				present(localErrorSavingAlertController(), animated: true)
-			}
-		}
 	}
 	func stopEditingIfNoContactCards() {
 		if let sections = fetchedResultsController?.sections {
@@ -302,101 +242,5 @@ class ContactCardsTableViewController: UITableViewController {
 		} catch {
 			// Error Handling
 		}
-	}
-}
-// MARK: FRCDelegate
-extension ContactCardsTableViewController: NSFetchedResultsControllerDelegate {
-	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-		//disable animations for catalyst--UITableView animations are buggy
-		#if targetEnvironment(macCatalyst)
-		UIView.setAnimationsEnabled(false)
-		#endif
-		self.tableView.beginUpdates()
-	}
-	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-		self.tableView.endUpdates()
-		do {
-			try managedObjectContext?.save()
-		} catch {
-			print("Error saving iCloud changes")
-		}
-		if let fetchedResultsController=fetchedResultsController {
-			updateCards(fetchedResultsController: fetchedResultsController)
-		}
-		handleSelection()
-		UserDefaults(suiteName: appGroupKey)?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
-		//reanable animations if disabled for catalyst
-		#if targetEnvironment(macCatalyst)
-		UIView.setAnimationsEnabled(true)
-		#endif
-	}
-	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-					didChange anObject: Any,
-					at indexPath: IndexPath?,
-					for type: NSFetchedResultsChangeType,
-					newIndexPath: IndexPath?) {
-		var animation=UITableView.RowAnimation.fade
-		#if targetEnvironment(macCatalyst)
-		animation=UITableView.RowAnimation.none
-		#endif
-		switch type {
-		case .insert:
-			if let newIndexPath=newIndexPath {
-				self.tableView.insertRows(at: [newIndexPath], with: animation)
-			}
-		case .delete:
-			if let indexPath=indexPath {
-				self.tableView.deleteRows(at: [indexPath], with: animation)
-			}
-		case .update:
-			if let indexPath=indexPath {
-				tableView.reloadRows(at: [indexPath], with: animation)
-			}
-		case .move:
-			if let indexPath=indexPath {
-				self.tableView.deleteRows(at: [indexPath], with: animation)
-			}
-			if let newIndexPath=newIndexPath {
-				self.tableView.insertRows(at: [newIndexPath], with: animation)
-			}
-		default:
-			break
-		}
-	}
-	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-					didChange sectionInfo: NSFetchedResultsSectionInfo,
-					atSectionIndex sectionIndex: Int,
-					for type: NSFetchedResultsChangeType) {
-		let sectionIndexSet = NSIndexSet(index: sectionIndex) as IndexSet
-		var animation=UITableView.RowAnimation.fade
-		#if targetEnvironment(macCatalyst)
-		animation=UITableView.RowAnimation.none
-		#endif
-		switch type {
-		case .insert:
-			self.tableView.insertSections(sectionIndexSet, with: animation)
-		case .delete:
-			self.tableView.deleteSections(sectionIndexSet, with: animation)
-		default:
-			break
-		}
-	}
-}
-// MARK: Key Coomands
-extension ContactCardsTableViewController {
-	override var keyCommands: [UIKeyCommand]? {
-		if AppState.shared.appState==AppStateValue.isModal {
-			return nil
-		}
-		let keyCommands=[
-			UIKeyCommand(title: "Previous Contact", image: nil, action: #selector(goUpOne),
-						 input: UIKeyCommand.inputUpArrow, modifierFlags:
-							.command, propertyList: nil, alternates: [], discoverabilityTitle: "Previous Contact",
-						 attributes: [], state: .on),
-			UIKeyCommand(title: "Next Contact", image: nil, action: #selector(goDownOne), input: UIKeyCommand.inputDownArrow,
-						 modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Next Contact",
-						 attributes: [], state: .on)
-		]
-		return keyCommands
 	}
 }
