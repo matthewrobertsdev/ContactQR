@@ -160,8 +160,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			contactInfoTextView.attributedText=ContactInfoManipulator.getBadVCardAttributedString(fontSize: CGFloat(18))
 			return
 		}
-		//itemProvidersForActivityItemsConfiguration=[itemProvider]
-		
 		if AppState.shared.appState==AppStateValue.isNotModal {
 			itemProvidersForActivityItemsConfiguration=[itemProvider]
 		} else {
