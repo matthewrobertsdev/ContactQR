@@ -277,11 +277,6 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Contact Cards" id="Vzi-tw-EHX">
-                        <barButtonItem key="leftBarButtonItem" title="Add Card from Contact" image="person.crop.square" catalog="system" id="ymM-BI-js4">
-                            <connections>
-                                <action selector="createContactCardFromContact:" destination="8w3-e5-v8i" id="tdm-yN-NgJ"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add Card" image="plus" catalog="system" id="aSk-2u-Brq">
                             <connections>
                                 <segue destination="icA-no-8s3" kind="presentation" id="TlI-iS-dDy"/>
@@ -1085,11 +1080,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Card" id="auu-UQ-b5w">
-                        <barButtonItem key="leftBarButtonItem" title="Next" id="HMe-Pz-OmC">
-                            <connections>
-                                <action selector="createContact:" destination="33H-KV-B3q" id="Ai3-3j-pzf"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Next" id="HMe-Pz-OmC">
+                                <connections>
+                                    <action selector="createContact:" destination="33H-KV-B3q" id="Ai3-3j-pzf"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Fill from Contact" image="person.crop.circle" catalog="system" id="W1A-8M-ofw"/>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="h8Z-bO-nJ7">
                             <connections>
                                 <action selector="cancel:" destination="33H-KV-B3q" id="cJf-ae-vx0"/>
@@ -1832,23 +1830,24 @@ All rights reserved.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zId-7W-zUw">
-                                <rect key="frame" x="62.5" y="97" width="250" height="154.5"/>
+                                <rect key="frame" x="62.5" y="97" width="250" height="169.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ov0-kD-82b">
-                                        <rect key="frame" x="80" y="0.0" width="90" height="30"/>
+                                        <rect key="frame" x="48.5" y="0.0" width="153" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                         <state key="normal" title="Choose Card"/>
                                         <connections>
                                             <segue destination="n9U-Hz-0va" kind="presentation" id="Px5-ml-4bC"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Card Chosen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZR8-ce-4or">
-                                        <rect key="frame" x="62.5" y="38" width="125.5" height="20.5"/>
+                                        <rect key="frame" x="62.5" y="53" width="125.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yUi-H6-gK6">
-                                        <rect key="frame" x="0.0" y="66.5" width="250" height="50"/>
+                                        <rect key="frame" x="0.0" y="81.5" width="250" height="50"/>
                                         <subviews>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBw-O3-0tF">
                                                 <rect key="frame" x="33" y="10" width="197" height="30"/>
@@ -1877,7 +1876,7 @@ All rights reserved.</string>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dnl-bc-8ZC">
-                                        <rect key="frame" x="48" y="124.5" width="154" height="30"/>
+                                        <rect key="frame" x="48" y="139.5" width="154" height="30"/>
                                         <state key="normal" title="Remove Card from Siri"/>
                                         <connections>
                                             <action selector="removeCard:" destination="8ii-ME-gsR" eventType="touchUpInside" id="MjT-V4-TiP"/>
@@ -1973,7 +1972,7 @@ All rights reserved.</string>
     <resources>
         <image name="Icon" width="256" height="256"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="person.crop.square" catalog="system" width="128" height="114"/>
+        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="qrcode" catalog="system" width="128" height="114"/>
         <image name="questionmark" catalog="system" width="96" height="128"/>

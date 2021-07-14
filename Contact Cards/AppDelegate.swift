@@ -184,16 +184,8 @@ extension AppDelegate {
 						 modifierFlags: .command,
 						 propertyList: nil)
 		newContactCommand.discoverabilityTitle = NSLocalizedString("New Contact Card", comment: "")
-		let contactFromContactCommand =
-			UIKeyCommand(title: NSLocalizedString("New Card From Contact", comment: ""),
-						 image: nil,
-						 action: #selector(newCardFromContact),
-						 input: "n",
-						 modifierFlags: UIKeyModifierFlags(arrayLiteral: [.command, .shift]),
-						 propertyList: nil)
-		contactFromContactCommand.discoverabilityTitle = NSLocalizedString("New Card From Contact", comment: "")
 		let newContactMenu = UIMenu(title: "", image: nil, identifier:
-										UIMenu.Identifier("newContactMenu"), options: .displayInline, children: [newContactCommand, contactFromContactCommand])
+										UIMenu.Identifier("newContactMenu"), options: .displayInline, children: [newContactCommand])
 		builder.insertChild(newContactMenu, atStartOfMenu: .file)
 		let showQRCommand =
 			UIKeyCommand(title: NSLocalizedString("Show QR Code", comment: ""),

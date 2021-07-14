@@ -24,8 +24,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			return
 		}
 		appDelegate.activityItemsConfiguration=self
-		let newCardFromContactButton=UIBarButtonItem(image: UIImage(systemName: "person.crop.square"),
-											   style: .plain, target: self, action: #selector(createContactCardFromContact))
 		let newCardButton=UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain,
 												target: self, action: #selector(createNewContact))
 		#if targetEnvironment(macCatalyst)
@@ -33,7 +31,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 																"doc.badge.plus"), style: .plain, target: self, action: #selector(exportVCardtoFile))
 		navigationItem.leftBarButtonItems=[docBarButtonItem]
 		#endif
-		navigationItem.rightBarButtonItems=[newCardButton, newCardFromContactButton]
+		navigationItem.rightBarButtonItems=[newCardButton]
 		navigationItem.title="Card"
 		navigationItem.largeTitleDisplayMode = .never
 		loadContact()

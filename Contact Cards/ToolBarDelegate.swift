@@ -16,8 +16,6 @@ extension NSToolbarItem.Identifier {
 		"com.apps.celeritas.ContactCards.exportCard")
 	static let newContactCard = NSToolbarItem.Identifier(
 		"com.apps.celeritas.ContactCards.newCard")
-	static let newCardFromContact = NSToolbarItem.Identifier(
-		"com.apps.celeritas.ContactCards.newCardFromContact")
 	static let showQRCode = NSToolbarItem.Identifier(
 		"com.apps.celeritas.ContactCards.showQRCode")
 	static let shareCard = NSToolbarItem.Identifier(
@@ -28,7 +26,7 @@ extension NSToolbarItem.Identifier {
 class ToolbarDelegate: NSObject, NSToolbarDelegate {
 	func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
 		let identifiers: [NSToolbarItem.Identifier] = [
-			.toggleSidebar, .shareCard, .showQRCode, .newCardFromContact, .newContactCard, .exportCard, .editContact, .deleteCard, .manageCards
+			.toggleSidebar, .shareCard, .showQRCode, .newContactCard, .exportCard, .editContact, .deleteCard, .manageCards
 		]
 		return identifiers
 	}
@@ -93,15 +91,6 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 			item.label = "New Contact Card"
 			item.toolTip = "New Contact Card"
 			item.action = #selector(appDelegate.createNewContact)
-			item.target = appDelegate
-			item.isBordered=true
-			toolbarItem = item
-		case .newCardFromContact:
-			let item = NSToolbarItem(itemIdentifier: itemIdentifier)
-			item.image = UIImage(systemName: "person.crop.circle")
-			item.label = "New Card from Contact"
-			item.toolTip = "New Card from Contact"
-			item.action = #selector(appDelegate.newCardFromContact)
 			item.target = appDelegate
 			item.isBordered=true
 			toolbarItem = item
