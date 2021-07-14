@@ -12,19 +12,20 @@ import ContactsUI
  */
 class PickContactViewController: CNContactPickerViewController, CNContactPickerDelegate {
 	var picked=false
+	var contactPickedHandler = {(contact: CNContact) in }
     //set as CNContactPickerDelegate
     override func viewDidLoad() {
         delegate=self
     }
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		AppState.shared.appState=AppStateValue.isModal
-		NotificationCenter.default.post(name: .modalityChanged, object: nil)
+		//AppState.shared.appState=AppStateValue.isModal
+		//NotificationCenter.default.post(name: .modalityChanged, object: nil)
 	}
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-		AppState.shared.appState=AppStateValue.isNotModal
-		NotificationCenter.default.post(name: .modalityChanged, object: nil)
+		//AppState.shared.appState=AppStateValue.isNotModal
+		//NotificationCenter.default.post(name: .modalityChanged, object: nil)
 	}
 	override var canBecomeFirstResponder: Bool {
 		return true
@@ -36,23 +37,8 @@ class PickContactViewController: CNContactPickerViewController, CNContactPickerD
     func contactPicker(_ picker: CNContactPickerViewController,
                        didSelect contact: CNContact) {
 		if picked==false {
-			//ActiveContactCard.shared.contact=contact
-			let storyboard = UIStoryboard(name: "Main", bundle: nil)
-			guard let createContactViewController=storyboard.instantiateViewController(withIdentifier:
-																						"CreateContactViewController") as? CreateContactViewController else {
-				print("Failed to instantiate CreateContactViewController")
-				return
-			}
-			createContactViewController.contact=contact
-			weak var contactCardTableViewController=presentingViewController
-			let navigationController=UINavigationController(rootViewController: createContactViewController)
-			var animated=true
-			#if targetEnvironment(macCatalyst)
-				animated=false
-			#endif
-			dismiss(animated: animated) {
-				contactCardTableViewController?.present(navigationController, animated: animated)
-			}
+			picked=true
+			contactPickedHandler(contact)
 		}
     }
 }

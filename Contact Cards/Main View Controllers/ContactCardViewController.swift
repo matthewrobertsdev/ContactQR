@@ -257,6 +257,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		}
 		createContactViewController.forEditing=true
 		guard let contactCard=contactCard else {
+			present(cannotEditAlertController(), animated: true)
 			return
 		}
 		createContactViewController.contactCard=contactCard
@@ -282,6 +283,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		}
 		chooseColorTableViewController.forEditing=true
 		guard let contactCard=contactCard else {
+			present(cannotEditAlertController(), animated: true)
 			return
 		}
 		chooseColorTableViewController.contactCard=contactCard
@@ -307,6 +309,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		}
 		saveContactCardViewController.forEditing=true
 		guard let contactCard=contactCard else {
+			present(cannotEditAlertController(), animated: true)
 			return
 		}
 		saveContactCardViewController.contactCard=contactCard

@@ -1086,7 +1086,11 @@
                                     <action selector="createContact:" destination="33H-KV-B3q" id="Ai3-3j-pzf"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Fill from Contact" image="person.crop.circle" catalog="system" id="W1A-8M-ofw"/>
+                            <barButtonItem title="Fill from Contact" image="person.crop.circle" catalog="system" id="W1A-8M-ofw">
+                                <connections>
+                                    <action selector="presentContactPicker:" destination="33H-KV-B3q" id="zH6-e0-9a5"/>
+                                </connections>
+                            </barButtonItem>
                         </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="h8Z-bO-nJ7">
                             <connections>
