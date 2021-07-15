@@ -26,7 +26,7 @@ extension NSToolbarItem.Identifier {
 class ToolbarDelegate: NSObject, NSToolbarDelegate {
 	func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
 		let identifiers: [NSToolbarItem.Identifier] = [
-			.toggleSidebar, .shareCard, .showQRCode, .newContactCard,.editContact, .exportCard, .deleteCard, .manageCards
+			.toggleSidebar, .shareCard, .showQRCode, .newContactCard, .editContact, .exportCard, .deleteCard, .manageCards
 		]
 		return identifiers
 	}

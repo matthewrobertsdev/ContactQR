@@ -16,7 +16,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 	@IBOutlet weak var noCardCreatedView: UIView!
 	var contactCards=[ContactCardMO]()
 	let colorModel=ColorModel()
-	lazy var persistentContainer: NSPersistentCloudKitContainer = loadPersistentContainer()
+	lazy var persistentContainer: NSPersistentCloudKitContainer = loadPersistentContainer(neverSync: false)
 	override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.dataSource=self
@@ -28,10 +28,11 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 			guard let strongSelf=self else {
 				return
 			}
-			strongSelf.persistentContainer = loadPersistentContainer()
+			strongSelf.persistentContainer = loadPersistentContainer(neverSync: false)
 			strongSelf.prepareView()
 		}
 		NotificationCenter.default.addObserver(self, selector: #selector(updateForSyncChange), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
+		NSUbiquitousKeyValueStore.default.synchronize()
         // Do any additional setup after loading the view.
     }
 	override func viewWillAppear(_ animated: Bool) {
@@ -139,6 +140,6 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 		}
 	}
 	@objc func updateForSyncChange() {
-		persistentContainer=loadPersistentContainer()
+		persistentContainer=loadPersistentContainer(neverSync: false)
 	}
 }

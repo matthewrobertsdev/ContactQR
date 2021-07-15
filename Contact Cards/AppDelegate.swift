@@ -12,6 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 	func applicationDidFinishLaunching(_ application: UIApplication) {
 		NotificationCenter.default.addObserver(self, selector: #selector(updateForSyncChange), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
+		NSUbiquitousKeyValueStore.default.synchronize()
 	}
     func application(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true
@@ -38,9 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
 		// Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 	}
-	lazy var persistentContainer=loadPersistentContainer()
+	lazy var persistentContainer=loadPersistentContainer(neverSync: false)
 	@objc func updateForSyncChange() {
-		persistentContainer=loadPersistentContainer()
+		persistentContainer=loadPersistentContainer(neverSync: false)
 	}
 	func saveContext () {
 			let context = persistentContainer.viewContext

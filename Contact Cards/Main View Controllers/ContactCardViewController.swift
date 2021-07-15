@@ -140,7 +140,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 				contactInfoTextView.attributedText=ContactInfoManipulator.makeContactDisplayString(cnContact: contactArray[0], fontSize: CGFloat(18))
 			} else {
 				contactInfoTextView.attributedText=NSAttributedString(string: "")
-				enableButtons(enable: false)
+				//enableButtons(enable: false)
 			}
 		} catch {
 			print("Error making CNContact from VCard String.")

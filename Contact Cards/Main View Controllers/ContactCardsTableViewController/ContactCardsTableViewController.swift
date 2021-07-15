@@ -43,13 +43,13 @@ class ContactCardsTableViewController: UITableViewController {
 			syncAlertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { alertAction in
 				keyValueStore.set(true, forKey: "iCloudSync")
 				keyValueStore.synchronize()
-				(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer()
+				(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer(neverSync: false)
 				keyValueStore.set(true, forKey: "hasAskedToSync")
 			}))
 			syncAlertController.addAction(UIAlertAction(title: "No", style: .default, handler: { alertAction in
 				keyValueStore.set(false, forKey: "iCloudSync")
 				keyValueStore.synchronize()
-				(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer()
+				(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer(neverSync: false)
 				keyValueStore.set(true, forKey: "hasAskedToSync")
 			}))
 			present(syncAlertController, animated: true)

@@ -7,7 +7,7 @@
 //
 import Foundation
 import CoreData
-func loadPersistentContainer() -> NSPersistentCloudKitContainer {
+func loadPersistentContainer(neverSync: Bool) -> NSPersistentCloudKitContainer {
 	let container=NSPersistentCloudKitContainer(name: "ContactCards")
 	let groupIdentifier="group.com.apps.celeritas.contact.cards"
 	if let fileContainerURL=FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) {
@@ -17,7 +17,7 @@ func loadPersistentContainer() -> NSPersistentCloudKitContainer {
 		#if os(watchOS)
 		#else
 		let keyValueStore=NSUbiquitousKeyValueStore.default
-		if !keyValueStore.bool(forKey: "iCloudSync") {
+		if !keyValueStore.bool(forKey: "iCloudSync") || neverSync {
 			storeDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
 			storeDescription.cloudKitContainerOptions=nil
 		}
