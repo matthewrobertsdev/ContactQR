@@ -40,16 +40,19 @@ class ContactCardsTableViewController: UITableViewController {
 		if !keyValueStore.bool(forKey: "hasAskedToSync") {
 			let syncMessage="Do you want to sync contact cards created with this app with iCloud?  You can change this setting with the \"Manage Data\" button that looks like a gear."
 			let syncAlertController=UIAlertController(title: "Sync contact cards with iCloud?", message: syncMessage, preferredStyle: .alert)
+			guard let container=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer else {
+				return
+			}
 			syncAlertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { alertAction in
 				keyValueStore.set(true, forKey: "iCloudSync")
 				keyValueStore.synchronize()
-				(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer(neverSync: false)
+				updatePersistentContainer(container: container, neverSync: false)
 				keyValueStore.set(true, forKey: "hasAskedToSync")
 			}))
 			syncAlertController.addAction(UIAlertAction(title: "No", style: .default, handler: { alertAction in
 				keyValueStore.set(false, forKey: "iCloudSync")
 				keyValueStore.synchronize()
-				(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer(neverSync: false)
+				updatePersistentContainer(container: container, neverSync: false)
 				keyValueStore.set(true, forKey: "hasAskedToSync")
 			}))
 			present(syncAlertController, animated: true)

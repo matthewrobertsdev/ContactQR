@@ -9,6 +9,10 @@ import Foundation
 import CoreData
 func loadPersistentContainer(neverSync: Bool) -> NSPersistentCloudKitContainer {
 	let container=NSPersistentCloudKitContainer(name: "ContactCards")
+	return updatePersistentContainer(container: container, neverSync: neverSync)
+}
+
+func updatePersistentContainer(container: NSPersistentCloudKitContainer, neverSync: Bool) -> NSPersistentCloudKitContainer {
 	let groupIdentifier="group.com.apps.celeritas.contact.cards"
 	if let fileContainerURL=FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) {
 		let storeURL=fileContainerURL.appendingPathComponent("ContactCards.sqlite")

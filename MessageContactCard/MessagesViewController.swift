@@ -23,6 +23,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 		tableView.delegate=self
 		userDefaults=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")
 		userDefaults?.addObserver(self, forKeyPath: "lastUpdateUUID", options: [.new, .initial], context: nil)
+		userDefaults?.addObserver(self, forKeyPath: "syncChangedUUID", options: [.new, .initial], context: nil)
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
 			[weak self] in
 			guard let strongSelf=self else {
@@ -40,7 +41,13 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 	}
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?,
 							   context: UnsafeMutableRawPointer?) {
-		prepareView()
+		if let keyPath=keyPath {
+			if keyPath=="lastUpdateUUID" {
+				prepareView()
+			} else if keyPath=="syncChangedUUID" {
+				updateForSyncChange()
+			}
+		}
 	}
 	@objc func prepareView() {
 		let managedObjectContext=persistentContainer.viewContext
@@ -140,6 +147,6 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 		}
 	}
 	@objc func updateForSyncChange() {
-		persistentContainer=loadPersistentContainer(neverSync: false)
+		updatePersistentContainer(container: persistentContainer, neverSync: false)
 	}
 }

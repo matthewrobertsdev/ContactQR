@@ -175,6 +175,8 @@ class ManageCardsViewController: UIViewController {
 		let keyValueStore=NSUbiquitousKeyValueStore.default
 		keyValueStore.set(sync, forKey: "iCloudSync")
 		keyValueStore.synchronize()
+		UserDefaults(suiteName: appGroupKey)?.setValue(UUID().uuidString, forKey: "syncChangedUUID")
+		NotificationCenter.default.post(name: .syncChanged, object: nil)
 	}
 	@objc func setSyncSwitchUI() {
 		let keyValueStore=NSUbiquitousKeyValueStore.default
