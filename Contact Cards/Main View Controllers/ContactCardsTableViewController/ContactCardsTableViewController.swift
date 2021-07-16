@@ -18,7 +18,7 @@ class ContactCardsTableViewController: UITableViewController {
 	//for colors
 	let colorModel=ColorModel()
 	//main core data context for the main app
-	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+	//let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 	//set-up table view with data
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -33,9 +33,10 @@ class ContactCardsTableViewController: UITableViewController {
 		notificationCenter.addObserver(self, selector: #selector(handleNewContact), name: .contactCreated, object: nil)
 		//literally deletes every card
 		notificationCenter.addObserver(self, selector: #selector(deleteAllCards), name: .deleteAllCards, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateContent), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
 		//updates table view on return to app
 		notificationCenter.addObserver(self, selector: #selector(updateContent), name: UIApplication.willEnterForegroundNotification, object: nil)
-		//notificationCenter.addObserver(self, selector: #selector(updateContent), name: .cardsLoaded, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(updateContent), name: .syncChanged, object: nil)
 		let keyValueStore=NSUbiquitousKeyValueStore.default
 		if !keyValueStore.bool(forKey: "hasAskedToSync") {
 			let syncMessage="Do you want to sync contact cards created with this app with iCloud?  You can change this setting with the \"Manage Data\" button that looks like a gear."
@@ -46,13 +47,13 @@ class ContactCardsTableViewController: UITableViewController {
 			syncAlertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { alertAction in
 				keyValueStore.set(true, forKey: "iCloudSync")
 				keyValueStore.synchronize()
-				updatePersistentContainer(container: container, neverSync: false)
+				(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer(neverSync: false)
 				keyValueStore.set(true, forKey: "hasAskedToSync")
 			}))
 			syncAlertController.addAction(UIAlertAction(title: "No", style: .default, handler: { alertAction in
 				keyValueStore.set(false, forKey: "iCloudSync")
 				keyValueStore.synchronize()
-				updatePersistentContainer(container: container, neverSync: false)
+				(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer(neverSync: false)
 				keyValueStore.set(true, forKey: "hasAskedToSync")
 			}))
 			present(syncAlertController, animated: true)
@@ -70,11 +71,12 @@ class ContactCardsTableViewController: UITableViewController {
 	}
 	//get tableview and fetched result controller up to date
 	@objc func updateContent() {
+		(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer(neverSync: false)
 		//make fech for all ContactCard entities
 		let contactCardFetchRequest = NSFetchRequest<ContactCardMO>(entityName: "ContactCard")
 		//sort alphabetically
 		contactCardFetchRequest.sortDescriptors = [NSSortDescriptor(key: "filename", ascending: true)]
-		guard let context=managedObjectContext else {
+		guard let context=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext else {
 			return
 		}
 		self.fetchedResultsController = NSFetchedResultsController<ContactCardMO>(
@@ -211,7 +213,7 @@ class ContactCardsTableViewController: UITableViewController {
 		}
 	}
 	@objc func deleteAllCards() {
-		guard let managedObjectContext=managedObjectContext else {
+		guard let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext else {
 			return
 		}
 		// Initialize Fetch Request

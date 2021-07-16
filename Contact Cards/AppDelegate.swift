@@ -11,9 +11,6 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 	func applicationDidFinishLaunching(_ application: UIApplication) {
-		NotificationCenter.default.addObserver(self, selector: #selector(updateForSyncChange), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(updateForSyncChange), name: .syncChanged, object: nil)
-		NSUbiquitousKeyValueStore.default.synchronize()
 	}
     func application(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true
@@ -42,7 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	lazy var persistentContainer=loadPersistentContainer(neverSync: false)
 	@objc func updateForSyncChange() {
-		updatePersistentContainer(container: persistentContainer, neverSync: false)
+		//persistentContainer=loadPersistentContainer(neverSync: false)
+		NotificationCenter.default.post(name: .syncChanged, object: nil)
 	}
 	func saveContext () {
 			let context = persistentContainer.viewContext

@@ -12,6 +12,7 @@ class MainSplitViewController: UISplitViewController, UISplitViewControllerDeleg
 		super.viewDidLoad()
 		self.delegate = self
 		self.preferredDisplayMode = .oneBesideSecondary
+		NSUbiquitousKeyValueStore.default.synchronize()
 	}
 	func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary
 							secondaryViewController: UIViewController,

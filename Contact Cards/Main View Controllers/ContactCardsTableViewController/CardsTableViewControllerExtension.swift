@@ -57,11 +57,11 @@ extension ContactCardsTableViewController {
 				return
 			}
 			let contactCard = resultsController.object(at: indexPath)
-			managedObjectContext?.delete(contactCard)
+			(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext.delete(contactCard)
 			stopEditingIfNoContactCards()
 			NotificationCenter.default.post(name: .contactDeleted, object: nil)
 			do {
-			try managedObjectContext?.save()
+			try (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext.save()
 			} catch {
 				print("Error saving deletion")
 				present(localErrorSavingAlertController(), animated: true)
