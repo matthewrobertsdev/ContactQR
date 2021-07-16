@@ -7,7 +7,7 @@
 //
 import UIKit
 import CoreData
-//MARK: View Controller
+// MARK: Table View Controller
 class ContactCardsTableViewController: UITableViewController {
 	//for deleting cards
 	@IBOutlet weak var editButton: UIBarButtonItem!

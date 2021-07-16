@@ -19,7 +19,7 @@ extension ContactCardsTableViewController: NSFetchedResultsControllerDelegate {
 	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		self.tableView.endUpdates()
 		do {
-			try managedObjectContext?.save()
+			try (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext.save()
 		} catch {
 			print("Error saving iCloud changes")
 		}
