@@ -35,9 +35,9 @@ func iCloudExplanationString() -> String {
 	syncMessage+="your cards created with the app should sync with iCloud.  "
 	syncMessage+="If you do not want this, you should turn iCloud off for Contact Cards "
 	#if targetEnvironment(macCatalyst)
-	syncMessage+="in the System Preferences app in System Preferences>Apple ID>iCloud>iCloud Drive Options>Contact Cards.  If you already have cards created, you can delete them from iCloud "
+	syncMessage+="in the System Preferences app under Apple ID>iCloud>iCloud Drive Options>Contact Cards.  If you already have cards created, you can delete them from iCloud "
 	#else
-	syncMessage+="in the Settings app at Settings>Apple ID>iCloud>Contact Cards.  If you already have cards created, you can delete them from iCloud "
+	syncMessage+="in the Settings app under Apple ID>iCloud>Contact Cards.  If you already have cards created, you can delete them from iCloud "
 	#endif
 	return syncMessage
 }
