@@ -88,7 +88,7 @@
 		<string>armv7</string>
 	</array>
 	<key>UIRequiresFullScreen</key>
-	<true/>
+	<false/>
 	<key>UIRequiresFullScreen~ipad</key>
 	<false/>
 	<key>UISupportedInterfaceOrientations</key>
