@@ -105,9 +105,9 @@ class CreateContactViewController: UIViewController {
 		}
 		let notificationCenter = NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name:
-										UIResponder.keyboardWillHideNotification, object: nil)
+										UIResponder.keyboardDidHideNotification, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name:
-										UIResponder.keyboardWillChangeFrameNotification, object: nil)
+										UIResponder.keyboardDidShowNotification, object: nil)
 	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
