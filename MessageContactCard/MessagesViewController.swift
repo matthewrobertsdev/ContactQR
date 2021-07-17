@@ -16,7 +16,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 	@IBOutlet weak var noCardCreatedView: UIView!
 	var contactCards=[ContactCardMO]()
 	let colorModel=ColorModel()
-	lazy var persistentContainer: NSPersistentCloudKitContainer = loadPersistentContainer(neverSync: false)
+	lazy var persistentContainer: NSPersistentCloudKitContainer = loadPersistentContainer()
 	override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.dataSource=self
@@ -29,7 +29,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 			guard let strongSelf=self else {
 				return
 			}
-			strongSelf.persistentContainer = loadPersistentContainer(neverSync: false)
+			strongSelf.persistentContainer = loadPersistentContainer()
 			strongSelf.prepareView()
 		}
         // Do any additional setup after loading the view.
@@ -137,8 +137,5 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 		} catch {
 			print("error loading ContactCardMO from viewContext")
 		}
-	}
-	@objc func updateForSyncChange() {
-		updatePersistentContainer(container: persistentContainer, neverSync: false)
 	}
 }

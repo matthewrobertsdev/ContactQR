@@ -305,41 +305,48 @@
                                 <rect key="frame" x="0.0" y="56" width="375" height="591"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6SZ-ef-5J6">
-                                        <rect key="frame" x="10" y="20" width="355" height="362"/>
+                                        <rect key="frame" x="10" y="20" width="355" height="402"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="G0x-r3-0X6">
-                                                <rect key="frame" x="34.5" y="0.0" width="286" height="190"/>
+                                                <rect key="frame" x="34.5" y="0.0" width="286" height="230"/>
                                                 <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Aa-Uw-mj8">
+                                                        <rect key="frame" x="16.5" y="0.0" width="253" height="30"/>
+                                                        <state key="normal" title="About Contact Cards Use of iCloud..."/>
+                                                        <connections>
+                                                            <segue destination="z1a-dS-YAC" kind="show" id="zeL-Q1-leh"/>
+                                                        </connections>
+                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rxq-ox-Gxq">
-                                                        <rect key="frame" x="61.5" y="0.0" width="163" height="30"/>
+                                                        <rect key="frame" x="61.5" y="40" width="163" height="30"/>
                                                         <state key="normal" title="Export Cards to Archive"/>
                                                         <connections>
                                                             <action selector="saveContactCardsArchive:" destination="r7Z-1i-89a" eventType="touchUpInside" id="zvw-wz-hGB"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOA-5i-BaP">
-                                                        <rect key="frame" x="58" y="40" width="170" height="30"/>
+                                                        <rect key="frame" x="58" y="80" width="170" height="30"/>
                                                         <state key="normal" title="Load Cards from Archive"/>
                                                         <connections>
                                                             <action selector="loadContactCardsArchive:" destination="r7Z-1i-89a" eventType="touchUpInside" id="Wfk-D9-V34"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNf-qY-8nx">
-                                                        <rect key="frame" x="21.5" y="80" width="243" height="30"/>
+                                                        <rect key="frame" x="21.5" y="120" width="243" height="30"/>
                                                         <state key="normal" title="Export iCloud Data as Rich Text File"/>
                                                         <connections>
                                                             <action selector="exportToRtfdFile:" destination="r7Z-1i-89a" eventType="touchUpInside" id="hww-WQ-ccK"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idQ-yy-J7e">
-                                                        <rect key="frame" x="43" y="120" width="200" height="30"/>
+                                                        <rect key="frame" x="43" y="160" width="200" height="30"/>
                                                         <state key="normal" title="View iCloud Data Description"/>
                                                         <connections>
                                                             <segue destination="fi0-hG-ctM" kind="show" id="ukL-G1-bJQ"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ft7-Ph-lij">
-                                                        <rect key="frame" x="0.0" y="160" width="286" height="30"/>
+                                                        <rect key="frame" x="0.0" y="200" width="286" height="30"/>
                                                         <state key="normal" title="Restrict or Un-Restrict Access to iCloud..."/>
                                                         <connections>
                                                             <segue destination="Yf6-Yz-YJm" kind="show" id="YKu-DE-DXU"/>
@@ -348,7 +355,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7st-Bh-qdd">
-                                                <rect key="frame" x="0.0" y="200" width="355" height="162"/>
+                                                <rect key="frame" x="0.0" y="240" width="355" height="162"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcb-uy-h7s">
                                                         <rect key="frame" x="0.0" y="0.0" width="355" height="122"/>
@@ -1422,6 +1429,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RAt-v0-vY5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-362.39999999999998" y="-2078.4107946026988"/>
+        </scene>
+        <!--Contact Cards and iCloud-->
+        <scene sceneID="o8z-Rv-ig1">
+            <objects>
+                <viewController id="z1a-dS-YAC" customClass="CloudExplanationViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Uen-xL-Zp7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEU-iF-b33">
+                                <rect key="frame" x="16" y="74" width="343" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iVV-hd-VnB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="iVV-hd-VnB" firstAttribute="trailing" secondItem="FEU-iF-b33" secondAttribute="trailing" constant="16" id="lAR-Qj-Ca0"/>
+                            <constraint firstItem="FEU-iF-b33" firstAttribute="leading" secondItem="iVV-hd-VnB" secondAttribute="leading" constant="16" id="pzE-Um-i7x"/>
+                            <constraint firstItem="FEU-iF-b33" firstAttribute="top" secondItem="iVV-hd-VnB" secondAttribute="top" constant="18" id="uw1-Ga-1qf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Contact Cards and iCloud" id="mAC-nc-657"/>
+                    <connections>
+                        <outlet property="explanationLabel" destination="FEU-iF-b33" id="ZtO-8c-SNr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FrY-uB-Mm2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3493.5999999999999" y="-1364.1679160419792"/>
         </scene>
         <!--Delete All Cards-->
         <scene sceneID="BYk-Vy-X84">

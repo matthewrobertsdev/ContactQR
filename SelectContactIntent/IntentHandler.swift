@@ -16,7 +16,7 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 	}
 	func provideParameterOptionsCollection(for intent: ConfigurationIntent, with completion: @escaping
 											(INObjectCollection<ContactCardINObject>?, Error?) -> Void) {
-		let container=loadPersistentContainer(neverSync: true)
+		let container=loadPersistentContainer()
 		let managedObjectContext=container.viewContext
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
 		do {

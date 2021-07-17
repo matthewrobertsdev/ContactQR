@@ -125,6 +125,7 @@
 		9F9E9AEA21BA1691003A6A33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE921BA1691003A6A33 /* Assets.xcassets */; };
 		9F9E9AED21BA1691003A6A33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AEB21BA1691003A6A33 /* LaunchScreen.storyboard */; };
 		9F9E9AF821BA1691003A6A33 /* ContactCardsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AF721BA1691003A6A33 /* ContactCardsTest.swift */; };
+		9FA077C926A31F320077361B /* CloudExplanationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA077C826A31F320077361B /* CloudExplanationViewController.swift */; };
 		9FA3C11326600BB70033DD3B /* ShortcutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA3C11226600BB70033DD3B /* ShortcutDelegate.swift */; };
 		9FA3C114266023840033DD3B /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A336A265EE47200265C4D /* ShowCard.intentdefinition */; };
 		9FA3C116266024480033DD3B /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A335C265EDCB400265C4D /* IntentHandler.swift */; };
@@ -351,6 +352,7 @@
 		9F9E9AF321BA1691003A6A33 /* Contact CardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Contact CardsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9E9AF721BA1691003A6A33 /* ContactCardsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardsTest.swift; sourceTree = "<group>"; };
 		9F9E9AF921BA1691003A6A33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FA077C826A31F320077361B /* CloudExplanationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudExplanationViewController.swift; sourceTree = "<group>"; };
 		9FA3C11226600BB70033DD3B /* ShortcutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutDelegate.swift; sourceTree = "<group>"; };
 		9FABD3BF265DCCCC00546FDD /* CloudDataDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudDataDescriptionViewController.swift; sourceTree = "<group>"; };
 		9FB31896255F954200D31B8B /* ContactCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardViewController.swift; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 				9F8E6645265AF3DF008D60EB /* DeleteDataViewController.swift */,
 				9FABD3BF265DCCCC00546FDD /* CloudDataDescriptionViewController.swift */,
 				9F7E6908265E6FF9003381B7 /* ContactCloudDataDescriber.swift */,
+				9FA077C826A31F320077361B /* CloudExplanationViewController.swift */,
 			);
 			path = "Manage View Controllers";
 			sourceTree = "<group>";
@@ -1273,6 +1276,7 @@
 				9FED3512269F661000EFFA48 /* CardsFetchedResultsControllerExtension.swift in Sources */,
 				9F3FDD0121CC376F00D2FBB2 /* ContactDataConverter.swift in Sources */,
 				9FC3B3B5268FF73F0078C6CA /* ErrorSavingAlertControllers.swift in Sources */,
+				9FA077C926A31F320077361B /* CloudExplanationViewController.swift in Sources */,
 				9F941C752652A886004F8C83 /* ManageCardsViewController.swift in Sources */,
 				9F8E6646265AF3DF008D60EB /* DeleteDataViewController.swift in Sources */,
 				9F447AB32608E1540003B2E4 /* ContactCards.xcdatamodeld in Sources */,

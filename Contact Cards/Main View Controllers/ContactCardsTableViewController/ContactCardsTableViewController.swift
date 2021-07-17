@@ -38,17 +38,8 @@ class ContactCardsTableViewController: UITableViewController {
 		notificationCenter.addObserver(self, selector: #selector(updateContent), name: UIApplication.willEnterForegroundNotification, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(updateContent), name: .syncChanged, object: nil)
 		let userDefaults=UserDefaults.standard
-		if userDefaults.bool(forKey: "hasAskedToSync") {
-			var syncMessage="If you are signed into iCloud on your "
-			syncMessage+="device and haven’t turned it off for Contact Cards, "
-			syncMessage+="your cards created with the app should sync with iCloud.  "
-			syncMessage+="If you do not want this, you should turn iCloud off for Contact Cards "
-			#if targetEnvironment(macCatalyst)
-			syncMessage+="in the System Preferences app in System Preferences>Apple ID>iCloud>iCloud Drive Options>Contact Cards.  If you already have cards created, you can delete them from iCloud "
-			#else
-			syncMessage+="in the Settings app at Settings>Apple ID>iCloud>Contact Cards.  If you already have cards created, you can delete them from iCloud "
-			#endif
-			syncMessage+="by selecting the “Manage Data” button in Contact Cards that looks like a gear and then by following the steps described."
+		if !userDefaults.bool(forKey: "hasAskedToSync") {
+			let syncMessage=iCloudExplanationString()+"by selecting the “Manage Data” button in Contact Cards that looks like a gear and then by following the steps described."
 			let iCloudAlertController=UIAlertController(title: "Contact Cards and iCloud", message: syncMessage, preferredStyle: .alert)
 			let alertAction=UIAlertAction(title: "Got it.", style: .default, handler: { _ in
 				userDefaults.setValue(true, forKey: "hasAskedToSync")

@@ -7,12 +7,8 @@
 //
 import Foundation
 import CoreData
-func loadPersistentContainer(neverSync: Bool) -> NSPersistentCloudKitContainer {
+func loadPersistentContainer() -> NSPersistentCloudKitContainer {
 	let container=NSPersistentCloudKitContainer(name: "ContactCards")
-	return updatePersistentContainer(container: container, neverSync: neverSync)
-}
-
-func updatePersistentContainer(container: NSPersistentCloudKitContainer, neverSync: Bool) -> NSPersistentCloudKitContainer {
 	let groupIdentifier="group.com.apps.celeritas.contact.cards"
 	if let fileContainerURL=FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) {
 		let storeURL=fileContainerURL.appendingPathComponent("ContactCards.sqlite")
@@ -21,7 +17,7 @@ func updatePersistentContainer(container: NSPersistentCloudKitContainer, neverSy
 		#if os(watchOS)
 		#else
 		let keyValueStore=NSUbiquitousKeyValueStore.default
-		if !keyValueStore.bool(forKey: "iCloudSync") || neverSync {
+		if !keyValueStore.bool(forKey: "iCloudSync") {
 			storeDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
 			storeDescription.cloudKitContainerOptions=nil
 		}
@@ -32,4 +28,16 @@ func updatePersistentContainer(container: NSPersistentCloudKitContainer, neverSy
 		print(error.debugDescription)
 	}
 	return container
+}
+func iCloudExplanationString() -> String {
+	var syncMessage="If you are signed into iCloud on your "
+	syncMessage+="device and haven’t turned it off for Contact Cards, "
+	syncMessage+="your cards created with the app should sync with iCloud.  "
+	syncMessage+="If you do not want this, you should turn iCloud off for Contact Cards "
+	#if targetEnvironment(macCatalyst)
+	syncMessage+="in the System Preferences app in System Preferences>Apple ID>iCloud>iCloud Drive Options>Contact Cards.  If you already have cards created, you can delete them from iCloud "
+	#else
+	syncMessage+="in the Settings app at Settings>Apple ID>iCloud>Contact Cards.  If you already have cards created, you can delete them from iCloud "
+	#endif
+	return syncMessage
 }
