@@ -17,12 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VOF-ut-MjQ">
-                                <rect key="frame" x="37" y="81" width="301" height="301"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="VOF-ut-MjQ" secondAttribute="height" multiplier="1:1" id="jXl-Oq-Dps"/>
-                                </constraints>
-                            </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact data is invalid or it is too long for a QR code." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haI-uD-3MD">
                                 <rect key="frame" x="65" y="81" width="245" height="48"/>
                                 <constraints>
@@ -33,39 +27,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TVW-wF-Iy3">
+                                <rect key="frame" x="30" y="64" width="315" height="573"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To help focus on QR code, tap on screen of camera app or scanner app." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrq-C9-yoa">
+                                        <rect key="frame" x="1.5" y="0.0" width="312.5" height="63"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="63" id="YbB-Z8-CJz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VOF-ut-MjQ">
+                                        <rect key="frame" x="7" y="79" width="301" height="494"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="haI-uD-3MD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="37" id="7MJ-pw-4kl"/>
                             <constraint firstItem="haI-uD-3MD" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Gh3-dv-tCp"/>
-                            <constraint firstItem="VOF-ut-MjQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="37" id="PiK-5a-uqb"/>
-                            <constraint firstItem="VOF-ut-MjQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="37" id="VvX-Dl-jSN"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VOF-ut-MjQ" secondAttribute="bottom" constant="20" id="c2s-gc-K5N"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VOF-ut-MjQ" secondAttribute="trailing" constant="37" id="cCO-t4-MUS"/>
-                            <constraint firstItem="VOF-ut-MjQ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="kIJ-tR-vyA"/>
-                            <constraint firstItem="VOF-ut-MjQ" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="qkA-ZF-qhq"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="VOF-ut-MjQ" secondAttribute="top" constant="120" id="tdO-fo-r08">
-                                <variation key="heightClass=compact" constant="-20"/>
-                            </constraint>
+                            <constraint firstItem="TVW-wF-Iy3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="Qdf-TK-Zg7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="TVW-wF-Iy3" secondAttribute="bottom" constant="30" id="j7t-D7-oT5"/>
+                            <constraint firstItem="TVW-wF-Iy3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="mnZ-o0-ZnK"/>
+                            <constraint firstItem="TVW-wF-Iy3" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-30" id="uYF-d5-50x"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="c2s-gc-K5N"/>
-                                <exclude reference="tdO-fo-r08"/>
-                                <exclude reference="qkA-ZF-qhq"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact">
-                            <mask key="constraints">
-                                <include reference="c2s-gc-K5N"/>
-                                <exclude reference="cCO-t4-MUS"/>
-                                <include reference="tdO-fo-r08"/>
-                                <exclude reference="PiK-5a-uqb"/>
-                                <exclude reference="VvX-Dl-jSN"/>
-                                <include reference="qkA-ZF-qhq"/>
-                            </mask>
-                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Contact Card QR Code" id="8M4-ND-bPA">
@@ -77,12 +66,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="errorLabel" destination="haI-uD-3MD" id="awQ-4z-X02"/>
+                        <outlet property="focusExplanationLabel" destination="Rrq-C9-yoa" id="iZ5-ns-uCI"/>
                         <outlet property="qrImageView" destination="VOF-ut-MjQ" id="rq9-1Y-XWY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1746" y="1118"/>
+            <point key="canvasLocation" x="-1746.4000000000001" y="1117.6911544227887"/>
         </scene>
         <!--Card-->
         <scene sceneID="CCk-fk-rf8">

@@ -7,7 +7,8 @@
 //
 import UIKit
 class DisplayQRViewController: UIViewController {
-    @IBOutlet weak var qrImageView: UIImageView!
+	@IBOutlet weak var focusExplanationLabel: UILabel!
+	@IBOutlet weak var qrImageView: UIImageView!
 	@IBOutlet weak var errorLabel: UILabel!
 	let model=DisplayQRModel()
 	let colorModel=ColorModel()
@@ -40,6 +41,8 @@ class DisplayQRViewController: UIViewController {
 			qrImageView.tintColor=color
 		} else {
 			errorLabel.isHidden=false
+			focusExplanationLabel.isHidden=true
+			qrImageView.isHidden=true
 		}
 	}
 	@IBAction func done(_ sender: Any) {
