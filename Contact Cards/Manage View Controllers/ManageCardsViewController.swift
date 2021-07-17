@@ -9,8 +9,6 @@ import UIKit
 import CoreData
 import UniformTypeIdentifiers
 class ManageCardsViewController: UIViewController {
-	@IBOutlet weak var syncWithCloudStackView: UIStackView!
-	@IBOutlet weak var syncSwitch: UISwitch!
 	@IBOutlet weak var exportButton: UIButton!
 	@IBOutlet weak var exportAsRtfdButton: UIButton!
 	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
@@ -19,11 +17,6 @@ class ManageCardsViewController: UIViewController {
         super.viewDidLoad()
 		AppState.shared.appState = .isModal
         // Do any additional setup after loading the view.
-		#if targetEnvironment(macCatalyst)
-		syncWithCloudStackView.addArrangedSubview(syncWithCloudStackView.arrangedSubviews[0])
-		#endif
-		setSyncSwitchUI()
-		NotificationCenter.default.addObserver(self, selector: #selector(setSyncSwitchUI), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
     }
 	@IBAction func done(_ sender: Any) {
 		self.dismiss(animated: true)
@@ -136,48 +129,6 @@ class ManageCardsViewController: UIViewController {
 	func getDocumentsDirectory() -> URL {
 		let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 		return paths[0]
-	}
-	@IBAction func toggleSync(_ sender: Any) {
-		let keyValueStore=NSUbiquitousKeyValueStore.default
-		if keyValueStore.bool(forKey: "iCloudSync") {
-			toggleSync(sync: false)
-			let syncMessage="Sync is now disabled for cards created with this app.  Your data will remain in iCloud unless you turn on sync, delete the data, and then turn sync off again."
-			let syncAlertController=UIAlertController(title: "Sync with iCloud Is Now Off", message: syncMessage, preferredStyle: .alert)
-			let confirmationAction=UIAlertAction(title: "Got it", style: .default)
-			syncAlertController.addAction(confirmationAction)
-			syncAlertController.preferredAction=confirmationAction
-			present(syncAlertController, animated: true)
-		} else {
-			toggleSync(sync: true)
-			let syncMessage="Your contact cards created with this app will now sync with iCloud."
-			let syncAlertController=UIAlertController(title: "Sync with iCloud Is Now On", message: syncMessage, preferredStyle: .alert)
-			let confirmationAction=UIAlertAction(title: "Got it", style: .default)
-			syncAlertController.addAction(confirmationAction)
-			syncAlertController.preferredAction=confirmationAction
-			present(syncAlertController, animated: true)
-		}
-		setSyncSwitchUI()
-	}
-	func toggleSync(sync: Bool) {
-		let keyValueStore=NSUbiquitousKeyValueStore.default
-		keyValueStore.set(sync, forKey: "iCloudSync")
-		keyValueStore.synchronize()
-		UserDefaults(suiteName: appGroupKey)?.setValue(UUID().uuidString, forKey: "syncChangedUUID")
-		(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer(neverSync: false)
-		/*
-		if let container=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer {
-			updatePersistentContainer(container: container, neverSync: false)
-		}
-*/
-		NotificationCenter.default.post(name: .syncChanged, object: nil)
-	}
-	@objc func setSyncSwitchUI() {
-		let keyValueStore=NSUbiquitousKeyValueStore.default
-		if keyValueStore.bool(forKey: "iCloudSync") {
-			syncSwitch.isOn=true
-		} else {
-			syncSwitch.isOn=false
-		}
 	}
 	override func viewWillDisappear(_ animated: Bool) {
 		AppState.shared.appState = .isNotModal

@@ -37,26 +37,25 @@ class ContactCardsTableViewController: UITableViewController {
 		//updates table view on return to app
 		notificationCenter.addObserver(self, selector: #selector(updateContent), name: UIApplication.willEnterForegroundNotification, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(updateContent), name: .syncChanged, object: nil)
-		let keyValueStore=NSUbiquitousKeyValueStore.default
-		if !keyValueStore.bool(forKey: "hasAskedToSync") {
-			let syncMessage="Do you want to sync contact cards created with this app with iCloud?  You can change this setting with the \"Manage Data\" button that looks like a gear."
-			let syncAlertController=UIAlertController(title: "Sync contact cards with iCloud?", message: syncMessage, preferredStyle: .alert)
-			guard let container=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer else {
-				return
-			}
-			syncAlertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { alertAction in
-				keyValueStore.set(true, forKey: "iCloudSync")
-				keyValueStore.synchronize()
-				(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer(neverSync: false)
-				keyValueStore.set(true, forKey: "hasAskedToSync")
-			}))
-			syncAlertController.addAction(UIAlertAction(title: "No", style: .default, handler: { alertAction in
-				keyValueStore.set(false, forKey: "iCloudSync")
-				keyValueStore.synchronize()
-				(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer(neverSync: false)
-				keyValueStore.set(true, forKey: "hasAskedToSync")
-			}))
-			present(syncAlertController, animated: true)
+		let userDefaults=UserDefaults.standard
+		if userDefaults.bool(forKey: "hasAskedToSync") {
+			var syncMessage="If you are signed into iCloud on your "
+			syncMessage+="device and haven’t turned it off for Contact Cards, "
+			syncMessage+="your cards created with the app should sync with iCloud.  "
+			syncMessage+="If you do not want this, you should turn iCloud off for Contact Cards "
+			#if targetEnvironment(macCatalyst)
+			syncMessage+="in the System Preferences app in System Preferences>Apple ID>iCloud>iCloud Drive Options>Contact Cards.  If you already have cards created, you can delete them from iCloud "
+			#else
+			syncMessage+="in the Settings app at Settings>Apple ID>iCloud>Contact Cards.  If you already have cards created, you can delete them from iCloud "
+			#endif
+			syncMessage+="by selecting the “Manage Data” button in Contact Cards that looks like a gear and then by following the steps described."
+			let iCloudAlertController=UIAlertController(title: "Contact Cards and iCloud", message: syncMessage, preferredStyle: .alert)
+			let alertAction=UIAlertAction(title: "Got it.", style: .default, handler: { _ in
+				userDefaults.setValue(true, forKey: "hasAskedToSync")
+			})
+			iCloudAlertController.addAction(alertAction)
+			iCloudAlertController.preferredAction=alertAction
+			present(iCloudAlertController, animated: true)
 		}
 	}
 	override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +70,6 @@ class ContactCardsTableViewController: UITableViewController {
 	}
 	//get tableview and fetched result controller up to date
 	@objc func updateContent() {
-		(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer=loadPersistentContainer(neverSync: false)
 		//make fech for all ContactCard entities
 		let contactCardFetchRequest = NSFetchRequest<ContactCardMO>(entityName: "ContactCard")
 		//sort alphabetically

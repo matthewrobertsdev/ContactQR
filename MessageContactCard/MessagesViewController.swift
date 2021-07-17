@@ -32,8 +32,6 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 			strongSelf.persistentContainer = loadPersistentContainer(neverSync: false)
 			strongSelf.prepareView()
 		}
-		NotificationCenter.default.addObserver(self, selector: #selector(updateForSyncChange), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
-		NSUbiquitousKeyValueStore.default.synchronize()
         // Do any additional setup after loading the view.
     }
 	override func viewWillAppear(_ animated: Bool) {
@@ -41,13 +39,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 	}
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?,
 							   context: UnsafeMutableRawPointer?) {
-		if let keyPath=keyPath {
-			if keyPath=="lastUpdateUUID" {
-				prepareView()
-			} else if keyPath=="syncChangedUUID" {
-				updateForSyncChange()
-			}
-		}
+		prepareView()
 	}
 	@objc func prepareView() {
 		let managedObjectContext=persistentContainer.viewContext
