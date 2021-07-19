@@ -25,4 +25,3 @@ extension ContactCardsTableViewController {
 		return keyCommands
 	}
 }
-

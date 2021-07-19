@@ -33,7 +33,6 @@ class ContactCardsTableViewController: UITableViewController {
 		notificationCenter.addObserver(self, selector: #selector(handleNewContact), name: .contactCreated, object: nil)
 		//literally deletes every card
 		notificationCenter.addObserver(self, selector: #selector(deleteAllCards), name: .deleteAllCards, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(updateContent), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
 		//updates table view on return to app
 		notificationCenter.addObserver(self, selector: #selector(updateContent), name: UIApplication.willEnterForegroundNotification, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(updateContent), name: .syncChanged, object: nil)
@@ -61,6 +60,7 @@ class ContactCardsTableViewController: UITableViewController {
 	}
 	//get tableview and fetched result controller up to date
 	@objc func updateContent() {
+		print("Update content")
 		//make fech for all ContactCard entities
 		let contactCardFetchRequest = NSFetchRequest<ContactCardMO>(entityName: "ContactCard")
 		//sort alphabetically

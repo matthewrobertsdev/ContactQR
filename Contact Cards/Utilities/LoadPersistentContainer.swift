@@ -14,8 +14,13 @@ func loadPersistentContainer() -> NSPersistentCloudKitContainer {
 		let storeURL=fileContainerURL.appendingPathComponent("ContactCards.sqlite")
 		let storeDescription=NSPersistentStoreDescription(url: storeURL)
 		storeDescription.cloudKitContainerOptions=NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.apps.celeritas.ContactCards")
+		let remoteChangeKey = NSPersistentStoreRemoteChangeNotificationPostOptionKey
+		storeDescription.setOption(true as NSNumber,
+										   forKey: remoteChangeKey)
+		//storeDescription.setOption(true as NSObject, forKey: NSPersistentHistoryTrackingKey)
 		container.persistentStoreDescriptions=[storeDescription]
 	}
+	container.viewContext.automaticallyMergesChangesFromParent=true
 	container.loadPersistentStores { (_, error) in
 		print(error.debugDescription)
 	}
