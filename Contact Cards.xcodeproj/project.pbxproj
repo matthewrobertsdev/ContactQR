@@ -58,7 +58,6 @@
 		9F3FDD0121CC376F00D2FBB2 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */; };
 		9F422691256CD5BF00F1A0FA /* CircularColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F422690256CD5BF00F1A0FA /* CircularColorView.swift */; };
 		9F440F8326829458009AAD74 /* ActiveContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA500A22A75CE90004C20F /* ActiveContactCard.swift */; };
-		9F440F8526829F7D009AAD74 /* ContactCardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F440F8426829F7D009AAD74 /* ContactCardStore.swift */; };
 		9F447AB32608E1540003B2E4 /* ContactCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB12608E1540003B2E4 /* ContactCards.xcdatamodeld */; };
 		9F447ABA2608E54A0003B2E4 /* ContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB92608E54A0003B2E4 /* ContactCardMO.swift */; };
 		9F447AC12608E7130003B2E4 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F447AC02608E7130003B2E4 /* CloudKit.framework */; };
@@ -145,12 +144,13 @@
 		9FC149A525F34B9700C700B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FC149A425F34B9700C700B0 /* Assets.xcassets */; };
 		9FC149AB25F34B9700C700B0 /* ContactCardQRCodeExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9FC1499A25F34B9600C700B0 /* ContactCardQRCodeExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9FC3B3B5268FF73F0078C6CA /* ErrorSavingAlertControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC3B3B4268FF73F0078C6CA /* ErrorSavingAlertControllers.swift */; };
+		9FC440C926A625EC00F8FE18 /* ContactCardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC440C826A625EC00F8FE18 /* ContactCardStore.swift */; };
+		9FC440CB26A6261A00F8FE18 /* CannotLoadCardsAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC440CA26A6261900F8FE18 /* CannotLoadCardsAlertController.swift */; };
 		9FCA500B22A75CE90004C20F /* ActiveContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA500A22A75CE90004C20F /* ActiveContactCard.swift */; };
 		9FEC6192256229DE004A03BE /* SaveContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEC6191256229DE004A03BE /* SaveContactCardViewController.swift */; };
 		9FED3510269F659000EFFA48 /* CardsKeyCommandsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED350F269F659000EFFA48 /* CardsKeyCommandsExtension.swift */; };
 		9FED3512269F661000EFFA48 /* CardsFetchedResultsControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED3511269F661000EFFA48 /* CardsFetchedResultsControllerExtension.swift */; };
 		9FED3514269F667300EFFA48 /* CardsTableViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED3513269F667300EFFA48 /* CardsTableViewControllerExtension.swift */; };
-		9FED3518269F780A00EFFA48 /* CannotLoadCardsAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED3517269F780A00EFFA48 /* CannotLoadCardsAlertController.swift */; };
 		9FEE377D256DBA490089337E /* ChooseColorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE377C256DBA490089337E /* ChooseColorTableViewController.swift */; };
 		9FEE3782256DBA990089337E /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3781256DBA990089337E /* ColorModel.swift */; };
 		9FEE3787256DBAA50089337E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3786256DBAA50089337E /* Color.swift */; };
@@ -301,7 +301,6 @@
 		9F3F6A6125F494820053C1DF /* SelectContactIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SelectContactIntent.entitlements; sourceTree = "<group>"; };
 		9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDataConverter.swift; sourceTree = "<group>"; };
 		9F422690256CD5BF00F1A0FA /* CircularColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularColorView.swift; sourceTree = "<group>"; };
-		9F440F8426829F7D009AAD74 /* ContactCardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContactCardStore.swift; path = ../../../../../ContactCardStore.swift; sourceTree = "<group>"; };
 		9F447AB22608E1540003B2E4 /* ContactCards.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ContactCards.xcdatamodel; sourceTree = "<group>"; };
 		9F447AB92608E54A0003B2E4 /* ContactCardMO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardMO.swift; sourceTree = "<group>"; };
 		9F447AC02608E7130003B2E4 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -372,12 +371,13 @@
 		9FC149A625F34B9700C700B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FC149AC25F34B9700C700B0 /* ContactCardQRCodeExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ContactCardQRCodeExtension.entitlements; sourceTree = "<group>"; };
 		9FC3B3B4268FF73F0078C6CA /* ErrorSavingAlertControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ErrorSavingAlertControllers.swift; path = ../../../../../../ErrorSavingAlertControllers.swift; sourceTree = "<group>"; };
+		9FC440C826A625EC00F8FE18 /* ContactCardStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCardStore.swift; sourceTree = "<group>"; };
+		9FC440CA26A6261900F8FE18 /* CannotLoadCardsAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CannotLoadCardsAlertController.swift; sourceTree = "<group>"; };
 		9FCA500A22A75CE90004C20F /* ActiveContactCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveContactCard.swift; sourceTree = "<group>"; };
 		9FEC6191256229DE004A03BE /* SaveContactCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveContactCardViewController.swift; sourceTree = "<group>"; };
 		9FED350F269F659000EFFA48 /* CardsKeyCommandsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsKeyCommandsExtension.swift; sourceTree = "<group>"; };
 		9FED3511269F661000EFFA48 /* CardsFetchedResultsControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsFetchedResultsControllerExtension.swift; sourceTree = "<group>"; };
 		9FED3513269F667300EFFA48 /* CardsTableViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsTableViewControllerExtension.swift; sourceTree = "<group>"; };
-		9FED3517269F780A00EFFA48 /* CannotLoadCardsAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CannotLoadCardsAlertController.swift; path = ../../../../../../CannotLoadCardsAlertController.swift; sourceTree = "<group>"; };
 		9FEE377C256DBA490089337E /* ChooseColorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseColorTableViewController.swift; sourceTree = "<group>"; };
 		9FEE3781256DBA990089337E /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
 		9FEE3786256DBAA50089337E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -619,10 +619,10 @@
 				9F7153E22622ABD600292539 /* ExtensionDelegate.swift */,
 				9F7153E42622ABD600292539 /* NotificationController.swift */,
 				9F7153E62622ABD600292539 /* ComplicationController.swift */,
+				9FC440C826A625EC00F8FE18 /* ContactCardStore.swift */,
 				9F7153E82622ABD700292539 /* Assets.xcassets */,
 				9F7153EA2622ABD700292539 /* Info.plist */,
 				9F7153EB2622ABD700292539 /* PushNotificationPayload.apns */,
-				9F440F8426829F7D009AAD74 /* ContactCardStore.swift */,
 			);
 			path = "ContactCardsWatch Extension";
 			sourceTree = "<group>";
@@ -748,7 +748,7 @@
 				9F75D0762653664B000EB03D /* LoadPersistentContainer.swift */,
 				9FC3B3B4268FF73F0078C6CA /* ErrorSavingAlertControllers.swift */,
 				9F744D61269F3FDD00394BD6 /* CannotEditAlertControllers.swift */,
-				9FED3517269F780A00EFFA48 /* CannotLoadCardsAlertController.swift */,
+				9FC440CA26A6261900F8FE18 /* CannotLoadCardsAlertController.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1237,7 +1237,7 @@
 				9F06D3E226500E86000239AB /* Color.swift in Sources */,
 				9F50B30326582DC200D8CD54 /* ContactCardMO.swift in Sources */,
 				9F50B309265833BF00D8CD54 /* ContactCards.xcdatamodeld in Sources */,
-				9F440F8526829F7D009AAD74 /* ContactCardStore.swift in Sources */,
+				9FC440C926A625EC00F8FE18 /* ContactCardStore.swift in Sources */,
 				9F75D07C26536D8E000EB03D /* ContactCard.swift in Sources */,
 				9F7153E72622ABD600292539 /* ComplicationController.swift in Sources */,
 				9F06D3E126500E83000239AB /* ColorChoice.swift in Sources */,
@@ -1271,6 +1271,7 @@
 				9F7F42192560F24700199193 /* SceneDelegate.swift in Sources */,
 				9F9E9AE521BA1690003A6A33 /* DisplayQRViewController.swift in Sources */,
 				9F659B4825FEA28B0035F02C /* NotificationNameExtensions.swift in Sources */,
+				9FC440CB26A6261A00F8FE18 /* CannotLoadCardsAlertController.swift in Sources */,
 				9F447ABA2608E54A0003B2E4 /* ContactCardMO.swift in Sources */,
 				9F339FF3256E9C9500F31F9F /* SaveDocumentViewController.swift in Sources */,
 				9FED3512269F661000EFFA48 /* CardsFetchedResultsControllerExtension.swift in Sources */,
@@ -1285,7 +1286,6 @@
 				9F3F6B3B25F49AAC0053C1DF /* ContactCardQRCode.intentdefinition in Sources */,
 				9FB3E46521C96F990011752F /* DisplayQRModel.swift in Sources */,
 				9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */,
-				9FED3518269F780A00EFFA48 /* CannotLoadCardsAlertController.swift in Sources */,
 				9FEE3782256DBA990089337E /* ColorModel.swift in Sources */,
 				9F4ABC7D2570CBEA000A9101 /* ToolBarDelegate.swift in Sources */,
 				9F422691256CD5BF00F1A0FA /* CircularColorView.swift in Sources */,
