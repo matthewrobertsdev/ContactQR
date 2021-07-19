@@ -10,7 +10,7 @@ import Messages
 import CoreData
 import Contacts
 class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource,
-							  UITableViewDelegate {
+							 UITableViewDelegate {
 	var userDefaults: UserDefaults?
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var noCardCreatedView: UIView!
@@ -23,7 +23,6 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 		tableView.delegate=self
 		userDefaults=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")
 		userDefaults?.addObserver(self, forKeyPath: "lastUpdateUUID", options: [.new, .initial], context: nil)
-		userDefaults?.addObserver(self, forKeyPath: "syncChangedUUID", options: [.new, .initial], context: nil)
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
 			[weak self] in
 			guard let strongSelf=self else {

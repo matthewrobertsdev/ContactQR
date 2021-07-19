@@ -8,14 +8,17 @@
 import WatchKit
 import Foundation
 import CoreData
-class CardInterfaceController: WKInterfaceController {
+class CardInterfaceController: WKInterfaceController, NSFetchedResultsControllerDelegate {
 	@IBOutlet weak var cardDeletedLabel: WKInterfaceLabel!
 	@IBOutlet weak var cardTitleLabel: WKInterfaceLabel!
 	@IBOutlet weak var cardDetailsLabel: WKInterfaceLabel!
-    override func awake(withContext context: Any?) {
-        super.awake(withContext: context)
-        // Configure interface objects here.
-    }
+	override func awake(withContext context: Any?) {
+		super.awake(withContext: context)
+		// Configure interface objects here.
+	}
+	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		updateScreen()
+	}
 	func updateContact() {
 		ContactCardStore.shared.assignActiveContact()
 	}
@@ -41,18 +44,21 @@ class CardInterfaceController: WKInterfaceController {
 			print("Unable to create contact from vCard for watch.")
 		}
 	}
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
-		NotificationCenter.default.addObserver(self, selector: #selector(updateScreen), name: .NSPersistentStoreRemoteChange, object: nil)
+	override func willActivate() {
+		// This method is called when watch view controller is about to be visible to user
+		super.willActivate()
+		updateData()
 		updateScreen()
-    }
-	@objc func updateScreen() {
+	}
+	func updateScreen() {
 		updateContact()
 		loadView()
 	}
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
-    }
+	@objc func updateData() {
+		ContactCardStore.shared.loadCards(delegate: self)
+	}
+	override func didDeactivate() {
+		// This method is called when watch view controller is no longer visible
+		super.didDeactivate()
+	}
 }

@@ -8,7 +8,7 @@
 import WatchKit
 import Foundation
 import CoreData
-class QRInterfaceController: WKInterfaceController {
+class QRInterfaceController: WKInterfaceController, NSFetchedResultsControllerDelegate {
 	var contactCardMO: ContactCardMO?
 	@IBOutlet weak var showDetailsButton: WKInterfaceButton!
 	@IBOutlet weak var contactDeletedLabel: WKInterfaceLabel!
@@ -16,6 +16,9 @@ class QRInterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         // Configure interface objects here.
     }
+	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		updateScreen()
+	}
 	func updateContact() {
 		ContactCardStore.shared.assignActiveContact()
 	}
@@ -41,12 +44,15 @@ class QRInterfaceController: WKInterfaceController {
     override func willActivate() {
 		super.willActivate()
         // This method is called when watch view controller is about to be visible to user
-		NotificationCenter.default.addObserver(self, selector: #selector(updateScreen), name: .NSPersistentStoreRemoteChange, object: nil)
+		updateData()
 		updateScreen()
     }
-	@objc func updateScreen() {
+	func updateScreen() {
 		updateContact()
 		loadView()
+	}
+	@objc func updateData() {
+		ContactCardStore.shared.loadCards(delegate: self)
 	}
     override func didDeactivate() {
 		super.didDeactivate()

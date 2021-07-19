@@ -14,22 +14,21 @@ class ChooseCardController: WKInterfaceController, NSFetchedResultsControllerDel
 	let colorModel=ColorModel()
 	override func awake(withContext context: Any?) {
 		// Configure interface objects here.
+		super.willActivate()
 	}
 	override func willActivate() {
-		super.willActivate()
-		NotificationCenter.default.addObserver(self, selector: #selector(loadTable), name: .NSPersistentStoreRemoteChange, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(loadTable), name: .contactChanged, object: nil)
-		ContactCardStore.shared.loadCards {
-			[weak self] in
-			guard let strongSelf=self else {
-				return
-			}
-			strongSelf.loadTable()
-		}
+		updateData()
+		loadTable()
 	}
 	override func didDeactivate() {
 		super.didDeactivate()
 		// This method is called when watch view controller is no longer visible
+	}
+	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		loadTable()
+	}
+	@objc func updateData() {
+		ContactCardStore.shared.loadCards(delegate: self)
 	}
 	@objc func loadTable() {
 		guard let sections = ContactCardStore.shared.fetchedResultsController?.sections else {
