@@ -7,6 +7,7 @@
 //
 import UIKit
 class ColorModel {
+	let lightString="Light"
 	#if os(watchOS)
 	let contrastingColor=UIColor.white
 	#else
@@ -30,5 +31,8 @@ class ColorModel {
 						  ColorChoice.purple.rawValue: UIColor(named: ColorChoice.purple.rawValue),
 						  ColorChoice.pink.rawValue: UIColor(named: ColorChoice.pink.rawValue),
 						  ColorChoice.brown.rawValue: UIColor(named: ColorChoice.brown.rawValue)]
+	}
+	func getLightColor(colorName: String) -> UIColor? {
+		return UIColor(named: lightString+colorName)
 	}
 }

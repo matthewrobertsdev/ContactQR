@@ -20,8 +20,13 @@
         }
       ],
       "color" : {
-        "platform" : "osx",
-        "reference" : "systemPinkColor"
+        "color-space" : "display-p3",
+        "components" : {
+          "alpha" : "1.000",
+          "blue" : "0.357",
+          "green" : "0.269",
+          "red" : "0.918"
+        }
       },
       "idiom" : "universal"
     },

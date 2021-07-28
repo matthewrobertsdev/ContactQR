@@ -33,7 +33,7 @@ struct Provider: IntentTimelineProvider {
     }
 	func createEntryFromConfiguration(configuration: ConfigurationIntent) -> SimpleEntry {
 		var qrCode: UIImage?
-		var color: UIColor?
+		var color: String?
 		var widgetMode=WidgetMode.editMessage
 		if let uuid=configuration.parameter?.identifier {
 			let container=loadPersistentContainer()
@@ -48,7 +48,7 @@ struct Provider: IntentTimelineProvider {
 						let model=DisplayQRModel()
 						let colorModel=ColorModel()
 						model.setUp(contactCard: contactCardMO)
-						color=colorModel.getColorsDictionary()[contactCardMO.color] ?? UIColor.label
+						color=contactCardMO.color
 						qrCode=model.makeQRCode()
 						print("Should have made qr code for widget")
 						widgetMode=WidgetMode.contactQRCode
@@ -62,12 +62,12 @@ struct Provider: IntentTimelineProvider {
 }
 func createPreviewEntry() -> SimpleEntry {
 	SimpleEntry(date: Date(), qrCode: ContactDataConverter.makeQRCode(string: "https://matthewrobertsdev.github.io/celeritasapps/#/"),
-						  color: UIColor.systemYellow, widgetMode: WidgetMode.placeholder)
+						  color: "Yellow", widgetMode: WidgetMode.placeholder)
 }
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let qrCode: UIImage?
-	let color: UIColor?
+	let color: String?
 	let widgetMode: WidgetMode
 }
 
@@ -78,16 +78,16 @@ struct ContactCardQRCodeEntryView: View {
     var body: some View {
 		if entry.widgetMode==WidgetMode.placeholder {
 			Image(uiImage: getTintedForeground(image: entry.qrCode ?? UIImage(),
-											   color: entry.color ?? UIColor.label)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
+											   color: UIColor(named: "Yellow") ?? UIColor.systemYellow)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
 		} else if entry.widgetMode == WidgetMode.editMessage {
 			Text("Edit widget to choose a contact card for a QR code.").padding()
-		} else if entry.widgetMode==WidgetMode.contactQRCode && entry.color==UIColor.label {
+		} else if entry.widgetMode==WidgetMode.contactQRCode && entry.color=="ContrastingColor" {
 			Image(uiImage: colorScheme == .dark ? getTintedForeground(image: entry.qrCode ?? UIImage(), color: UIColor.white):
 				getTintedForeground(image: entry.qrCode ?? UIImage(), color:
 										UIColor.black)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
 		} else if entry.widgetMode==WidgetMode.contactQRCode {
-			Image(uiImage: getTintedForeground(image: entry.qrCode ?? UIImage(),
-											   color: entry.color ?? UIColor.label)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
+			Image(uiImage:  getTintedForeground(image: entry.qrCode ?? UIImage(),
+												color: UIColor(named: colorScheme == .dark ? "Light"+(entry.color ?? "") : entry.color ?? "") ?? UIColor.label)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
 		} else {
 			Text("Error loading widget.  Sorry, it was a bug.  Please restart the device to refresh it with the system and fix it.").padding()
 		}
