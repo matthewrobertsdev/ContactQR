@@ -80,13 +80,14 @@ struct ContactCardQRCodeEntryView: View {
 											   color: UIColor(named: "Yellow") ?? UIColor.systemYellow)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
 		} else if entry.widgetMode == WidgetMode.editMessage {
 			Text("Edit widget to choose a contact card for a QR code.").padding()
-		} else if entry.widgetMode==WidgetMode.contactQRCode && entry.color=="ContrastingColor" {
+		} /*else if entry.widgetMode==WidgetMode.contactQRCode && entry.color=="Contrasting Color" {
 			Image(uiImage: colorScheme == .dark ? getTintedForeground(image: entry.qrCode ?? UIImage(), color: UIColor.white):
 				getTintedForeground(image: entry.qrCode ?? UIImage(), color:
 										UIColor.black)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
-		} else if entry.widgetMode==WidgetMode.contactQRCode {
+		} */else if entry.widgetMode==WidgetMode.contactQRCode {
 			Image(uiImage:  getTintedForeground(image: entry.qrCode ?? UIImage(),
-												color: UIColor(named: colorScheme == .dark ? "Light"+(entry.color ?? "") : "Dark"+(entry.color ?? "")) ?? UIColor.label)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
+												color: colorScheme == .dark ? UIColor(named:  "Light"+(entry.color ?? "")) ?? UIColor.white :
+													UIColor(named:  "Dark"+(entry.color ?? "")) ?? UIColor.black )).resizable().aspectRatio(contentMode: .fit).padding(7.5)
 		} else {
 			Text("Error loading widget.  Sorry, it was a bug.  Please restart the device to refresh it with the system and fix it.").padding()
 		}

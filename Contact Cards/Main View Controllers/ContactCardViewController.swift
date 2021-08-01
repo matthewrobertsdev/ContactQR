@@ -133,6 +133,8 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		titleLabel.text=activeCard.filename
 		if let color=UIColor(named: "Dark"+activeCard.color) {
 			titleLabel.textColor=color
+		} else {
+			titleLabel.textColor=UIColor(named: "ContrastingColor")
 		}
 		do {
 			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: activeCard.vCardString)

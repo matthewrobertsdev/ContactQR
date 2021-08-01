@@ -18,7 +18,7 @@ struct Color {
 			color=UIColor.label
 			#endif
 		} else {
-			color=UIColor(named: colorChoice.rawValue) ?? UIColor.white
+			color=UIColor(named: "Dark"+colorChoice.rawValue) ?? UIColor.white
 		}
 	}
 }
