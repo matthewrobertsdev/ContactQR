@@ -81,7 +81,7 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
 		print("abcd\(contactCard.description)")
 		cell.nameLabel.text=contactCard.filename
 		let colorString=contactCard.color
-		if let color=colorModel.getColorsDictionary()[colorString] as? UIColor {
+		if let color=UIColor(named: "Dark"+colorString) {
 			cell.circularColorView.backgroundColor=color
 		}
 		return cell

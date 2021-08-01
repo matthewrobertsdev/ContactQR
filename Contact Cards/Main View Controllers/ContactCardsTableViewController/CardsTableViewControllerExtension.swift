@@ -29,8 +29,10 @@ extension ContactCardsTableViewController {
 		}
 		cell.nameLabel.text=contactCard.filename
 		let colorString=contactCard.color
-		if let color=colorModel.getColorsDictionary()[colorString] as? UIColor {
+		if let color=UIColor(named: "Dark"+colorString) {
 			cell.circularColorView.backgroundColor=color
+		} else {
+			cell.circularColorView.backgroundColor=UIColor.label
 		}
 		return cell
 	}

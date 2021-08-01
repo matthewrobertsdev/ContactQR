@@ -33,8 +33,8 @@ class DisplayQRViewController: UIViewController {
 	}
 	func prepareView() {
 		model.setUp(contactCard: ActiveContactCard.shared.contactCard)
-		let color=colorModel.getColorsDictionary()[ActiveContactCard.shared.contactCard?.color ??
-												"Contasting Color"] ?? UIColor.label
+		let color=UIColor(named: ActiveContactCard.shared.contactCard?.color ??
+												"ContastingColor") ?? UIColor.label
 		print(ActiveContactCard.shared.contactCard?.color ?? "default")
 		if let qrCode=model.makeQRCode() {
 			qrImageView.image=getTintedForeground(image: qrCode, color: UIColor.label).withRenderingMode(.alwaysTemplate)

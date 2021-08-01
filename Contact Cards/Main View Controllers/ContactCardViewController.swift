@@ -131,7 +131,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		contactInfoTextView.isHidden=false
 		noCardSelectedLabel.isHidden=true
 		titleLabel.text=activeCard.filename
-		if let color=colorModel.getColorsDictionary()[activeCard.color] as? UIColor {
+		if let color=UIColor(named: "Dark"+activeCard.color) {
 			titleLabel.textColor=color
 		}
 		do {

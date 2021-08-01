@@ -46,7 +46,6 @@ struct Provider: IntentTimelineProvider {
 						return uuid==contactCardMO.objectID.uriRepresentation().absoluteString
 					}) {
 						let model=DisplayQRModel()
-						let colorModel=ColorModel()
 						model.setUp(contactCard: contactCardMO)
 						color=contactCardMO.color
 						qrCode=model.makeQRCode()
@@ -87,7 +86,7 @@ struct ContactCardQRCodeEntryView: View {
 										UIColor.black)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
 		} else if entry.widgetMode==WidgetMode.contactQRCode {
 			Image(uiImage:  getTintedForeground(image: entry.qrCode ?? UIImage(),
-												color: UIColor(named: colorScheme == .dark ? "Light"+(entry.color ?? "") : entry.color ?? "") ?? UIColor.label)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
+												color: UIColor(named: colorScheme == .dark ? "Light"+(entry.color ?? "") : "Dark"+(entry.color ?? "")) ?? UIColor.label)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
 		} else {
 			Text("Error loading widget.  Sorry, it was a bug.  Please restart the device to refresh it with the system and fix it.").padding()
 		}
