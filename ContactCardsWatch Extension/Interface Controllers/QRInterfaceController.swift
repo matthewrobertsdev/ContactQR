@@ -37,8 +37,7 @@ class QRInterfaceController: WKInterfaceController, NSFetchedResultsControllerDe
 			return
 		}
 		image.setImage(UIImage(data: imageData)?.withRenderingMode(.alwaysTemplate))
-		let colorModel=ColorModel()
-		let color=colorModel.getColorsDictionary()[contactCardMO?.color ?? "Contrasting Color"] ?? UIColor.white
+		let color=UIColor(named: contactCardMO?.color ?? "") ?? UIColor.white
 		image.setTintColor(color)
 	}
     override func willActivate() {

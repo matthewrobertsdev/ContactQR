@@ -112,7 +112,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 		if let contactCard = try persistentContainer.viewContext.existingObject(with: contactCards[indexPath.row].objectID) as? ContactCardMO {
 		cell.nameLabel.text=contactCard.filename
 		let colorString=contactCard.color
-			if let color=colorModel.getColorsDictionary()[colorString] as? UIColor {
+			if let color=UIColor(named: "Dark"+colorString) {
 			cell.circularColorView.backgroundColor=color
 		}
 		}

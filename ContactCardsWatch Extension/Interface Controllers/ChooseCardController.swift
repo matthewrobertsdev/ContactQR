@@ -50,7 +50,7 @@ class ChooseCardController: WKInterfaceController, NSFetchedResultsControllerDel
 				continue
 			}
 			let contactCardMO=ContactCardStore.shared.fetchedResultsController?.object(at: IndexPath(row: index, section: 0))
-			row.titleLabel.setTextColor(colorModel.getColorsDictionary()[contactCardMO?.color ?? "Contrasting Color"] ?? UIColor.black)
+			row.titleLabel.setTextColor(UIColor(named: "Dark"+(contactCardMO?.color ?? "")) ?? UIColor.white)
 			row.titleLabel.setText(contactCardMO?.filename)
 		}
 	}
