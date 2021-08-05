@@ -21,6 +21,7 @@ func loadPersistentContainer() -> NSPersistentCloudKitContainer {
 		container.persistentStoreDescriptions=[storeDescription]
 	}
 	container.viewContext.automaticallyMergesChangesFromParent=true
+	container.viewContext.mergePolicy=NSMergeByPropertyObjectTrumpMergePolicy
 	container.loadPersistentStores { (_, error) in
 		print(error.debugDescription)
 	}

@@ -193,7 +193,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 															comment: "Cancel Delete"), style: .default)
 		deleteAlert.addAction(cancelAction)
 		deleteAlert.addAction(UIAlertAction(title: NSLocalizedString("Delete",
-																	 comment: "Delete ACtion"), style: .destructive, handler: { [weak self] _ in
+																	 comment: "Delete Action"), style: .destructive, handler: { [weak self] _ in
 																		guard let strongSelf=self else {
 																			return
 																		}
