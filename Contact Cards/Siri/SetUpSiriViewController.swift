@@ -51,7 +51,7 @@ class SetUpSiriViewController: UIViewController {
 		if UserDefaults(suiteName: appGroupKey)?.object(forKey: SiriCardKeys.chosenCardObjectID.rawValue) as? String != nil {
 			noCardChosenLabel.text="Chosen Card:"
 			if let colorString=UserDefaults(suiteName: appGroupKey)?.object(forKey: SiriCardKeys.chosenCardColor.rawValue) as? String {
-			let color=(colorModel.getColorsDictionary()[colorString] ?? UIColor.label) ?? UIColor.label
+				let color=UIColor(named: "Dark"+colorString) ?? UIColor.label
 				cardColorCircle.isHidden=false
 				cardColorCircle.backgroundColor=color
 			}

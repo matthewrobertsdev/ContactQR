@@ -37,7 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 				return }
 			SceneDelegate.toolbar = NSToolbar(identifier: "main")
 			SceneDelegate.toolbar?.delegate = toolbarDelegate
-			SceneDelegate.toolbar?.displayMode = .iconOnly
+		SceneDelegate.toolbar?.displayMode = .iconOnly
 			SceneDelegate.enableValidToolbarItems()
 			windowScene.title="Contact Cards"
 		if let titlebar = windowScene.titlebar {

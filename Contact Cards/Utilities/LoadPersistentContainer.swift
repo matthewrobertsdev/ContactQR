@@ -17,11 +17,12 @@ func loadPersistentContainer() -> NSPersistentCloudKitContainer {
 		let remoteChangeKey = NSPersistentStoreRemoteChangeNotificationPostOptionKey
 		storeDescription.setOption(true as NSNumber,
 										   forKey: remoteChangeKey)
-		//storeDescription.setOption(true as NSObject, forKey: NSPersistentHistoryTrackingKey)
+		storeDescription.setOption(true as NSObject, forKey: NSPersistentHistoryTrackingKey)
 		container.persistentStoreDescriptions=[storeDescription]
 	}
 	container.viewContext.automaticallyMergesChangesFromParent=true
 	container.viewContext.mergePolicy=NSMergeByPropertyObjectTrumpMergePolicy
+	try? container.viewContext.setQueryGenerationFrom(.current)
 	container.loadPersistentStores { (_, error) in
 		print(error.debugDescription)
 	}

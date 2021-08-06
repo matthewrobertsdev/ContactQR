@@ -20,8 +20,9 @@ extension ContactCardsTableViewController: NSFetchedResultsControllerDelegate {
 		self.tableView.endUpdates()
 		do {
 			try (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext.save()
+			print("abcd Successfully saved iCloud changes")
 		} catch {
-			print("Error saving iCloud changes")
+			print("abcd Error saving iCloud changes")
 		}
 		if let fetchedResultsController=fetchedResultsController {
 			updateCards(fetchedResultsController: fetchedResultsController)

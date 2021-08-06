@@ -11,6 +11,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 	func applicationDidFinishLaunching(_ application: UIApplication) {
+		application.registerForRemoteNotifications()
 	}
     func application(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true
