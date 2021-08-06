@@ -8,6 +8,7 @@
 import WatchKit
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidFinishLaunching() {
+		WKExtension.shared().registerForRemoteNotifications()
         // Perform any final initialization of your application.
     }
     func applicationDidBecomeActive() {
