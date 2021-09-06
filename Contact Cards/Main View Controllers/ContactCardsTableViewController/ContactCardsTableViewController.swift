@@ -36,17 +36,7 @@ class ContactCardsTableViewController: UITableViewController {
 		//updates table view on return to app
 		notificationCenter.addObserver(self, selector: #selector(updateContent), name: UIApplication.willEnterForegroundNotification, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(updateContent), name: .syncChanged, object: nil)
-		let userDefaults=UserDefaults.standard
-		if !userDefaults.bool(forKey: "hasAskedToSync") {
-			let syncMessage=iCloudExplanationString()+"by selecting the “Manage Data” button in Contact Cards that looks like a gear and then by following the steps described."
-			let iCloudAlertController=UIAlertController(title: "Contact Cards and iCloud", message: syncMessage, preferredStyle: .alert)
-			let alertAction=UIAlertAction(title: "Got it.", style: .default, handler: { _ in
-				userDefaults.setValue(true, forKey: "hasAskedToSync")
-			})
-			iCloudAlertController.addAction(alertAction)
-			iCloudAlertController.preferredAction=alertAction
-			present(iCloudAlertController, animated: true)
-		}
+		tableView.dragDelegate=self
 	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)

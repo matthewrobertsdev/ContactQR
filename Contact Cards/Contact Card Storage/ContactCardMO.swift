@@ -11,7 +11,14 @@ import CoreData
 
 import Contacts
 
-class ContactCardMO: NSManagedObject {
+class ContactCardMO: NSManagedObject, NSItemProviderWriting {
+	static var writableTypeIdentifiersForItemProvider=["public.vcard"]
+	
+	func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress? {
+		completionHandler(vCardString.data(using: .unicode), nil)
+		return nil
+	}
+	
 	@NSManaged public var qrCodeImage: Data?
 	@NSManaged public var filename: String
 	@NSManaged public var vCardString: String

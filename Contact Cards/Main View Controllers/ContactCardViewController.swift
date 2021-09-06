@@ -94,7 +94,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
 				return
 			}
-		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard, directoryURL: directoryURL) else {
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard, directoryURL: directoryURL, useCardName:  false) else {
 			return
 		}
 			let activityViewController = UIActivityViewController(
@@ -150,7 +150,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
 				return
 			}
-		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard, directoryURL: directoryURL) else {
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard, directoryURL: directoryURL, useCardName: false) else {
 			itemProvidersForActivityItemsConfiguration=[NSItemProvider]()
 			contactInfoTextView.attributedText=ContactInfoManipulator.getBadVCardAttributedString(fontSize: CGFloat(18))
 			return
@@ -219,7 +219,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
 				return
 			}
-		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard, directoryURL: directoryURL) else {
+		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: contactCard, directoryURL: directoryURL, useCardName: true) else {
 			print("Couldn't write temporary vCard file")
 			return
 		}
@@ -377,7 +377,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		directoryURL.appendPathComponent("vCardToCopy")
 		do {
 		try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
-		guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard, directoryURL: directoryURL) else {
+			guard let fileURL=ContactDataConverter.writeTemporaryFile(contactCard: activeCard, directoryURL: directoryURL, useCardName: false) else {
 			return
 		}
 			guard let itemProvider=NSItemProvider(contentsOf: fileURL) else {

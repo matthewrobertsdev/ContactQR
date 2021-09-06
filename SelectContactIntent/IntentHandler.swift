@@ -16,6 +16,7 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 	}
 	func provideParameterOptionsCollection(for intent: ConfigurationIntent, with completion: @escaping
 											(INObjectCollection<ContactCardINObject>?, Error?) -> Void) {
+		print("Should load choices")
 		let container=loadPersistentContainer()
 		let managedObjectContext=container.viewContext
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
@@ -29,6 +30,7 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 				return ContactCardINObject(identifier: contactCard.objectID.uriRepresentation().absoluteString, display: contactCard.filename)
 			})
 			let collection = INObjectCollection(items: contactCardINObjects)
+			print("Should have gotten choices")
 			completion(collection, nil)
 		} catch {
 			print("Unable to fetch contact cards")

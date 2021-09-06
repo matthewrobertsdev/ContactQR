@@ -71,3 +71,15 @@ extension ContactCardsTableViewController {
 		}
 	}
 }
+extension ContactCardsTableViewController: UITableViewDragDelegate {
+	func tableView(_ tableView: UITableView,
+	itemsForBeginning session: UIDragSession,
+	at indexPath: IndexPath) -> [UIDragItem] {
+		guard let contactCard = fetchedResultsController?.object(at: indexPath) else {
+			return [UIDragItem]()
+		}
+		let itemProvider=NSItemProvider(object: contactCard)
+		itemProvider.suggestedName=contactCard.filename
+		return [UIDragItem(itemProvider: itemProvider)]
+	}
+}

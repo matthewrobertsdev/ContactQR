@@ -67,7 +67,7 @@ class ContactDataConverter {
             return nil
         }
     }
-	static func writeTemporaryFile(contactCard: ContactCardMO, directoryURL: URL) -> URL? {
+	static func writeTemporaryFile(contactCard: ContactCardMO, directoryURL: URL, useCardName: Bool) -> URL? {
 		var filename="Contact"
 		var contact=CNContact()
 		do {
@@ -80,6 +80,9 @@ class ContactDataConverter {
 		}
 		if let name=CNContactFormatter().string(from: contact) {
 			filename=name
+		}
+		if useCardName {
+			filename=contactCard.filename
 		}
 		let fileURL = directoryURL.appendingPathComponent(filename)
 			.appendingPathExtension("vcf")
