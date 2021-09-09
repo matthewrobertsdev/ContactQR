@@ -31,140 +31,166 @@ class ContactCardsTests: XCTestCase {
 		let returnedContact=createContactViewController.getContactFromFields()
 		XCTAssert(returnedContact.givenName=="")
     }
-	func createFullContact() -> CNContact {
-		let fullContact=CNMutableContact()
-		fullContact.givenName="John"
-		fullContact.familyName="Doe"
-		fullContact.namePrefix="Jr"
-		fullContact.nameSuffix="II"
-		fullContact.nickname="Johnny"
-		fullContact.organizationName="Celeritas Apps"
-		fullContact.jobTitle="Developer"
-		fullContact.departmentName="R&D"
+	func testNames() {
+		let contact=CNMutableContact()
+		contact.givenName="John"
+		contact.familyName="Doe"
+		contact.namePrefix="Jr"
+		contact.nameSuffix="II"
+		contact.nickname="Johnny"
+		createContactViewController.fillWithContact(contact: contact)
+		let returnedContact=createContactViewController.getContactFromFields()
+		XCTAssert(returnedContact.givenName==contact.givenName)
+		XCTAssert(returnedContact.familyName==contact.familyName)
+		XCTAssert(returnedContact.namePrefix==contact.namePrefix)
+		XCTAssert(returnedContact.nameSuffix==contact.nameSuffix)
+		XCTAssert(returnedContact.nickname==contact.nickname)
+	}
+	func testCompany() {
+		let contact=CNMutableContact()
+		contact.organizationName="Celeritas Apps"
+		contact.jobTitle="Developer"
+		contact.departmentName="R&D"
+		createContactViewController.fillWithContact(contact: contact)
+		let returnedContact=createContactViewController.getContactFromFields()
+		XCTAssert(returnedContact.organizationName==contact.organizationName)
+		XCTAssert(returnedContact.jobTitle==contact.jobTitle)
+		XCTAssert(returnedContact.departmentName==contact.departmentName)
+	}
+	func testPhoneNumbers() {
+		let contact=CNMutableContact()
 		let mobilePhone="123-456-7890"
-		fullContact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelPhoneNumberMobile, value: CNPhoneNumber(stringValue: mobilePhone)))
+		contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelPhoneNumberMobile, value: CNPhoneNumber(stringValue: mobilePhone)))
 		let workPhone1="098-765-4321"
-		fullContact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelWork, value: CNPhoneNumber(stringValue: workPhone1)))
+		contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelWork, value: CNPhoneNumber(stringValue: workPhone1)))
 		let workPhone2="444-444-4444"
-		fullContact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelWork, value: CNPhoneNumber(stringValue: workPhone2)))
+		contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelWork, value: CNPhoneNumber(stringValue: workPhone2)))
 		let homePhone="111-111-1111"
-		fullContact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelHome, value: CNPhoneNumber(stringValue: homePhone)))
+		contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelHome, value: CNPhoneNumber(stringValue: homePhone)))
 		let otherPhone="777-777-7777"
-		fullContact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelOther, value: CNPhoneNumber(stringValue: otherPhone)))
+		contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelOther, value: CNPhoneNumber(stringValue: otherPhone)))
+		createContactViewController.fillWithContact(contact: contact)
+		let returnedContact=createContactViewController.getContactFromFields()
+		let firstPhoneData=returnedContact.phoneNumbers[0]
+		XCTAssert(firstPhoneData.label==CNLabelPhoneNumberMobile)
+		XCTAssert(firstPhoneData.value.stringValue==contact.phoneNumbers[0].value.stringValue)
+		let secondPhoneData=returnedContact.phoneNumbers[1]
+		XCTAssert(secondPhoneData.label==CNLabelWork)
+		XCTAssert(secondPhoneData.value.stringValue==contact.phoneNumbers[1].value.stringValue)
+		let thirdPhoneData=returnedContact.phoneNumbers[2]
+		XCTAssert(thirdPhoneData.label==CNLabelWork)
+		XCTAssert(thirdPhoneData.value.stringValue==contact.phoneNumbers[2].value.stringValue)
+		let fourthPhoneData=returnedContact.phoneNumbers[3]
+		XCTAssert(fourthPhoneData.label==CNLabelHome)
+		XCTAssert(fourthPhoneData.value.stringValue==contact.phoneNumbers[3].value.stringValue)
+		let fifthPhoneData=returnedContact.phoneNumbers[4]
+		XCTAssert(fifthPhoneData.label==CNLabelOther)
+		XCTAssert(fifthPhoneData.value.stringValue==contact.phoneNumbers[4].value.stringValue)
+	}
+	func testEmails() {
+		let contact=CNMutableContact()
 		let homeEmail="home@gmail.com"
-		fullContact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelHome, value: homeEmail as NSString))
+		contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelHome, value: homeEmail as NSString))
 		let workEmail1="work1@gmail.com"
-		fullContact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: workEmail1 as NSString))
+		contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: workEmail1 as NSString))
 		let workEmail2="work2@gmail.com"
-		fullContact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: workEmail2 as NSString))
+		contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: workEmail2 as NSString))
 		let otherEmail="other@gmail.com"
-		fullContact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelOther, value: otherEmail as NSString))
+		contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelOther, value: otherEmail as NSString))
+		createContactViewController.fillWithContact(contact: contact)
+		let returnedContact=createContactViewController.getContactFromFields()
+		let firstEmail=returnedContact.emailAddresses[0]
+		XCTAssert(firstEmail.label==CNLabelHome)
+		XCTAssert(firstEmail.value==contact.emailAddresses[0].value as NSString)
+		let secondEmail=returnedContact.emailAddresses[1]
+		XCTAssert(secondEmail.label==CNLabelWork)
+		XCTAssert(secondEmail.value==contact.emailAddresses[1].value as NSString)
+		let thirdEmail=returnedContact.emailAddresses[2]
+		XCTAssert(thirdEmail.label==CNLabelWork)
+		XCTAssert(thirdEmail.value==contact.emailAddresses[2].value as NSString)
+		let fourthEmail=returnedContact.emailAddresses[3]
+		XCTAssert(fourthEmail.label==CNLabelOther)
+		XCTAssert(fourthEmail.value==contact.emailAddresses[3].value as NSString)
+	}
+	func testSocialProfiles() {
+		let contact=CNMutableContact()
 		let twitterUsername="contactcardsontwitter"
-		fullContact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: nil, username:
+		contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: nil, username:
 																												twitterUsername, userIdentifier: nil, service: CNSocialProfileServiceTwitter)))
 		let linkedInURL="http://contactcardslinkedinurl"
-		fullContact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: linkedInURL, username:
+		contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: linkedInURL, username:
 																												nil, userIdentifier: nil, service: CNSocialProfileServiceLinkedIn)))
 		let facebookURL="http://contactcardsfacebookURL"
-		fullContact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: facebookURL, username:
+		contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: facebookURL, username:
 																												nil, userIdentifier: nil, service: CNSocialProfileServiceFacebook)))
-		fullContact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelHome, value: "http://home.com"))
-		fullContact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: "http://work1.com"))
-		fullContact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: "http://work2.com"))
-		fullContact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelOther, value: "http://other1.com"))
-		fullContact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelOther, value: "http://other2.com"))
+		createContactViewController.fillWithContact(contact: contact)
+		let returnedContact=createContactViewController.getContactFromFields()
+		let firstSocialProfile=returnedContact.socialProfiles[0]
+		XCTAssert(firstSocialProfile.value.service.lowercased()==CNSocialProfileServiceTwitter.lowercased())
+		XCTAssert(firstSocialProfile.value.username==contact.socialProfiles[0].value.username)
+		let secondSocialProfile=returnedContact.socialProfiles[1]
+		XCTAssert(secondSocialProfile.value.service.lowercased()==CNSocialProfileServiceLinkedIn.lowercased())
+		XCTAssert(secondSocialProfile.value.urlString==contact.socialProfiles[1].value.urlString)
+		let thirdSocialProfile=returnedContact.socialProfiles[2]
+		XCTAssert(thirdSocialProfile.value.service.lowercased()==CNSocialProfileServiceFacebook.lowercased())
+		XCTAssert(thirdSocialProfile.value.urlString==contact.socialProfiles[2].value.urlString)
+	}
+	func testURLs() {
+		let contact=CNMutableContact()
+		contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelHome, value: "http://home.com"))
+		contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: "http://work1.com"))
+		contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelWork, value: "http://work2.com"))
+		contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelOther, value: "http://other1.com"))
+		contact.urlAddresses.append(CNLabeledValue<NSString>(label: CNLabelOther, value: "http://other2.com"))
+		createContactViewController.fillWithContact(contact: contact)
+		let returnedContact=createContactViewController.getContactFromFields()
+		let firstURL=returnedContact.urlAddresses[0]
+		XCTAssert(firstURL.label==CNLabelHome)
+		XCTAssert(firstURL.value==contact.urlAddresses[0].value)
+		let secondURL=returnedContact.urlAddresses[1]
+		XCTAssert(secondURL.label==CNLabelWork)
+		XCTAssert(secondURL.value==contact.urlAddresses[1].value)
+		let thirdURL=returnedContact.urlAddresses[2]
+		XCTAssert(thirdURL.label==CNLabelWork)
+		XCTAssert(thirdURL.value==contact.urlAddresses[2].value)
+		let fourthURL=returnedContact.urlAddresses[3]
+		XCTAssert(fourthURL.label==CNLabelOther)
+		XCTAssert(fourthURL.value==contact.urlAddresses[3].value)
+		let fifthURL=returnedContact.urlAddresses[4]
+		XCTAssert(fifthURL.label==CNLabelOther)
+		XCTAssert(fifthURL.value==contact.urlAddresses[4].value)
+	}
+	func testAddresses() {
+		let contact=CNMutableContact()
 		let homeAddress=CNMutablePostalAddress()
 		homeAddress.street="123 Dalton"
 		homeAddress.city="Atlanta"
 		homeAddress.state="GA"
 		homeAddress.postalCode="99999"
-		fullContact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelHome, value: homeAddress))
+		contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelHome, value: homeAddress))
 		let workAddress=CNMutablePostalAddress()
 		workAddress.street="77 Berkshire"
 		workAddress.city="San Antonio"
 		workAddress.state="TX"
 		workAddress.postalCode="44444"
-		fullContact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelWork, value: workAddress))
+		contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelWork, value: workAddress))
 		let otherAddress=CNMutablePostalAddress()
 		otherAddress.street="25 Robinson"
 		otherAddress.city="Santa Barbara"
 		otherAddress.state="CA"
 		otherAddress.postalCode="11111"
-		fullContact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelOther, value: otherAddress))
-		return fullContact
-	}
-	func testFullContact() {
-		let fullContact=createFullContact()
-		createContactViewController.fillWithContact(contact: fullContact)
+		contact.postalAddresses.append(CNLabeledValue<CNPostalAddress>(label: CNLabelOther, value: otherAddress))
+		createContactViewController.fillWithContact(contact: contact)
 		let returnedContact=createContactViewController.getContactFromFields()
-		XCTAssert(returnedContact.givenName==fullContact.givenName)
-		XCTAssert(returnedContact.familyName==fullContact.familyName)
-		XCTAssert(returnedContact.namePrefix==fullContact.namePrefix)
-		XCTAssert(returnedContact.nameSuffix==fullContact.nameSuffix)
-		XCTAssert(returnedContact.nickname==fullContact.nickname)
-		XCTAssert(returnedContact.organizationName==fullContact.organizationName)
-		XCTAssert(returnedContact.jobTitle==fullContact.jobTitle)
-		XCTAssert(returnedContact.departmentName==fullContact.departmentName)
-		let firstPhoneData=returnedContact.phoneNumbers[0]
-		XCTAssert(firstPhoneData.label==CNLabelPhoneNumberMobile)
-		XCTAssert(firstPhoneData.value.stringValue==fullContact.phoneNumbers[0].value.stringValue)
-		let secondPhoneData=returnedContact.phoneNumbers[1]
-		XCTAssert(secondPhoneData.label==CNLabelWork)
-		XCTAssert(secondPhoneData.value.stringValue==fullContact.phoneNumbers[1].value.stringValue)
-		let thirdPhoneData=returnedContact.phoneNumbers[2]
-		XCTAssert(thirdPhoneData.label==CNLabelWork)
-		XCTAssert(thirdPhoneData.value.stringValue==fullContact.phoneNumbers[2].value.stringValue)
-		let fourthPhoneData=returnedContact.phoneNumbers[3]
-		XCTAssert(fourthPhoneData.label==CNLabelHome)
-		XCTAssert(fourthPhoneData.value.stringValue==fullContact.phoneNumbers[3].value.stringValue)
-		let fifthPhoneData=returnedContact.phoneNumbers[4]
-		XCTAssert(fifthPhoneData.label==CNLabelOther)
-		XCTAssert(fifthPhoneData.value.stringValue==fullContact.phoneNumbers[4].value.stringValue)
-		let firstEmail=returnedContact.emailAddresses[0]
-		XCTAssert(firstEmail.label==CNLabelHome)
-		XCTAssert(firstEmail.value==fullContact.emailAddresses[0].value as NSString)
-		let secondEmail=returnedContact.emailAddresses[1]
-		XCTAssert(secondEmail.label==CNLabelWork)
-		XCTAssert(secondEmail.value==fullContact.emailAddresses[1].value as NSString)
-		let thirdEmail=returnedContact.emailAddresses[2]
-		XCTAssert(thirdEmail.label==CNLabelWork)
-		XCTAssert(thirdEmail.value==fullContact.emailAddresses[2].value as NSString)
-		let fourthEmail=returnedContact.emailAddresses[3]
-		XCTAssert(fourthEmail.label==CNLabelOther)
-		XCTAssert(fourthEmail.value==fullContact.emailAddresses[3].value as NSString)
-		let firstSocialProfile=returnedContact.socialProfiles[0]
-		XCTAssert(firstSocialProfile.value.service.lowercased()==CNSocialProfileServiceTwitter.lowercased())
-		XCTAssert(firstSocialProfile.value.username==fullContact.socialProfiles[0].value.username)
-		let secondSocialProfile=returnedContact.socialProfiles[1]
-		XCTAssert(secondSocialProfile.value.service.lowercased()==CNSocialProfileServiceLinkedIn.lowercased())
-		XCTAssert(secondSocialProfile.value.urlString==fullContact.socialProfiles[1].value.urlString)
-		let thirdSocialProfile=returnedContact.socialProfiles[2]
-		XCTAssert(thirdSocialProfile.value.service.lowercased()==CNSocialProfileServiceFacebook.lowercased())
-		XCTAssert(thirdSocialProfile.value.urlString==fullContact.socialProfiles[2].value.urlString)
-		let firstURL=returnedContact.urlAddresses[0]
-		XCTAssert(firstURL.label==CNLabelHome)
-		XCTAssert(firstURL.value==fullContact.urlAddresses[0].value)
-		let secondURL=returnedContact.urlAddresses[1]
-		XCTAssert(secondURL.label==CNLabelWork)
-		XCTAssert(secondURL.value==fullContact.urlAddresses[1].value)
-		let thirdURL=returnedContact.urlAddresses[2]
-		XCTAssert(thirdURL.label==CNLabelWork)
-		XCTAssert(thirdURL.value==fullContact.urlAddresses[2].value)
-		let fourthURL=returnedContact.urlAddresses[3]
-		XCTAssert(fourthURL.label==CNLabelOther)
-		XCTAssert(fourthURL.value==fullContact.urlAddresses[3].value)
-		let fifthURL=returnedContact.urlAddresses[4]
-		XCTAssert(fifthURL.label==CNLabelOther)
-		XCTAssert(fifthURL.value==fullContact.urlAddresses[4].value)
 		let firstAddress=returnedContact.postalAddresses[0]
 		XCTAssert(firstAddress.label==CNLabelHome)
-		XCTAssert(firstAddress.value==fullContact.postalAddresses[0].value)
+		XCTAssert(firstAddress.value==contact.postalAddresses[0].value)
 		let secondAddress=returnedContact.postalAddresses[1]
 		XCTAssert(secondAddress.label==CNLabelWork)
-		XCTAssert(secondAddress.value==fullContact.postalAddresses[1].value)
+		XCTAssert(secondAddress.value==contact.postalAddresses[1].value)
 		let thirdAddress=returnedContact.postalAddresses[2]
 		XCTAssert(thirdAddress.label==CNLabelOther)
-		XCTAssert(thirdAddress.value==fullContact.postalAddresses[2].value)
+		XCTAssert(thirdAddress.value==contact.postalAddresses[2].value)
 	}
 	func testCreateShareableFile() {
 		let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
@@ -178,7 +204,7 @@ class ContactCardsTests: XCTestCase {
 			return
 		}
 		let contactCardRecord=ContactCardMO(entity: card, insertInto: context)
-		setFields(contactCardMO: contactCardRecord, filename: "Test Card", cnContact: createFullContact(), color: ColorChoice.red.rawValue)
+		setFields(contactCardMO: contactCardRecord, filename: "Test Card", cnContact: CNContact(), color: ColorChoice.red.rawValue)
 		ActiveContactCard.shared.contactCard=contactCardRecord
 		contactCardViewController.loadContact()
 		XCTAssert(contactCardViewController.itemProvidersForActivityItemsConfiguration.count==1)

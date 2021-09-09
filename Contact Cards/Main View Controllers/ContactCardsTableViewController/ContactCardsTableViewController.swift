@@ -71,6 +71,13 @@ class ContactCardsTableViewController: UITableViewController {
 		}
 		tableView.reloadData()
 		handleSelection()
+		if let section=fetchedResultsController?.sections?.first {
+			print("Test to display add a card alert controller")
+			if section.numberOfObjects==0 {
+				print("Should display add a card alert controller")
+				displayAddACardAlertController()
+			}
+		}
 	}
 	func handleSelection() {
 		if let selectedContactCard=ActiveContactCard.shared.contactCard {
@@ -227,5 +234,18 @@ class ContactCardsTableViewController: UITableViewController {
 		} catch {
 			// Error Handling
 		}
+	}
+	func displayAddACardAlertController() {
+		var addACardMessage=""
+		#if targetEnvironment(macCatalyst)
+		addACardMessage="To create a contact card, click the plus button in the toolbar or open the File menu and click \"New Contact Card\""
+		#else
+		addACardMessage="To create a contact card, tap the plus button."
+		#endif
+		let addACardAlertController=UIAlertController(title: "Create a Card", message: addACardMessage, preferredStyle: .alert)
+		let gotItAction=UIAlertAction(title: "Got it.", style: .default)
+		addACardAlertController.addAction(gotItAction)
+		addACardAlertController.preferredAction=gotItAction
+		splitViewController?.present(addACardAlertController, animated: true)
 	}
 }
