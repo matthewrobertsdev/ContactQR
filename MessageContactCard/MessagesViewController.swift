@@ -129,7 +129,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDataSource
 			guard let directoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
 					return
 				}
-			guard let url=ContactDataConverter.writeTemporaryFile(contactCard: contactCard, directoryURL: directoryURL) else {
+			guard let url=ContactDataConverter.writeTemporaryFile(contactCard: contactCard, directoryURL: directoryURL, useCardName: false) else {
 				return
 			}
 			self.activeConversation?.insertAttachment(url, withAlternateFilename: nil)

@@ -167,15 +167,29 @@ class ContactCardsTests: XCTestCase {
 		XCTAssert(thirdAddress.value==fullContact.postalAddresses[2].value)
 	}
 	func testCreateShareableFile() {
-		ActiveContactCard.shared.contactCard?.vCardString=ContactDataConverter.cnContactToVCardString(cnContact: createFullContact())
+		let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+		guard let context=managedObjectContext else {
+			XCTAssert(false)
+			return
+		}
+		let contactCard=NSEntityDescription.entity(forEntityName: ContactCardMO.entityName, in: context)
+		guard let card=contactCard else {
+			XCTAssert(false)
+			return
+		}
+		let contactCardRecord=ContactCardMO(entity: card, insertInto: context)
+		setFields(contactCardMO: contactCardRecord, filename: "Test Card", cnContact: createFullContact(), color: ColorChoice.red.rawValue)
+		ActiveContactCard.shared.contactCard=contactCardRecord
 		contactCardViewController.loadContact()
 		XCTAssert(contactCardViewController.itemProvidersForActivityItemsConfiguration.count==1)
+		managedObjectContext?.delete(contactCardRecord)
 	}
+	/*
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
         }
     }
-
+*/
 }
