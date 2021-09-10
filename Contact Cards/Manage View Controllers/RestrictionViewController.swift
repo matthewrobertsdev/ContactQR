@@ -24,7 +24,7 @@ class RestrictionViewController: UIViewController, UITextFieldDelegate {
     }
 	@IBAction func tryToRestrict(_ sender: Any) {
 		if restrictTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()=="restrict" {
-			restrictICloud()
+			restrictOrUnrestrictICloud(restrict: true)
 		} else {
 			let unconfirmedMessage="You have not confirmed that you want to restrict access to iCloud for Contact Cards by typing \"restrict\"."
 			let unconfirmedAlertController=UIAlertController(title: "Not Confirmed", message: unconfirmedMessage, preferredStyle: .alert)
@@ -36,7 +36,21 @@ class RestrictionViewController: UIViewController, UITextFieldDelegate {
 			present(unconfirmedAlertController, animated: true)
 		}
 	}
-	func restrictICloud() {
+	@IBAction func tryToUnrestrict(_ sender: Any) {
+		if unrestrictTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()=="un-restrict" {
+			restrictOrUnrestrictICloud(restrict: false)
+		} else {
+			let unconfirmedMessage="You have not confirmed that you want to un-restrict access to iCloud for Contact Cards by typing \"un-restrict\"."
+			let unconfirmedAlertController=UIAlertController(title: "Not Confirmed", message: unconfirmedMessage, preferredStyle: .alert)
+			let gotItAction=UIAlertAction(title: "Got it.", style: .default, handler: { _ in
+				unconfirmedAlertController.dismiss(animated: true)
+			})
+			unconfirmedAlertController.addAction(gotItAction)
+			unconfirmedAlertController.preferredAction=gotItAction
+			present(unconfirmedAlertController, animated: true)
+		}
+	}
+	func restrictOrUnrestrictICloud(restrict: Bool) {
 		let container=CKContainer(identifier: "iCloud.com.apps.celeritas.ContactCards")
 		let apiToken="5065dbfcc540600ae42664510115173f5d7a048169cf55f27d948246adba737a"
 			let fetchAuthorization = CKFetchWebAuthTokenOperation(apiToken: apiToken)
@@ -48,12 +62,18 @@ class RestrictionViewController: UIViewController, UITextFieldDelegate {
 					print("No web token")
 					return
 				}
-				strongSelf.restrict(container: container, apiToken: apiToken, webToken: webToken) { error in
+				strongSelf.restrict(container: container, apiToken: apiToken, webToken: webToken, restrict: restrict) { error in
 					if let error=error {
-						print("Restriction failed. Reason: ", error)
+						print("Operation failed. Reason: ", error)
 						DispatchQueue.main.async {
-							let failureAlertController=UIAlertController(title: "Restriction failed", message: "Failed to restrict access to iCloud.", preferredStyle: .alert)
-							let gotItAction=UIAlertAction(title: "Got it", style: .default)
+							var failureMessage="Failed to restrict Contact Cards' access to iCloud.  Maybe you don't have internet, or have already restricted it?"
+							var title="Restriction Failed"
+							if restrict==false {
+								failureMessage="Failed to un-restrict Contact Cards' access to iCloud.  Maybe you don't have internet, or it was aready un-restricted?"
+								title="Attempt to Un-Restrict Failed"
+							}
+							let failureAlertController=UIAlertController(title: title, message: failureMessage, preferredStyle: .alert)
+							let gotItAction=UIAlertAction(title: "Got it.", style: .default)
 							failureAlertController.addAction(gotItAction)
 							failureAlertController.preferredAction=gotItAction
 							strongSelf.present(failureAlertController, animated: true)
@@ -62,8 +82,13 @@ class RestrictionViewController: UIViewController, UITextFieldDelegate {
 					} else {
 						print("Restriction succeeded.")
 						DispatchQueue.main.async {
-							let successMessage="Your iCloud access for Contact Cards is now restricted.  Use the un-restrict button to allow access again at any time."
-							let successAlertController=UIAlertController(title: "Restriction succeeeded.", message: successMessage, preferredStyle: .alert)
+							var successMessage="Your iCloud access for Contact Cards is now restricted.  Use the un-restrict button to allow access again at any time."
+							var title="Restriction succeeeded."
+							if restrict==false {
+								successMessage="Your iCloud access for Contact Cards is now un-restricted.  Please relaunch Contact Cards where ever it is running on your devices."
+								title="iCloud Access Un-Restricted"
+							}
+							let successAlertController=UIAlertController(title: title, message: successMessage, preferredStyle: .alert)
 							let gotItAction=UIAlertAction(title: "Got it.", style: .default)
 							successAlertController.addAction(gotItAction)
 							successAlertController.preferredAction=gotItAction
@@ -74,7 +99,7 @@ class RestrictionViewController: UIViewController, UITextFieldDelegate {
 			}
 			container.privateCloudDatabase.add(fetchAuthorization)
 	}
-	func requestRestriction(url: URL, completionHandler: @escaping (Error?) -> Void) {
+	func restrictOrUnrestrict(url: URL, completionHandler: @escaping (Error?) -> Void) {
 		let task = URLSession.shared.dataTask(with: url) { data, response, error in
 			if let error = error {
 				completionHandler(error)
@@ -108,15 +133,18 @@ class RestrictionViewController: UIViewController, UITextFieldDelegate {
 		case failure
 	}
 
-	func restrict(container: CKContainer, apiToken: String, webToken: String, completionHandler: @escaping (Error?) -> Void) {
+	func restrict(container: CKContainer, apiToken: String, webToken: String, restrict: Bool, completionHandler: @escaping (Error?) -> Void) {
 		let webToken = encodeToken(webToken)
 		let identifier = container.containerIdentifier!
 		let env = "development" // Use "development" during development.
 		let baseURL = "https://api.apple-cloudkit.com/database/1/"
-		let apiPath = "\(identifier)/\(env)/private/users/restrict"
+		var apiPath = "\(identifier)/\(env)/private/users/restrict"
+		if restrict==false {
+			apiPath = "\(identifier)/\(env)/private/users/unrestrict"
+		}
 		let query = "?ckAPIToken=\(apiToken)&ckWebAuthToken=\(webToken)"
 		let url = URL(string: "\(baseURL)\(apiPath)\(query)")!
-		requestRestriction(url: url, completionHandler: completionHandler)
+		restrictOrUnrestrict(url: url, completionHandler: completionHandler)
 	}
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		textField.resignFirstResponder()

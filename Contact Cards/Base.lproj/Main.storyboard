@@ -1576,7 +1576,7 @@
                                                 </constraints>
                                                 <color key="textColor" systemColor="systemRedColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="729-oD-2dN">
                                                 <rect key="frame" x="69" y="175.5" width="197" height="30"/>
@@ -1669,7 +1669,7 @@
                                                         </constraints>
                                                         <color key="textColor" systemColor="systemRedColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4DQ-ix-F1c">
                                                         <rect key="frame" x="132" y="115" width="53" height="30"/>
@@ -1711,11 +1711,14 @@
                                                         </constraints>
                                                         <color key="textColor" systemColor="systemRedColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEP-Lf-wRg">
                                                         <rect key="frame" x="118.5" y="115" width="80" height="30"/>
                                                         <state key="normal" title="Un-Restrict"/>
+                                                        <connections>
+                                                            <action selector="tryToUnrestrict:" destination="Yf6-Yz-YJm" eventType="touchUpInside" id="90o-xv-spi"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -1774,7 +1777,7 @@
                     <connections>
                         <outlet property="restrictTextField" destination="szy-kH-Xs0" id="JB9-fF-EBr"/>
                         <outlet property="scrollView" destination="g9V-0g-IVk" id="Qh0-i6-X3u"/>
-                        <outlet property="unrestrictTextField" destination="yy3-Yv-2VN" id="jfA-BQ-958"/>
+                        <outlet property="unrestrictTextField" destination="yy3-Yv-2VN" id="0fd-2f-5yh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qTl-Bd-X5S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
