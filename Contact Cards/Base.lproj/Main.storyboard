@@ -1630,14 +1630,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9V-0g-IVk">
                                 <rect key="frame" x="0.0" y="56" width="375" height="591"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checking iCloud Status..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZw-oF-jYX">
-                                        <rect key="frame" x="92" y="8" width="191.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CmM-jL-gt3">
-                                        <rect key="frame" x="20" y="36.5" width="335" height="300"/>
+                                        <rect key="frame" x="20" y="8" width="335" height="300"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9Pa-iV-E6b">
                                                 <rect key="frame" x="9" y="0.0" width="317" height="145"/>
@@ -1680,6 +1674,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4DQ-ix-F1c">
                                                         <rect key="frame" x="132" y="115" width="53" height="30"/>
                                                         <state key="normal" title="Restrict"/>
+                                                        <connections>
+                                                            <action selector="tryToRestrict:" destination="Yf6-Yz-YJm" eventType="touchUpInside" id="iyC-IR-D3I"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -1727,7 +1724,6 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="CmM-jL-gt3" firstAttribute="top" secondItem="hZw-oF-jYX" secondAttribute="bottom" constant="8" symbolic="YES" id="UmH-AL-1xh"/>
                                     <constraint firstItem="bvg-SS-VUh" firstAttribute="leading" secondItem="g9V-0g-IVk" secondAttribute="leading" constant="29" id="Yrh-xX-G3w"/>
                                     <constraint firstItem="CmM-jL-gt3" firstAttribute="leading" secondItem="g9V-0g-IVk" secondAttribute="leading" constant="20" symbolic="YES" id="a86-WX-SOc"/>
                                     <constraint firstAttribute="bottom" secondItem="CmM-jL-gt3" secondAttribute="bottom" id="bCO-lS-Ipw"/>
@@ -1738,9 +1734,8 @@
                                     <constraint firstItem="O61-5D-bK0" firstAttribute="leading" secondItem="g9V-0g-IVk" secondAttribute="leading" symbolic="YES" id="fK1-dh-LBI">
                                         <variation key="heightClass=regular" constant="29"/>
                                     </constraint>
-                                    <constraint firstItem="hZw-oF-jYX" firstAttribute="centerX" secondItem="g9V-0g-IVk" secondAttribute="centerX" id="gKd-Yz-VFj"/>
                                     <constraint firstAttribute="trailing" secondItem="CmM-jL-gt3" secondAttribute="trailing" constant="20" symbolic="YES" id="gey-ez-fd9"/>
-                                    <constraint firstItem="hZw-oF-jYX" firstAttribute="top" secondItem="g9V-0g-IVk" secondAttribute="top" constant="8" id="tgQ-Uj-YbK"/>
+                                    <constraint firstItem="CmM-jL-gt3" firstAttribute="top" secondItem="g9V-0g-IVk" secondAttribute="top" constant="8" id="hOA-rD-hbO"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="0Dr-j8-N8p"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="UTm-rp-7aM"/>
@@ -1778,7 +1773,6 @@
                     <navigationItem key="navigationItem" title="Manage iCloud Access" id="hXk-Z5-FjJ"/>
                     <connections>
                         <outlet property="restrictTextField" destination="szy-kH-Xs0" id="JB9-fF-EBr"/>
-                        <outlet property="restrictionStatusTextField" destination="hZw-oF-jYX" id="YW1-su-EHF"/>
                         <outlet property="scrollView" destination="g9V-0g-IVk" id="Qh0-i6-X3u"/>
                         <outlet property="unrestrictTextField" destination="yy3-Yv-2VN" id="jfA-BQ-958"/>
                     </connections>
