@@ -117,6 +117,7 @@
 		9F8C266C2612821500E37290 /* ContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB92608E54A0003B2E4 /* ContactCardMO.swift */; };
 		9F8E6646265AF3DF008D60EB /* DeleteDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8E6645265AF3DF008D60EB /* DeleteDataViewController.swift */; };
 		9F941C752652A886004F8C83 /* ManageCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F941C742652A886004F8C83 /* ManageCardsViewController.swift */; };
+		9F9A01AE26EB011D0021582E /* RestrictionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A01AD26EB011D0021582E /* RestrictionViewController.swift */; };
 		9F9E9AE321BA1690003A6A33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */; };
 		9F9E9AE521BA1690003A6A33 /* DisplayQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE421BA1690003A6A33 /* DisplayQRViewController.swift */; };
 		9F9E9AE821BA1690003A6A33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE621BA1690003A6A33 /* Main.storyboard */; };
@@ -340,6 +341,7 @@
 		9F8852A8264FFDF100260D21 /* CardInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInterfaceController.swift; sourceTree = "<group>"; };
 		9F8E6645265AF3DF008D60EB /* DeleteDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDataViewController.swift; sourceTree = "<group>"; };
 		9F941C742652A886004F8C83 /* ManageCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageCardsViewController.swift; sourceTree = "<group>"; };
+		9F9A01AD26EB011D0021582E /* RestrictionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestrictionViewController.swift; sourceTree = "<group>"; };
 		9F9E9ADF21BA1690003A6A33 /* Contact Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Contact Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9E9AE221BA1690003A6A33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F9E9AE421BA1690003A6A33 /* DisplayQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayQRViewController.swift; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 			children = (
 				9F941C742652A886004F8C83 /* ManageCardsViewController.swift */,
 				9F8E6645265AF3DF008D60EB /* DeleteDataViewController.swift */,
+				9F9A01AD26EB011D0021582E /* RestrictionViewController.swift */,
 				9FABD3BF265DCCCC00546FDD /* CloudDataDescriptionViewController.swift */,
 				9F7E6908265E6FF9003381B7 /* ContactCloudDataDescriber.swift */,
 				9FA077C826A31F320077361B /* CloudExplanationViewController.swift */,
@@ -1289,6 +1292,7 @@
 				9FEE3782256DBA990089337E /* ColorModel.swift in Sources */,
 				9F4ABC7D2570CBEA000A9101 /* ToolBarDelegate.swift in Sources */,
 				9F422691256CD5BF00F1A0FA /* CircularColorView.swift in Sources */,
+				9F9A01AE26EB011D0021582E /* RestrictionViewController.swift in Sources */,
 				9F0A336C265EE4A800265C4D /* ShowCard.intentdefinition in Sources */,
 				9FA3C11326600BB70033DD3B /* ShortcutDelegate.swift in Sources */,
 				9FED3514269F667300EFFA48 /* CardsTableViewControllerExtension.swift in Sources */,

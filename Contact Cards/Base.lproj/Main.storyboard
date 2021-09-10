@@ -1622,136 +1622,170 @@
         <!--Manage iCloud Access-->
         <scene sceneID="b9R-HF-hlT">
             <objects>
-                <viewController id="Yf6-Yz-YJm" sceneMemberID="viewController">
+                <viewController id="Yf6-Yz-YJm" customClass="RestrictionViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fDX-qL-e4t">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CmM-jL-gt3">
-                                <rect key="frame" x="10" y="76" width="355" height="300"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9V-0g-IVk">
+                                <rect key="frame" x="0.0" y="56" width="375" height="591"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9Pa-iV-E6b">
-                                        <rect key="frame" x="8.5" y="0.0" width="338" height="145"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checking iCloud Status..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZw-oF-jYX">
+                                        <rect key="frame" x="92" y="8" width="191.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CmM-jL-gt3">
+                                        <rect key="frame" x="20" y="36.5" width="335" height="300"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you want to restrict access to iCloud, type &quot;restrict&quot; below and then use the restrict button below." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O61-5D-bK0">
-                                                <rect key="frame" x="0.0" y="0.0" width="338" height="61"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="411.5" id="Nxc-QX-TTO">
-                                                        <variation key="heightClass=compact" constant="250"/>
-                                                    </constraint>
-                                                    <constraint firstAttribute="width" constant="411.5" id="RQH-F6-Nxm">
-                                                        <variation key="heightClass=compact" constant="250"/>
-                                                    </constraint>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" name="DarkRed"/>
-                                                <nil key="highlightedColor"/>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="Nxc-QX-TTO"/>
-                                                        <exclude reference="RQH-F6-Nxm"/>
-                                                    </mask>
-                                                </variation>
-                                                <variation key="heightClass=compact">
-                                                    <mask key="constraints">
-                                                        <exclude reference="Nxc-QX-TTO"/>
-                                                        <include reference="RQH-F6-Nxm"/>
-                                                    </mask>
-                                                </variation>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="szy-kH-Xs0">
-                                                <rect key="frame" x="69" y="71" width="200" height="34"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="IIn-2q-nUK"/>
-                                                </constraints>
-                                                <color key="textColor" systemColor="systemRedColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4DQ-ix-F1c">
-                                                <rect key="frame" x="142.5" y="115" width="53" height="30"/>
-                                                <state key="normal" title="Restrict"/>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9Pa-iV-E6b">
+                                                <rect key="frame" x="9" y="0.0" width="317" height="145"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you want to restrict access to iCloud, type &quot;restrict&quot; below and then use the restrict button below." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O61-5D-bK0">
+                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="61"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="411.5" id="Nxc-QX-TTO">
+                                                                <variation key="heightClass=compact" constant="250"/>
+                                                            </constraint>
+                                                            <constraint firstAttribute="width" constant="411.5" id="RQH-F6-Nxm">
+                                                                <variation key="heightClass=compact" constant="250"/>
+                                                            </constraint>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" name="DarkRed"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="Nxc-QX-TTO"/>
+                                                                <exclude reference="RQH-F6-Nxm"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <variation key="heightClass=compact">
+                                                            <mask key="constraints">
+                                                                <exclude reference="Nxc-QX-TTO"/>
+                                                                <include reference="RQH-F6-Nxm"/>
+                                                            </mask>
+                                                        </variation>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="szy-kH-Xs0">
+                                                        <rect key="frame" x="58.5" y="71" width="200" height="34"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="200" id="IIn-2q-nUK"/>
+                                                        </constraints>
+                                                        <color key="textColor" systemColor="systemRedColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4DQ-ix-F1c">
+                                                        <rect key="frame" x="132" y="115" width="53" height="30"/>
+                                                        <state key="normal" title="Restrict"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BWl-Vh-V4J">
+                                                <rect key="frame" x="9" y="155" width="317" height="145"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you are trying to un-restrict access to iCloud, type &quot;un-restrict&quot; below and then use the un-restrict button below." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvg-SS-VUh">
+                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="61"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="285" id="tb8-us-WMQ">
+                                                                <variation key="heightClass=compact" constant="250"/>
+                                                            </constraint>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" name="DarkGreen"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="tb8-us-WMQ"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <variation key="heightClass=compact">
+                                                            <mask key="constraints">
+                                                                <include reference="tb8-us-WMQ"/>
+                                                            </mask>
+                                                        </variation>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yy3-Yv-2VN">
+                                                        <rect key="frame" x="58.5" y="71" width="200" height="34"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="200" id="AKi-zZ-lp0"/>
+                                                        </constraints>
+                                                        <color key="textColor" systemColor="systemRedColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEP-Lf-wRg">
+                                                        <rect key="frame" x="118.5" y="115" width="80" height="30"/>
+                                                        <state key="normal" title="Un-Restrict"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BWl-Vh-V4J">
-                                        <rect key="frame" x="0.0" y="155" width="355" height="145"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you are trying to un-restrict access to iCloud, type &quot;un-restrict&quot; below and then use the unrestrict button below." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvg-SS-VUh">
-                                                <rect key="frame" x="0.0" y="0.0" width="355" height="61"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="285" id="tb8-us-WMQ">
-                                                        <variation key="heightClass=compact" constant="250"/>
-                                                    </constraint>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" name="DarkGreen"/>
-                                                <nil key="highlightedColor"/>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="tb8-us-WMQ"/>
-                                                    </mask>
-                                                </variation>
-                                                <variation key="heightClass=compact">
-                                                    <mask key="constraints">
-                                                        <include reference="tb8-us-WMQ"/>
-                                                    </mask>
-                                                </variation>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yy3-Yv-2VN">
-                                                <rect key="frame" x="77.5" y="71" width="200" height="34"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="AKi-zZ-lp0"/>
-                                                </constraints>
-                                                <color key="textColor" systemColor="systemRedColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEP-Lf-wRg">
-                                                <rect key="frame" x="137.5" y="115" width="80" height="30"/>
-                                                <state key="normal" title="Un-Restrict"/>
-                                            </button>
-                                        </subviews>
+                                        <variation key="heightClass=compact" axis="horizontal" distribution="fillProportionally"/>
                                     </stackView>
                                 </subviews>
-                                <variation key="heightClass=compact" axis="horizontal" distribution="fillProportionally"/>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="CmM-jL-gt3" firstAttribute="top" secondItem="hZw-oF-jYX" secondAttribute="bottom" constant="8" symbolic="YES" id="UmH-AL-1xh"/>
+                                    <constraint firstItem="bvg-SS-VUh" firstAttribute="leading" secondItem="g9V-0g-IVk" secondAttribute="leading" constant="29" id="Yrh-xX-G3w"/>
+                                    <constraint firstItem="CmM-jL-gt3" firstAttribute="leading" secondItem="g9V-0g-IVk" secondAttribute="leading" constant="20" symbolic="YES" id="a86-WX-SOc"/>
+                                    <constraint firstAttribute="bottom" secondItem="CmM-jL-gt3" secondAttribute="bottom" id="bCO-lS-Ipw"/>
+                                    <constraint firstAttribute="trailing" secondItem="O61-5D-bK0" secondAttribute="trailing" id="cGQ-Ih-FI0">
+                                        <variation key="heightClass=regular" constant="29"/>
+                                    </constraint>
+                                    <constraint firstAttribute="trailing" secondItem="bvg-SS-VUh" secondAttribute="trailing" constant="29" id="etX-JL-7bU"/>
+                                    <constraint firstItem="O61-5D-bK0" firstAttribute="leading" secondItem="g9V-0g-IVk" secondAttribute="leading" symbolic="YES" id="fK1-dh-LBI">
+                                        <variation key="heightClass=regular" constant="29"/>
+                                    </constraint>
+                                    <constraint firstItem="hZw-oF-jYX" firstAttribute="centerX" secondItem="g9V-0g-IVk" secondAttribute="centerX" id="gKd-Yz-VFj"/>
+                                    <constraint firstAttribute="trailing" secondItem="CmM-jL-gt3" secondAttribute="trailing" constant="20" symbolic="YES" id="gey-ez-fd9"/>
+                                    <constraint firstItem="hZw-oF-jYX" firstAttribute="top" secondItem="g9V-0g-IVk" secondAttribute="top" constant="8" id="tgQ-Uj-YbK"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="0Dr-j8-N8p"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="UTm-rp-7aM"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="cGQ-Ih-FI0"/>
+                                        <exclude reference="fK1-dh-LBI"/>
+                                        <exclude reference="Yrh-xX-G3w"/>
+                                        <exclude reference="etX-JL-7bU"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <exclude reference="a86-WX-SOc"/>
+                                        <exclude reference="gey-ez-fd9"/>
+                                        <include reference="cGQ-Ih-FI0"/>
+                                        <include reference="fK1-dh-LBI"/>
+                                        <include reference="Yrh-xX-G3w"/>
+                                        <include reference="etX-JL-7bU"/>
+                                    </mask>
+                                </variation>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kh5-3F-Y6Z"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="kh5-3F-Y6Z" firstAttribute="trailing" secondItem="O61-5D-bK0" secondAttribute="trailing" constant="18.5" id="GdV-sv-aTn"/>
-                            <constraint firstItem="CmM-jL-gt3" firstAttribute="leading" secondItem="kh5-3F-Y6Z" secondAttribute="leading" constant="10" id="Juj-oA-o2L"/>
-                            <constraint firstItem="bvg-SS-VUh" firstAttribute="leading" secondItem="kh5-3F-Y6Z" secondAttribute="leading" constant="13.5" id="TAn-sn-ym8">
-                                <variation key="heightClass=regular" constant="10"/>
-                            </constraint>
-                            <constraint firstItem="O61-5D-bK0" firstAttribute="leading" secondItem="kh5-3F-Y6Z" secondAttribute="leading" constant="18.5" id="eQv-6a-ePC"/>
-                            <constraint firstItem="CmM-jL-gt3" firstAttribute="top" secondItem="kh5-3F-Y6Z" secondAttribute="top" constant="20" id="nPH-AQ-gTm"/>
-                            <constraint firstItem="CmM-jL-gt3" firstAttribute="trailing" secondItem="kh5-3F-Y6Z" secondAttribute="trailing" constant="-10" id="oU3-2Y-u86"/>
-                            <constraint firstItem="kh5-3F-Y6Z" firstAttribute="trailing" secondItem="bvg-SS-VUh" secondAttribute="trailing" constant="10" id="qp2-A9-iUx"/>
+                            <constraint firstItem="CmM-jL-gt3" firstAttribute="trailing" secondItem="kh5-3F-Y6Z" secondAttribute="trailing" constant="-20" id="2Bx-gl-hof"/>
+                            <constraint firstItem="kh5-3F-Y6Z" firstAttribute="trailing" secondItem="g9V-0g-IVk" secondAttribute="trailing" id="DtB-2b-nbz"/>
+                            <constraint firstItem="kh5-3F-Y6Z" firstAttribute="bottom" secondItem="g9V-0g-IVk" secondAttribute="bottom" id="G0t-TR-SAX"/>
+                            <constraint firstItem="g9V-0g-IVk" firstAttribute="top" secondItem="kh5-3F-Y6Z" secondAttribute="top" id="kqE-96-a96"/>
+                            <constraint firstItem="CmM-jL-gt3" firstAttribute="leading" secondItem="kh5-3F-Y6Z" secondAttribute="leading" constant="20" id="ogq-Kp-mcY"/>
+                            <constraint firstItem="g9V-0g-IVk" firstAttribute="leading" secondItem="kh5-3F-Y6Z" secondAttribute="leading" id="xlC-Wr-AYu"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="GdV-sv-aTn"/>
-                                <exclude reference="qp2-A9-iUx"/>
-                                <exclude reference="eQv-6a-ePC"/>
-                                <exclude reference="TAn-sn-ym8"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular">
-                            <mask key="constraints">
-                                <include reference="GdV-sv-aTn"/>
-                                <include reference="qp2-A9-iUx"/>
-                                <include reference="eQv-6a-ePC"/>
-                                <include reference="TAn-sn-ym8"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Manage iCloud Access" id="hXk-Z5-FjJ"/>
+                    <connections>
+                        <outlet property="restrictTextField" destination="szy-kH-Xs0" id="JB9-fF-EBr"/>
+                        <outlet property="restrictionStatusTextField" destination="hZw-oF-jYX" id="YW1-su-EHF"/>
+                        <outlet property="scrollView" destination="g9V-0g-IVk" id="Qh0-i6-X3u"/>
+                        <outlet property="unrestrictTextField" destination="yy3-Yv-2VN" id="jfA-BQ-958"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qTl-Bd-X5S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2694" y="-959"/>
+            <point key="canvasLocation" x="2693.5999999999999" y="-959.37031484257875"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FPL-RH-2XU">

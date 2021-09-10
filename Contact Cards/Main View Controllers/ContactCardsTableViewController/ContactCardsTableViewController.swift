@@ -238,7 +238,7 @@ class ContactCardsTableViewController: UITableViewController {
 	func displayAddACardAlertController() {
 		var addACardMessage=""
 		#if targetEnvironment(macCatalyst)
-		addACardMessage="To create a contact card, click the plus button in the toolbar or open the File menu and click \"New Contact Card\""
+		addACardMessage="To create a contact card, click the plus button in the toolbar or open the File menu and click \"New Contact Card\"."
 		#else
 		addACardMessage="To create a contact card, tap the plus button."
 		#endif
