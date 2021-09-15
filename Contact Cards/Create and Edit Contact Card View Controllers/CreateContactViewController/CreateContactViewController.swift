@@ -36,6 +36,8 @@ class CreateContactViewController: UIViewController {
 	@IBOutlet weak var twitterTextField: UITextField!
 	@IBOutlet weak var whatsAppTextField: UITextField!
 	@IBOutlet weak var instagramTextField: UITextField!
+	@IBOutlet weak var snapchatTextField: UITextField!
+	@IBOutlet weak var pinterestTextField: UITextField!
 	//url text fields
 	@IBOutlet weak var urlHomeTextField: UITextField!
 	@IBOutlet weak var urlWork1TextField: UITextField!

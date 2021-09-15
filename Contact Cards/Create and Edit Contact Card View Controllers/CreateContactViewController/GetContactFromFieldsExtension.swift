@@ -175,5 +175,18 @@ extension CreateContactViewController {
 			contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: instagramURL,
 																											 username: instagramUsername, userIdentifier: nil, service: "Instagram")))
 		}
+		if !(snapchatTextField.text=="") {
+			let snapchatUsername=snapchatTextField.text ?? ""
+
+			let snapchatURL="https://www.snapchat.com/add/\(snapchatUsername)/"
+			contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: snapchatURL,
+																											 username: snapchatUsername, userIdentifier: nil, service: "Snapchat")))
+		}
+		if !(pinterestTextField.text=="") {
+			let pinterestUsername=pinterestTextField.text ?? ""
+			let pinterestURL="https://www.pinterest.com/\(pinterestUsername)/"
+			contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: pinterestURL,
+																											 username: pinterestUsername, userIdentifier: nil, service: "Pinterest")))
+		}
 	}
 }

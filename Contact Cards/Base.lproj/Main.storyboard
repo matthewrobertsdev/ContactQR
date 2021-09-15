@@ -1187,7 +1187,9 @@
                         <outlet property="otherUrl1TextField" destination="EHo-GQ-1BD" id="BXb-eX-SEx"/>
                         <outlet property="otherUrl2TextField" destination="kj5-Qx-NOT" id="Lx5-p3-iyu"/>
                         <outlet property="otherZipTextField" destination="wbT-LM-SQt" id="Pb0-o5-tL6"/>
+                        <outlet property="pinterestTextField" destination="0CD-jW-5eC" id="3Oc-7L-SSb"/>
                         <outlet property="prefixTextField" destination="V9x-wA-hXk" id="Ycc-rw-8dv"/>
+                        <outlet property="snapchatTextField" destination="KGP-Bn-1Si" id="u7R-c3-OyH"/>
                         <outlet property="suffixTextField" destination="DKo-oS-Skm" id="jR5-Dh-s8k"/>
                         <outlet property="twitterTextField" destination="Aw4-Eb-o1U" id="QGH-cL-Y7q"/>
                         <outlet property="urlHomeTextField" destination="122-wH-b6W" id="6dk-t4-jLY"/>
