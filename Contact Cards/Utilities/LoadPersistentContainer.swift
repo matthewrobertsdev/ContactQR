@@ -7,7 +7,7 @@
 //
 import Foundation
 import CoreData
-func loadPersistentContainer() -> NSPersistentCloudKitContainer {
+func loadPersistentCloudKitContainer() -> NSPersistentCloudKitContainer {
 	let container=NSPersistentCloudKitContainer(name: "ContactCards")
 	let groupIdentifier="group.com.apps.celeritas.contact.cards"
 	if let fileContainerURL=FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) {

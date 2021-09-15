@@ -36,7 +36,7 @@ struct Provider: IntentTimelineProvider {
 		var color: String?
 		var widgetMode=WidgetMode.editMessage
 		if let uuid=configuration.parameter?.identifier {
-			let container=loadPersistentContainer()
+			let container=loadPersistentCloudKitContainer()
 			let managedObjectContext=container.viewContext
 			let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
 				do {

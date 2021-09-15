@@ -159,5 +159,21 @@ extension CreateContactViewController {
 			contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: facebookURL,
 																											 username: nil, userIdentifier: nil, service: CNSocialProfileServiceFacebook)))
 		}
+		if !(whatsAppTextField.text=="") {
+			var whatsAppNumber=whatsAppTextField.text ?? ""
+			whatsAppNumber = whatsAppNumber.filter("0123456789.".contains)
+
+			let whatsAppURL="https://wa.me/\(whatsAppNumber)"
+			contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: whatsAppURL,
+																											 username: whatsAppNumber, userIdentifier: nil, service: "WhatsApp")))
+		}
+		if !(instagramTextField.text=="") {
+			var instagramUsername=instagramTextField.text ?? ""
+			instagramUsername = instagramUsername.replacingOccurrences(of: "@", with: "")
+
+			let instagramURL="https://www.instagram.com/\(instagramUsername)/"
+			contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: instagramURL,
+																											 username: instagramUsername, userIdentifier: nil, service: "Instagram")))
+		}
 	}
 }

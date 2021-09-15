@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 class ContactCardStore {
-	lazy var container=loadPersistentContainer()
+	lazy var container=loadPersistentCloudKitContainer()
 	static let shared=ContactCardStore()
 	var fetchedResultsController: NSFetchedResultsController<ContactCardMO>?
 	private init() {

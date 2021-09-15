@@ -17,7 +17,7 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 	func provideParameterOptionsCollection(for intent: ConfigurationIntent, with completion: @escaping
 											(INObjectCollection<ContactCardINObject>?, Error?) -> Void) {
 		print("Should load choices")
-		let container=loadPersistentContainer()
+		let container=loadPersistentCloudKitContainer()
 		let managedObjectContext=container.viewContext
 		let fetchRequest = NSFetchRequest<ContactCardMO>(entityName: ContactCardMO.entityName)
 		do {

@@ -11,6 +11,7 @@ class RestrictionViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var restrictTextField: UITextField!
 	@IBOutlet weak var unrestrictTextField: UITextField!
+	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	override func viewDidLoad() {
         super.viewDidLoad()
 		restrictTextField.delegate=self
@@ -22,6 +23,10 @@ class RestrictionViewController: UIViewController, UITextFieldDelegate {
 										UIResponder.keyboardWillChangeFrameNotification, object: nil)
         // Do any additional setup after loading the view.
     }
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		activityIndicator.isHidden=true
+	}
 	@IBAction func tryToRestrict(_ sender: Any) {
 		if restrictTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()=="restrict" {
 			restrictOrUnrestrictICloud(restrict: true)
@@ -38,6 +43,7 @@ class RestrictionViewController: UIViewController, UITextFieldDelegate {
 	}
 	@IBAction func tryToUnrestrict(_ sender: Any) {
 		if unrestrictTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()=="un-restrict" {
+			startAndShowActivityIndicator()
 			restrictOrUnrestrictICloud(restrict: false)
 		} else {
 			let unconfirmedMessage="You have not confirmed that you want to un-restrict access to iCloud for Contact Cards by typing \"un-restrict\"."
@@ -66,6 +72,7 @@ class RestrictionViewController: UIViewController, UITextFieldDelegate {
 					if let error=error {
 						print("Operation failed. Reason: ", error)
 						DispatchQueue.main.async {
+							strongSelf.stopAndHideActivityIndicator()
 							var failureMessage="Failed to restrict Contact Cards' access to iCloud.  Maybe you don't have internet, or have already restricted it?"
 							var title="Restriction Failed"
 							if restrict==false {
@@ -78,14 +85,14 @@ class RestrictionViewController: UIViewController, UITextFieldDelegate {
 							failureAlertController.preferredAction=gotItAction
 							strongSelf.present(failureAlertController, animated: true)
 						}
-						 return
 					} else {
-						print("Restriction succeeded.")
+						print("Restrict/un-restrict succeeded.")
 						DispatchQueue.main.async {
+							strongSelf.stopAndHideActivityIndicator()
 							var successMessage="Your iCloud access for Contact Cards is now restricted.  Use the un-restrict button to allow access again at any time."
 							var title="Restriction succeeeded."
 							if restrict==false {
-								successMessage="Your iCloud access for Contact Cards is now un-restricted.  Please relaunch Contact Cards where ever it is running on your devices."
+								successMessage="Please relaunch Contact Cards wherever it is running on your devices so that it will sync with iCloud again."
 								title="iCloud Access Un-Restricted"
 							}
 							let successAlertController=UIAlertController(title: title, message: successMessage, preferredStyle: .alert)
@@ -120,19 +127,16 @@ class RestrictionViewController: UIViewController, UITextFieldDelegate {
 		}
 		task.resume()
 	}
-
 	/// A utility function that percent encodes a token for URL requests.
 	func encodeToken(_ token: String) -> String {
 		return token.addingPercentEncoding(
 			withAllowedCharacters: CharacterSet(charactersIn: "+/=").inverted
 		) ?? token
 	}
-
 	/// An error type that represents a failure in the `restrict` API call.
 	enum RestrictError: Error {
 		case failure
 	}
-
 	func restrict(container: CKContainer, apiToken: String, webToken: String, restrict: Bool, completionHandler: @escaping (Error?) -> Void) {
 		let webToken = encodeToken(webToken)
 		let identifier = container.containerIdentifier!
@@ -162,5 +166,13 @@ class RestrictionViewController: UIViewController, UITextFieldDelegate {
 															keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
 		}
 		scrollView.scrollIndicatorInsets = scrollView.contentInset
+	}
+	func stopAndHideActivityIndicator() {
+		activityIndicator.isHidden=true
+		activityIndicator.stopAnimating()
+	}
+	func startAndShowActivityIndicator() {
+		activityIndicator.isHidden=false
+		activityIndicator.startAnimating()
 	}
 }

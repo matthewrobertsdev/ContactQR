@@ -9,44 +9,58 @@ import UIKit
 import Contacts
 import WidgetKit
 class CreateContactViewController: UIViewController {
+	//name text fields
 	@IBOutlet weak var firstNameTextField: UITextField!
 	@IBOutlet weak var lastNameTextField: UITextField!
 	@IBOutlet weak var prefixTextField: UITextField!
 	@IBOutlet weak var suffixTextField: UITextField!
 	@IBOutlet weak var nicknameTextField: UITextField!
+	//company text fields
 	@IBOutlet weak var companyTextField: UITextField!
 	@IBOutlet weak var jobTitleTextField: UITextField!
 	@IBOutlet weak var departmentTextField: UITextField!
+	//phone text fields
 	@IBOutlet weak var mobilePhoneTextField: UITextField!
 	@IBOutlet weak var workPhone1TextField: UITextField!
 	@IBOutlet weak var workPhone2TextField: UITextField!
 	@IBOutlet weak var homePhoneTextField: UITextField!
 	@IBOutlet weak var otherPhoneTextField: UITextField!
+	//email text fields
 	@IBOutlet weak var homeEmailTextField: UITextField!
 	@IBOutlet weak var workEmail1TextField: UITextField!
 	@IBOutlet weak var workEmail2TextField: UITextField!
 	@IBOutlet weak var otherEmailTextField: UITextField!
+	//social profile text fields
 	@IBOutlet weak var facebookTextField: UITextField!
 	@IBOutlet weak var linkedInTextField: UITextField!
 	@IBOutlet weak var twitterTextField: UITextField!
+	@IBOutlet weak var whatsAppTextField: UITextField!
+	@IBOutlet weak var instagramTextField: UITextField!
+	//url text fields
 	@IBOutlet weak var urlHomeTextField: UITextField!
 	@IBOutlet weak var urlWork1TextField: UITextField!
 	@IBOutlet weak var urlWork2TextField: UITextField!
 	@IBOutlet weak var otherUrl1TextField: UITextField!
 	@IBOutlet weak var otherUrl2TextField: UITextField!
+	//address text fields
+	//home address
 	@IBOutlet weak var homeStreetTextField: UITextField!
 	@IBOutlet weak var homeCityTextField: UITextField!
 	@IBOutlet weak var homeStateTextField: UITextField!
 	@IBOutlet weak var homeZipTextField: UITextField!
+	//work address
 	@IBOutlet weak var workStreetTextField: UITextField!
 	@IBOutlet weak var workStateTextField: UITextField!
 	@IBOutlet weak var workCityTextField: UITextField!
 	@IBOutlet weak var workZipTextField: UITextField!
+	//other address
 	@IBOutlet weak var otherStreetTextField: UITextField!
 	@IBOutlet weak var otherCityTextField: UITextField!
 	@IBOutlet weak var otherStateTextField: UITextField!
 	@IBOutlet weak var otherZipTextField: UITextField!
+	//scroll view
 	@IBOutlet weak var fieldsScrollView: UIScrollView!
+	//non-GUI properties
 	var forEditing=false
 	var contact: CNContact?
 	var contactCard: ContactCardMO?
