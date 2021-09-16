@@ -144,20 +144,16 @@ extension CreateContactViewController {
 																												twitterTextField.text ?? "", userIdentifier: nil, service: CNSocialProfileServiceTwitter)))
 		}
 		if !(linkedInTextField.text=="") {
-			var linkedInUrl=linkedInTextField.text ?? ""
-			if !(linkedInUrl.starts(with: "http://")) && !(linkedInUrl.starts(with: "https://")) {
-				linkedInUrl="https://"+linkedInUrl
-			}
+			let linkedInUsername=linkedInTextField.text ?? ""
+			let linkedInURL="https://www.linkedin.com/in/\(linkedInUsername)"
 			contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString:
-																												linkedInUrl, username: nil, userIdentifier: nil, service: CNSocialProfileServiceLinkedIn)))
+																												linkedInURL, username: linkedInUsername, userIdentifier: nil, service: CNSocialProfileServiceLinkedIn)))
 		}
 		if !(facebookTextField.text=="") {
-			var facebookURL=facebookTextField.text ?? ""
-			if !(facebookURL.starts(with: "http://")) && !(facebookURL.starts(with: "https://")) {
-				facebookURL="https://"+facebookURL
-			}
+			let facebookUsername=facebookTextField.text ?? ""
+			let facebookURL="https://www.facebook.com/\(facebookUsername)"
 			contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: facebookURL,
-																											 username: nil, userIdentifier: nil, service: CNSocialProfileServiceFacebook)))
+																											 username: facebookUsername, userIdentifier: nil, service: CNSocialProfileServiceFacebook)))
 		}
 		if !(whatsAppTextField.text=="") {
 			var whatsAppNumber=whatsAppTextField.text ?? ""

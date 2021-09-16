@@ -236,18 +236,18 @@ class ContactInfoManipulator {
 		})?.value.username {
 			addLink(stringToAddTo: displayString, label: "Twitter Username", linkModifer: "https://twitter.com/", basicLink: twitterUsername)
 		}
-		if let linkedInUrlString=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+		if let linkedInUsername=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
 			return socialProfile.value.service.lowercased()==CNSocialProfileServiceLinkedIn.lowercased()
-		})?.value.urlString {
-			if linkedInUrlString != "" {
-				addLink(stringToAddTo: displayString, label: "LinkedIn URL", linkModifer: "", basicLink: linkedInUrlString)
+		})?.value.username {
+			if linkedInUsername != "" {
+				addLink(stringToAddTo: displayString, label: "LinkedIn Username", linkModifer: "https://www.linkedin.com/in/", basicLink: linkedInUsername)
 			}
 		}
 		if let facebookUrlString=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
 			return socialProfile.value.service.lowercased()==CNSocialProfileServiceFacebook.lowercased()
-		})?.value.urlString {
+		})?.value.username {
 			if facebookUrlString != "" {
-				addLink(stringToAddTo: displayString, label: "Facebook URL", linkModifer: "", basicLink: facebookUrlString)
+				addLink(stringToAddTo: displayString, label: "Facebook Username", linkModifer: "", basicLink: facebookUrlString)
 			}
 		}
 		if let whatsAppNumber=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
