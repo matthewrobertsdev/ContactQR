@@ -41,7 +41,8 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>INIntentsSupported</key>
 	<array>
-		<string>ConfigurationIntent</string>
+		<string>SelectCardConfigurationIntent</string>
+		<string>ShowCardIntent</string>
 	</array>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.social-networking</string>
@@ -53,7 +54,7 @@
 	<string>Copyright © 2020-2021 Matt Roberts. All rights reserved.</string>
 	<key>NSUserActivityTypes</key>
 	<array>
-		<string>ConfigurationIntent</string>
+		<string>SelectCardConfigurationIntent</string>
 		<string>ShowCardIntent</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>

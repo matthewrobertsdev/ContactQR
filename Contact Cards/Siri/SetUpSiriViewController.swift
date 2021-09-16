@@ -46,6 +46,13 @@ class SetUpSiriViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		prepareView()
+		AppState.shared.appState=AppStateValue.isModal
+		NotificationCenter.default.post(name: .modalityChanged, object: nil)
+	}
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		AppState.shared.appState=AppStateValue.isNotModal
+		NotificationCenter.default.post(name: .modalityChanged, object: nil)
 	}
 	@objc func prepareView() {
 		if UserDefaults(suiteName: appGroupKey)?.object(forKey: SiriCardKeys.chosenCardObjectID.rawValue) as? String != nil {
