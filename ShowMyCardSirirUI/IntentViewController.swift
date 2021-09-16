@@ -41,9 +41,6 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
         completion(true, parameters, self.desiredSize)
     }
     var desiredSize: CGSize {
-		#if targetEnvironment(macCatalyst)
-		return CGSize(width: 500, height: 500)
-		#else
 		let screenSize=UIScreen.main.bounds
 		var smaller: CGFloat
 		var greater: CGFloat
@@ -57,6 +54,5 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
 			smaller=340
 		}
 		return CGSize(width: 300, height: smaller)
-		#endif
 	}
 }

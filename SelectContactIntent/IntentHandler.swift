@@ -7,14 +7,14 @@
 //
 import Intents
 import CoreData
-class SelectContactIntentHandler: INExtension, SelectCardConfigurationIntentHandling {
+class IntentHandler: INExtension, ConfigurationIntentHandling {
 	override func handler(for intent: INIntent) -> Any? {
 		return self
 	}
-	func resolveParameter(for intent: SelectCardConfigurationIntent, with completion:
+	func resolveParameter(for intent: ConfigurationIntent, with completion:
 							@escaping (ContactCardINObjectResolutionResult) -> Void) {
 	}
-	func provideParameterOptionsCollection(for intent: SelectCardConfigurationIntent, with completion: @escaping
+	func provideParameterOptionsCollection(for intent: ConfigurationIntent, with completion: @escaping
 											(INObjectCollection<ContactCardINObject>?, Error?) -> Void) {
 		print("Should load choices")
 		let container=loadPersistentCloudKitContainer()

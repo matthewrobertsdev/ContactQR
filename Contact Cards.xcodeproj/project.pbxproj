@@ -16,10 +16,11 @@
 		9F0A334C265ED64F00265C4D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F0A334A265ED64F00265C4D /* MainInterface.storyboard */; };
 		9F0A3350265ED64F00265C4D /* ShowMyCardSirirUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F0A3345265ED64F00265C4D /* ShowMyCardSirirUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F0A335A265EDCB400265C4D /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3F6A2025F494110053C1DF /* Intents.framework */; };
-		9F0A335D265EDCB400265C4D /* SiriIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A335C265EDCB400265C4D /* SiriIntentHandler.swift */; };
+		9F0A335D265EDCB400265C4D /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A335C265EDCB400265C4D /* IntentHandler.swift */; };
 		9F0A3361265EDCB400265C4D /* ShowCardSiriIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F0A3359265EDCB400265C4D /* ShowCardSiriIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F0A3369265EE18700265C4D /* SetUpSiriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A3368265EE18700265C4D /* SetUpSiriViewController.swift */; };
 		9F0A336B265EE47200265C4D /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A336A265EE47200265C4D /* ShowCard.intentdefinition */; };
+		9F0A336C265EE4A800265C4D /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A336A265EE47200265C4D /* ShowCard.intentdefinition */; };
 		9F15544325939378006C7A92 /* EditContactAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F15544225939378006C7A92 /* EditContactAlertController.swift */; };
 		9F1A3F44264C074300957CA9 /* ChooseCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A3F43264C074300957CA9 /* ChooseCardViewController.swift */; };
 		9F1C75BF2662A24F00BC42FC /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE3781256DBA990089337E /* ColorModel.swift */; };
@@ -48,9 +49,11 @@
 		9F397A7226858AC900BB954B /* SiriCardKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F397A7126858AC900BB954B /* SiriCardKeys.swift */; };
 		9F3F6A5925F494820053C1DF /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3F6A2025F494110053C1DF /* Intents.framework */; };
 		9F3F6A6025F494820053C1DF /* SelectContactIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F3F6A5825F494820053C1DF /* SelectContactIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9F3F6AE225F498FC0053C1DF /* ContactCardQRCode.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9FC149A325F34B9600C700B0 /* ContactCardQRCode.intentdefinition */; };
 		9F3F6AEE25F499200053C1DF /* ContactCardQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC149A125F34B9600C700B0 /* ContactCardQRCode.swift */; };
 		9F3F6B2125F49A450053C1DF /* ContactCardQRCode.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9FC149A325F34B9600C700B0 /* ContactCardQRCode.intentdefinition */; };
-		9F3F6BB325F49B880053C1DF /* SelectContactIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB640EF25F476B70074DA18 /* SelectContactIntentHandler.swift */; };
+		9F3F6B3B25F49AAC0053C1DF /* ContactCardQRCode.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9FC149A325F34B9600C700B0 /* ContactCardQRCode.intentdefinition */; };
+		9F3F6BB325F49B880053C1DF /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB640EF25F476B70074DA18 /* IntentHandler.swift */; };
 		9F3FDD0121CC376F00D2FBB2 /* ContactDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FDD0021CC376F00D2FBB2 /* ContactDataConverter.swift */; };
 		9F422691256CD5BF00F1A0FA /* CircularColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F422690256CD5BF00F1A0FA /* CircularColorView.swift */; };
 		9F440F8326829458009AAD74 /* ActiveContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA500A22A75CE90004C20F /* ActiveContactCard.swift */; };
@@ -112,9 +115,6 @@
 		9F8852A9264FFDF100260D21 /* CardInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8852A8264FFDF100260D21 /* CardInterfaceController.swift */; };
 		9F8852AC265000B800260D21 /* ContactInfoManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5C647121D3E10A00832897 /* ContactInfoManipulator.swift */; };
 		9F8C266C2612821500E37290 /* ContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB92608E54A0003B2E4 /* ContactCardMO.swift */; };
-		9F8DA08226F3D36400B9D80B /* ContactCardQRCode.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9FC149A325F34B9600C700B0 /* ContactCardQRCode.intentdefinition */; };
-		9F8DA08326F3D3BF00B9D80B /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A336A265EE47200265C4D /* ShowCard.intentdefinition */; };
-		9F8DA08426F3D41900B9D80B /* ContactCardQRCode.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9FC149A325F34B9600C700B0 /* ContactCardQRCode.intentdefinition */; };
 		9F8E6646265AF3DF008D60EB /* DeleteDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8E6645265AF3DF008D60EB /* DeleteDataViewController.swift */; };
 		9F941C752652A886004F8C83 /* ManageCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F941C742652A886004F8C83 /* ManageCardsViewController.swift */; };
 		9F9A01AE26EB011D0021582E /* RestrictionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A01AD26EB011D0021582E /* RestrictionViewController.swift */; };
@@ -126,12 +126,17 @@
 		9F9E9AF821BA1691003A6A33 /* ContactCardsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9AF721BA1691003A6A33 /* ContactCardsTest.swift */; };
 		9FA077C926A31F320077361B /* CloudExplanationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA077C826A31F320077361B /* CloudExplanationViewController.swift */; };
 		9FA3C11326600BB70033DD3B /* ShortcutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA3C11226600BB70033DD3B /* ShortcutDelegate.swift */; };
+		9FA3C114266023840033DD3B /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A336A265EE47200265C4D /* ShowCard.intentdefinition */; };
+		9FA3C116266024480033DD3B /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A335C265EDCB400265C4D /* IntentHandler.swift */; };
+		9FA3C117266024940033DD3B /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A335C265EDCB400265C4D /* IntentHandler.swift */; };
 		9FABD3C0265DCCCC00546FDD /* CloudDataDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FABD3BF265DCCCC00546FDD /* CloudDataDescriptionViewController.swift */; };
 		9FB31897255F954200D31B8B /* ContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB31896255F954200D31B8B /* ContactCardViewController.swift */; };
 		9FB3E45F21C967410011752F /* PickContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E45E21C967410011752F /* PickContactViewController.swift */; };
 		9FB3E46521C96F990011752F /* DisplayQRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E46421C96F990011752F /* DisplayQRModel.swift */; };
 		9FB74C0A22B4752900F34181 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB74C0922B4752900F34181 /* ContactCard.swift */; };
 		9FBC31732660337400189972 /* ShowCardIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC31722660337400189972 /* ShowCardIntentHandler.swift */; };
+		9FBC3174266033FA00189972 /* ShowCardIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC31722660337400189972 /* ShowCardIntentHandler.swift */; };
+		9FBC3175266033FB00189972 /* ShowCardIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC31722660337400189972 /* ShowCardIntentHandler.swift */; };
 		9FBD0E86255E36DE00C9C9DA /* ContactCardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBD0E85255E36DE00C9C9DA /* ContactCardsTableViewController.swift */; };
 		9FBFACDB22B4A30800730E7B /* SavedContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */; };
 		9FC1499D25F34B9600C700B0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC1499C25F34B9600C700B0 /* WidgetKit.framework */; };
@@ -269,7 +274,7 @@
 		9F0A334D265ED64F00265C4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F0A3351265ED64F00265C4D /* ShowMyCardSirirUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShowMyCardSirirUI.entitlements; sourceTree = "<group>"; };
 		9F0A3359265EDCB400265C4D /* ShowCardSiriIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShowCardSiriIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F0A335C265EDCB400265C4D /* SiriIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriIntentHandler.swift; sourceTree = "<group>"; };
+		9F0A335C265EDCB400265C4D /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		9F0A335E265EDCB400265C4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F0A3362265EDCB400265C4D /* ShowCardSiriIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShowCardSiriIntent.entitlements; sourceTree = "<group>"; };
 		9F0A3368265EE18700265C4D /* SetUpSiriViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpSiriViewController.swift; sourceTree = "<group>"; };
@@ -353,7 +358,7 @@
 		9FB31896255F954200D31B8B /* ContactCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardViewController.swift; sourceTree = "<group>"; };
 		9FB3E45E21C967410011752F /* PickContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickContactViewController.swift; sourceTree = "<group>"; };
 		9FB3E46421C96F990011752F /* DisplayQRModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayQRModel.swift; sourceTree = "<group>"; };
-		9FB640EF25F476B70074DA18 /* SelectContactIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectContactIntentHandler.swift; sourceTree = "<group>"; };
+		9FB640EF25F476B70074DA18 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		9FB74C0922B4752900F34181 /* ContactCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCard.swift; sourceTree = "<group>"; };
 		9FBC31722660337400189972 /* ShowCardIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardIntentHandler.swift; sourceTree = "<group>"; };
 		9FBD0E85255E36DE00C9C9DA /* ContactCardsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardsTableViewController.swift; sourceTree = "<group>"; };
@@ -485,7 +490,7 @@
 			children = (
 				9F0A3362265EDCB400265C4D /* ShowCardSiriIntent.entitlements */,
 				9F0A336A265EE47200265C4D /* ShowCard.intentdefinition */,
-				9F0A335C265EDCB400265C4D /* SiriIntentHandler.swift */,
+				9F0A335C265EDCB400265C4D /* IntentHandler.swift */,
 				9FBC31722660337400189972 /* ShowCardIntentHandler.swift */,
 				9F0A335E265EDCB400265C4D /* Info.plist */,
 			);
@@ -551,7 +556,7 @@
 		9F3F6A5A25F494820053C1DF /* SelectContactIntent */ = {
 			isa = PBXGroup;
 			children = (
-				9FB640EF25F476B70074DA18 /* SelectContactIntentHandler.swift */,
+				9FB640EF25F476B70074DA18 /* IntentHandler.swift */,
 				9F3F6A6125F494820053C1DF /* SelectContactIntent.entitlements */,
 				9F3F6A5D25F494820053C1DF /* Info.plist */,
 			);
@@ -1171,6 +1176,9 @@
 			files = (
 				9F0A3349265ED64F00265C4D /* IntentViewController.swift in Sources */,
 				9F1C75C12662A25500BC42FC /* ColorChoice.swift in Sources */,
+				9FBC3174266033FA00189972 /* ShowCardIntentHandler.swift in Sources */,
+				9FA3C116266024480033DD3B /* IntentHandler.swift in Sources */,
+				9FA3C114266023840033DD3B /* ShowCard.intentdefinition in Sources */,
 				9F1C75BF2662A24F00BC42FC /* ColorModel.swift in Sources */,
 				9F1C75C02662A25200BC42FC /* Color.swift in Sources */,
 			);
@@ -1181,7 +1189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FBC31732660337400189972 /* ShowCardIntentHandler.swift in Sources */,
-				9F0A335D265EDCB400265C4D /* SiriIntentHandler.swift in Sources */,
+				9F0A335D265EDCB400265C4D /* IntentHandler.swift in Sources */,
 				9F0A336B265EE47200265C4D /* ShowCard.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1209,7 +1217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F6803282612DF2800E6166D /* ContactCardMO.swift in Sources */,
-				9F3F6BB325F49B880053C1DF /* SelectContactIntentHandler.swift in Sources */,
+				9F3F6BB325F49B880053C1DF /* IntentHandler.swift in Sources */,
 				9F75D07926536700000EB03D /* LoadPersistentContainer.swift in Sources */,
 				9F659B1725FEA19E0035F02C /* ContactDataConverter.swift in Sources */,
 				9F659B0B25FEA17C0035F02C /* ContactCard.swift in Sources */,
@@ -1258,8 +1266,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F5C647221D3E10A00832897 /* ContactInfoManipulator.swift in Sources */,
-				9F8DA08326F3D3BF00B9D80B /* ShowCard.intentdefinition in Sources */,
 				9FEE3787256DBAA50089337E /* Color.swift in Sources */,
+				9FA3C117266024940033DD3B /* IntentHandler.swift in Sources */,
 				9FABD3C0265DCCCC00546FDD /* CloudDataDescriptionViewController.swift in Sources */,
 				9F15544325939378006C7A92 /* EditContactAlertController.swift in Sources */,
 				9F75D0772653664B000EB03D /* LoadPersistentContainer.swift in Sources */,
@@ -1278,12 +1286,14 @@
 				9F447AB32608E1540003B2E4 /* ContactCards.xcdatamodeld in Sources */,
 				9FB3E45F21C967410011752F /* PickContactViewController.swift in Sources */,
 				9F0A3369265EE18700265C4D /* SetUpSiriViewController.swift in Sources */,
+				9F3F6B3B25F49AAC0053C1DF /* ContactCardQRCode.intentdefinition in Sources */,
 				9FB3E46521C96F990011752F /* DisplayQRModel.swift in Sources */,
 				9F7EB967255E10420032563C /* CreateContactViewController.swift in Sources */,
 				9FEE3782256DBA990089337E /* ColorModel.swift in Sources */,
 				9F4ABC7D2570CBEA000A9101 /* ToolBarDelegate.swift in Sources */,
 				9F422691256CD5BF00F1A0FA /* CircularColorView.swift in Sources */,
 				9F9A01AE26EB011D0021582E /* RestrictionViewController.swift in Sources */,
+				9F0A336C265EE4A800265C4D /* ShowCard.intentdefinition in Sources */,
 				9FA3C11326600BB70033DD3B /* ShortcutDelegate.swift in Sources */,
 				9FED3514269F667300EFFA48 /* CardsTableViewControllerExtension.swift in Sources */,
 				9F1A3F44264C074300957CA9 /* ChooseCardViewController.swift in Sources */,
@@ -1293,13 +1303,13 @@
 				9FBD0E86255E36DE00C9C9DA /* ContactCardsTableViewController.swift in Sources */,
 				9FC440CD26A6288C00F8FE18 /* UpdateCards.swift in Sources */,
 				9FB74C0A22B4752900F34181 /* ContactCard.swift in Sources */,
+				9FBC3175266033FB00189972 /* ShowCardIntentHandler.swift in Sources */,
 				9F744D64269F4FAB00394BD6 /* GetContactFromFieldsExtension.swift in Sources */,
 				9FEE377D256DBA490089337E /* ChooseColorTableViewController.swift in Sources */,
 				9F397A7226858AC900BB954B /* SiriCardKeys.swift in Sources */,
 				9F34C273255CCF1900B9DEA4 /* MainSplitViewController.swift in Sources */,
 				9FEE378C256DBB9F0089337E /* ColorChoice.swift in Sources */,
 				9F35C55F2653463F005E8C61 /* AboutViewController.swift in Sources */,
-				9F8DA08426F3D41900B9D80B /* ContactCardQRCode.intentdefinition in Sources */,
 				9F744D66269F502200394BD6 /* FillFieldsFromContactExtension.swift in Sources */,
 				9F56C73C253BD2C8006D8DE6 /* TintImages.swift in Sources */,
 				9F744D62269F3FDD00394BD6 /* CannotEditAlertControllers.swift in Sources */,
@@ -1326,10 +1336,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F659B1D25FEA1DB0035F02C /* TintImages.swift in Sources */,
-				9F8DA08226F3D36400B9D80B /* ContactCardQRCode.intentdefinition in Sources */,
 				9F3F6AEE25F499200053C1DF /* ContactCardQRCode.swift in Sources */,
 				9F659B2F25FEA1F60035F02C /* DisplayQRModel.swift in Sources */,
 				9FF33804260155F4007825D7 /* Color.swift in Sources */,
+				9F3F6AE225F498FC0053C1DF /* ContactCardQRCode.intentdefinition in Sources */,
 				9F75D07A26536781000EB03D /* LoadPersistentContainer.swift in Sources */,
 				9F659B5425FEA29D0035F02C /* NotificationNameExtensions.swift in Sources */,
 				9F8C266C2612821500E37290 /* ContactCardMO.swift in Sources */,
@@ -1442,7 +1452,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShowMyCardSirirUI/ShowMyCardSirirUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ShowMyCardSirirUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -1466,7 +1476,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShowMyCardSirirUI/ShowMyCardSirirUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ShowMyCardSirirUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -1490,7 +1500,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShowCardSiriIntent/ShowCardSiriIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ShowCardSiriIntent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -1514,7 +1524,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShowCardSiriIntent/ShowCardSiriIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ShowCardSiriIntent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -1540,7 +1550,7 @@
 				CODE_SIGN_ENTITLEMENTS = MessageContactCard/MessageContactCard.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = MessageContactCard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1568,7 +1578,7 @@
 				CODE_SIGN_ENTITLEMENTS = MessageContactCard/MessageContactCard.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = MessageContactCard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1594,7 +1604,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = SelectContactIntent/SelectContactIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = SelectContactIntent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1604,7 +1614,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.SelectContactIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1619,7 +1628,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = SelectContactIntent/SelectContactIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = SelectContactIntent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1629,7 +1638,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.SelectContactIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1647,11 +1655,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ContactCardsWatch/ContactCardsWatch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				IBSC_MODULE = ContactCardsWatch_Extension;
 				INFOPLIST_FILE = ContactCardsWatch/Info.plist;
-				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1670,11 +1676,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ContactCardsWatch/ContactCardsWatch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				IBSC_MODULE = ContactCardsWatch_Extension;
 				INFOPLIST_FILE = ContactCardsWatch/Info.plist;
-				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1692,7 +1696,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "ContactCardsWatch Extension/ContactCardsWatch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "ContactCardsWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1700,7 +1703,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -1718,7 +1720,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "ContactCardsWatch Extension/ContactCardsWatch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "ContactCardsWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1726,7 +1727,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -1903,7 +1903,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Contact Cards.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "$(SRCROOT)/Contact Cards/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1928,7 +1928,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Contact Cards.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "$(SRCROOT)/Contact Cards/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1995,8 +1995,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ContactCardQRCodeExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
-				DEVELOPMENT_ASSET_PATHS = "";
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ContactCardQRCode/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -2006,12 +2005,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ContactCardQRCode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
@@ -2024,8 +2021,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ContactCardQRCodeExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
-				DEVELOPMENT_ASSET_PATHS = "";
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ContactCardQRCode/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -2035,12 +2031,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ContactCardQRCode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};

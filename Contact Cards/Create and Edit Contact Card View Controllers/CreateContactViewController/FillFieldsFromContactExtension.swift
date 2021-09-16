@@ -93,7 +93,7 @@ extension CreateContactViewController {
 			return labeledEmail.label==CNLabelWork
 		})
 		workEmail1TextField.text=workEmails.first?.value.substring(from: 0)
-		if workEmails.count>1 {
+		if emails.count>1 {
 			workEmail2TextField.text=workEmails[1].value.substring(from: 0)
 		}
 	}

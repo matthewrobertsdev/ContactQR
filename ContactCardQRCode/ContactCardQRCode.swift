@@ -20,18 +20,18 @@ struct Provider: IntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
 		createPreviewEntry()
     }
-    func getSnapshot(for configuration: SelectCardConfigurationIntent, in context: Context,
+    func getSnapshot(for configuration: ConfigurationIntent, in context: Context,
 					 completion: @escaping (SimpleEntry) -> Void) {
 		let entry=createPreviewEntry()
         completion(entry)
     }
-    func getTimeline(for configuration: SelectCardConfigurationIntent, in context: Context,
+    func getTimeline(for configuration: ConfigurationIntent, in context: Context,
 					 completion: @escaping (Timeline<SimpleEntry>) -> Void) {
 		let entry=createEntryFromConfiguration(configuration: configuration)
 		let timeline = Timeline(entries: [entry], policy: .never)
         completion(timeline)
     }
-	func createEntryFromConfiguration(configuration: SelectCardConfigurationIntent) -> SimpleEntry {
+	func createEntryFromConfiguration(configuration: ConfigurationIntent) -> SimpleEntry {
 		var qrCode: UIImage?
 		var color: String?
 		var widgetMode=WidgetMode.editMessage
@@ -97,7 +97,7 @@ struct ContactCardQRCodeEntryView: View {
 struct ContactCardQRCode: Widget {
     let kind: String = "ContactCardQRCode"
 	var body: some WidgetConfiguration {
-		IntentConfiguration(kind: kind, intent: SelectCardConfigurationIntent.self, provider: Provider()) { entry in
+		IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
 			ContactCardQRCodeEntryView(entry: entry)
 		}
 		.configurationDisplayName("Contact Card QR Code")

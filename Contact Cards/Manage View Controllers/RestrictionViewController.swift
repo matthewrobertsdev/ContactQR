@@ -58,9 +58,7 @@ class RestrictionViewController: UIViewController, UITextFieldDelegate {
 	}
 	func restrictOrUnrestrictICloud(restrict: Bool) {
 		let container=CKContainer(identifier: "iCloud.com.apps.celeritas.ContactCards")
-		let apiToken="a1a535b42053a361b9dba5ea56de3e492268d15fa3dfc2d627c5f25f95a14403"
-			
-			//development: "5065dbfcc540600ae42664510115173f5d7a048169cf55f27d948246adba737a"
+		let apiToken="5065dbfcc540600ae42664510115173f5d7a048169cf55f27d948246adba737a"
 			let fetchAuthorization = CKFetchWebAuthTokenOperation(apiToken: apiToken)
 			fetchAuthorization.fetchWebAuthTokenCompletionBlock = { [weak self] webToken, error in
 				guard let strongSelf = self else {

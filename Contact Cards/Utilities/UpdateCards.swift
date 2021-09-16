@@ -14,7 +14,7 @@ func updateWidget(contactCard: ContactCardMO?) {
 		guard case .success(let widgets) = result else { return }
 		if let widget = widgets.first(
 			where: { widget in
-				let intent = widget.configuration as? SelectCardConfigurationIntent
+				let intent = widget.configuration as? ConfigurationIntent
 				if let contactCard=contactCard {
 					return intent?.parameter?.identifier == contactCard.objectID.uriRepresentation().absoluteString
 				} else {
