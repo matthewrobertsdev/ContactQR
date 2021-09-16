@@ -109,6 +109,9 @@ extension AppDelegate {
 	@objc func manageCards() {
 		NotificationCenter.default.post(name: .manageCards, object: nil)
 	}
+	@objc func setUpSiri() {
+		NotificationCenter.default.post(name: .setUpSiri, object: nil)
+	}
 	@objc func openFAQ() {
 		if let url = URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/faq/contactcards") {
 			UIApplication.shared.open(url)
@@ -204,7 +207,18 @@ extension AppDelegate {
 										UIMenu.Identifier("share"), options: .displayInline, children: [shareCommand])
 		let cardMenu = UIMenu(title: "Card", image: nil, identifier:
 								UIMenu.Identifier("cardMenu"), options: [], children: [showQRMenu, shareMenu])
+		let siriCommandTitle="Set-up Card for Siri..."
+		let siriCommand =
+			UICommand(title: siriCommandTitle, image: nil, action: #selector(setUpSiri), propertyList: nil, alternates: [], discoverabilityTitle: siriCommandTitle, attributes: [], state: .off)
+		exportAsVCardCommand.discoverabilityTitle = NSLocalizedString("Export as vCard...", comment: "")
 		builder.insertSibling(cardMenu, beforeMenu: .window)
+		if #available(macCatalyst 15, *) {
+			let showSiriMenu = UIMenu(title: "Set-up Card for Siri...", image: nil, identifier:
+										UIMenu.Identifier("showSiri"), options: .displayInline, children: [siriCommand])
+			let siriMenu = UIMenu(title: "Siri", image: nil, identifier:
+								UIMenu.Identifier("siriMenu"), options: [], children: [showSiriMenu])
+			builder.insertSibling(siriMenu, beforeMenu: .window)
+		}
 		let openFaqCommand = UICommand(title: "Frequently Asked Questions", image: nil, action:
 									#selector(openFAQ), propertyList: nil, alternates: [],
 								   discoverabilityTitle: "Frequently Asked Questions", attributes: [], state: .off)
@@ -214,12 +228,12 @@ extension AppDelegate {
 		let openContactCommand = UICommand(title: "Contact the Developer", image: nil, action:
 									#selector(openContactTheDeveloper), propertyList: nil, alternates: [],
 								   discoverabilityTitle: "Contact the Developer", attributes: [], state: .off)
-		let openPprivacyCommand = UICommand(title: "Privacy Policy", image: nil, action:
+		let openPrivacyCommand = UICommand(title: "Privacy Policy", image: nil, action:
 									#selector(openPrivacyPolicy), propertyList: nil, alternates: [],
 								   discoverabilityTitle: "Privacy Policy", attributes: [], state: .off)
 		let websiteMenu = UIMenu(title: "", image: nil, identifier:
 										UIMenu.Identifier("websiteMenu"), options: .displayInline, children:
-											[openFaqCommand, opneHomepageCommand, openContactCommand, openPprivacyCommand])
+											[openFaqCommand, opneHomepageCommand, openContactCommand, openPrivacyCommand])
 		builder.insertChild(websiteMenu, atStartOfMenu: .help)
 	}
 }

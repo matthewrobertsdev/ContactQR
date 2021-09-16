@@ -1964,7 +1964,7 @@ All rights reserved.</string>
         <!--Set-up a Card for Siri-->
         <scene sceneID="oTJ-gs-sAc">
             <objects>
-                <viewController id="8ii-ME-gsR" customClass="SetUpSiriViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SetUpSiriViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8ii-ME-gsR" customClass="SetUpSiriViewController" customModule="Contact_Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hs4-fx-KlP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

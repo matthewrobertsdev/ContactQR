@@ -52,6 +52,7 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		notificationCenter.addObserver(self, selector: #selector(editColor), name: .editColor, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(editTitle), name: .editTitle, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(manageCards), name: .manageCards, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(setUpSiri), name: .setUpSiri, object: nil)
 	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -336,6 +337,17 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			return
 		}
 		let navigationController=UINavigationController(rootViewController: manageCardsViewController)
+		self.present(navigationController, animated: true)
+	}
+	@objc func setUpSiri() {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		guard let setUpSiriViewController=storyboard.instantiateViewController(withIdentifier:
+																						"SetUpSiriViewController")
+				as? SetUpSiriViewController else {
+			print("Failed to instantiate SetUpSiriViewController")
+			return
+		}
+		let navigationController=UINavigationController(rootViewController: setUpSiriViewController)
 		self.present(navigationController, animated: true)
 	}
 	@IBAction func editContact(_ sender: Any) {

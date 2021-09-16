@@ -93,7 +93,6 @@ struct ContactCardQRCodeEntryView: View {
 		}
     }
 }
-
 @main
 struct ContactCardQRCode: Widget {
     let kind: String = "ContactCardQRCode"
@@ -105,7 +104,6 @@ struct ContactCardQRCode: Widget {
 		.description("Display a QR Code for a Contact Card").supportedFamilies([.systemSmall, .systemLarge])
 	}
 }
-
 struct ContactCardQRCodePreviews: PreviewProvider {
     static var previews: some View {
 		Group {

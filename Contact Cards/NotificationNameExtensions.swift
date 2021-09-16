@@ -22,6 +22,8 @@ extension Notification.Name {
 	static let siriCardChosen=Notification.Name("siri-card-chosen")
 	static let cardsLoaded=Notification.Name("cards-loaded")
 	static let syncChanged=Notification.Name("sync-changed")
+	static let setUpSiri=Notification.Name("set-up-siri")
+
 	/*
 	 Post this WHENEVER ActiveContact.shared.activeContact changes
 	 */
