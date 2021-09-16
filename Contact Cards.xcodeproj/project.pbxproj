@@ -16,7 +16,7 @@
 		9F0A334C265ED64F00265C4D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F0A334A265ED64F00265C4D /* MainInterface.storyboard */; };
 		9F0A3350265ED64F00265C4D /* ShowMyCardSirirUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F0A3345265ED64F00265C4D /* ShowMyCardSirirUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F0A335A265EDCB400265C4D /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3F6A2025F494110053C1DF /* Intents.framework */; };
-		9F0A335D265EDCB400265C4D /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A335C265EDCB400265C4D /* IntentHandler.swift */; };
+		9F0A335D265EDCB400265C4D /* SiriIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A335C265EDCB400265C4D /* SiriIntentHandler.swift */; };
 		9F0A3361265EDCB400265C4D /* ShowCardSiriIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F0A3359265EDCB400265C4D /* ShowCardSiriIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F0A3369265EE18700265C4D /* SetUpSiriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A3368265EE18700265C4D /* SetUpSiriViewController.swift */; };
 		9F0A336B265EE47200265C4D /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A336A265EE47200265C4D /* ShowCard.intentdefinition */; };
@@ -127,8 +127,8 @@
 		9FA077C926A31F320077361B /* CloudExplanationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA077C826A31F320077361B /* CloudExplanationViewController.swift */; };
 		9FA3C11326600BB70033DD3B /* ShortcutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA3C11226600BB70033DD3B /* ShortcutDelegate.swift */; };
 		9FA3C114266023840033DD3B /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A336A265EE47200265C4D /* ShowCard.intentdefinition */; };
-		9FA3C116266024480033DD3B /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A335C265EDCB400265C4D /* IntentHandler.swift */; };
-		9FA3C117266024940033DD3B /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A335C265EDCB400265C4D /* IntentHandler.swift */; };
+		9FA3C116266024480033DD3B /* SiriIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A335C265EDCB400265C4D /* SiriIntentHandler.swift */; };
+		9FA3C117266024940033DD3B /* SiriIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A335C265EDCB400265C4D /* SiriIntentHandler.swift */; };
 		9FABD3C0265DCCCC00546FDD /* CloudDataDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FABD3BF265DCCCC00546FDD /* CloudDataDescriptionViewController.swift */; };
 		9FB31897255F954200D31B8B /* ContactCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB31896255F954200D31B8B /* ContactCardViewController.swift */; };
 		9FB3E45F21C967410011752F /* PickContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3E45E21C967410011752F /* PickContactViewController.swift */; };
@@ -274,7 +274,7 @@
 		9F0A334D265ED64F00265C4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F0A3351265ED64F00265C4D /* ShowMyCardSirirUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShowMyCardSirirUI.entitlements; sourceTree = "<group>"; };
 		9F0A3359265EDCB400265C4D /* ShowCardSiriIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShowCardSiriIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F0A335C265EDCB400265C4D /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		9F0A335C265EDCB400265C4D /* SiriIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriIntentHandler.swift; sourceTree = "<group>"; };
 		9F0A335E265EDCB400265C4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F0A3362265EDCB400265C4D /* ShowCardSiriIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShowCardSiriIntent.entitlements; sourceTree = "<group>"; };
 		9F0A3368265EE18700265C4D /* SetUpSiriViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpSiriViewController.swift; sourceTree = "<group>"; };
@@ -490,7 +490,7 @@
 			children = (
 				9F0A3362265EDCB400265C4D /* ShowCardSiriIntent.entitlements */,
 				9F0A336A265EE47200265C4D /* ShowCard.intentdefinition */,
-				9F0A335C265EDCB400265C4D /* IntentHandler.swift */,
+				9F0A335C265EDCB400265C4D /* SiriIntentHandler.swift */,
 				9FBC31722660337400189972 /* ShowCardIntentHandler.swift */,
 				9F0A335E265EDCB400265C4D /* Info.plist */,
 			);
@@ -1177,7 +1177,7 @@
 				9F0A3349265ED64F00265C4D /* IntentViewController.swift in Sources */,
 				9F1C75C12662A25500BC42FC /* ColorChoice.swift in Sources */,
 				9FBC3174266033FA00189972 /* ShowCardIntentHandler.swift in Sources */,
-				9FA3C116266024480033DD3B /* IntentHandler.swift in Sources */,
+				9FA3C116266024480033DD3B /* SiriIntentHandler.swift in Sources */,
 				9FA3C114266023840033DD3B /* ShowCard.intentdefinition in Sources */,
 				9F1C75BF2662A24F00BC42FC /* ColorModel.swift in Sources */,
 				9F1C75C02662A25200BC42FC /* Color.swift in Sources */,
@@ -1189,7 +1189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FBC31732660337400189972 /* ShowCardIntentHandler.swift in Sources */,
-				9F0A335D265EDCB400265C4D /* IntentHandler.swift in Sources */,
+				9F0A335D265EDCB400265C4D /* SiriIntentHandler.swift in Sources */,
 				9F0A336B265EE47200265C4D /* ShowCard.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1267,7 +1267,7 @@
 			files = (
 				9F5C647221D3E10A00832897 /* ContactInfoManipulator.swift in Sources */,
 				9FEE3787256DBAA50089337E /* Color.swift in Sources */,
-				9FA3C117266024940033DD3B /* IntentHandler.swift in Sources */,
+				9FA3C117266024940033DD3B /* SiriIntentHandler.swift in Sources */,
 				9FABD3C0265DCCCC00546FDD /* CloudDataDescriptionViewController.swift in Sources */,
 				9F15544325939378006C7A92 /* EditContactAlertController.swift in Sources */,
 				9F75D0772653664B000EB03D /* LoadPersistentContainer.swift in Sources */,
