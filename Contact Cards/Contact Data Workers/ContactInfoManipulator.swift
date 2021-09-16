@@ -250,6 +250,34 @@ class ContactInfoManipulator {
 				addLink(stringToAddTo: displayString, label: "Facebook URL", linkModifer: "", basicLink: facebookUrlString)
 			}
 		}
+		if let whatsAppNumber=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+			return socialProfile.value.service.lowercased()=="WhatsApp".lowercased()
+		})?.value.username {
+			if whatsAppNumber != "" {
+				addLink(stringToAddTo: displayString, label: "WhatsApp Number", linkModifer: "https://wa.me/", basicLink: whatsAppNumber)
+			}
+		}
+		if let instagramUsername=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+			return socialProfile.value.service.lowercased()=="Instagram".lowercased()
+		})?.value.username {
+			if instagramUsername != "" {
+				addLink(stringToAddTo: displayString, label: "Instagram Username", linkModifer: "https://www.instagram.com/", basicLink: instagramUsername)
+			}
+		}
+		if let snapchatUsername=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+			return socialProfile.value.service.lowercased()=="Snapchat".lowercased()
+		})?.value.username {
+			if snapchatUsername != "" {
+				addLink(stringToAddTo: displayString, label: "Snapchat Username", linkModifer: "https://www.snapchat.com/add/", basicLink: snapchatUsername)
+			}
+		}
+		if let pinterestUsername=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+			return socialProfile.value.service.lowercased()=="Pinterest".lowercased()
+		})?.value.username {
+			if pinterestUsername != "" {
+				addLink(stringToAddTo: displayString, label: "Pinterest Username", linkModifer: "https://www.pinterest.com/", basicLink: pinterestUsername)
+			}
+		}
 	}
 	static func addLink(stringToAddTo: NSMutableAttributedString, label: String, linkModifer: String, basicLink: String) {
 		stringToAddTo.append(NSAttributedString(string: "\(label): "))

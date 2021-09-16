@@ -108,6 +108,18 @@ extension CreateContactViewController {
 		facebookTextField.text=socialProfiles.first(where: {  (socialProfile) in
 			return socialProfile.value.service.lowercased()==CNSocialProfileServiceFacebook.lowercased()
 		})?.value.urlString
+		whatsAppTextField.text=socialProfiles.first(where: {  (socialProfile) in
+			return socialProfile.value.service.lowercased()=="WhatsApp".lowercased()
+		})?.value.username
+		instagramTextField.text=socialProfiles.first(where: {  (socialProfile) in
+			return socialProfile.value.service.lowercased()=="Instagram".lowercased()
+		})?.value.username
+		snapchatTextField.text=socialProfiles.first(where: {  (socialProfile) in
+			return socialProfile.value.service.lowercased()=="Snapchat".lowercased()
+		})?.value.username
+		pinterestTextField.text=socialProfiles.first(where: {  (socialProfile) in
+			return socialProfile.value.service.lowercased()=="Pinterest".lowercased()
+		})?.value.username
 	}
 	private func fillUrls(contact: CNContact) {
 		let urls=contact.urlAddresses

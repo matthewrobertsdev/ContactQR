@@ -146,7 +146,7 @@ extension CreateContactViewController {
 		if !(linkedInTextField.text=="") {
 			var linkedInUrl=linkedInTextField.text ?? ""
 			if !(linkedInUrl.starts(with: "http://")) && !(linkedInUrl.starts(with: "https://")) {
-				linkedInUrl="http://"+linkedInUrl
+				linkedInUrl="https://"+linkedInUrl
 			}
 			contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString:
 																												linkedInUrl, username: nil, userIdentifier: nil, service: CNSocialProfileServiceLinkedIn)))
@@ -154,7 +154,7 @@ extension CreateContactViewController {
 		if !(facebookTextField.text=="") {
 			var facebookURL=facebookTextField.text ?? ""
 			if !(facebookURL.starts(with: "http://")) && !(facebookURL.starts(with: "https://")) {
-				facebookURL="http://"+facebookURL
+				facebookURL="https://"+facebookURL
 			}
 			contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: facebookURL,
 																											 username: nil, userIdentifier: nil, service: CNSocialProfileServiceFacebook)))
@@ -171,7 +171,7 @@ extension CreateContactViewController {
 			var instagramUsername=instagramTextField.text ?? ""
 			instagramUsername = instagramUsername.replacingOccurrences(of: "@", with: "")
 
-			let instagramURL="https://www.instagram.com/\(instagramUsername)/"
+			let instagramURL="https://www.instagram.com/\(instagramUsername)"
 			contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: instagramURL,
 																											 username: instagramUsername, userIdentifier: nil, service: "Instagram")))
 		}
@@ -184,7 +184,7 @@ extension CreateContactViewController {
 		}
 		if !(pinterestTextField.text=="") {
 			let pinterestUsername=pinterestTextField.text ?? ""
-			let pinterestURL="https://www.pinterest.com/\(pinterestUsername)/"
+			let pinterestURL="https://www.pinterest.com/\(pinterestUsername)"
 			contact.socialProfiles.append(CNLabeledValue<CNSocialProfile>(label: nil, value: CNSocialProfile(urlString: pinterestURL,
 																											 username: pinterestUsername, userIdentifier: nil, service: "Pinterest")))
 		}
