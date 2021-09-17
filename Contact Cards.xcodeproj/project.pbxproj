@@ -14,10 +14,10 @@
 		9F0A3346265ED64F00265C4D /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3F6A2B25F494110053C1DF /* IntentsUI.framework */; };
 		9F0A3349265ED64F00265C4D /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A3348265ED64F00265C4D /* IntentViewController.swift */; };
 		9F0A334C265ED64F00265C4D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F0A334A265ED64F00265C4D /* MainInterface.storyboard */; };
-		9F0A3350265ED64F00265C4D /* ShowMyCardSirirUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F0A3345265ED64F00265C4D /* ShowMyCardSirirUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9F0A3350265ED64F00265C4D /* ShowMyCardSirirUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F0A3345265ED64F00265C4D /* ShowMyCardSirirUI.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F0A335A265EDCB400265C4D /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3F6A2025F494110053C1DF /* Intents.framework */; };
 		9F0A335D265EDCB400265C4D /* SiriIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A335C265EDCB400265C4D /* SiriIntentHandler.swift */; };
-		9F0A3361265EDCB400265C4D /* ShowCardSiriIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F0A3359265EDCB400265C4D /* ShowCardSiriIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9F0A3361265EDCB400265C4D /* ShowCardSiriIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F0A3359265EDCB400265C4D /* ShowCardSiriIntent.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F0A3369265EE18700265C4D /* SetUpSiriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A3368265EE18700265C4D /* SetUpSiriViewController.swift */; };
 		9F0A336B265EE47200265C4D /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A336A265EE47200265C4D /* ShowCard.intentdefinition */; };
 		9F0A336C265EE4A800265C4D /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A336A265EE47200265C4D /* ShowCard.intentdefinition */; };
@@ -32,7 +32,6 @@
 		9F24C12826180DF600C9441F /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F24C12726180DF600C9441F /* MessagesViewController.swift */; };
 		9F24C12B26180DF600C9441F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F24C12926180DF600C9441F /* MainInterface.storyboard */; };
 		9F24C12D26180DF700C9441F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F24C12C26180DF700C9441F /* Assets.xcassets */; };
-		9F24C13126180DF700C9441F /* MessageContactCard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F24C12326180DF600C9441F /* MessageContactCard.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F24C142261818F700C9441F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F447AC02608E7130003B2E4 /* CloudKit.framework */; };
 		9F24C14926181A7800C9441F /* ContactCardMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F447AB92608E54A0003B2E4 /* ContactCardMO.swift */; };
 		9F24C15026181BE900C9441F /* SavedContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */; };
@@ -257,7 +256,6 @@
 			dstSubfolderSpec = 13;
 			files = (
 				9FC149AB25F34B9700C700B0 /* ContactCardQRCodeExtension.appex in Embed App Extensions */,
-				9F24C13126180DF700C9441F /* MessageContactCard.appex in Embed App Extensions */,
 				9F0A3361265EDCB400265C4D /* ShowCardSiriIntent.appex in Embed App Extensions */,
 				9F3F6A6025F494820053C1DF /* SelectContactIntent.appex in Embed App Extensions */,
 				9F0A3350265ED64F00265C4D /* ShowMyCardSirirUI.appex in Embed App Extensions */,
@@ -1356,11 +1354,13 @@
 /* Begin PBXTargetDependency section */
 		9F0A334F265ED64F00265C4D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 9F0A3344265ED64F00265C4D /* ShowMyCardSirirUI */;
 			targetProxy = 9F0A334E265ED64F00265C4D /* PBXContainerItemProxy */;
 		};
 		9F0A3360265EDCB400265C4D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 9F0A3358265EDCB400265C4D /* ShowCardSiriIntent */;
 			targetProxy = 9F0A335F265EDCB400265C4D /* PBXContainerItemProxy */;
 		};
@@ -1465,7 +1465,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowMyCardSirirUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1489,7 +1490,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowMyCardSirirUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1513,7 +1515,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1537,7 +1540,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2009,6 +2013,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
@@ -2035,6 +2040,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};

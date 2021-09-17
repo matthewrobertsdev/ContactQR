@@ -236,18 +236,18 @@ class ContactInfoManipulator {
 		})?.value.username {
 			addLink(stringToAddTo: displayString, label: "Twitter Username", linkModifer: "https://twitter.com/", basicLink: twitterUsername)
 		}
-		if let linkedInUsername=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+		if let linkedInURL=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
 			return socialProfile.value.service.lowercased()==CNSocialProfileServiceLinkedIn.lowercased()
-		})?.value.username {
-			if linkedInUsername != "" {
-				addLink(stringToAddTo: displayString, label: "LinkedIn Username", linkModifer: "https://www.linkedin.com/in/", basicLink: linkedInUsername)
+		})?.value.urlString {
+			if linkedInURL != "" {
+				addLink(stringToAddTo: displayString, label: "LinkedIn URL", linkModifer: "", basicLink: linkedInURL)
 			}
 		}
-		if let facebookUrlString=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
+		if let facebookURL=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in
 			return socialProfile.value.service.lowercased()==CNSocialProfileServiceFacebook.lowercased()
-		})?.value.username {
-			if facebookUrlString != "" {
-				addLink(stringToAddTo: displayString, label: "Facebook Username", linkModifer: "", basicLink: facebookUrlString)
+		})?.value.urlString {
+			if facebookURL != "" {
+				addLink(stringToAddTo: displayString, label: "Facebook URL", linkModifer: "", basicLink: facebookURL)
 			}
 		}
 		if let whatsAppNumber=cnContact.socialProfiles.first(where: { (socialProfile) -> Bool in

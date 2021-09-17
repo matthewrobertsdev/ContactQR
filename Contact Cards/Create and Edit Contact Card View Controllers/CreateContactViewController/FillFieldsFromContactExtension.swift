@@ -104,10 +104,10 @@ extension CreateContactViewController {
 		})?.value.username
 		linkedInTextField.text=socialProfiles.first(where: {  (socialProfile) in
 			return socialProfile.value.service.lowercased()==CNSocialProfileServiceLinkedIn.lowercased()
-		})?.value.username
+		})?.value.urlString
 		facebookTextField.text=socialProfiles.first(where: {  (socialProfile) in
 			return socialProfile.value.service.lowercased()==CNSocialProfileServiceFacebook.lowercased()
-		})?.value.username
+		})?.value.urlString
 		whatsAppTextField.text=socialProfiles.first(where: {  (socialProfile) in
 			return socialProfile.value.service.lowercased()=="WhatsApp".lowercased()
 		})?.value.username
