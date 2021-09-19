@@ -207,18 +207,20 @@ extension AppDelegate {
 										UIMenu.Identifier("share"), options: .displayInline, children: [shareCommand])
 		let cardMenu = UIMenu(title: "Card", image: nil, identifier:
 								UIMenu.Identifier("cardMenu"), options: [], children: [showQRMenu, shareMenu])
-		let siriCommandTitle="Set-up Card for Siri..."
-		let siriCommand =
-			UICommand(title: siriCommandTitle, image: nil, action: #selector(setUpSiri), propertyList: nil, alternates: [], discoverabilityTitle: siriCommandTitle, attributes: [], state: .off)
 		exportAsVCardCommand.discoverabilityTitle = NSLocalizedString("Export as vCard...", comment: "")
 		builder.insertSibling(cardMenu, beforeMenu: .window)
+		/*
 		if #available(macCatalyst 15, *) {
+			let siriCommandTitle="Set-up Card for Siri..."
+			let siriCommand =
+				UICommand(title: siriCommandTitle, image: nil, action: #selector(setUpSiri), propertyList: nil, alternates: [], discoverabilityTitle: siriCommandTitle, attributes: [], state: .off)
 			let showSiriMenu = UIMenu(title: "Set-up Card for Siri...", image: nil, identifier:
 										UIMenu.Identifier("showSiri"), options: .displayInline, children: [siriCommand])
 			let siriMenu = UIMenu(title: "Siri", image: nil, identifier:
 								UIMenu.Identifier("siriMenu"), options: [], children: [showSiriMenu])
 			builder.insertSibling(siriMenu, beforeMenu: .window)
 		}
+		*/
 		let openFaqCommand = UICommand(title: "Frequently Asked Questions", image: nil, action:
 									#selector(openFAQ), propertyList: nil, alternates: [],
 								   discoverabilityTitle: "Frequently Asked Questions", attributes: [], state: .off)
