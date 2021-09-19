@@ -289,8 +289,7 @@ class ContactInfoManipulator {
 	static func getBadVCardAttributedString(fontSize: CGFloat) -> NSAttributedString {
 		let badVCardWarning=NSMutableAttributedString(string: "One or more of the data was invalid.  Probably something you "
 											+ "inputted is too long for that kind of contact info.  "
-		+ "Please edit the contact info from the file menu "
-			+ "or the toolbar until it is sharable as a file.")
+		+ "Please edit the contact info until it is sharable as a file.")
 		addBasicFormatting(displayString: badVCardWarning, fontSize: fontSize)
 		return badVCardWarning
 	}
