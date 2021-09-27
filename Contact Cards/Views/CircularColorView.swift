@@ -13,4 +13,20 @@ class CircularColorView: UIView {
 		layer.borderWidth=1
 		layer.borderColor=UIColor.systemGray2.cgColor
 	}
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		layer.cornerRadius=frame.width/2
+		layer.borderWidth=1
+		layer.borderColor=UIColor.systemGray2.cgColor
+	}
+}
+class CircularMatchingColorView: CircularColorView {
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		layer.borderColor=UIColor.clear.cgColor
+	}
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		layer.borderColor=UIColor.clear.cgColor
+	}
 }

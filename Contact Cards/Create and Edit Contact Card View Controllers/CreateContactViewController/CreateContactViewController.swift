@@ -8,7 +8,8 @@
 import UIKit
 import Contacts
 import WidgetKit
-class CreateContactViewController: UIViewController {
+class CreateContactViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+	@IBOutlet weak var colorCollectionView: UICollectionView!
 	//name text fields
 	@IBOutlet weak var firstNameTextField: UITextField!
 	@IBOutlet weak var lastNameTextField: UITextField!
@@ -66,6 +67,7 @@ class CreateContactViewController: UIViewController {
 	var forEditing=false
 	var contact: CNContact?
 	var contactCard: ContactCardMO?
+	let colorModel=ColorModel()
 	@IBAction func cancel(_ sender: Any) {
 		dismiss(animated: true)
 	}
@@ -111,10 +113,15 @@ class CreateContactViewController: UIViewController {
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		//colorCollectionView.collectionViewLayout=CollectionViewFlowLayout()
+		colorCollectionView.delegate=self
+		colorCollectionView.dataSource=self
 		fieldsScrollView.keyboardDismissMode = .interactive
 		if forEditing {
 			navigationItem.leftBarButtonItem?.title="Save"
 			navigationItem.title="Edit Card"
+		} else {
+			colorCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
 		}
 		if let contact=contact {
 			fillWithContact(contact: contact)
@@ -163,5 +170,34 @@ class CreateContactViewController: UIViewController {
 		return [UIKeyCommand(title: "Close", image: nil, action: #selector(cancel(_:)), input: UIKeyCommand.inputEscape,
 							 modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Close",
 							 attributes: .destructive, state: .on)]
+	}
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		let width  = 27.5
+		let height=width
+		return CGSize(width: width, height: height)
+	}
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+
+		let totalCellWidth = 27.5 * Float(collectionView.numberOfItems(inSection: 0))
+		let totalSpacingWidth = 2 * Float(collectionView.numberOfItems(inSection: 0) - 1)
+
+		let leftInset = (collectionView.layer.frame.size.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+		let rightInset = leftInset
+
+		return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+	}
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return colorModel.colors.count
+	}
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		guard let cell=collectionView.dequeueReusableCell(withReuseIdentifier: "SelectColorCell", for: indexPath) as? SelectColorCell else {
+			return UICollectionViewCell()
+		}
+		cell.circularColorView.backgroundColor=colorModel.colors[indexPath.row].color
+		return cell
+	}
+	override func viewWillLayoutSubviews() {
+	   super.viewWillLayoutSubviews()
+	   self.colorCollectionView.collectionViewLayout.invalidateLayout()
 	}
 }
