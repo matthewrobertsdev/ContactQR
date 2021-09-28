@@ -7,7 +7,7 @@
 //
 import Foundation
 enum ColorChoice: String {
-	case contrastingColor="Contasting Color"
+	case contrastingColor="Contrasting Color"
 	case gray="Gray"
 	case red="Red"
 	case orange="Orange"

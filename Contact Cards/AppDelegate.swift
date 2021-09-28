@@ -60,7 +60,7 @@ extension AppDelegate {
 			return false
 		}
 		if action==#selector(exportAsVCard) || action==#selector(showQRCode) ||
-			action==#selector(deleteContact) || action==#selector(editContactInfo) || action==#selector(editColor) || action==#selector(editTitle) {
+			action==#selector(deleteContact) || action==#selector(editContactInfo) {
 			guard let contactCardViewController=splitViewController.viewController(for: .secondary)
 					as? ContactCardViewController else {
 				return false
@@ -69,7 +69,7 @@ extension AppDelegate {
 				return AppState.shared.appState==AppStateValue.isNotModal
 			}
 			return false
-		} else if action==#selector(createNewContact)||action==#selector(newCardFromContact)||action==#selector(manageCards){
+		} else if action==#selector(createNewContact)||action==#selector(newCardFromContact)||action==#selector(manageCards) {
 			return AppState.shared.appState==AppStateValue.isNotModal
 		} else {
 			return super.canPerformAction(action, withSender: nil)
@@ -94,17 +94,8 @@ extension AppDelegate {
 	@objc func deleteContact() {
 		NotificationCenter.default.post(name: .deleteContact, object: nil)
 	}
-	@objc func editContact() {
-		NotificationCenter.default.post(name: .editContact, object: nil)
-	}
 	@objc func editContactInfo() {
 		NotificationCenter.default.post(name: .editContactInfo, object: nil)
-	}
-	@objc func editColor() {
-		NotificationCenter.default.post(name: .editColor, object: nil)
-	}
-	@objc func editTitle() {
-		NotificationCenter.default.post(name: .editTitle, object: nil)
 	}
 	@objc func manageCards() {
 		NotificationCenter.default.post(name: .manageCards, object: nil)
@@ -149,19 +140,11 @@ extension AppDelegate {
 		let editContactInfoCommand =
 			UICommand(title: "Edit Contact Info", image: nil, action: #selector(editContactInfo),
 										 propertyList: nil, alternates: [], discoverabilityTitle: "Edit Contact Info", attributes: [], state: .off)
-		let editColorCommand =
-			UICommand(title: "Edit Card Color", image: nil, action: #selector(editColor),
-										 propertyList: nil, alternates: [], discoverabilityTitle: "Edit Card Color", attributes: [], state: .off)
-		let editTitleCommand =
-			UICommand(title: "Edit Card Title", image: nil, action: #selector(editTitle),
-										 propertyList: nil, alternates: [], discoverabilityTitle: "Edit Card Title", attributes: [], state: .off)
-		let editCardMenu = UIMenu(title: "Edit Contact Card", image: nil, identifier: UIMenu.Identifier("editContactCard"),
-									 options: .displayInline, children: [editContactInfoCommand, editColorCommand, editTitleCommand])
 		let deleteCardCommand =
 			UICommand(title: "Delete Contact Card", image: nil, action: #selector(deleteContact),
 										 propertyList: nil, alternates: [], discoverabilityTitle: "Delete Contact Card", attributes: [], state: .off)
 		let editAndDeleteMenu = UIMenu(title: "", image: nil, identifier:
-										UIMenu.Identifier("editAndDeleteMenu"), options: .displayInline, children: [editCardMenu, deleteCardCommand])
+										UIMenu.Identifier("editAndDeleteMenu"), options: .displayInline, children: [editContactInfoCommand, deleteCardCommand])
 		builder.insertChild(editAndDeleteMenu, atStartOfMenu: .edit)
 		let manageDataCommand =
 			UICommand(title: "Manage Data...", image: nil, action: #selector(manageCards), propertyList: nil, alternates: [], discoverabilityTitle: "Manage Data...", attributes: [], state: .off)

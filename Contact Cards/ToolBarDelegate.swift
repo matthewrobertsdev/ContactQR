@@ -48,24 +48,13 @@ class ToolbarDelegate: NSObject, NSToolbarDelegate {
 		case .toggleSidebar:
 			toolbarItem = NSToolbarItem(itemIdentifier: itemIdentifier)
 		case .editContact:
-			let editContactInfoCommand =
-				UICommand(title: "Edit Contact Info", image: nil, action: #selector(appDelegate.editContactInfo),
-											 propertyList: nil, alternates: [], discoverabilityTitle: "Edit Contact Info", attributes: [], state: .off)
-			let editColorCommand =
-				UICommand(title: "Edit Card Color", image: nil, action: #selector(appDelegate.editColor),
-											 propertyList: nil, alternates: [], discoverabilityTitle: "Edit Card Color", attributes: [], state: .off)
-			let editTitleCommand =
-				UICommand(title: "Edit Card Title", image: nil, action: #selector(appDelegate.editTitle),
-											 propertyList: nil, alternates: [], discoverabilityTitle: "Edit Card Title", attributes: [], state: .off)
-			let editCardMenu = UIMenu(title: "Edit Contact Card", image: nil, identifier: UIMenu.Identifier("editContactCard"),
-										 options: .displayInline, children: [editContactInfoCommand, editColorCommand, editTitleCommand])
-			let item = NSMenuToolbarItem(itemIdentifier: itemIdentifier)
+			let item = NSToolbarItem(itemIdentifier: itemIdentifier)
 			item.image = UIImage(systemName: "pencil")
 			item.label = "Edit Card"
 			item.toolTip = "Edit Card"
-			item.itemMenu=editCardMenu
+			item.action = #selector(appDelegate.editContactInfo)
+			item.target = validCardTarget
 			item.isBordered=true
-			item.showsIndicator=false
 			toolbarItem = item
 		case .deleteCard:
 			let item = NSToolbarItem(itemIdentifier: itemIdentifier)

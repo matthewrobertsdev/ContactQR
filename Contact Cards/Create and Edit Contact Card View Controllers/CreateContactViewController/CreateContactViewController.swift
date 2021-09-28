@@ -7,8 +7,14 @@
 //
 import UIKit
 import Contacts
+import CoreData
 import WidgetKit
 class CreateContactViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+	//choose title label
+	@IBOutlet weak var chooseTitleLabel: UILabel!
+	//title text field
+	@IBOutlet weak var titleTextField: UITextField!
+	//colorsCollectionView
 	@IBOutlet weak var colorCollectionView: UICollectionView!
 	//name text fields
 	@IBOutlet weak var firstNameTextField: UITextField!
@@ -68,37 +74,66 @@ class CreateContactViewController: UIViewController, UICollectionViewDataSource,
 	var contact: CNContact?
 	var contactCard: ContactCardMO?
 	let colorModel=ColorModel()
+	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 	@IBAction func cancel(_ sender: Any) {
 		dismiss(animated: true)
 	}
-	@IBAction func createContact(_ sender: Any) {
-		let contact=getContactFromFields()
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		guard let chooseColorTableViewController=storyboard.instantiateViewController(withIdentifier:
-																						"ChooseColorTableViewController")
-				as? ChooseColorTableViewController else {
-			print("Failed to instantiate chooseColorTableViewController")
+	@IBAction func saveContact(_ sender: Any) {
+		let title=titleTextField.text
+		guard let title=title else {
 			return
 		}
-		chooseColorTableViewController.contact=contact
-		if forEditing {
-			guard let card=contactCard else {
+		let titleCopy=title
+		if titleCopy.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)=="" {
+			let emptyTitleMessage="Card title must not be blank."
+			let emptyTitleAlert = UIAlertController(title: "Title Required",
+												message: emptyTitleMessage, preferredStyle: .alert)
+			let emptyTitleAction=UIAlertAction(title: NSLocalizedString("Got it.",
+																	comment: "Empty title Action"), style: .default, handler: { [weak self] _ in
+																		  guard let strongSelf=self else {
+																			  return
+											}
+				strongSelf.fieldsScrollView.scrollRectToVisible(strongSelf.chooseTitleLabel.frame, animated: true)
+			})
+			emptyTitleAlert.addAction(emptyTitleAction)
+			emptyTitleAlert.preferredAction=emptyTitleAction
+			self.navigationController?.present(emptyTitleAlert, animated: true, completion: nil)
+			print("Title was empty")
+			return
+		}
+		let contact=getContactFromFields()
+		if forEditing==false {
+			guard let context=self.managedObjectContext else {
 				return
 			}
-			setContact(contactCardMO: card, cnContact: contact)
+			let card=NSEntityDescription.entity(forEntityName: ContactCardMO.entityName, in: context)
+			guard let card=card else {
+				return
+			}
+			contactCard=ContactCardMO(entity: card, insertInto: context)
+		}
+		guard let card=contactCard else {
+			return
+		}
+		let index=colorCollectionView.indexPathsForSelectedItems?.first?.item
+			guard let index=index else {
+				return
+			}
+		let color=colorModel.colors[index]
+		setFields(contactCardMO: card, filename: title, cnContact: contact, color: color.name)
 			let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 			do {
 				try managedObjectContext?.save()
 			} catch {
 				present(localErrorSavingAlertController(), animated: true)
-				print("Couldn't save color")
+				print("Couldn't save contact")
 			}
 			NotificationCenter.default.post(name: .contactUpdated, object: self, userInfo: ["uuid": self.contactCard?.objectID.uriRepresentation().absoluteString ?? ""])
 			UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.setValue(UUID().uuidString, forKey: "lastUpdateUUID")
 			navigationController?.dismiss(animated: true)
+			ActiveContactCard.shared.contactCard=card
+			NotificationCenter.default.post(name: .contactCreated, object: self, userInfo: nil)
 			updateWidget(contactCard: self.contactCard)
-		}
-		navigationController?.pushViewController(chooseColorTableViewController, animated: true)
 	}
 	@IBAction func presentContactPicker(_ sender: Any) {
 		let pickContactViewController=PickContactViewController()
@@ -113,13 +148,22 @@ class CreateContactViewController: UIViewController, UICollectionViewDataSource,
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		//colorCollectionView.collectionViewLayout=CollectionViewFlowLayout()
 		colorCollectionView.delegate=self
 		colorCollectionView.dataSource=self
-		fieldsScrollView.keyboardDismissMode = .interactive
 		if forEditing {
-			navigationItem.leftBarButtonItem?.title="Save"
 			navigationItem.title="Edit Card"
+			guard let contactCardMO=contactCard else {
+				return
+			}
+			titleTextField.text=contactCardMO.filename
+			let index=colorModel.colors.firstIndex(where: { color in
+				color.name==contactCardMO.color
+			})
+			guard let index=index else {
+				return
+			}
+			colorCollectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+			titleTextField.textColor=colorModel.colors[index].color
 		} else {
 			colorCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
 		}
@@ -193,8 +237,15 @@ class CreateContactViewController: UIViewController, UICollectionViewDataSource,
 		guard let cell=collectionView.dequeueReusableCell(withReuseIdentifier: "SelectColorCell", for: indexPath) as? SelectColorCell else {
 			return UICollectionViewCell()
 		}
-		cell.circularColorView.backgroundColor=colorModel.colors[indexPath.row].color
+		let color=colorModel.colors[indexPath.row]
+		cell.circularColorView.backgroundColor=color.color
+		cell.isAccessibilityElement=true
+		cell.accessibilityLabel=color.name
 		return cell
+	}
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		let index=indexPath.item
+		titleTextField.textColor=colorModel.colors[index].color
 	}
 	override func viewWillLayoutSubviews() {
 	   super.viewWillLayoutSubviews()

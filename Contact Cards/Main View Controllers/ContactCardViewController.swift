@@ -45,12 +45,9 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 									   name: .createNewContactFromContact, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .modalityChanged, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(deleteContact), name: .deleteContact, object: nil)
-		notificationCenter.addObserver(self, selector: #selector(editContact), name: .editContact, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .contactUpdated, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(loadContact), name: .contactDeleted, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(editContactInfo), name: .editContactInfo, object: nil)
-		notificationCenter.addObserver(self, selector: #selector(editColor), name: .editColor, object: nil)
-		notificationCenter.addObserver(self, selector: #selector(editTitle), name: .editTitle, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(manageCards), name: .manageCards, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(setUpSiri), name: .setUpSiri, object: nil)
 	}
@@ -250,6 +247,9 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		self.present(PickContactViewController(), animated: animated) {
 		}
 	}
+	@IBAction func edit(_ sender: Any) {
+		editContactInfo()
+	}
 	@objc func editContactInfo() {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		guard let createContactViewController=storyboard.instantiateViewController(withIdentifier:
@@ -270,58 +270,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			if contactArray.count==1 {
 				createContactViewController.contact=contactArray[0]
 				createContactViewController.contactCard=contactCard
-			}
-		} catch {
-			print("Error making CNContact from VCard String.")
-		}
-		present(navigationController, animated: true)
-	}
-	@objc func editColor() {
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		guard let chooseColorTableViewController=storyboard.instantiateViewController(withIdentifier:
-																						"ChooseColorTableViewController")
-				as? ChooseColorTableViewController else {
-			print("Failed to instantiate ChooseColorTableViewController")
-			return
-		}
-		chooseColorTableViewController.forEditing=true
-		guard let contactCard=contactCard else {
-			present(cannotEditAlertController(), animated: true)
-			return
-		}
-		chooseColorTableViewController.contactCard=contactCard
-		let navigationController=UINavigationController(rootViewController: chooseColorTableViewController)
-		do {
-			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)
-			if contactArray.count==1 {
-				chooseColorTableViewController.contact=contactArray[0]
-				chooseColorTableViewController.contactCard=contactCard
-			}
-		} catch {
-			print("Error making CNContact from VCard String.")
-		}
-		present(navigationController, animated: true)
-	}
-	@objc func editTitle() {
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		guard let saveContactCardViewController=storyboard.instantiateViewController(withIdentifier:
-																						"SaveContactCardViewController")
-				as? SaveContactCardViewController else {
-			print("Failed to instantiate SaveContactCardViewController")
-			return
-		}
-		saveContactCardViewController.forEditing=true
-		guard let contactCard=contactCard else {
-			present(cannotEditAlertController(), animated: true)
-			return
-		}
-		saveContactCardViewController.contactCard=contactCard
-		let navigationController=UINavigationController(rootViewController: saveContactCardViewController)
-		do {
-			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)
-			if contactArray.count==1 {
-				saveContactCardViewController.contact=contactArray[0]
-				saveContactCardViewController.contactCard=contactCard
 			}
 		} catch {
 			print("Error making CNContact from VCard String.")
@@ -349,28 +297,6 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		}
 		let navigationController=UINavigationController(rootViewController: setUpSiriViewController)
 		self.present(navigationController, animated: true)
-	}
-	@IBAction func editContact(_ sender: Any) {
-		let editContactAlertController=EditContactAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-		do {
-			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard?.vCardString ?? "")
-			if contactArray.count==1 {
-				editContactAlertController.contact=contactArray[0]
-				editContactAlertController.contactCard=contactCard
-			}
-		} catch {
-			print("Error making CNContact from VCard String.")
-		}
-		#if targetEnvironment(macCatalyst)
-		let popoverPresentationController=editContactAlertController.popoverPresentationController
-		popoverPresentationController?.sourceView=self.titleLabel
-		popoverPresentationController?.sourceRect=self.titleLabel.frame
-		#else
-		let popoverPresentationController=editContactAlertController.popoverPresentationController
-		popoverPresentationController?.barButtonItem=toolbarItems?.last
-		#endif
-		present(editContactAlertController, animated: true) {
-		}
 	}
 	override func copy(_ sender: Any?) {
 		if ActiveContactCard.shared.contactCard != nil {
