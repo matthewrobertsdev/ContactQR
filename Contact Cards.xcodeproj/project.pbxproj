@@ -48,7 +48,7 @@
 		9F38B39A261929F400BBBC9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE921BA1691003A6A33 /* Assets.xcassets */; };
 		9F397A7226858AC900BB954B /* SiriCardKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F397A7126858AC900BB954B /* SiriCardKeys.swift */; };
 		9F3F6A5925F494820053C1DF /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3F6A2025F494110053C1DF /* Intents.framework */; };
-		9F3F6A6025F494820053C1DF /* SelectContactIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F3F6A5825F494820053C1DF /* SelectContactIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9F3F6A6025F494820053C1DF /* SelectContactIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F3F6A5825F494820053C1DF /* SelectContactIntent.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F3F6AE225F498FC0053C1DF /* ContactCardQRCode.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9FC149A325F34B9600C700B0 /* ContactCardQRCode.intentdefinition */; };
 		9F3F6AEE25F499200053C1DF /* ContactCardQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC149A125F34B9600C700B0 /* ContactCardQRCode.swift */; };
 		9F3F6B2125F49A450053C1DF /* ContactCardQRCode.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9FC149A325F34B9600C700B0 /* ContactCardQRCode.intentdefinition */; };
@@ -143,7 +143,7 @@
 		9FC1499D25F34B9600C700B0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC1499C25F34B9600C700B0 /* WidgetKit.framework */; };
 		9FC1499F25F34B9600C700B0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC1499E25F34B9600C700B0 /* SwiftUI.framework */; };
 		9FC149A525F34B9700C700B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FC149A425F34B9700C700B0 /* Assets.xcassets */; };
-		9FC149AB25F34B9700C700B0 /* ContactCardQRCodeExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9FC1499A25F34B9600C700B0 /* ContactCardQRCodeExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9FC149AB25F34B9700C700B0 /* ContactCardQRCodeExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9FC1499A25F34B9600C700B0 /* ContactCardQRCodeExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9FC440C926A625EC00F8FE18 /* ContactCardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC440C826A625EC00F8FE18 /* ContactCardStore.swift */; };
 		9FC440CB26A6261A00F8FE18 /* CannotLoadCardsAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC440CA26A6261900F8FE18 /* CannotLoadCardsAlertController.swift */; };
 		9FC440CD26A6288C00F8FE18 /* UpdateCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC440CC26A6288C00F8FE18 /* UpdateCards.swift */; };
@@ -1380,6 +1380,7 @@
 		};
 		9F3F6A5F25F494820053C1DF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 9F3F6A5725F494820053C1DF /* SelectContactIntent */;
 			targetProxy = 9F3F6A5E25F494820053C1DF /* PBXContainerItemProxy */;
 		};
@@ -1406,6 +1407,7 @@
 		};
 		9FC149AA25F34B9700C700B0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 9FC1499925F34B9600C700B0 /* ContactCardQRCodeExtension */;
 			targetProxy = 9FC149A925F34B9700C700B0 /* PBXContainerItemProxy */;
 		};
@@ -1463,7 +1465,7 @@
 				CURRENT_PROJECT_VERSION = 1.0.6;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ShowMyCardSirirUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1473,7 +1475,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowMyCardSirirUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1488,7 +1490,7 @@
 				CURRENT_PROJECT_VERSION = 1.0.6;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ShowMyCardSirirUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1498,7 +1500,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowMyCardSirirUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1513,7 +1515,7 @@
 				CURRENT_PROJECT_VERSION = 1.0.6;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ShowCardSiriIntent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1523,7 +1525,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1538,7 +1540,7 @@
 				CURRENT_PROJECT_VERSION = 1.0.6;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ShowCardSiriIntent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1548,7 +1550,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.apps.celeritas.contact.cards.ShowCardSiriIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1565,7 +1567,7 @@
 				CURRENT_PROJECT_VERSION = 1.0.6;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = MessageContactCard/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1593,7 +1595,7 @@
 				CURRENT_PROJECT_VERSION = 1.0.6;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = MessageContactCard/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1619,7 +1621,7 @@
 				CURRENT_PROJECT_VERSION = 1.0.6;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = SelectContactIntent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1643,7 +1645,7 @@
 				CURRENT_PROJECT_VERSION = 1.0.6;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = SelectContactIntent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1850,7 +1852,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INTENTS_CODEGEN_LANGUAGE = Swift;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1906,7 +1908,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1926,7 +1928,7 @@
 				CURRENT_PROJECT_VERSION = 1.0.6;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "$(SRCROOT)/Contact Cards/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1951,7 +1953,7 @@
 				CURRENT_PROJECT_VERSION = 1.0.6;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "$(SRCROOT)/Contact Cards/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2018,7 +2020,7 @@
 				CURRENT_PROJECT_VERSION = 1.0.6;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ContactCardQRCode/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2045,7 +2047,7 @@
 				CURRENT_PROJECT_VERSION = 1.0.6;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ContactCardQRCode/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
