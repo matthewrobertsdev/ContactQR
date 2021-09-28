@@ -8,12 +8,11 @@
 import UIKit
 class SelectColorCell: UICollectionViewCell {
 	@IBOutlet weak var circularColorView: CircularColorView!
-	@IBOutlet weak var selectionView: CircularMatchingColorView!
+	@IBOutlet weak var selectionView: BorderlessColorView!
 	override var isSelected: Bool {
 		willSet {
-			if newValue/*&& selectedBackgroundView == nil*/ {
+			if newValue {
 				selectionView.isHidden=false
-				//selectedBackgroundView=RingView()
 			} else {
 				selectionView.isHidden=true
 			}

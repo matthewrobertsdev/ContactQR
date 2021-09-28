@@ -9,7 +9,7 @@ import UIKit
 import Contacts
 import CoreData
 import WidgetKit
-class CreateContactViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class CreateContactViewController: UIViewController {
 	//choose title label
 	@IBOutlet weak var chooseTitleLabel: UILabel!
 	//title text field
@@ -75,6 +75,36 @@ class CreateContactViewController: UIViewController, UICollectionViewDataSource,
 	var contactCard: ContactCardMO?
 	let colorModel=ColorModel()
 	let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		colorCollectionView.delegate=self
+		colorCollectionView.dataSource=self
+		if forEditing {
+			navigationItem.title="Edit Card"
+			guard let contactCardMO=contactCard else {
+				return
+			}
+			titleTextField.text=contactCardMO.filename
+			let index=colorModel.colors.firstIndex(where: { color in
+				color.name==contactCardMO.color
+			})
+			guard let index=index else {
+				return
+			}
+			colorCollectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+			titleTextField.textColor=colorModel.colors[index].color
+		} else {
+			colorCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
+		}
+		if let contact=contact {
+			fillWithContact(contact: contact)
+		}
+		let notificationCenter = NotificationCenter.default
+		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name:
+										UIResponder.keyboardDidHideNotification, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name:
+										UIResponder.keyboardDidShowNotification, object: nil)
+	}
 	@IBAction func cancel(_ sender: Any) {
 		dismiss(animated: true)
 	}
@@ -146,36 +176,6 @@ class CreateContactViewController: UIViewController, UICollectionViewDataSource,
 		}
 		present(pickContactViewController, animated: true)
 	}
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		colorCollectionView.delegate=self
-		colorCollectionView.dataSource=self
-		if forEditing {
-			navigationItem.title="Edit Card"
-			guard let contactCardMO=contactCard else {
-				return
-			}
-			titleTextField.text=contactCardMO.filename
-			let index=colorModel.colors.firstIndex(where: { color in
-				color.name==contactCardMO.color
-			})
-			guard let index=index else {
-				return
-			}
-			colorCollectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
-			titleTextField.textColor=colorModel.colors[index].color
-		} else {
-			colorCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
-		}
-		if let contact=contact {
-			fillWithContact(contact: contact)
-		}
-		let notificationCenter = NotificationCenter.default
-		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name:
-										UIResponder.keyboardDidHideNotification, object: nil)
-		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name:
-										UIResponder.keyboardDidShowNotification, object: nil)
-	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		AppState.shared.appState=AppStateValue.isModal
@@ -214,38 +214,6 @@ class CreateContactViewController: UIViewController, UICollectionViewDataSource,
 		return [UIKeyCommand(title: "Close", image: nil, action: #selector(cancel(_:)), input: UIKeyCommand.inputEscape,
 							 modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: "Close",
 							 attributes: .destructive, state: .on)]
-	}
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		let width  = 27.5
-		let height=width
-		return CGSize(width: width, height: height)
-	}
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-
-		let totalCellWidth = 27.5 * Float(collectionView.numberOfItems(inSection: 0))
-		let totalSpacingWidth = 2 * Float(collectionView.numberOfItems(inSection: 0) - 1)
-
-		let leftInset = (collectionView.layer.frame.size.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
-		let rightInset = leftInset
-
-		return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
-	}
-	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return colorModel.colors.count
-	}
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		guard let cell=collectionView.dequeueReusableCell(withReuseIdentifier: "SelectColorCell", for: indexPath) as? SelectColorCell else {
-			return UICollectionViewCell()
-		}
-		let color=colorModel.colors[indexPath.row]
-		cell.circularColorView.backgroundColor=color.color
-		cell.isAccessibilityElement=true
-		cell.accessibilityLabel=color.name
-		return cell
-	}
-	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		let index=indexPath.item
-		titleTextField.textColor=colorModel.colors[index].color
 	}
 	override func viewWillLayoutSubviews() {
 	   super.viewWillLayoutSubviews()

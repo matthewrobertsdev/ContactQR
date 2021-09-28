@@ -20,7 +20,7 @@ class CircularColorView: UIView {
 		layer.borderColor=UIColor.systemGray2.cgColor
 	}
 }
-class CircularMatchingColorView: CircularColorView {
+class BorderlessColorView: CircularColorView {
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		layer.borderColor=UIColor.clear.cgColor

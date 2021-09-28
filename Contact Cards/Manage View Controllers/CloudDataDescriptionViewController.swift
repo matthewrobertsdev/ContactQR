@@ -11,7 +11,6 @@ class CloudDataDescriptionViewController: UIViewController {
 	@IBOutlet weak var dataDescriptionTextField: UITextView!
 	override func viewDidLoad() {
         super.viewDidLoad()
-		// Do any additional setup after loading the view.
 		if let iCloudDataAttributedString=ContactCloudDataDescriber.getAttributedStringDescription(color: UIColor.label) {
 				dataDescriptionTextField.attributedText=iCloudDataAttributedString
 			}

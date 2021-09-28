@@ -17,8 +17,6 @@ class ContactCardsTableViewController: UITableViewController {
 	var fetchedResultsController: NSFetchedResultsController<ContactCardMO>?
 	//for colors
 	let colorModel=ColorModel()
-	//main core data context for the main app
-	//let managedObjectContext=(UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 	//set-up table view with data
 	override func viewDidLoad() {
 		super.viewDidLoad()

@@ -35,12 +35,12 @@ class ContactCloudDataDescriber {
 					if let qrCodeData = contactCardMO.qrCodeImage {
 						if let qrCodeImage = UIImage(data: qrCodeData, scale: 1) {
 							if let smallQrCodeImage=resized(image: qrCodeImage, toWidth: 300) {
-							let imageAttachment = NSTextAttachment()
-							imageAttachment.bounds = CGRect(x: 0, y: -280, width: 300, height: 300)
-							imageAttachment.image = smallQrCodeImage
-							iCloudDataAttributedString.append(NSAttributedString(string: "qrCodeImage: "))
-							iCloudDataAttributedString.append(NSAttributedString(attachment: imageAttachment))
-							iCloudDataAttributedString.append(NSAttributedString(string: "\n"))
+								let imageAttachment = NSTextAttachment()
+								imageAttachment.bounds = CGRect(x: 0, y: -280, width: 300, height: 300)
+								imageAttachment.image = smallQrCodeImage
+								iCloudDataAttributedString.append(NSAttributedString(string: "qrCodeImage: "))
+								iCloudDataAttributedString.append(NSAttributedString(attachment: imageAttachment))
+								iCloudDataAttributedString.append(NSAttributedString(string: "\n"))
 							}
 						}
 					}
@@ -67,9 +67,8 @@ class ContactCloudDataDescriber {
 	static func resized(image: UIImage, toWidth width: CGFloat, isOpaque: Bool = true) -> UIImage? {
 		let canvas = CGSize(width: width, height: CGFloat(ceil(width/image.size.width * image.size.height)))
 		let format = image.imageRendererFormat
-  format.opaque = isOpaque
-  return UIGraphicsImageRenderer(size: canvas, format: format).image {
-	_ in image.draw(in: CGRect(origin: .zero, size: canvas))
-  }
-}
+		format.opaque = isOpaque
+		return UIGraphicsImageRenderer(size: canvas, format: format).image { _ in image.draw(in: CGRect(origin: .zero, size: canvas))
+		}
+	}
 }

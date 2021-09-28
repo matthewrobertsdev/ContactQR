@@ -5,14 +5,9 @@
 //  Created by Matt Roberts on 12/26/18.
 //  Copyright © 2018 Matt Roberts. All rights reserved.
 //
-
 import Foundation
 import Contacts
 import UIKit
-/*
- Gets fields from CNContact and returns them as an array of String pairs
- with the name of the field and the value for each pair
- */
 class ContactInfoManipulator {
     static func createPreviewString(cnContact: CNContact) -> String {
         var contactPreviewString=""

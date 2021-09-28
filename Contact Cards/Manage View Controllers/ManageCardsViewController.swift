@@ -16,7 +16,6 @@ class ManageCardsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		AppState.shared.appState = .isModal
-        // Do any additional setup after loading the view.
     }
 	@IBAction func done(_ sender: Any) {
 		self.dismiss(animated: true)

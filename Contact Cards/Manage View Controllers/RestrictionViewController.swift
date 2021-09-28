@@ -118,7 +118,6 @@ class RestrictionViewController: UIViewController, UITextFieldDelegate {
 					return
 			}
 			print("Restrict result", httpResponse)
-			// Other than indicating success or failure, the `restrict` API doesn't return actionable data in its response.
 			if data != nil {
 				completionHandler(nil)
 			} else {
@@ -133,7 +132,6 @@ class RestrictionViewController: UIViewController, UITextFieldDelegate {
 			withAllowedCharacters: CharacterSet(charactersIn: "+/=").inverted
 		) ?? token
 	}
-	/// An error type that represents a failure in the `restrict` API call.
 	enum RestrictError: Error {
 		case failure
 	}

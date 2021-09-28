@@ -18,7 +18,6 @@ class DeleteDataViewController: UIViewController, UITextFieldDelegate {
 										UIResponder.keyboardWillHideNotification, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name:
 										UIResponder.keyboardWillChangeFrameNotification, object: nil)
-		// Do any additional setup after loading the view.
 	}
 	@IBAction func deleteAll(_ sender: Any) {
 		if confirmationTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() != "delete" {
