@@ -14,10 +14,10 @@
 		9F0A3346265ED64F00265C4D /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3F6A2B25F494110053C1DF /* IntentsUI.framework */; };
 		9F0A3349265ED64F00265C4D /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A3348265ED64F00265C4D /* IntentViewController.swift */; };
 		9F0A334C265ED64F00265C4D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F0A334A265ED64F00265C4D /* MainInterface.storyboard */; };
-		9F0A3350265ED64F00265C4D /* ShowMyCardSirirUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F0A3345265ED64F00265C4D /* ShowMyCardSirirUI.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9F0A3350265ED64F00265C4D /* ShowMyCardSirirUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F0A3345265ED64F00265C4D /* ShowMyCardSirirUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F0A335A265EDCB400265C4D /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3F6A2025F494110053C1DF /* Intents.framework */; };
 		9F0A335D265EDCB400265C4D /* SiriIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A335C265EDCB400265C4D /* SiriIntentHandler.swift */; };
-		9F0A3361265EDCB400265C4D /* ShowCardSiriIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F0A3359265EDCB400265C4D /* ShowCardSiriIntent.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9F0A3361265EDCB400265C4D /* ShowCardSiriIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F0A3359265EDCB400265C4D /* ShowCardSiriIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F0A3369265EE18700265C4D /* SetUpSiriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A3368265EE18700265C4D /* SetUpSiriViewController.swift */; };
 		9F0A336B265EE47200265C4D /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A336A265EE47200265C4D /* ShowCard.intentdefinition */; };
 		9F0A336C265EE4A800265C4D /* ShowCard.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A336A265EE47200265C4D /* ShowCard.intentdefinition */; };
@@ -47,7 +47,7 @@
 		9F38B39A261929F400BBBC9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E9AE921BA1691003A6A33 /* Assets.xcassets */; };
 		9F397A7226858AC900BB954B /* SiriCardKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F397A7126858AC900BB954B /* SiriCardKeys.swift */; };
 		9F3F6A5925F494820053C1DF /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3F6A2025F494110053C1DF /* Intents.framework */; };
-		9F3F6A6025F494820053C1DF /* SelectContactIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F3F6A5825F494820053C1DF /* SelectContactIntent.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9F3F6A6025F494820053C1DF /* SelectContactIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9F3F6A5825F494820053C1DF /* SelectContactIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F3F6AE225F498FC0053C1DF /* ContactCardQRCode.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9FC149A325F34B9600C700B0 /* ContactCardQRCode.intentdefinition */; };
 		9F3F6AEE25F499200053C1DF /* ContactCardQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC149A125F34B9600C700B0 /* ContactCardQRCode.swift */; };
 		9F3F6B2125F49A450053C1DF /* ContactCardQRCode.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9FC149A325F34B9600C700B0 /* ContactCardQRCode.intentdefinition */; };
@@ -142,7 +142,7 @@
 		9FC1499D25F34B9600C700B0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC1499C25F34B9600C700B0 /* WidgetKit.framework */; };
 		9FC1499F25F34B9600C700B0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC1499E25F34B9600C700B0 /* SwiftUI.framework */; };
 		9FC149A525F34B9700C700B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FC149A425F34B9700C700B0 /* Assets.xcassets */; };
-		9FC149AB25F34B9700C700B0 /* ContactCardQRCodeExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9FC1499A25F34B9600C700B0 /* ContactCardQRCodeExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9FC149AB25F34B9700C700B0 /* ContactCardQRCodeExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9FC1499A25F34B9600C700B0 /* ContactCardQRCodeExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9FC440C926A625EC00F8FE18 /* ContactCardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC440C826A625EC00F8FE18 /* ContactCardStore.swift */; };
 		9FC440CB26A6261A00F8FE18 /* CannotLoadCardsAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC440CA26A6261900F8FE18 /* CannotLoadCardsAlertController.swift */; };
 		9FC440CD26A6288C00F8FE18 /* UpdateCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC440CC26A6288C00F8FE18 /* UpdateCards.swift */; };
@@ -589,8 +589,8 @@
 		9F7147BB256CCDB800A979B8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */,
 				9F422690256CD5BF00F1A0FA /* CircularColorView.swift */,
+				9FBFACDA22B4A30800730E7B /* SavedContactCell.swift */,
 				9F0DCB8B27015A3700EE465B /* SelectColorCell.swift */,
 			);
 			path = Views;
@@ -690,6 +690,7 @@
 				9F339FF1256E9C0E00F31F9F /* File IO Document View Controllers */,
 				9F1A3F40264C052200957CA9 /* Manage View Controllers */,
 				9FB87B4426618544009879C3 /* About View Controller */,
+				9FB4F778270351580065C58C /* Error Alert Controllers */,
 				9F7147BB256CCDB800A979B8 /* Views */,
 				9F9E9AE621BA1690003A6A33 /* Main.storyboard */,
 				9F9E9AEB21BA1691003A6A33 /* LaunchScreen.storyboard */,
@@ -719,6 +720,15 @@
 			path = Siri;
 			sourceTree = "<group>";
 		};
+		9FB4F778270351580065C58C /* Error Alert Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9F744D61269F3FDD00394BD6 /* CannotEditAlertControllers.swift */,
+				9FC440CA26A6261900F8FE18 /* CannotLoadCardsAlertController.swift */,
+			);
+			path = "Error Alert Controllers";
+			sourceTree = "<group>";
+		};
 		9FB87B4426618544009879C3 /* About View Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -744,8 +754,6 @@
 				9FC440CC26A6288C00F8FE18 /* UpdateCards.swift */,
 				9F56C73B253BD2C8006D8DE6 /* TintImages.swift */,
 				9F75D0762653664B000EB03D /* LoadPersistentContainer.swift */,
-				9F744D61269F3FDD00394BD6 /* CannotEditAlertControllers.swift */,
-				9FC440CA26A6261900F8FE18 /* CannotLoadCardsAlertController.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1350,13 +1358,11 @@
 /* Begin PBXTargetDependency section */
 		9F0A334F265ED64F00265C4D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = 9F0A3344265ED64F00265C4D /* ShowMyCardSirirUI */;
 			targetProxy = 9F0A334E265ED64F00265C4D /* PBXContainerItemProxy */;
 		};
 		9F0A3360265EDCB400265C4D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = 9F0A3358265EDCB400265C4D /* ShowCardSiriIntent */;
 			targetProxy = 9F0A335F265EDCB400265C4D /* PBXContainerItemProxy */;
 		};
@@ -1368,7 +1374,6 @@
 		};
 		9F3F6A5F25F494820053C1DF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = 9F3F6A5725F494820053C1DF /* SelectContactIntent */;
 			targetProxy = 9F3F6A5E25F494820053C1DF /* PBXContainerItemProxy */;
 		};
@@ -1395,7 +1400,6 @@
 		};
 		9FC149AA25F34B9700C700B0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = 9FC1499925F34B9600C700B0 /* ContactCardQRCodeExtension */;
 			targetProxy = 9FC149A925F34B9700C700B0 /* PBXContainerItemProxy */;
 		};
@@ -1450,7 +1454,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShowMyCardSirirUI/ShowMyCardSirirUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.6;
+				CURRENT_PROJECT_VERSION = 1.0.7;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ShowMyCardSirirUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1466,7 +1470,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -1475,7 +1479,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShowMyCardSirirUI/ShowMyCardSirirUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.6;
+				CURRENT_PROJECT_VERSION = 1.0.7;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ShowMyCardSirirUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1491,7 +1495,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
@@ -1500,7 +1504,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShowCardSiriIntent/ShowCardSiriIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.6;
+				CURRENT_PROJECT_VERSION = 1.0.7;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ShowCardSiriIntent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1516,7 +1520,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -1525,7 +1529,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShowCardSiriIntent/ShowCardSiriIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.6;
+				CURRENT_PROJECT_VERSION = 1.0.7;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ShowCardSiriIntent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1541,7 +1545,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
@@ -1552,7 +1556,7 @@
 				CODE_SIGN_ENTITLEMENTS = MessageContactCard/MessageContactCard.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.6;
+				CURRENT_PROJECT_VERSION = 1.0.7;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = MessageContactCard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1580,7 +1584,7 @@
 				CODE_SIGN_ENTITLEMENTS = MessageContactCard/MessageContactCard.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.6;
+				CURRENT_PROJECT_VERSION = 1.0.7;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = MessageContactCard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1606,7 +1610,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = SelectContactIntent/SelectContactIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.6;
+				CURRENT_PROJECT_VERSION = 1.0.7;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = SelectContactIntent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1620,8 +1624,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -1630,7 +1635,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = SelectContactIntent/SelectContactIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.6;
+				CURRENT_PROJECT_VERSION = 1.0.7;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = SelectContactIntent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1644,8 +1649,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
@@ -1657,7 +1663,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ContactCardsWatch/ContactCardsWatch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.6;
+				CURRENT_PROJECT_VERSION = 1.0.7;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				IBSC_MODULE = ContactCardsWatch_Extension;
 				INFOPLIST_FILE = ContactCardsWatch/Info.plist;
@@ -1679,7 +1685,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ContactCardsWatch/ContactCardsWatch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.6;
+				CURRENT_PROJECT_VERSION = 1.0.7;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				IBSC_MODULE = ContactCardsWatch_Extension;
 				INFOPLIST_FILE = ContactCardsWatch/Info.plist;
@@ -1701,7 +1707,7 @@
 				CODE_SIGN_ENTITLEMENTS = "ContactCardsWatch Extension/ContactCardsWatch Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.6;
+				CURRENT_PROJECT_VERSION = 1.0.7;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "ContactCardsWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1728,7 +1734,7 @@
 				CODE_SIGN_ENTITLEMENTS = "ContactCardsWatch Extension/ContactCardsWatch Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.6;
+				CURRENT_PROJECT_VERSION = 1.0.7;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "ContactCardsWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1913,7 +1919,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Contact Cards.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.6;
+				CURRENT_PROJECT_VERSION = 1.0.7;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "$(SRCROOT)/Contact Cards/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1938,7 +1944,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Contact Cards.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.6;
+				CURRENT_PROJECT_VERSION = 1.0.7;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = "$(SRCROOT)/Contact Cards/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -2005,11 +2011,10 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ContactCardQRCodeExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.6;
+				CURRENT_PROJECT_VERSION = 1.0.7;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ContactCardQRCode/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2021,7 +2026,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -2032,11 +2037,10 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ContactCardQRCodeExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.6;
+				CURRENT_PROJECT_VERSION = 1.0.7;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
 				INFOPLIST_FILE = ContactCardQRCode/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2048,7 +2052,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

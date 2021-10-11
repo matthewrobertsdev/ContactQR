@@ -192,7 +192,7 @@ extension AppDelegate {
 								UIMenu.Identifier("cardMenu"), options: [], children: [showQRMenu, shareMenu])
 		exportAsVCardCommand.discoverabilityTitle = NSLocalizedString("Export as vCard...", comment: "")
 		builder.insertSibling(cardMenu, beforeMenu: .window)
-		/*
+		//siri menu item for macOS 12 and beyond
 		if #available(macCatalyst 15, *) {
 			let siriCommandTitle="Set-up Card for Siri..."
 			let siriCommand =
@@ -203,7 +203,6 @@ extension AppDelegate {
 								UIMenu.Identifier("siriMenu"), options: [], children: [showSiriMenu])
 			builder.insertSibling(siriMenu, beforeMenu: .window)
 		}
-		*/
 		let openFaqCommand = UICommand(title: "Frequently Asked Questions", image: nil, action:
 									#selector(openFAQ), propertyList: nil, alternates: [],
 								   discoverabilityTitle: "Frequently Asked Questions", attributes: [], state: .off)

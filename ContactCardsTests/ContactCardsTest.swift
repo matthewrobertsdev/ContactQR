@@ -7,6 +7,7 @@
 //
 import XCTest
 import Contacts
+import CoreData
 @testable import Contact_Cards
 class ContactCardsTests: XCTestCase {
 	var createContactViewController: CreateContactViewController!

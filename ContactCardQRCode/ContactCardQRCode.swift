@@ -31,7 +31,8 @@ struct Provider: IntentTimelineProvider {
 		let timeline = Timeline(entries: [entry], policy: .never)
         completion(timeline)
     }
-	func createEntryFromConfiguration(configuration: ConfigurationIntent) -> SimpleEntry {
+	func createEntryFromConfiguration(configuration: ConfigurationIntent) ->
+		SimpleEntry {
 		var qrCode: UIImage?
 		var color: String?
 		var widgetMode=WidgetMode.editMessage
@@ -72,6 +73,7 @@ struct SimpleEntry: TimelineEntry {
 
 struct ContactCardQRCodeEntryView: View {
 	@Environment(\.colorScheme) var colorScheme
+	@Environment(\.widgetFamily) var family
     var entry: Provider.Entry
 	@ViewBuilder
     var body: some View {
@@ -79,17 +81,27 @@ struct ContactCardQRCodeEntryView: View {
 			Image(uiImage: getTintedForeground(image: entry.qrCode ?? UIImage(),
 											   color: UIColor(named: "Yellow") ?? UIColor.systemYellow)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
 		} else if entry.widgetMode == WidgetMode.editMessage {
-			Text("Edit widget to choose a contact card for a QR code.").padding()
-		} /*else if entry.widgetMode==WidgetMode.contactQRCode && entry.color=="Contrasting Color" {
-			Image(uiImage: colorScheme == .dark ? getTintedForeground(image: entry.qrCode ?? UIImage(), color: UIColor.white):
-				getTintedForeground(image: entry.qrCode ?? UIImage(), color:
-										UIColor.black)).resizable().aspectRatio(contentMode: .fit).padding(7.5)
-		} */else if entry.widgetMode==WidgetMode.contactQRCode {
+			switch family {
+				case .systemSmall:
+					Text(getEditWidgetMessage()).font(.system(size: 10, weight: .light, design: .default)).padding()
+				case .systemLarge:
+					Text(getEditWidgetMessage()).font(.system(size: 20, weight: .light, design: .default)).padding()
+				default:
+					Text(getEditWidgetMessage()).font(.system(size: 10, weight: .light, design: .default)).padding()
+			}
+		} else if entry.widgetMode==WidgetMode.contactQRCode {
 			Image(uiImage:  getTintedForeground(image: entry.qrCode ?? UIImage(),
 												color: colorScheme == .dark ? UIColor(named:  "Light"+(entry.color ?? "")) ?? UIColor.white :
 													UIColor(named:  "Dark"+(entry.color ?? "")) ?? UIColor.black )).resizable().aspectRatio(contentMode: .fit).padding(7.5)
 		} else {
-			Text("Error loading widget.  Sorry, it was a bug.  Please restart the device to refresh it with the system and fix it.").padding()
+			switch family {
+				case .systemSmall:
+					Text(getErrorMessage()).font(.system(size: 10, weight: .light, design: .default)).padding()
+				case .systemLarge:
+					Text(getErrorMessage()).font(.system(size: 20, weight: .light, design: .default)).padding()
+				default:
+					Text(getErrorMessage()).font(.system(size: 10, weight: .light, design: .default)).padding()
+			}
 		}
     }
 }
@@ -115,4 +127,14 @@ struct ContactCardQRCodePreviews: PreviewProvider {
 				WidgetPreviewContext(family: .systemLarge))
 		}
     }
+}
+func getEditWidgetMessage() -> String {
+	#if targetEnvironment(macCatalyst)
+	return "Control-click on this widget and choose \"Edit Widget\" to choose a contact card for a QR code."
+	#else
+	return "While not editing the home screen, press down on this widget  and choose \"Edit Widget\" to choose a contact card for a QR code."
+	#endif
+}
+func getErrorMessage() -> String {
+	return "Error loading widget.  Sorry, it was a bug.  Please restart the device to refresh it with the system and fix it."
 }

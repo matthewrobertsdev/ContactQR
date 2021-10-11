@@ -20,7 +20,7 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
 		if let qrImageData=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.data(forKey: "chosenCardImageData") {
 			cardNootChosenView.isHidden=true
 			if let colorString=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.string(forKey: "chosenCardColor") {
-				let color=(colorModel.getColorsDictionary()[colorString] ?? UIColor.label) ?? UIColor.label
+				let color=UIColor(named: colorString) ?? UIColor.label
 				if var qrImage=UIImage(data: qrImageData) {
 					qrImage=qrImage.withTintColor(color)
 					imageView.image=qrImage
