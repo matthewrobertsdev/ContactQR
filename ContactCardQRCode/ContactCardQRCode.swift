@@ -93,18 +93,22 @@ struct ContactCardQRCodeEntryView: View {
 					Text(getEditWidgetMessage()).font(.system(size: 10, weight: .light, design: .default)).padding()
 			}
 		} else if entry.widgetMode==WidgetMode.contactQRCode {
-			Image(uiImage:  getTintedForeground(image: entry.qrCode ?? UIImage(),
-												color: colorScheme == .dark ? UIColor(named:  "Light"+(entry.color ?? "")) ?? UIColor.white :
-													UIColor(named:  "Dark"+(entry.color ?? ""))
-												?? UIColor.black )).resizable().aspectRatio(contentMode: .fit).padding(7.5).accessibilityLabel((entry.title ?? "Contact Card")+" QR code")
+			if let qrImage = entry.qrCode {
+				let coloredQRImage=getTintedForeground(image: qrImage, color: colorScheme == .dark ? UIColor(named:  "Light"+(entry.color ?? "")) ?? UIColor.white :
+														UIColor(named:  "Dark"+(entry.color ?? ""))
+												 ?? UIColor.black)
+				Image(uiImage:  coloredQRImage).resizable().aspectRatio(contentMode: .fit).padding(7.5).accessibilityLabel((entry.title ?? "Contact Card")+" QR code")
+			} else {
+				Text("Error making QR code image")
+			}
 		} else {
 			switch family {
-				case .systemSmall:
-					Text(getErrorMessage()).font(.system(size: 10, weight: .light, design: .default)).padding()
-				case .systemLarge:
-					Text(getErrorMessage()).font(.system(size: 20, weight: .light, design: .default)).padding()
-				default:
-					Text(getErrorMessage()).font(.system(size: 10, weight: .light, design: .default)).padding()
+			case .systemSmall:
+				Text(getErrorMessage()).font(.system(size: 10, weight: .light, design: .default)).padding()
+			case .systemLarge:
+				Text(getErrorMessage()).font(.system(size: 20, weight: .light, design: .default)).padding()
+			default:
+				Text(getErrorMessage()).font(.system(size: 10, weight: .light, design: .default)).padding()
 			}
 		}
     }

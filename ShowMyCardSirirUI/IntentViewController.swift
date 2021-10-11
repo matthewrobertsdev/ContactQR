@@ -28,6 +28,8 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
 						imageView.accessibilityLabel=cardTitle+" QR Code"
 						imageView.accessibilityValue="image"
 					}
+				} else {
+					imageView.accessibilityLabel="Error making QR code."
 				}
 			}
 		} else {

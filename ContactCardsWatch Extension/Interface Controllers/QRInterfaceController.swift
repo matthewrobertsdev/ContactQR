@@ -34,9 +34,14 @@ class QRInterfaceController: WKInterfaceController, NSFetchedResultsControllerDe
 		image.setHidden(false)
 		contactCardMO=contactCard
 		guard let imageData=contactCard.qrCodeImage else {
+			image.setAccessibilityLabel("Error getting QR image data.")
 			return
 		}
-		image.setImage(UIImage(data: imageData)?.withRenderingMode(.alwaysTemplate))
+		guard let qrImage=UIImage(data: imageData) else {
+			image.setAccessibilityLabel("Error making QR image.")
+			return
+		}
+		image.setImage(qrImage.withRenderingMode(.alwaysTemplate))
 		let color=UIColor(named: contactCardMO?.color ?? "") ?? UIColor.white
 		image.setTintColor(color)
 		image.setAccessibilityLabel((contactCardMO?.filename ?? "Contact Card")+" QR Code")
