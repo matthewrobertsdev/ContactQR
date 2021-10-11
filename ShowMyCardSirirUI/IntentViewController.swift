@@ -17,13 +17,17 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-		if let qrImageData=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.data(forKey: "chosenCardImageData") {
+		if let qrImageData=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.data(forKey: SiriCardKeys.chosenCardImageData.rawValue) {
 			cardNootChosenView.isHidden=true
-			if let colorString=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.string(forKey: "chosenCardColor") {
+			if let colorString=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.string(forKey: SiriCardKeys.chosenCardColor.rawValue) {
 				let color=UIColor(named: colorString) ?? UIColor.label
 				if var qrImage=UIImage(data: qrImageData) {
 					qrImage=qrImage.withTintColor(color)
 					imageView.image=qrImage
+					if let cardTitle=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.string(forKey: SiriCardKeys.chosenCardTitle.rawValue) {
+						imageView.accessibilityLabel=cardTitle+" QR Code"
+						imageView.accessibilityValue="image"
+					}
 				}
 			}
 		} else {

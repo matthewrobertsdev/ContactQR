@@ -35,6 +35,7 @@ struct Provider: IntentTimelineProvider {
 		SimpleEntry {
 		var qrCode: UIImage?
 		var color: String?
+		var title: String?
 		var widgetMode=WidgetMode.editMessage
 		if let uuid=configuration.parameter?.identifier {
 			let container=loadPersistentCloudKitContainer()
@@ -50,6 +51,7 @@ struct Provider: IntentTimelineProvider {
 						model.setUp(contactCard: contactCardMO)
 						color=contactCardMO.color
 						qrCode=model.makeQRCode()
+						title=contactCardMO.filename
 						print("Should have made qr code for widget")
 						widgetMode=WidgetMode.contactQRCode
 					}
@@ -57,17 +59,18 @@ struct Provider: IntentTimelineProvider {
 					print("Unable to fetch contact cards")
 				}
 		}
-		return SimpleEntry(date: Date(), qrCode: qrCode, color: color, widgetMode: widgetMode)
+			return SimpleEntry(date: Date(), qrCode: qrCode, color: color, title: title, widgetMode: widgetMode)
 	}
 }
 func createPreviewEntry() -> SimpleEntry {
 	SimpleEntry(date: Date(), qrCode: ContactDataConverter.makeQRCode(string: "https://matthewrobertsdev.github.io/celeritasapps/#/"),
-						  color: "Yellow", widgetMode: WidgetMode.placeholder)
+				color: "Yellow", title: "Placeholder",widgetMode: WidgetMode.placeholder)
 }
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let qrCode: UIImage?
 	let color: String?
+	let title: String?
 	let widgetMode: WidgetMode
 }
 
@@ -92,7 +95,8 @@ struct ContactCardQRCodeEntryView: View {
 		} else if entry.widgetMode==WidgetMode.contactQRCode {
 			Image(uiImage:  getTintedForeground(image: entry.qrCode ?? UIImage(),
 												color: colorScheme == .dark ? UIColor(named:  "Light"+(entry.color ?? "")) ?? UIColor.white :
-													UIColor(named:  "Dark"+(entry.color ?? "")) ?? UIColor.black )).resizable().aspectRatio(contentMode: .fit).padding(7.5)
+													UIColor(named:  "Dark"+(entry.color ?? ""))
+												?? UIColor.black )).resizable().aspectRatio(contentMode: .fit).padding(7.5).accessibilityLabel((entry.title ?? "Contact Card")+" QR code")
 		} else {
 			switch family {
 				case .systemSmall:

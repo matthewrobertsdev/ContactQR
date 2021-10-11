@@ -39,6 +39,8 @@ class DisplayQRViewController: UIViewController {
 		if let qrCode=model.makeQRCode() {
 			qrImageView.image=getTintedForeground(image: qrCode, color: UIColor.label).withRenderingMode(.alwaysTemplate)
 			qrImageView.tintColor=color
+			qrImageView.accessibilityLabel=(ActiveContactCard.shared.contactCard?.filename ?? "Contact Card")+" QR Code"
+			qrImageView.accessibilityValue="image"
 		} else {
 			errorLabel.isHidden=false
 			focusExplanationLabel.isHidden=true

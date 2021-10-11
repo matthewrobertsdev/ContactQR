@@ -39,6 +39,8 @@ class QRInterfaceController: WKInterfaceController, NSFetchedResultsControllerDe
 		image.setImage(UIImage(data: imageData)?.withRenderingMode(.alwaysTemplate))
 		let color=UIColor(named: contactCardMO?.color ?? "") ?? UIColor.white
 		image.setTintColor(color)
+		image.setAccessibilityLabel((contactCardMO?.filename ?? "Contact Card")+" QR Code")
+		image.setAccessibilityValue("image")
 	}
     override func willActivate() {
 		super.willActivate()

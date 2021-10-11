@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="18122" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FuQ-9m-Y9c">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="19162" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FuQ-9m-Y9c">
     <device id="watch38"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="18022"/>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="19044"/>
     </dependencies>
     <scenes>
         <!--Cards-->
@@ -58,7 +59,9 @@
                     <items>
                         <group width="1" alignment="left" layout="vertical" spacing="10" id="lFD-ec-4mE">
                             <items>
-                                <imageView width="1" alignment="left" contentMode="scaleAspectFit" id="kwL-RQ-vYD"/>
+                                <imageView width="1" alignment="left" isAccessibilityElement="YES" contentMode="scaleAspectFit" id="kwL-RQ-vYD">
+                                    <accessibilityTraits key="accessibilityTraits" none="YES"/>
+                                </imageView>
                                 <label width="1" alignment="left" text="Card Deleted" textAlignment="center" id="hfc-iE-H7U"/>
                                 <button width="1" alignment="left" title="Show Details" id="AfQ-bP-kJL">
                                     <color key="titleColor" red="0.35539197919999999" green="0.2604061365" blue="0.16468334200000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
