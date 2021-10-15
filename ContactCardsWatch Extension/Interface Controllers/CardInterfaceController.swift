@@ -33,12 +33,13 @@ class CardInterfaceController: WKInterfaceController, NSFetchedResultsController
 		cardTitleLabel.setHidden(false)
 		cardDetailsLabel.setHidden(false)
 		do {
-			let contact=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)[0]
-			let cardString=ContactInfoManipulator.makeContactDisplayString(cnContact: contact, fontSize: CGFloat(13))
-			cardDetailsLabel.setAttributedText(cardString)
-			cardTitleLabel.setText(contactCard.filename)
-			let color=UIColor(named: "Dark"+contactCard.color) ?? UIColor.white
-			cardTitleLabel.setTextColor(color)
+			if let contact=try ContactDataConverter.getCNContact(vCardString: contactCard.vCardString) {
+				let cardString=ContactInfoManipulator.makeContactDisplayString(cnContact: contact, fontSize: CGFloat(13))
+				cardDetailsLabel.setAttributedText(cardString)
+				cardTitleLabel.setText(contactCard.filename)
+				let color=UIColor(named: "Dark"+contactCard.color) ?? UIColor.white
+				cardTitleLabel.setTextColor(color)
+			}
 		} catch {
 			print("Unable to create contact from vCard for watch.")
 		}

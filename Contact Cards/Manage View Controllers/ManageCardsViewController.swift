@@ -75,8 +75,10 @@ class ManageCardsViewController: UIViewController {
 						}
 						let contactCardRecord=ContactCardMO(entity: cardMO, insertInto: context)
 						do {
-							let contact=try ContactDataConverter.createCNContactArray(vCardString: card.vCardString)[0]
-							setFields(contactCardMO: contactCardRecord, filename: card.filename, cnContact: contact, color: card.color)
+							let contact=try ContactDataConverter.getCNContact(vCardString: card.vCardString)
+							if let contact=contact {
+								setFields(contactCardMO: contactCardRecord, filename: card.filename, cnContact: contact, color: card.color)
+							}
 						} catch {
 							print("Error getting CNContact from vCard")
 						}

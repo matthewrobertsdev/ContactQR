@@ -22,9 +22,9 @@ class DisplayQRModel {
 			return
 		}
 		do {
-			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: vCardString)
-			if contactArray.count==1 {
-				self.contact=contactArray[0]
+			let contact=try ContactDataConverter.getCNContact(vCardString: vCardString)
+			if let contact=contact {
+				self.contact=contact
 			}
 		} catch {
 			print("Error making CNContact from VCard String.")

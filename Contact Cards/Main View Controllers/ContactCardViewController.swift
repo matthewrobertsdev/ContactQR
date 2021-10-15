@@ -135,9 +135,9 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 			titleLabel.textColor=UIColor(named: "ContrastingColor")
 		}
 		do {
-			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: activeCard.vCardString)
-			if contactArray.count==1 {
-				contactInfoTextView.attributedText=ContactInfoManipulator.makeContactDisplayString(cnContact: contactArray[0], fontSize: CGFloat(18))
+			let contact=try ContactDataConverter.getCNContact(vCardString: activeCard.vCardString)
+			if let contact=contact {
+				contactInfoTextView.attributedText=ContactInfoManipulator.makeContactDisplayString(cnContact: contact, fontSize: CGFloat(18))
 			} else {
 				contactInfoTextView.attributedText=NSAttributedString(string: "")
 				//enableButtons(enable: false)
@@ -266,9 +266,9 @@ class ContactCardViewController: UIViewController, UIActivityItemsConfigurationR
 		createContactViewController.contactCard=contactCard
 		let navigationController=UINavigationController(rootViewController: createContactViewController)
 		do {
-			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)
-			if contactArray.count==1 {
-				createContactViewController.contact=contactArray[0]
+			let contact=try ContactDataConverter.getCNContact(vCardString: contactCard.vCardString)
+			if let contact=contact {
+				createContactViewController.contact=contact
 				createContactViewController.contactCard=contactCard
 			}
 		} catch {

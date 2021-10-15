@@ -12,9 +12,14 @@ import UIKit
  Converts between CNContact, vCard Data, String, and QR code
  */
 class ContactDataConverter {
-    static func createCNContactArray(vCardString: String)throws ->[CNContact] {
+    static func getCNContact(vCardString: String)throws ->CNContact? {
         if let vCardData = vCardString.data(using: .utf8) {
-            return try CNContactVCardSerialization.contacts(with: vCardData)
+            let contacts=try CNContactVCardSerialization.contacts(with: vCardData)
+			if contacts.count==1 {
+				return contacts[0]
+			} else {
+				return nil
+			}
         } else {
             throw DataConversionError.dataSerializationError("Couldn't serialize string to data.")
         }
@@ -71,9 +76,8 @@ class ContactDataConverter {
 		var filename="Contact"
 		var contact=CNContact()
 		do {
-			let contactArray=try ContactDataConverter.createCNContactArray(vCardString: contactCard.vCardString)
-			if contactArray.count==1 {
-				contact=contactArray[0]
+			if let contactToWrite=try ContactDataConverter.getCNContact(vCardString: contactCard.vCardString) {
+				contact=contactToWrite
 			}
 		} catch {
 			print("Error making CNContact from VCard String.")

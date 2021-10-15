@@ -9,11 +9,11 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>F6AkTd</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>20F71</string>
+	<string>20G165</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>12E507</string>
+	<string>13A233</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>12.5.1</string>
+	<string>13.0</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -71,6 +71,8 @@
 				<key>INIntentResponseLastParameterTag</key>
 				<integer>3</integer>
 			</dict>
+			<key>INIntentRestrictions</key>
+			<integer>2</integer>
 			<key>INIntentTitle</key>
 			<string>Show QR Code of Contact Card</string>
 			<key>INIntentTitleID</key>

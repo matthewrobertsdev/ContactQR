@@ -38,9 +38,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please open Contact Cards, go to &quot;For Siri&quot;, tap &quot;Choose Card&quot;, and choose and save your card choice." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azI-m0-RXy">
-                                        <rect key="frame" x="18" y="46" width="284" height="79"/>
+                                        <rect key="frame" x="18" y="46" width="284" height="89"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="79" id="kdr-Og-Q4I"/>
+                                            <constraint firstAttribute="height" constant="89" id="kdr-Og-Q4I"/>
                                             <constraint firstAttribute="width" constant="284" id="nyl-30-1gE"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -75,6 +75,7 @@
                     <connections>
                         <outlet property="cardNootChosenView" destination="fHp-kL-qBE" id="lD4-kK-zDP"/>
                         <outlet property="imageView" destination="jQA-dd-wUp" id="FkQ-7u-UAx"/>
+                        <outlet property="instructionsLabel" destination="azI-m0-RXy" id="l3v-nx-UwI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X47-rx-isc" userLabel="First Responder" sceneMemberID="firstResponder"/>

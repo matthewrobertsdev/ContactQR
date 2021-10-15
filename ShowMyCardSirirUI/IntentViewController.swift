@@ -9,10 +9,10 @@ import IntentsUI
 // As an example, this extension's Info.plist has been configured to handle interactions for INSendMessageIntent.
 // You will want to replace this or add other intents as appropriate.
 // The intents whose interactions you wish to handle must be declared in the extension's Info.plist.
-// You can test this example integration by saying things to Siri like:
 class IntentViewController: UIViewController, INUIHostedViewControlling {
 	@IBOutlet weak var cardNootChosenView: UIView!
 	@IBOutlet weak var imageView: UIImageView!
+	@IBOutlet weak var instructionsLabel: UILabel!
 	let colorModel=ColorModel()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +34,9 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
 			}
 		} else {
 			cardNootChosenView.isHidden=false
+			#if targetEnvironment(macCatalyst)
+			instructionsLabel.text="Please open Contact Cards, select the \"Siri\" menu, click \"Set-up Card for Siri...\", click \"Choose Card\", and choose and save your card choice."
+			#endif
 		}
     }
 	override func viewWillAppear(_ animated: Bool) {
