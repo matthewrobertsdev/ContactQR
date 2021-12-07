@@ -189,13 +189,6 @@
 			remoteGlobalIDString = 9F7153DA2622ABD600292539;
 			remoteInfo = "ContactCardsWatch Extension";
 		};
-		9F7153EC2622ABD700292539 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9F9E9AD721BA1690003A6A33 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9F7153CE2622ABD500292539;
-			remoteInfo = ContactCardsWatch;
-		};
 		9F75D0E12678305C00A10BF7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9F9E9AD721BA1690003A6A33 /* Project object */;
@@ -945,7 +938,6 @@
 			dependencies = (
 				9FC149AA25F34B9700C700B0 /* PBXTargetDependency */,
 				9F3F6A5F25F494820053C1DF /* PBXTargetDependency */,
-				9F7153ED2622ABD700292539 /* PBXTargetDependency */,
 				9F0A334F265ED64F00265C4D /* PBXTargetDependency */,
 				9F0A3360265EDCB400265C4D /* PBXTargetDependency */,
 				9FB5FA6C27147A92004CA8C6 /* PBXTargetDependency */,
@@ -1377,12 +1369,6 @@
 			isa = PBXTargetDependency;
 			target = 9F7153DA2622ABD600292539 /* ContactCardsWatch Extension */;
 			targetProxy = 9F7153DD2622ABD600292539 /* PBXContainerItemProxy */;
-		};
-		9F7153ED2622ABD700292539 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			platformFilter = ios;
-			target = 9F7153CE2622ABD500292539 /* ContactCardsWatch */;
-			targetProxy = 9F7153EC2622ABD700292539 /* PBXContainerItemProxy */;
 		};
 		9F75D0E22678305C00A10BF7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

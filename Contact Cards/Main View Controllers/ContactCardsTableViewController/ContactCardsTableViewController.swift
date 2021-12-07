@@ -26,6 +26,8 @@ class ContactCardsTableViewController: UITableViewController {
 		if let splitViewController=splitViewController {
 			splitViewController.primaryBackgroundStyle = .sidebar
 		}
+		//prefers large title
+		navigationItem.largeTitleDisplayMode = .always
 		let notificationCenter=NotificationCenter.default
 		//should push new contact
 		notificationCenter.addObserver(self, selector: #selector(handleNewContact), name: .contactCreated, object: nil)
