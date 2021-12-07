@@ -21,6 +21,9 @@ class ChooseCardViewController: UIViewController, NSFetchedResultsControllerDele
         super.viewDidLoad()
 		tableView.dataSource=self
 		tableView.delegate=self
+		#if targetEnvironment(macCatalyst)
+		tableView.rowHeight=50
+		#endif
         // Do any additional setup after loading the view.
     }
 	override func viewWillAppear(_ animated: Bool) {

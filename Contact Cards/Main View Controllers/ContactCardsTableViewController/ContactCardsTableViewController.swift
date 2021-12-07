@@ -37,6 +37,9 @@ class ContactCardsTableViewController: UITableViewController {
 		notificationCenter.addObserver(self, selector: #selector(updateContent), name: UIApplication.willEnterForegroundNotification, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(updateContent), name: .syncChanged, object: nil)
 		tableView.dragDelegate=self
+		#if targetEnvironment(macCatalyst)
+		tableView.rowHeight=50
+		#endif
 	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
