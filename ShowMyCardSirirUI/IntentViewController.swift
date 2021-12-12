@@ -20,7 +20,11 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
 		if let qrImageData=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.data(forKey: SiriCardKeys.chosenCardImageData.rawValue) {
 			cardNootChosenView.isHidden=true
 			if let colorString=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.string(forKey: SiriCardKeys.chosenCardColor.rawValue) {
+				#if targetEnvironment(macCatalyst)
+				let color=UIColor(named: "Dark"+colorString) ?? UIColor.label
+				#else
 				let color=UIColor(named: colorString) ?? UIColor.label
+				#endif
 				if var qrImage=UIImage(data: qrImageData) {
 					qrImage=qrImage.withTintColor(color)
 					imageView.image=qrImage
@@ -51,7 +55,7 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
     }
     var desiredSize: CGSize {
 		#if targetEnvironment(macCatalyst)
-		return CGSize(width: 500, height: 500)
+		return CGSize(width: 250, height: 250)
 		#else
 		let screenSize=UIScreen.main.bounds
 		var smaller: CGFloat
