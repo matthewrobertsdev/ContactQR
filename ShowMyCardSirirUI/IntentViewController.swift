@@ -20,11 +20,13 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
 		if let qrImageData=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.data(forKey: SiriCardKeys.chosenCardImageData.rawValue) {
 			cardNootChosenView.isHidden=true
 			if let colorString=UserDefaults(suiteName: "group.com.apps.celeritas.contact.cards")?.string(forKey: SiriCardKeys.chosenCardColor.rawValue) {
+				/*
 				#if targetEnvironment(macCatalyst)
 				let color=UIColor(named: "Dark"+colorString) ?? UIColor.label
 				#else
+				 */
 				let color=UIColor(named: colorString) ?? UIColor.label
-				#endif
+				//#endif
 				if var qrImage=UIImage(data: qrImageData) {
 					qrImage=qrImage.withTintColor(color)
 					imageView.image=qrImage
